@@ -458,4 +458,4 @@ set tags=tags;/
 " vondle plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "source <sfile>:p:h/.vundle.vim
-source $VIMFILES/.vundle.vim
+source $VIMFILES/vimrc/.vundle.vim

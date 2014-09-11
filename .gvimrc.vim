@@ -1,15 +1,8 @@
-" An example for a gvimrc file.
 " The commands in this are executed when the GUI is started.
-"
 " Maintainer: icersong <icersong@gmail.com>
-" Last change: 2014-02-14
+" Created: 2013-10-10 00:00:00
+" Modified: 2014-09-12 01:55:51 [163]
 "
-" To use it, copy it to
-"   for Unix and OS/2:  ~/.gvimrc
-"   for Amiga:  s:.gvimrc
-"   for MS-DOS and Win32:  $VIM\_gvimrc
-"   for OpenVMS:  sys$login:.gvimrc
-
 " Make shift-insert work like in Xterm
 map <S-Insert> <MiddleMouse>
 map! <S-Insert> <MiddleMouse>
