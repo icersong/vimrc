@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-09-12 10:39:55 [186]
+" Modified: 2014-09-12 10:54:31 [188]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle  {{{1
 
@@ -67,7 +67,11 @@ Bundle 'altercation/vim-colors-solarized'
     let g:solarized_termcolors = 256
     let g:solarized_contrast = "high"
     let g:solarized_visibility = "high"
-    set background=dark
+    if has('gui_running')
+      set background=dark
+    else
+      set background=light
+    endif
     colorscheme solarized
   endif
 
