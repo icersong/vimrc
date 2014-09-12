@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-09-12 01:51:16 [161]
+" Modified: 2014-09-12 10:39:55 [186]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle  {{{1
 
@@ -64,7 +64,7 @@ Bundle 'bling/vim-airline'
 " solarized   {{{1
 Bundle 'altercation/vim-colors-solarized'
   if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/vim-colors-solarized'))))
-    "let g:solarized_termcolors=256
+    let g:solarized_termcolors = 256
     let g:solarized_contrast = "high"
     let g:solarized_visibility = "high"
     set background=dark
@@ -122,7 +122,7 @@ Bundle "techlivezheng/vim-plugin-minibufexpl"
     let g:miniBufExplorerAutoStart = 0
     let g:miniBufExplBuffersNeeded = 1
     if !has('gui_running')
-        let g:miniBufExplorerAutoStart = 1
+        let g:miniBufExplorerAutoStart = 0
     endif
   endif
 

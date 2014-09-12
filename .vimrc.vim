@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-09-12 01:09:40 [145]
+" Modified: 2014-09-12 10:42:28 [149]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -30,7 +30,7 @@ else
     let g:islinux = 1
     let g:platform = "linux"
   endif
-  let $VIMFILES='~/.vim'
+  let $VIMFILES = $HOME.'/.vim'
   let $VIMCACHE = $HOME.'/.cache'
 endif
 
