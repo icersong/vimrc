@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-09-12 10:54:31 [188]
+" Modified: 2014-09-17 00:30:42 [204]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle  {{{1
 
@@ -92,20 +92,25 @@ Bundle 'kien/ctrlp.vim'
   if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/ctrlp.vim'))))
     let g:ctrlp_map = '<c-p>'
     let g:ctrlp_cmd = 'CtrlP'
-    set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
-    set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+    let g:ctrlp_show_hidden = 1
     "let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
     let g:ctrlp_custom_ignore = {
-      \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+      \ 'dir':  '\v[\/](\.(git|hg|svn)|Caches)$',
       \ 'file': '\v\.(exe|so|dll)$',
-      \ 'link': 'some_bad_symbolic_links',
+      \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
       \ }
-    if g:ismacos || g:islinux
-      let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
-    endif
-    if g:iswindows
-      let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
-    endif
+    "if g:ismacos || g:islinux
+    "  set wildignore+=*/.git/*,*/.hg/*,*/.svn/*           " Linux/MacOSX
+    "  set wildignore+=*/tmp/*,*.so,*.swp,*.zip            " MacOSX/Linux
+    "  set wildignore+=*/.cache/*,.cache/*
+    "  set wildignore+=*/Caches/*,Caches/*
+    "  let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
+    "endif
+    "if g:iswindows
+    "  set wildignore+=*\\.git\\*,*\\.hg\\*,*\\.svn\\*     " Windows ('noshellslash')
+    "  set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe         " Windows
+    "  let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
+    "endif
     nmap <leader>f :CtrlP<CR>
   endif
 
