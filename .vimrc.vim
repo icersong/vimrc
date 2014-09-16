@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-09-12 10:42:28 [149]
+" Modified: 2014-09-17 01:22:15 [178]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -81,14 +81,12 @@ set cmdheight=1                 " 命令行占1行
 set nu                          " 显示行号，切换行号显隐 set nu!
 set numberwidth=1               " 显示光标位置的，行号列号和百分比，简写 set nuw
 set lazyredraw                  " 减少重绘
-"set hid                         " 放弃缓冲区时隐藏而不卸载
 set backspace=indent,eol,start  " 置光标在行首时按退格键，光标会回到上一行行尾
 set incsearch                   " 搜索时动态调到第一个匹配的位置
 set ignorecase                  " 搜索时忽略大小写
 set smartcase                   " 如果搜索模式包含大写字母，忽略ignorecase
 set nohls                       " 快速查找，直接定位到文本
 set hlsearch                    " 高亮显示搜索结果
-"set nowrapscan                  " 搜索到文件末尾时，不再回绕到文件首
 set showmatch                   " 插入括号时，短暂的跳转到匹配的对应括号，显示匹配的时间由matchtime决定
 set matchtime=3                 " 单位是十分之一秒
 set matchpairs=(:),{:},[:],<:>  " 匹配括号的规则，增加针对html的<>
@@ -98,6 +96,10 @@ set nosol                       " 普通模式下光标行间移动时不到行�
 set virtualedit=all,onemore
 set display=lastline            " 解决自动换行格式下, 如折行之后高在超过窗口高度看不到最后一行的问题
 set report=0                    " 报告哪些行被修改过
+set go+=a                       " 选择后自动进入系统剪切板
+set completeopt=longest,menu    " 去掉智能补全预览，只显示菜单并自动插入
+"set nowrapscan                  " 搜索到文件末尾时，不再回绕到文件首
+"set hid                         " 放弃缓冲区时隐藏而不卸载
 "set selection=exclusive         " 设定选择区的行为为闭区间，选择的最后一个字符包含在操作范围之内
 "set linespace=4                 " 设置行间距，单位是像素
 "set shortmess+=I                " 启动时不显示介绍信息
@@ -151,8 +153,9 @@ if g:iswindows
 endif
 
 if g:ismacos
-  set guifont=Menlo:h10:cDEFAULT
-  set guifontwide=Menlo:h10:cDEFAULT
+  set guifontwide=Menlo:h11
+  set guifont=Menlo:h11
+  au BufEnter * :set guifont=   " fixed sometime not show chinese
 endif
 
 "解决菜单乱码
@@ -324,7 +327,7 @@ vnoremap [ <esc>`>i]<esc>`<i[<esc>
 vnoremap { <esc>`>i}<esc>`<i{<esc>
 vnoremap ` <esc>`>i`<esc>`<i`<esc>
 vnoremap ' <esc>`>i'<esc>`<i'<esc>
-vnoremap " <esc>`>i"<esc>`<i"<esc>
+"vnoremap " <esc>`>i"<esc>`<i"<esc>
 
 " 代码折叠
 " set foldenable        " 开启自动折叠
@@ -337,6 +340,7 @@ set foldlevel=1         " 设置折叠层数为
 " 用空格键来开关折叠
 " nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 自动加载编辑后的_vimrc配置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -347,13 +351,6 @@ set foldlevel=1         " 设置折叠层数为
 "  autocmd BufWritePost .vimrc :source ~\.vimrc
 "  autocmd BufWritePost .vimrc :set fileencoding=utf8
 "endif
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 智能补全 呼出Ctrl+X+O 前一个Ctrl+P 下一个Ctrl+N
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 去掉智能补全预览，只显示菜单并自动插入
-set completeopt=longest,menu
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
