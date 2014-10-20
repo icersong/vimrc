@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-09-17 00:30:42 [204]
+" Modified: 2014-10-20 17:04:18 [228]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle  {{{1
 
@@ -255,7 +255,7 @@ let g:jedi#auto_initialization      = 1
 let g:jedi#auto_vim_configuration   = 0
 let g:jedi#use_tabs_not_buffers     = 1
 let g:jedi#completions_enabled      = 1
-let g:jedi#popup_select_first       = 0
+let g:jedi#popup_select_first       = 1
 let g:jedi#popup_on_dot             = 0
 let g:jedi#auto_close_doc           = 1
 let g:jedi#completions_command      = "<C-N>"
@@ -311,13 +311,12 @@ let g:sqlutil_keyword_case = '\U'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " auto complete plugin   {{{1
-"Bundle 'Shougo/neocomplete.vim'
-"Bundle 'Shougo/neocomplcache.vim'
-"  " CTRL-N,CTRL-P
-"  if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/neocomplcache.vim'))))
-"    au VimEnter * nested NeoComplCacheEnable
-"    source <sfile>:p:h/.neocomplcache.vim
-"  endif
+Bundle 'Shougo/neocomplete.vim'
+if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/neocomplete'))))
+  if (filereadable(simplify(expand('$VIMFILES/vimrc/neocomplete.vim'))))
+    source $VIMFILES/vimrc/neocomplete.vim
+  endif
+endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -363,7 +362,27 @@ let g:vimrc_email='icersong@gmail.com'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " taglist   {{{1
 Bundle 'vim-scripts/taglist.vim'
+"let Tlist_Auto_Open = 1
+let Tlist_Close_On_Select = 1
+let Tlist_File_Fold_Auto_Close = 1
+let Tlist_GainFocus_On_ToggleOpen = 1
+let Tlist_Show_One_File = 1
+let Tlist_Use_Right_Window = 1
+let Tlist_Use_SingleClick = 1
 " $ctags -R . 在当前目录下递归生成tags文件
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Tagbar {{{1
+Bundle 'majutsushi/tagbar'
+nmap <Leader>tb :TagbarToggle<CR>
+"let g:tagbar_ctags_bin='/usr/bin/ctags'
+let g:tagbar_width=30
+let g:tagbar_autoclose = 1
+let g:tagbar_autofocus = 1
+let g:tagbar_show_linenumbers = -1
+let g:tagbar_singleclick = 1
+autocmd BufReadPost *.cpp,*.c,*.h,*.py call tagbar#autoopen()
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
