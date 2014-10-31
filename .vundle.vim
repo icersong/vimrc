@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-11-01 03:01:52 [252]
+" Modified: 2014-11-01 03:13:53 [253]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle  {{{1
 
@@ -179,7 +179,7 @@ Bundle 'honza/vim-snippets'
     "let g:UltiSnipsUsePythonVersion = 2
     "let g:UltiSnips = {}
     "let g:UltiSnipsExpandTrigger = '<Tab>'
-    "let g:UltiSnipsListSnippets = '<C-L>'
+    let g:UltiSnipsListSnippets = '<c-l>'
     "let g:UltiSnipsJumpForwardTrigger = '<Tab>'
     "let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
     let g:UltiSnipsExpandTrigger="<c-j>"
