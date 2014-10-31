@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-10-20 17:04:18 [228]
+" Modified: 2014-10-22 03:09:31 [230]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle  {{{1
 
@@ -184,7 +184,7 @@ Bundle 'honza/vim-snippets'
 " python-mode   {{{1
 Bundle 'klen/python-mode'
   if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/python-mode'))))
-    let g:pymode_rope = 1
+    let g:pymode_rope = 0
     let g:pymode_rope_lookup_project = 1
     let g:pymode_rope_autoimport = 1
     let g:pymode_rope_autoimport_modules = ['os', 'sys', 'logging']
@@ -382,7 +382,7 @@ let g:tagbar_autoclose = 1
 let g:tagbar_autofocus = 1
 let g:tagbar_show_linenumbers = -1
 let g:tagbar_singleclick = 1
-autocmd BufReadPost *.cpp,*.c,*.h,*.py call tagbar#autoopen()
+"autocmd BufReadPost *.cpp,*.c,*.h,*.py call tagbar#autoopen()
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
