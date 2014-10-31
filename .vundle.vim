@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-11-01 03:13:53 [253]
+" Modified: 2014-11-01 04:08:36 [256]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle  {{{1
 
@@ -61,18 +61,31 @@ Bundle 'bling/vim-airline'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" solarized   {{{1
+" solarized theme  {{{1
 Bundle 'altercation/vim-colors-solarized'
   if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/vim-colors-solarized'))))
     let g:solarized_termcolors = 256
     let g:solarized_contrast = "high"
     let g:solarized_visibility = "high"
+    let g:solarized_termtrans=1
+    let g:solarized_contrast="normal"
+    let g:solarized_visibility="normal"
     if has('gui_running')
       set background=dark
-    else
-      set background=light
+      colorscheme solarized
     endif
-    colorscheme solarized
+  endif
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" molokai theme  {{{1
+Bundle 'tomasr/molokai'
+  if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/molokai'))))
+    let g:molokai_original = 1
+    if !has('gui_running')
+      set background=dark
+      colorscheme molokai
+    endif
   endif
 
 
@@ -157,6 +170,16 @@ Bundle 'rainbow_parentheses.vim'
     au Syntax * RainbowParenthesesLoadBraces
   else
     "echo 'rainbo_parentheses plugin not found.'
+  endif
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" easymotion  {{{1
+Bundle 'Lokaltog/vim-easymotion'
+  if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/vim-easymotion'))))
+    let g:EasyMotion_leader_key = '\'
+  else
+    "echo 'easymotion plugin not found.'
   endif
 
 
@@ -269,12 +292,6 @@ let g:jedi#popup_select_first       = 1
 let g:jedi#popup_on_dot             = 0
 let g:jedi#auto_close_doc           = 1
 let g:jedi#completions_command      = "<C-N>"
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim-colors-solarized  {{{1
-" code highlight
-"Bundle 'altercation/vim-colors-solarized'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
