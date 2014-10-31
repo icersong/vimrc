@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-10-22 03:09:31 [230]
+" Modified: 2014-11-01 03:01:52 [252]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle  {{{1
 
@@ -17,7 +17,7 @@ call vundle#rc($VIM_BUNDLE_PATH)
 
 " let Vundle manage Vundle
 Bundle 'gmarik/vundle'
-filetype plugin indent on       " required!
+"filetype plugin indent on       " required!
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -171,14 +171,24 @@ Bundle 'nathanaelkane/vim-indent-guides'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " UltiSnips   {{{1
+if has('python')
 Bundle 'SirVer/ultisnips'
 Bundle 'honza/vim-snippets'
   if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/ultisnips'))))
-    let g:UltiSnipsExpandTrigger='<c-s>'
-    let g:UltiSnipsJumpForwardTrigger='c-s'
-    let g:UltiSnipsJumpBackwardTrigger='c-s-s'
+    let g:UltiSnipsEditSplit='vertical'
+    "let g:UltiSnipsUsePythonVersion = 2
+    "let g:UltiSnips = {}
+    "let g:UltiSnipsExpandTrigger = '<Tab>'
+    "let g:UltiSnipsListSnippets = '<C-L>'
+    "let g:UltiSnipsJumpForwardTrigger = '<Tab>'
+    "let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
+    let g:UltiSnipsExpandTrigger="<c-j>"
+    let g:UltiSnipsJumpForwardTrigger="<c-j>"
+    let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+    let g:UltiSnipsSnippetsDir=simplify(expand($VIM_BUNDLE_PATH.'/vim-snippets/UltiSnips'))
+    let g:UltiSnipsSnippetDirectories=[simplify(expand($VIM_BUNDLE_PATH.'/vim-snippets/UltiSnips'))]
   endif
-
+endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " python-mode   {{{1
@@ -452,3 +462,6 @@ Bundle 'icersong/timestamp.vim'
 "
 " see :h vundle for more details or wiki for FAQ
 " NOTE: comments after Bundle command are not allowed
+"
+
+filetype plugin indent on
