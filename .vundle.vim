@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-11-01 04:08:36 [256]
+" Modified: 2014-11-01 14:19:48 [260]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle  {{{1
 
@@ -281,6 +281,16 @@ Bundle 'scrooloose/syntastic'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" auto complete plugin   {{{1
+Bundle 'Shougo/neocomplete.vim'
+if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/neocomplete'))))
+  if (filereadable(simplify(expand('$VIMFILES/vimrc/neocomplete.vim'))))
+    source $VIMFILES/vimrc/neocomplete.vim
+  endif
+endif
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " jedi-vim  {{{1
 " jedi-vim is a is a VIM binding to the autocompletion library Jedi.
 Bundle 'davidhalter/jedi-vim'
@@ -334,16 +344,6 @@ Bundle 'vim-scripts/SQLUtilities'
 let g:sqlutil_align_comma = 1
 let g:sqlutil_align_keyword_right = 0
 let g:sqlutil_keyword_case = '\U'
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" auto complete plugin   {{{1
-Bundle 'Shougo/neocomplete.vim'
-if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/neocomplete'))))
-  if (filereadable(simplify(expand('$VIMFILES/vimrc/neocomplete.vim'))))
-    source $VIMFILES/vimrc/neocomplete.vim
-  endif
-endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
