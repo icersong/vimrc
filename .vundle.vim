@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-11-01 21:06:10 [278]
+" Modified: 2014-11-02 20:38:31 [279]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle  {{{1
 
@@ -356,18 +356,6 @@ let g:sqlutil_keyword_case = '\U'
 " matchit   {{{1
 " The matchit.vim script allows you to configure % to match more than just single characters.
 Bundle 'vim-scripts/matchit.zip'
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" repeat  {{{1
-Bundle 'godlygeek/tabular'
-"if exists(":Tabularize")
-if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/tabular'))))
-  nmap <leader>i= :Tabularize /=<CR>
-  vmap <leader>i= :Tabularize /=<CR>
-  nmap <leader>i: :Tabularize /:\zs<CR>
-  vmap <leader>i: :Tabularize /:\zs<CR>
-endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
