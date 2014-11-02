@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-11-02 22:24:17 [333]
+" Modified: 2014-11-02 22:37:01 [337]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle  {{{1
 
@@ -345,6 +345,7 @@ autocmd BufNewFile,BufRead,BufReadPre *.json set filetype=json
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " SQL   {{{1
+" Bundle 'godlygeek/tabular'  " The featrues is same as Align
 Bundle 'vim-scripts/Align'
 Bundle 'vim-scripts/dbext.vim'
 Bundle 'vim-scripts/SQLUtilities'
@@ -363,6 +364,13 @@ let g:sqlutil_keyword_case = '\U'
 " matchit   {{{1
 " The matchit.vim script allows you to configure % to match more than just single characters.
 Bundle 'vim-scripts/matchit.zip'
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" TaskList.vim {{{1
+" It will search the file for FIXME, TODO, and XXX ...
+Bundle 'vim-scripts/TaskList.vim'
+map <leader>td <Plug>TaskList
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
