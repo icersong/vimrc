@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-11-03 00:12:46 [353]
+" Modified: 2014-11-03 01:38:50 [354]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle  {{{1
 
@@ -479,6 +479,11 @@ Bundle 'xolox/vim-session'
   let g:session_autoload = 'yes'
   let g:session_command_aliases = 1
   let g:session_directory = simplify(expand($VIMCACHE.'/session'))
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-signature  {{{1
+Bundle 'kshenoy/vim-signature'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
