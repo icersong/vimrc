@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-11-02 20:38:31 [279]
+" Modified: 2014-11-02 21:06:30 [280]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle  {{{1
 
@@ -92,6 +92,12 @@ Bundle 'tomasr/molokai'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NERDTree  {{{1
 Bundle "scrooloose/nerdtree"
+nmap <leader>nt :NERDTree<CR>
+let NERDTreeHighlightCursorline=1
+let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$' ]
+let g:netrw_home='~/bak'
+"close vim if the only window left open is a NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | end
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
