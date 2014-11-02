@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-11-02 22:37:01 [337]
+" Modified: 2014-11-03 00:12:46 [353]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle  {{{1
 
@@ -49,14 +49,14 @@ Bundle 'bling/vim-airline'
     let g:airline#extensions#tabline#left_alt_sep = ''
     let g:airline#extensions#tabline#buffer_nr_show = 1
     let g:airline#extensions#tabline#buffer_nr_format = '%s:'
-    let g:airline_left_sep=''
-    let g:airline_right_sep=''
-    let g:airline_detect_whitespace          = 0
-    let g:airline_powerline_fonts=1
-    let g:airline_enable_branch=1
-    let g:airline_enable_syntastic=1
-    let g:airline_detect_paste=1
-    au BufEnter * :AirlineRefresh
+    let g:airline_left_sep = ''
+    let g:airline_right_sep = ''
+    let g:airline_detect_whitespace = 0
+    let g:airline_powerline_fonts = 0
+    let g:airline_enable_branch = 1
+    let g:airline_enable_syntastic = 1
+    let g:airline_detect_paste = 1
+    au BufEnter <buffer> :AirlineRefresh
   endif
 
 
@@ -87,6 +87,12 @@ Bundle 'tomasr/molokai'
       colorscheme molokai
     endif
   endif
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" python-syntax  {{{1
+Bundle 'hdima/python-syntax'
+let python_highlight_all = 1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -249,7 +255,10 @@ Bundle 'kevinw/pyflakes-vim'
 " check syntax for all language while write file.
 Bundle 'scrooloose/syntastic'
   if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/syntastic'))))
-    let g:syntastic_check_on_open=1
+    let g:syntastic_error_symbol = '✗'
+    let g:syntastic_warning_symbol = '⚠'
+    let g:syntastic_enable_balloons = 1
+    let g:syntastic_check_on_open = 0
     let g:syntastic_auto_loc_list = 1
     let g:syntastic_auto_jump = 2
     let g:syntastic_loc_list_height = 3
@@ -397,6 +406,13 @@ Bundle 'tpope/vim-repeat'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " surround    {{{1
 Bundle 'tpope/vim-surround'
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Raimondi/delimitMate {{{1
+Bundle 'Raimondi/delimitMate'
+" for python docstring "
+au FileType python let b:delimitMate_nesting_quotes = ['"']
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
