@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-11-02 21:06:30 [280]
+" Modified: 2014-11-02 22:24:17 [333]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle  {{{1
 
@@ -167,6 +167,7 @@ Bundle 'vim-voom/VOoM'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " rainbow_parentheses   {{{1
+" high light parentheses with different color
 Bundle 'rainbow_parentheses.vim'
   if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/rainbow_parentheses.vim'))))
     let g:rbpt_loadcmd_toggle = 0
@@ -365,6 +366,22 @@ Bundle 'vim-scripts/matchit.zip'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" better-whitespace {{{1
+" improve from trailing-whitespace
+" :StripWhitespace
+Bundle 'ntpeters/vim-better-whitespace'
+if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/vim-better-whitespace'))))
+  autocmd FileType javascript,c,cpp,java,html,python,vim autocmd BufWritePre <buffer> StripWhitespace
+  let g:better_whitespace_filetypes_blacklist=['text', 'rich']
+  highlight ExtraWhitespace ctermbg=DarkGray
+endif
+
+" ---- trailing-whitespace  ----
+" :FixWhitespace
+" Bundle 'bronson/vim-trailing-whitespace'
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " repeat  {{{1
 Bundle 'tpope/vim-repeat'
 
@@ -382,6 +399,8 @@ Bundle 'tpope/vim-surround'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " nerdcommenter   {{{1
+" <leader>cc add common
+" <leader>cu remove common
 Bundle 'scrooloose/nerdcommenter'
 
 

@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-09-17 01:22:15 [178]
+" Modified: 2014-11-02 21:10:49 [179]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -234,6 +234,11 @@ let g:mapleader = ","
 " 屏蔽命令模式下windows粘贴，变为列编辑，等同<C-Q>
 "unmap <C-V>
 
+" 定义空格键暂时取消高亮匹配
+nmap <silent><space> :nohl<CR>
+" 删除尾部空格
+nmap <S-Space> :%s/\s\+$//g<CR>
+
 if has('gui_running')
   " 前一个标签 shift+left
   map <S-Left> :tabp<CR>
@@ -242,10 +247,6 @@ if has('gui_running')
   " 重做，用于撤销后返撤销
   "imap <C-U> <esc>:redo<CR>
   nmap <S-U> :redo<CR>
-  " 定义空格键暂时取消高亮匹配
-  nmap <silent><space> :nohl<CR>
-  " 删除尾部空格
-  nmap <S-Space> :%s/\s\+$//g<CR>
   if (has("mac"))
     nmap <M-S-TAB> :tabp<CR>
     nmap <M-TAB> :tabn<CR>
