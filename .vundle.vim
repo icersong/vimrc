@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-11-03 01:38:50 [354]
+" Modified: 2014-11-03 11:20:54 [366]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle  {{{1
 
@@ -159,6 +159,8 @@ Bundle "techlivezheng/vim-plugin-minibufexpl"
         let g:miniBufExplorerAutoStart = 0
     endif
   endif
+noremap <silent><Left> :bp<CR>
+noremap <silent><Right> :bn<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -409,6 +411,12 @@ Bundle 'tpope/vim-surround'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" expand-region {{{1
+" select region by key "+" & "-"
+Bundle 'terryma/vim-expand-region'
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Raimondi/delimitMate {{{1
 Bundle 'Raimondi/delimitMate'
 " for python docstring "
@@ -426,6 +434,8 @@ au FileType python let b:delimitMate_nesting_quotes = ['"']
 " <leader>cc add common
 " <leader>cu remove common
 Bundle 'scrooloose/nerdcommenter'
+vmap <BS> <plug>NERDCommenterToggle
+nmap <BS> <plug>NERDCommenterToggle
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
