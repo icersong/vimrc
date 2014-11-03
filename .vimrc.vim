@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-11-03 11:03:37 [181]
+" Modified: 2014-11-03 17:44:24 [182]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -107,7 +107,7 @@ set completeopt=longest,menu    " 去掉智能补全预览，只显示菜单并�
 "set cmdwinheight=2              " 命令行窗口的屏幕行数
 
 if has("gui_running")
-  set switchbuf=usetab          " 打开缓冲时在原来的窗口打开
+  "set switchbuf=usetab          " 打开缓冲时在原来的窗口打开
   set showtabline=2             " 至少有两个标签页时才显示标签栏
   set guioptions=               "菜单栏、工具栏都不要了
   let psc_style='cool'
