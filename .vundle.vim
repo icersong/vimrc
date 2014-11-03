@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-11-04 01:28:06 [431]
+" Modified: 2014-11-04 02:16:14 [433]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle  {{{1
 
@@ -482,6 +482,13 @@ Bundle 'vim-scripts/vcscommand.vim'
     let g:VCSCommandSVNExec="D:\\PROGRA~1\\TORTOI~1\\bin\\svn.exe"
     let g:VCSCommandVCSTypeOverride= [['D:/tmp', 'SVN'], ['D:/MyWork', 'SVN']]
   endif
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" fugitive   {{{1
+" git wapper
+Bundle 'tpope/vim-fugitive'
+autocmd QuickFixCmdPost *grep* cwindow
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
