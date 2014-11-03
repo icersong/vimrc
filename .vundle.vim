@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-11-03 11:20:54 [366]
+" Modified: 2014-11-04 01:28:06 [431]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle  {{{1
 
@@ -145,19 +145,17 @@ Bundle 'kien/ctrlp.vim'
 " Bundle "fholgado/minibufexpl.vim"
 Bundle "techlivezheng/vim-plugin-minibufexpl"
   if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/vim-plugin-minibufexpl'))))
+    let g:did_minibufexplorer_syntax_inits = 1
     "hi MBENormal               guifg=#808080 guibg=fg
     "hi MBEChanged              guifg=#CD5907 guibg=fg
     "hi MBEVisibleNormal        guifg=#5DC2D6 guibg=fg
     "hi MBEVisibleChanged       guifg=#F1266F guibg=fg
-    "hi MBEVisibleActiveNormal  guifg=#A6DB29 guibg=fg
-    "hi MBEVisibleActiveChanged guifg=#F1266F guibg=fg
+    hi MBEVisibleActiveNormal  guifg=#0000FF guibg=#FFFF00
+    hi MBEVisibleActiveChanged guifg=#FF0000 guibg=#FFFF00
     let g:miniBufExplUseSingleClick = 1
-    let g:miniBufExplCloseOnSelect = 0
+    let g:miniBufExplCloseOnSelect = 1
     let g:miniBufExplorerAutoStart = 0
     let g:miniBufExplBuffersNeeded = 1
-    if !has('gui_running')
-        let g:miniBufExplorerAutoStart = 0
-    endif
   endif
 noremap <silent><Left> :bp<CR>
 noremap <silent><Right> :bn<CR>
@@ -330,7 +328,9 @@ Bundle 'vim-scripts/xmledit'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " html/css tools  {{{1
-"Bundle 'mattn/emmet-vim'
+Bundle 'mattn/emmet-vim'
+let g:user_emmet_install_global = 0
+autocmd FileType html,css EmmetInstall
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -434,8 +434,12 @@ au FileType python let b:delimitMate_nesting_quotes = ['"']
 " <leader>cc add common
 " <leader>cu remove common
 Bundle 'scrooloose/nerdcommenter'
-vmap <BS> <plug>NERDCommenterToggle
+let NERDSpaceDelims = 1
+"let NERDCreateDefaultMappings = 'OFF'
+vmap <BS> <plug>NERDCommenterAlignBoth
+vmap <S-BS> <plug>NERDCommenterUncomment
 nmap <BS> <plug>NERDCommenterToggle
+nmap <S-BS> <plug>NERDCommenterUncomment
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -489,6 +493,13 @@ Bundle 'xolox/vim-session'
   let g:session_autoload = 'yes'
   let g:session_command_aliases = 1
   let g:session_directory = simplify(expand($VIMCACHE.'/session'))
+  " patch for compitable minibufexpl
+  let g:xolox#session#ignore_window_patterns = ['^\[unite\]', '^vimfiler\:', 'MiniBufExplorer']
+  " let g:xolox#session#wipe_filetypes = ['unite', 'vimfiler']
+  " let g:xolox#session#wipe_filetypes = [
+  "   \ 'unite',
+  "   \ { name: 'vimfiler', command: 'VimFilerExplorer' }
+  "   \ ]
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
