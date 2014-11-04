@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-11-04 01:28:06 [431]
+" Modified: 2014-11-04 12:45:04 [436]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle  {{{1
 
@@ -368,7 +368,7 @@ let g:sqlutil_keyword_case = '\U'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " YouCompleteMe   {{{1
 " YCM windows install guides needed.
-"Bundle 'Valloric/YouCompleteMe'
+" Bundle 'Valloric/YouCompleteMe'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
