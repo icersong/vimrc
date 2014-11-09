@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-11-04 23:21:55 [438]
+" Modified: 2014-11-09 19:18:17 [471]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -191,9 +191,10 @@ Bundle 'rainbow_parentheses.vim'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " easymotion  {{{1
+" fast jump to after current, \\f<char>
 Bundle 'Lokaltog/vim-easymotion'
   if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/vim-easymotion'))))
-    let g:EasyMotion_leader_key = '\'
+    let g:EasyMotion_leader_key = "'"
   else
     "echo 'easymotion plugin not found.'
   endif
@@ -324,16 +325,18 @@ let g:jedi#completions_command      = "<C-N>"
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" xml   {{{1
+" xmledit   {{{1
 "Bundle 'othree/xml.vim'
-Bundle 'vim-scripts/xmledit'
+"Bundle 'vim-scripts/xmledit'
+"Bundle 'tpope/vim-ragtag'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " html/css tools  {{{1
+" fast create xml css html
 Bundle 'mattn/emmet-vim'
 let g:user_emmet_install_global = 0
-autocmd FileType html,css EmmetInstall
+autocmd FileType html,xml,xhtml,tpl,css EmmetInstall
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -348,7 +351,16 @@ Bundle 'Glench/Vim-Jinja2-Syntax'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " javascript regex color  {{{1
+" :ColorHighLight
 Bundle 'slevithan/regex-colorizer'
+autocmd BufEnter *.js,*.html,*.htm,*.css :ColorHighlight<CR>
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" javascript indentation and syntax     {{{1
+" Vastly improved Javascript indentation and syntax support in Vim
+" Bundle 'pangloss/vim-javascript'
+" let javascript_enable_domhtmlcss = 1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -421,15 +433,10 @@ Bundle 'terryma/vim-expand-region'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Raimondi/delimitMate {{{1
+" automatic closing of quotes, parenthesis, brackets, etc.
 Bundle 'Raimondi/delimitMate'
 " for python docstring "
 au FileType python let b:delimitMate_nesting_quotes = ['"']
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" auto close   {{{1
-"Bundle 'Townk/vim-autoclose'
-"    let g:AutoClosePairs = ""
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -438,11 +445,12 @@ au FileType python let b:delimitMate_nesting_quotes = ['"']
 " <leader>cu remove common
 Bundle 'scrooloose/nerdcommenter'
 let NERDSpaceDelims = 1
-"let NERDCreateDefaultMappings = 'OFF'
+let NERDCreateDefaultMappings = 'OFF'
 vmap <BS> <plug>NERDCommenterAlignBoth
 vmap <S-BS> <plug>NERDCommenterUncomment
 nmap <BS> <plug>NERDCommenterToggle
 nmap <S-BS> <plug>NERDCommenterUncomment
+vmap <leader>cu <plug>NERDCommenterUncomment
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -454,14 +462,14 @@ let g:vimrc_email='icersong@gmail.com'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " taglist   {{{1
-Bundle 'vim-scripts/taglist.vim'
-"let Tlist_Auto_Open = 1
-let Tlist_Close_On_Select = 1
-let Tlist_File_Fold_Auto_Close = 1
-let Tlist_GainFocus_On_ToggleOpen = 1
-let Tlist_Show_One_File = 1
-let Tlist_Use_Right_Window = 1
-let Tlist_Use_SingleClick = 1
+" Bundle 'vim-scripts/taglist.vim'
+" "let Tlist_Auto_Open = 1
+" let Tlist_Close_On_Select = 1
+" let Tlist_File_Fold_Auto_Close = 1
+" let Tlist_GainFocus_On_ToggleOpen = 1
+" let Tlist_Show_One_File = 1
+" let Tlist_Use_Right_Window = 1
+" let Tlist_Use_SingleClick = 1
 " $ctags -R . 在当前目录下递归生成tags文件
 
 
@@ -514,6 +522,7 @@ Bundle 'xolox/vim-session'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-signature  {{{1
+" virtual mark
 Bundle 'kshenoy/vim-signature'
 
 

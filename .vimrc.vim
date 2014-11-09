@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-11-03 17:44:24 [182]
+" Modified: 2014-11-09 15:18:59 [220]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -13,6 +13,7 @@ let g:iswindows = 0
 let g:ismacos = 0
 let g:isunix = 0
 let g:islinux = 0
+let g:platform = ""
 if (has("win32") || has("win95") || has("win64") || has("win16"))
   let g:platform = "windows"
   let g:iswindows = 1
@@ -21,14 +22,14 @@ if (has("win32") || has("win95") || has("win64") || has("win16"))
   au GUIEnter * set nossl
 else
   if has('mac')
-    let g:ismacos = 1
     let g:platform = "macos"
+    let g:ismacos = 1
   elseif has('unix')
-    let g:isunix = 1
     let g:platform = "unix"
+    let g:isunix = 1
   elseif has('linux')
-    let g:islinux = 1
     let g:platform = "linux"
+    let g:islinux = 1
   endif
   let $VIMFILES = $HOME.'/.vim'
   let $VIMCACHE = $HOME.'/.cache'
@@ -48,23 +49,18 @@ endif
 if(g:iswindows)
   " 窗口最大化
   if has('gui_running')
-    au GUIEnter * simalt ~x
+    " au GUIEnter * simalt ~x
   endif
   "source $VIMRUNTIME/mswin.vim
   behave mswin
 endif
 
-set history=64      " 历史记录最高数目
-set autoread        " 文件更新时重新读取
-set autochdir       " 在打开文件、切换/删除缓冲区、打开/关闭窗口等操作时，选择文件所在的目录
-set nobackup        " 无备份文件
-set noswapfile      " 缓冲区不使用交换文件
-set noerrorbells    " 关闭错误信息响铃
-set novisualbell    " 关闭代替鸣叫的可视响铃
-set vb t_vb=        " 取消可视铃声
-set shortmess=at    " 减少hit-enter屏幕消息提示的次数
-set autochdir       " 自动改变当前文件路径为工作路径
+if has('gui_running')
+  " 设置GUI行列数
+  set lines=48 columns=128
+endif
 
+set history=64      " 历史记录最高数目
 " 打开文件时自动转换当前工作路径
 "autocmd BufEnter,BufRead * if isdirectory(expand('%:p:h')) | lcd %:p:h | endif
 
@@ -136,8 +132,7 @@ endif
 if !exists("syntax_on")
   syntax enable                 " 语法高亮显示开
   syntax on                     " 语法高亮显示开
-  "autocmd BufEnter * syntax on
-  autocmd BufDelete * syntax on " 修正删除其它buffer导致syntax off
+  autocmd BufWinEnter,BufEnter * syntax on   " 修正删除其它buffer导致syntax off
 endif
 "set t_Co=256
 "colorscheme torte
@@ -153,9 +148,9 @@ if g:iswindows
 endif
 
 if g:ismacos
-  set guifontwide=Menlo:h11
-  set guifont=Menlo:h11
-  au BufEnter * :set guifont=   " fixed sometime not show chinese
+  set guifontwide=Menlo:h12
+  set guifont=Menlo:h12
+  " au BufEnter * :set guifont=   " fixed sometime not show chinese
 endif
 
 "解决菜单乱码
@@ -224,6 +219,11 @@ autocmd FileType xhtml setlocal tabstop=2 et
 autocmd FileType xhtml setlocal softtabstop=2
 autocmd FileType xhtml setlocal shiftwidth=2
 
+" type gg=G to format xml
+autocmd FileType xml setlocal :set equalprg=xmllint\ --format\ --recover\ -
+" 打开xml自动格式化
+" autocmd FileType xml exe ":silent 1,$!xmllint \"%\" --format --recover"
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Shortcuts
@@ -232,10 +232,10 @@ let mapleader = ","
 let g:mapleader = ","
 
 " 屏蔽命令模式下windows粘贴，变为列编辑，等同<C-Q>
-"unmap <C-V>
+" unmap <C-V>
 
 " 定义空格键暂时取消高亮匹配
-nmap <silent><space> :nohl<CR>
+nmap <silent><space> :nohl<CR>:syntax on<CR>
 " 删除尾部空格
 nmap <S-Space> :%s/\s\+$//g<CR>
 
@@ -244,66 +244,14 @@ if has('gui_running')
   map <S-Left> :tabp<CR>
   " 后一个标签 shift+right
   map <S-Right> :tabn<CR>
-  " 重做，用于撤销后返撤销
-  "imap <C-U> <esc>:redo<CR>
-  nmap <S-U> :redo<CR>
-  if (has("mac"))
-    nmap <M-S-TAB> :tabp<CR>
-    nmap <M-TAB> :tabn<CR>
-    imap <M-S-TAB> <esc>:tabp<CR>
-    imap <M-TAB> <esc>:tabn<CR>
-    nmap <D-0> :tabn<CR>
-    nmap <D-1> :tabn 1<CR>
-    nmap <D-2> :tabn 2<CR>
-    nmap <D-3> :tabn 3<CR>
-    nmap <D-4> :tabn 4<CR>
-    nmap <D-5> :tabn 5<CR>
-    nmap <D-6> :tabn 6<CR>
-    nmap <D-7> :tabn 7<CR>
-    nmap <D-8> :tabn 8<CR>
-    nmap <D-9> :tabn 9<CR>
-    imap <D-0> <esc>:tabn<CR>
-    imap <D-1> <esc>:tabn 1<CR>
-    imap <D-2> <esc>:tabn 2<CR>
-    imap <D-3> <esc>:tabn 3<CR>
-    imap <D-4> <esc>:tabn 4<CR>
-    imap <D-5> <esc>:tabn 5<CR>
-    imap <D-6> <esc>:tabn 6<CR>
-    imap <D-7> <esc>:tabn 7<CR>
-    imap <D-8> <esc>:tabn 8<CR>
-    imap <D-9> <esc>:tabn 9<CR>
-  else
-    nmap <C-S-TAB> :tabp<CR>
-    nmap <C-TAB> :tabn<CR>
-    imap <C-S-TAB> <esc>:tabp<CR>
-    imap <C-TAB> <esc>:tabn<CR>
-    nmap <A-0> :tabn<CR>
-    nmap <A-1> :tabn 1<CR>
-    nmap <A-2> :tabn 2<CR>
-    nmap <A-3> :tabn 3<CR>
-    nmap <A-4> :tabn 4<CR>
-    nmap <A-5> :tabn 5<CR>
-    nmap <A-6> :tabn 6<CR>
-    nmap <A-7> :tabn 7<CR>
-    nmap <A-8> :tabn 8<CR>
-    nmap <A-9> :tabn 9<CR>
-    imap <A-0> <esc>:tabn<CR>
-    imap <A-1> <esc>:tabn 1<CR>
-    imap <A-2> <esc>:tabn 2<CR>
-    imap <A-3> <esc>:tabn 3<CR>
-    imap <A-4> <esc>:tabn 4<CR>
-    imap <A-5> <esc>:tabn 5<CR>
-    imap <A-6> <esc>:tabn 6<CR>
-    imap <A-7> <esc>:tabn 7<CR>
-    imap <A-8> <esc>:tabn 8<CR>
-    imap <A-9> <esc>:tabn 9<CR>
-  endif
 endif
 
+" 重做，用于撤销后返撤销
+"imap <C-U> <esc>:redo<CR>
+nmap <S-U> :redo<CR>
 
 " 文件操作
 command! -nargs=0 Q :q!
-nmap <S-Q> :q!<CR>
 nmap <leader>q :q<CR>
 nmap <leader><S-Q> :q!<CR>
 nmap <leader>w :w<CR>
@@ -323,12 +271,12 @@ vmap > >gv
 vmap < <gv
 
 "可视模式下加各种括号和引号
-vnoremap ( <esc>`>i)<esc>`<i(<esc>
-vnoremap [ <esc>`>i]<esc>`<i[<esc>
-vnoremap { <esc>`>i}<esc>`<i{<esc>
-vnoremap ` <esc>`>i`<esc>`<i`<esc>
-vnoremap ' <esc>`>i'<esc>`<i'<esc>
-"vnoremap " <esc>`>i"<esc>`<i"<esc>
+vnoremap <leader>( <esc>`>i)<esc>`<i(<esc>
+vnoremap <leader>[ <esc>`>i]<esc>`<i[<esc>
+vnoremap <leader>{ <esc>`>i}<esc>`<i{<esc>
+vnoremap <leader>` <esc>`>i`<esc>`<i`<esc>
+vnoremap <leader>' <esc>`>i'<esc>`<i'<esc>
+vnoremap <leader>" <esc>`>i"<esc>`<i"<esc>
 
 " 代码折叠
 " set foldenable        " 开启自动折叠
@@ -459,3 +407,4 @@ set tags=tags;/
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "source <sfile>:p:h/.vundle.vim
 source $VIMFILES/vimrc/.vundle.vim
+"autocmd FileType xml exe ":silent 1,$!xmllint \"%\" --format --recover"
