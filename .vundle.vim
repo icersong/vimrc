@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-11-08 18:39:07 [441]
+" Modified: 2014-11-10 13:57:45 [486]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -191,9 +191,10 @@ Bundle 'rainbow_parentheses.vim'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " easymotion  {{{1
+" fast jump to after current, \\f<char>
 Bundle 'Lokaltog/vim-easymotion'
   if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/vim-easymotion'))))
-    let g:EasyMotion_leader_key = '\'
+    let g:EasyMotion_leader_key = "'"
   else
     "echo 'easymotion plugin not found.'
   endif
@@ -201,6 +202,7 @@ Bundle 'Lokaltog/vim-easymotion'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Indent guides   {{{1
+" Bundle 'Yggdroot/indentLine'
 Bundle 'nathanaelkane/vim-indent-guides'
   if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/vim-indent-guides'))))
     let g:indent_guides_enable_on_vim_startup = 1
@@ -258,18 +260,18 @@ Bundle 'kevinw/pyflakes-vim'
 " check syntax for all language while write file.
 Bundle 'scrooloose/syntastic'
   if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/syntastic'))))
-    let g:syntastic_error_symbol = '✗'
-    let g:syntastic_warning_symbol = '⚠'
-    let g:syntastic_enable_balloons = 1
-    let g:syntastic_check_on_open = 0
-    let g:syntastic_auto_loc_list = 1
-    let g:syntastic_auto_jump = 2
-    let g:syntastic_loc_list_height = 3
-    let g:syntastic_html_checkers=['tidy']  " 'jshint', 'jslint'
-    let g:syntastic_xhtml_checkers=['tidy']
-    let g:syntastic_javascript_checkers=['jsl']
-    let g:syntastic_python_checkers=['pep8', 'pyflakes']  " 'pyflakes', 'pep8'
-    let g:syntastic_xml_checkers=['xmllint']
+    let g:syntastic_error_symbol        = '✗'
+    let g:syntastic_warning_symbol      = '⚠'
+    let g:syntastic_enable_balloons     = 1
+    let g:syntastic_check_on_open       = 0
+    let g:syntastic_auto_loc_list       = 1
+    let g:syntastic_auto_jump           = 2
+    let g:syntastic_loc_list_height     = 3
+    let g:syntastic_html_checkers       = ['tidy']  " 'jshint', 'jslint'
+    let g:syntastic_xhtml_checkers      = ['tidy']
+    let g:syntastic_javascript_checkers = ['jsl']
+    let g:syntastic_python_checkers     = ['pep8', 'pyflakes']  " 'pyflakes', 'pep8'
+    let g:syntastic_xml_checkers        = ['xmllint']
     let g:syntastic_python_pep8_quiet_messages={"regex": [
           \ '^E401', '^E501', '^E701', '^E731', '^E111', '^C901'] }
     let g:syntastic_javascript_jsl_quiet_messages={"regex":
@@ -324,16 +326,19 @@ let g:jedi#completions_command      = "<C-N>"
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" xml   {{{1
+" - xmledit   {{{1
 "Bundle 'othree/xml.vim'
-Bundle 'vim-scripts/xmledit'
+"Bundle 'vim-scripts/xmledit'
+"Bundle 'tpope/vim-ragtag'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " html/css tools  {{{1
+" fast create xml css html
+" eg: root>elememnt#property*3>default<ctrl-y>,
 Bundle 'mattn/emmet-vim'
 let g:user_emmet_install_global = 0
-autocmd FileType xml,xhtml,html,css EmmetInstall
+autocmd FileType css,xml,html,xhtml,tpl EmmetInstall
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -348,7 +353,16 @@ Bundle 'Glench/Vim-Jinja2-Syntax'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " javascript regex color  {{{1
+" :ColorHighLight
 Bundle 'slevithan/regex-colorizer'
+autocmd BufEnter *.js,*.html,*.htm,*.css :ColorHighlight<CR>
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" javascript indentation and syntax     {{{1
+" Vastly improved Javascript indentation and syntax support in Vim
+" Bundle 'pangloss/vim-javascript'
+" let javascript_enable_domhtmlcss = 1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -358,18 +372,19 @@ autocmd BufNewFile,BufRead,BufReadPre *.json set filetype=json
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" SQL   {{{1
-" Bundle 'godlygeek/tabular'  " The featrues is same as Align
+" SQL   {{{ 1
+" Align {{{ 1
 Bundle 'vim-scripts/Align'
 Bundle 'vim-scripts/dbext.vim'
 Bundle 'vim-scripts/SQLUtilities'
 let g:sqlutil_align_comma = 1
 let g:sqlutil_align_keyword_right = 0
 let g:sqlutil_keyword_case = '\U'
+" Bundle 'godlygeek/tabular'  " The featrues is same as Align
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" YouCompleteMe   {{{1
+" - YouCompleteMe   {{{1
 " YCM windows install guides needed.
 " Bundle 'Valloric/YouCompleteMe'
 
@@ -384,7 +399,7 @@ Bundle 'vim-scripts/matchit.zip'
 " TaskList.vim {{{1
 " It will search the file for FIXME, TODO, and XXX ...
 Bundle 'vim-scripts/TaskList.vim'
-map <leader>td <Plug>TaskList
+map <leader>tl <Plug>TaskList
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -421,15 +436,10 @@ Bundle 'terryma/vim-expand-region'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Raimondi/delimitMate {{{1
+" automatic closing of quotes, parenthesis, brackets, etc.
 Bundle 'Raimondi/delimitMate'
 " for python docstring "
 au FileType python let b:delimitMate_nesting_quotes = ['"']
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" auto close   {{{1
-"Bundle 'Townk/vim-autoclose'
-"    let g:AutoClosePairs = ""
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -438,11 +448,12 @@ au FileType python let b:delimitMate_nesting_quotes = ['"']
 " <leader>cu remove common
 Bundle 'scrooloose/nerdcommenter'
 let NERDSpaceDelims = 1
-"let NERDCreateDefaultMappings = 'OFF'
+let NERDCreateDefaultMappings = 'OFF'
 vmap <BS> <plug>NERDCommenterAlignBoth
 vmap <S-BS> <plug>NERDCommenterUncomment
 nmap <BS> <plug>NERDCommenterToggle
 nmap <S-BS> <plug>NERDCommenterUncomment
+vmap <leader>cu <plug>NERDCommenterUncomment
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -453,15 +464,15 @@ let g:vimrc_email='icersong@gmail.com'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" taglist   {{{1
-Bundle 'vim-scripts/taglist.vim'
-"let Tlist_Auto_Open = 1
-let Tlist_Close_On_Select = 1
-let Tlist_File_Fold_Auto_Close = 1
-let Tlist_GainFocus_On_ToggleOpen = 1
-let Tlist_Show_One_File = 1
-let Tlist_Use_Right_Window = 1
-let Tlist_Use_SingleClick = 1
+" - taglist   {{{1
+" Bundle 'vim-scripts/taglist.vim'
+" "let Tlist_Auto_Open = 1
+" let Tlist_Close_On_Select = 1
+" let Tlist_File_Fold_Auto_Close = 1
+" let Tlist_GainFocus_On_ToggleOpen = 1
+" let Tlist_Show_One_File = 1
+" let Tlist_Use_Right_Window = 1
+" let Tlist_Use_SingleClick = 1
 " $ctags -R . 在当前目录下递归生成tags文件
 
 
@@ -514,6 +525,7 @@ Bundle 'xolox/vim-session'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-signature  {{{1
+" virtual mark
 Bundle 'kshenoy/vim-signature'
 
 
