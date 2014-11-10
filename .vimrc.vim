@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-11-09 15:18:59 [220]
+" Modified: 2014-11-10 15:18:38 [222]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -220,7 +220,7 @@ autocmd FileType xhtml setlocal softtabstop=2
 autocmd FileType xhtml setlocal shiftwidth=2
 
 " type gg=G to format xml
-autocmd FileType xml setlocal :set equalprg=xmllint\ --format\ --recover\ -
+autocmd FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -
 " 打开xml自动格式化
 " autocmd FileType xml exe ":silent 1,$!xmllint \"%\" --format --recover"
 
