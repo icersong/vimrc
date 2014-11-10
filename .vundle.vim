@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-11-04 23:21:55 [438]
+" Modified: 2014-11-08 18:39:07 [441]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -333,7 +333,7 @@ Bundle 'vim-scripts/xmledit'
 " html/css tools  {{{1
 Bundle 'mattn/emmet-vim'
 let g:user_emmet_install_global = 0
-autocmd FileType html,css EmmetInstall
+autocmd FileType xml,xhtml,html,css EmmetInstall
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
