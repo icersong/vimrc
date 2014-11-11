@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-11-10 15:17:45 [489]
+" Modified: 2014-11-11 22:13:58 [490]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -119,7 +119,7 @@ Bundle 'wesleyche/SrcExpl'
 Bundle 'kien/ctrlp.vim'
   if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/ctrlp.vim'))))
     let g:ctrlp_map = '<c-p>'
-    let g:ctrlp_cmd = 'CtrlP'
+    let g:ctrlp_cmd = 'CtrlPMRU'
     let g:ctrlp_show_hidden = 1
     "let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
     let g:ctrlp_custom_ignore = {
