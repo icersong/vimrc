@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-11-12 13:34:11 [242]
+" Modified: 2014-11-12 14:00:54 [244]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -94,6 +94,7 @@ set display=lastline            " 解决自动换行格式下, 如折行之后�
 set report=0                    " 报告哪些行被修改过
 set go+=a                       " 选择后自动进入系统剪切板
 set completeopt=longest,menu    " 去掉智能补全预览，只显示菜单并自动插入
+set autoread                    " 文件变化自动载入
 "set nowrapscan                  " 搜索到文件末尾时，不再回绕到文件首
 "set hid                         " 放弃缓冲区时隐藏而不卸载
 "set selection=exclusive         " 设定选择区的行为为闭区间，选择的最后一个字符包含在操作范围之内
