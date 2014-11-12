@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-11-12 14:00:54 [244]
+" Modified: 2014-11-12 14:25:57 [245]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -294,7 +294,7 @@ xnoremap p pgvy         " only paset but not replace cut table
 
 vnoremap <LeftRelease> "*y
 vnoremap <RightRelease> "*y
-inoremap <RightRelease> <c-r>*p
+inoremap <RightRelease> <c-r>*
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
