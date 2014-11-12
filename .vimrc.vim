@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-11-10 15:18:38 [222]
+" Modified: 2014-11-12 13:34:11 [242]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -290,6 +290,10 @@ set foldlevel=1         " 设置折叠层数为
 " nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 
 xnoremap p pgvy         " only paset but not replace cut table
+
+vnoremap <LeftRelease> "*y
+vnoremap <RightRelease> "*y
+inoremap <RightRelease> <c-r>*p
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
