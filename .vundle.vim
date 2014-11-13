@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-11-11 22:13:58 [490]
+" Modified: 2014-11-14 00:42:05 [495]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -26,6 +26,16 @@ Bundle 'gmarik/vundle'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " My Bundles here:
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" screen saver {{{1
+Bundle 'uguu-org/vim-matrix-screensaver'
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" start page {{{1
+Bundle 'mhinz/vim-startify'
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Bundle 'Lokaltog/vim-powerline'
@@ -118,6 +128,7 @@ Bundle 'wesleyche/SrcExpl'
 " CtrlP {{{1
 Bundle 'kien/ctrlp.vim'
   if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/ctrlp.vim'))))
+    map <F1> <c-p>
     let g:ctrlp_map = '<c-p>'
     let g:ctrlp_cmd = 'CtrlPMRU'
     let g:ctrlp_show_hidden = 1
@@ -509,9 +520,10 @@ autocmd QuickFixCmdPost *grep* cwindow
 " vim session   {{{1
 Bundle 'xolox/vim-misc'
 Bundle 'xolox/vim-session'
+  " let g:loaded_session = 1
   let g:session_menu = 0
   let g:session_autosave = 'yes'
-  let g:session_autoload = 'yes'
+  let g:session_autoload = 'no'
   let g:session_command_aliases = 1
   let g:session_directory = simplify(expand($VIMCACHE.'/session'))
   " patch for compitable minibufexpl
