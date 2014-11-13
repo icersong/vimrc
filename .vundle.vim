@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-11-14 00:42:05 [495]
+" Modified: 2014-11-14 01:34:31 [497]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -122,6 +122,12 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " SrcExpl   {{{1
 Bundle 'wesleyche/SrcExpl'
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" unite
+" like CtrlP
+Bundle 'Shougo/unite.vim'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -514,6 +520,12 @@ Bundle 'vim-scripts/vcscommand.vim'
 " git wapper
 Bundle 'tpope/vim-fugitive'
 autocmd QuickFixCmdPost *grep* cwindow
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-gitgutter
+" git display on ruler
+Bundle 'airblade/vim-gitgutter'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
