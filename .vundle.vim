@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-11-14 01:34:31 [497]
+" Modified: 2014-11-14 15:43:36 [498]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -69,7 +69,7 @@ Bundle 'bling/vim-airline'
     let g:airline_enable_branch = 1
     let g:airline_enable_syntastic = 1
     let g:airline_detect_paste = 1
-    au BufEnter <buffer> :AirlineRefresh
+    autocmd BufEnter <buffer> :AirlineRefresh
   endif
 
 
