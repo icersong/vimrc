@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-11-14 15:43:36 [498]
+" Modified: 2014-11-15 02:56:42 [525]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -69,7 +69,7 @@ Bundle 'bling/vim-airline'
     let g:airline_enable_branch = 1
     let g:airline_enable_syntastic = 1
     let g:airline_detect_paste = 1
-    autocmd BufEnter <buffer> :AirlineRefresh
+    autocmd BufEnter <buffer> AirlineRefresh
   endif
 
 
@@ -116,7 +116,7 @@ let NERDTreeHighlightCursorline=1
 let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$' ]
 let g:netrw_home='~/bak'
 "close vim if the only window left open is a NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | end
+autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | end
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -372,7 +372,7 @@ Bundle 'Glench/Vim-Jinja2-Syntax'
 " javascript regex color  {{{1
 " :ColorHighLight
 Bundle 'slevithan/regex-colorizer'
-autocmd BufEnter *.js,*.html,*.htm,*.css :ColorHighlight<CR>
+autocmd FileType javascript,html,css ColorHighlight
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -385,7 +385,6 @@ autocmd BufEnter *.js,*.html,*.htm,*.css :ColorHighlight<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " json    {{{1
 Bundle 'leshill/vim-json'
-autocmd BufNewFile,BufRead,BufReadPre *.json set filetype=json
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -532,14 +531,14 @@ Bundle 'airblade/vim-gitgutter'
 " vim session   {{{1
 Bundle 'xolox/vim-misc'
 Bundle 'xolox/vim-session'
-  " let g:loaded_session = 1
+  let g:loaded_session = 0
   let g:session_menu = 0
   let g:session_autosave = 'yes'
   let g:session_autoload = 'no'
   let g:session_command_aliases = 1
   let g:session_directory = simplify(expand($VIMCACHE.'/session'))
   " patch for compitable minibufexpl
-  let g:xolox#session#ignore_window_patterns = ['^\[unite\]', '^vimfiler\:', 'MiniBufExplorer']
+  " let g:xolox#session#ignore_window_patterns = ['^\[unite\]', '^vimfiler\:', 'MiniBufExplorer']
   " let g:xolox#session#wipe_filetypes = ['unite', 'vimfiler']
   " let g:xolox#session#wipe_filetypes = [
   "   \ 'unite',

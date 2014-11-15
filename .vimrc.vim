@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-11-12 14:25:57 [245]
+" Modified: 2014-11-15 11:37:40 [335]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -19,7 +19,7 @@ if (has("win32") || has("win95") || has("win64") || has("win16"))
   let g:iswindows = 1
   let $VIMFILES = $VIM.'/vimfiles'
   let $VIMCACHE = $VIM.'/cache'
-  au GUIEnter * set nossl
+  set nossl
 else
   if has('mac')
     let g:platform = "macos"
@@ -39,7 +39,8 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General Setting
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set nocompatible                "不要vim模仿vi模式
+"不要vim模仿vi模式
+set nocompatible
 
 if has('mouse')
   set mouse=a "允许使用鼠标
@@ -51,8 +52,8 @@ if(g:iswindows)
   if has('gui_running')
     " au GUIEnter * simalt ~x
   endif
-  "source $VIMRUNTIME/mswin.vim
-  behave mswin
+  let g:skip_loading_mswin = 1  " 不启用mswin.vim
+  source $VIMRUNTIME/mswin.vim
 endif
 
 if has('gui_running')
@@ -61,8 +62,6 @@ if has('gui_running')
 endif
 
 set history=64      " 历史记录最高数目
-" 打开文件时自动转换当前工作路径
-"autocmd BufEnter,BufRead * if isdirectory(expand('%:p:h')) | lcd %:p:h | endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -102,6 +101,7 @@ set autoread                    " 文件变化自动载入
 "set shortmess+=I                " 启动时不显示介绍信息
 "set cmdheight=2                 " 命令行使用的屏幕行数
 "set cmdwinheight=2              " 命令行窗口的屏幕行数
+"clipboard+=unnamed              " 默认寄存器和系统剪贴板共享
 
 if has("gui_running")
   "set switchbuf=usetab          " 打开缓冲时在原来的窗口打开
@@ -128,19 +128,14 @@ endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Color & Font & encoding
+" Font & encoding
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if !exists("syntax_on")
   syntax enable                 " 语法高亮显示开
   syntax on                     " 语法高亮显示开
-  autocmd BufWinEnter,BufEnter * syntax on   " 修正删除其它buffer导致syntax off
 endif
 "set t_Co=256
 "colorscheme torte
-
-"高亮当前行当前列(十字光标)
-set cursorline                  " 设置光标十字坐标，高亮当前行
-set cursorcolumn                " 设置光标十字坐标，高亮当前列
 
 if g:iswindows
   "set guifont=consolas:h10:cANSI
@@ -196,34 +191,10 @@ set listchars=tab:»»,trail:.,extends:>,precedes:<
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " File type
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-autocmd BufRead,BufNewFile jquery.*.js setl ft=javascript syntax=jquery
-autocmd BufRead,BufNewFile *vimrc setl ft=vim syntax=vim
-"autocmd FileType python,php,c,java,javascript,html,htm,smarty call SetCodingOption()
-"autocmd FileType c call CMode()
-"autocmd FileType python call PythonMode()
-"autocmd FileType xml call SetXmlOption()
-"autocmd FileType html,xhtml call SetHtmlOption()
-"autocmd FileType vim call SetVimOption()
-autocmd FileType vim setlocal tabstop=2 et
-autocmd FileType vim setlocal softtabstop=2
-autocmd FileType vim setlocal shiftwidth=2
-autocmd FileType xml setlocal tabstop=2 et
-autocmd FileType xml setlocal softtabstop=2
-autocmd FileType xml setlocal shiftwidth=2
-autocmd FileType css setlocal tabstop=2 et
-autocmd FileType css setlocal softtabstop=2
-autocmd FileType css setlocal shiftwidth=2
-autocmd FileType html setlocal tabstop=2 et
-autocmd FileType html setlocal softtabstop=2
-autocmd FileType html setlocal shiftwidth=2
-autocmd FileType xhtml setlocal tabstop=2 et
-autocmd FileType xhtml setlocal softtabstop=2
-autocmd FileType xhtml setlocal shiftwidth=2
-
-" type gg=G to format xml
-autocmd FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -
-" 打开xml自动格式化
-" autocmd FileType xml exe ":silent 1,$!xmllint \"%\" --format --recover"
+autocmd BufRead,BufNewFile jquery.*.js setlocal filetype=javascript syntax=jquery
+autocmd BufRead,BufNewFile *.json setlocal filetype=json
+autocmd BufRead,BufNewFile *vimrc setlocal filetype=vim syntax=vim
+autocmd FileType vim,xml,css,html,xhtml setlocal tabstop=2 et softtabstop=2 shiftwidth=2
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -252,16 +223,13 @@ endif
 nmap <S-U> :redo<CR>
 
 " 文件操作
-command! -nargs=0 Q :q!
+" command! -nargs=0 Q :q!
 nmap <leader>q :q<CR>
 nmap <leader><S-Q> :q!<CR>
 nmap <leader>w :w<CR>
 nmap <leader><S-W> :w!<CR>
 " 文件格式设置成dos :set ff=dos<CR>
 " 文件格式设置成unix :set ff=unix<CR>
-" 在可视模式下按<leader>再按*或＃可以对选中的部分进行搜索
-"vnoremap <silent> * :call VisualSearch('f')<CR>
-"vnoremap <silent> # :call VisualSearch('b')<CR>
 
 "缩进快捷键
 nmap <tab> V>
@@ -279,22 +247,32 @@ vnoremap <leader>` <esc>`>i`<esc>`<i`<esc>
 vnoremap <leader>' <esc>`>i'<esc>`<i'<esc>
 vnoremap <leader>" <esc>`>i"<esc>`<i"<esc>
 
-" 代码折叠
-" set foldenable        " 开启自动折叠
-" set foldclose=all     " 设置为自动关闭折叠
-set nofoldenable        " 关闭自动折叠
-set foldmethod=syntax   " 设置语法折叠 syntax | indent
-set foldcolumn=0        " 设置折叠区域的宽度
-set foldnestmax=2
-set foldlevel=1         " 设置折叠层数为
-" 用空格键来开关折叠
-" nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
+" only paset but not replace cut table
+xnoremap p pgvy
 
-xnoremap p pgvy         " only paset but not replace cut table
-
+" mouse select copy & paset
 vnoremap <LeftRelease> "*y
 vnoremap <RightRelease> "*y
 inoremap <RightRelease> <c-r>*
+
+" patch esc wait 1 second
+imap <esc> <esc><esc>
+cmap <esc> <esc><esc>
+vmap <esc> <esc><esc>
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 代码折叠
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" set foldenable        " 开启自动折叠
+" set foldclose=all     " 设置为自动关闭折叠
+" set nofoldenable        " 关闭自动折叠
+" set foldmethod=syntax   " 设置语法折叠 syntax | indent
+" set foldcolumn=0        " 设置折叠区域的宽度
+" set foldnestmax=2
+" set foldlevel=1         " 设置折叠层数为
+" 用空格键来开关折叠
+" nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -313,13 +291,8 @@ inoremap <RightRelease> <c-r>*
 " GetVisualRange 获取当前选中内容
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Search for other instances of the current visual range
-" This works by:
-" <ESC>                Cancel the visual range (it's location is remembered)
-" /                    Start the search
 " <C-R>=               Insert the result of an expression on
 "                      the search line (see :help c_CTRL-R_= )
-" GetVisualRange()<CR> Call the function created below
-" <CR>                 Run the search
 "vmap ,/ <ESC>/<C-R>=GetVisualRange()<CR><CR>
 
 " Create the function that extracts the contents of the visual range
@@ -370,8 +343,10 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "function! SQLPP()
 "    call writefile([GetVisualRange()], $TEMP."\\~.sql", "b")
-"    "exec 'r!D:\\Program\\SQL.P.P\\sqlpp_cmd.exe -mysql -stdout -config=D:\\Program\\SQL.P.P\\default.ini -F "%"'
-"    exec 'r!D:\\Program\\SQL.P.P\\sqlpp_cmd.exe -mysql -stdout -config=D:\\Program\\SQL.P.P\\default.ini -F "'.$TEMP.'\\~.sql"'
+"    "exec 'r!D:\\Program\\SQL.P.P\\sqlpp_cmd.exe -mysql -stdout \
+"        -config=D:\\Program\\SQL.P.P\\default.ini -F "%"'
+"    exec 'r!D:\\Program\\SQL.P.P\\sqlpp_cmd.exe -mysql -stdout \
+"        -config=D:\\Program\\SQL.P.P\\default.ini -F "'.$TEMP.'\\~.sql"'
 "endfunction
 "
 "command! -nargs=0 SQL call SQLPP()
@@ -380,22 +355,28 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " XML格式化
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! XMLFormat()
-    set filetype=xml
-    :%s/></>\r</g "把><替换成>回车<
-    :normal gg=G<cr>
-endfunction
-map <leader>xml :call FormatXML()
+" function! XMLFormat()
+"     set filetype=xml
+"     :%s/></>\r</g "把><替换成>回车<
+"     :normal gg=G<cr>
+" endfunction
+" map <leader>xml :call XMLFormat()
+
+" 打开xml文件时自动格式化
+" autocmd FileType xml exe ":silent 1,$!xmllint \"%\" --format --recover"
+
+" type gg=G to format xml
+autocmd FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 打开文件时，按照 viminfo 保存的上次关闭时的光标位置重新设置光标
+" 打开文件时
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 恢复退出时viminfo保存的光标位置
 " au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
-
-if has("autocmd")
-  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-endif
+autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+" 自动转换当前工作路径
+"autocmd BufEnter,BufRead * if isdirectory(expand('%:p:h')) | lcd %:p:h | endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -403,6 +384,7 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " dir /b /s /w *.py | grep -v z.py > cscope.files
 " c:\Python27\Scripts\pycscope.exe -i cscope.files
+" $ctags -R . 在当前目录下递归生成tags文件
 " 告诉vim在当前目录找不到tags文件时请到上层目录查找
 set tags=tags;/
 
@@ -412,4 +394,39 @@ set tags=tags;/
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "source <sfile>:p:h/.vundle.vim
 source $VIMFILES/vimrc/.vundle.vim
-"autocmd FileType xml exe ":silent 1,$!xmllint \"%\" --format --recover"
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Cursor
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"高亮当前行当前列(十字光标)
+set cursorline                  " 设置光标十字坐标，高亮当前行
+set cursorcolumn                " 设置光标十字坐标，高亮当前列
+" 调整光标显示样式　
+" hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
+" hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
+hi CursorLine cterm=underline ctermbg=NONE ctermfg=NONE gui=underline guibg=NONE guifg=NONE
+
+if has('gui_running')
+  highlight Cursor guifg=white guibg=black
+  highlight iCursor guifg=white guibg=steelblue
+  set guicursor=n-v-c:block-Cursor
+  set guicursor+=i:ver100-iCursor
+  set guicursor+=n-v-c:blinkon0
+  set guicursor+=i:blinkwait10
+else
+  if &term =~ '^xterm'
+    " insert cursor
+    let &t_SI = "\<Esc>[6 q"
+    " normal cursor
+    let &t_EI = "\<Esc>[2 q"
+
+    " 1 or 0 -> blinking block
+    " 2 -> solid block
+    " 3 -> blinking underscore
+    " 4 ->solid underscore
+    " Recent versions of xterm (282 or above) also support
+    " 5 -> blinking vertical bar
+    " 6 -> solid vertical bar
+  endif
+endif
