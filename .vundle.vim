@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-11-15 02:56:42 [525]
+" Modified: 2014-11-15 22:38:58 [533]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -468,7 +468,6 @@ let NERDCreateDefaultMappings = 'OFF'
 vmap <BS> <plug>NERDCommenterAlignBoth
 vmap <S-BS> <plug>NERDCommenterUncomment
 nmap <BS> <plug>NERDCommenterToggle
-nmap <S-BS> <plug>NERDCommenterUncomment
 vmap <leader>cu <plug>NERDCommenterUncomment
 
 

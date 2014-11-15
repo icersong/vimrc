@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-11-15 11:37:40 [335]
+" Modified: 2014-11-15 21:48:11 [338]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -59,14 +59,24 @@ endif
 if has('gui_running')
   " 设置GUI行列数
   set lines=48 columns=128
+  "set switchbuf=usetab          " 打开缓冲时在原来的窗口打开
+  set showtabline=2             " 至少有两个标签页时才显示标签栏
+  set guioptions=               "菜单栏、工具栏都不要了
+  let psc_style='cool'
 endif
 
-set history=64      " 历史记录最高数目
+if !exists("syntax_on")
+  syntax enable                 " 语法高亮显示开
+  syntax on                     " 语法高亮显示开
+endif
+" set t_Co=256
+" colorscheme torte
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim userinterface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set history=32     		" 历史记录最高数目
 set showcmd                     " 显示输入的字符
 set mousehide                   " 默认不显示鼠标
 set scrolloff=6                 " 光标所在行上下两侧最少保留的屏幕可见行数, 简写 set so=6
@@ -103,18 +113,11 @@ set autoread                    " 文件变化自动载入
 "set cmdwinheight=2              " 命令行窗口的屏幕行数
 "clipboard+=unnamed              " 默认寄存器和系统剪贴板共享
 
-if has("gui_running")
-  "set switchbuf=usetab          " 打开缓冲时在原来的窗口打开
-  set showtabline=2             " 至少有两个标签页时才显示标签栏
-  set guioptions=               "菜单栏、工具栏都不要了
-  let psc_style='cool'
-endif
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "File format and encoding
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set formatoptions+=mB           " formatoptions
+set formatoptions+=jmB           " formatoptions
 set fileformats=unix,dos,mac    " 文件格式支持
 set encoding=utf-8              " 文件默认编码
 set fileencodings=ucs-bom,utf-8,cp936,big5,euc-jp,euc-kr,latin1
@@ -130,13 +133,6 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Font & encoding
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if !exists("syntax_on")
-  syntax enable                 " 语法高亮显示开
-  syntax on                     " 语法高亮显示开
-endif
-"set t_Co=256
-"colorscheme torte
-
 if g:iswindows
   "set guifont=consolas:h10:cANSI
   set guifont=Inconsolata:h10:cDEFAULT
@@ -172,19 +168,18 @@ set shiftwidth=4        " 缩进一步使用的空格数目
 set smarttab            " 行首的tab用合适的空格代替
 set tabstop=4 et        " 文件里tab代表的空格数
 set softtabstop=4       " 输入tab后就跳了4格, set sts=4
-set lbr                 " 打开linebreak
-set ambiwidth=double    " 当encoding=utf-8或别的unicode编码时有效,使用ASCII字符两倍的宽度处理东亚字符类
-set list                " 显示不可见字符,trail:拖尾空白显示字符,extends/precedes是wrap关闭时,所在行在屏幕右边和左边显示的指示字符
+set linebreak           " 打开linebreak
+set ambiwidth=double    " 当encoding=<unicode>编码时有效,使用ASCII字符两倍的宽度处理东亚字符类
+set list                " trail:拖尾空白显示字符; extends/precedes是wrap关闭时,所在行在右左指示字符
 set autoindent          " 按语法自动缩进 ai
 set smartindent         " 智能缩进
 set cindent             " 按C的语法缩进
 set wrap                " 到屏幕边会回绕
-set iskeyword+=_,$,@,%,#,-  " 将这些字符作为关键字，带有这些符号的单词不换行
+set iskeyword+=_,$,@,%,#,-,*    " 将这些字符作为关键字，带有这些符号的单词不换行
 set whichwrap=b,s,<,>,[,]
 set colorcolumn=80      " 设置第列高亮
-"set tw=512             " textwidth, 一行的最大宽度
-
-"listchars tabe用..显示，尾部空格用-显示，eol不显示"
+" set textwidth=512             " textwidth, 一行的最大宽度
+" listchars tabe用..显示，尾部空格用-显示，eol不显示"
 set listchars=tab:»»,trail:.,extends:>,precedes:<
 
 
@@ -202,9 +197,6 @@ autocmd FileType vim,xml,css,html,xhtml setlocal tabstop=2 et softtabstop=2 shif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let mapleader = ","
 let g:mapleader = ","
-
-" 屏蔽命令模式下windows粘贴，变为列编辑，等同<C-Q>
-" unmap <C-V>
 
 " 定义空格键暂时取消高亮匹配
 nmap <silent><space> :nohl<CR>:syntax on<CR>
@@ -243,12 +235,24 @@ vmap < <gv
 vnoremap <leader>( <esc>`>i)<esc>`<i(<esc>
 vnoremap <leader>[ <esc>`>i]<esc>`<i[<esc>
 vnoremap <leader>{ <esc>`>i}<esc>`<i{<esc>
+vnoremap <leader>) <esc>`>i)<esc>`<i(<esc>
+vnoremap <leader>] <esc>`>i]<esc>`<i[<esc>
+vnoremap <leader>} <esc>`>i}<esc>`<i{<esc>
 vnoremap <leader>` <esc>`>i`<esc>`<i`<esc>
 vnoremap <leader>' <esc>`>i'<esc>`<i'<esc>
 vnoremap <leader>" <esc>`>i"<esc>`<i"<esc>
+vnoremap ( <esc>`>i)<esc>`<i(<esc>
+vnoremap [ <esc>`>i]<esc>`<i[<esc>
+vnoremap { <esc>`>i}<esc>`<i{<esc>
+vnoremap ) <esc>`>i)<esc>`<i(<esc>
+vnoremap ] <esc>`>i]<esc>`<i[<esc>
+vnoremap } <esc>`>i}<esc>`<i{<esc>
+vnoremap ` <esc>`>i`<esc>`<i`<esc>
+vnoremap ' <esc>`>i'<esc>`<i'<esc>
+vnoremap " <esc>`>i"<esc>`<i"<esc>
 
 " only paset but not replace cut table
-xnoremap p pgvy
+" xnoremap p pgvy
 
 " mouse select copy & paset
 vnoremap <LeftRelease> "*y
@@ -257,7 +261,6 @@ inoremap <RightRelease> <c-r>*
 
 " patch esc wait 1 second
 imap <esc> <esc><esc>
-cmap <esc> <esc><esc>
 vmap <esc> <esc><esc>
 
 
