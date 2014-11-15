@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-11-15 23:23:03 [343]
+" Modified: 2014-11-16 00:47:32 [344]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -230,6 +230,12 @@ vmap <tab> >gv
 vmap <S-tab> <gv
 vmap > >gv
 vmap < <gv
+
+" 上下移动一行文字
+nmap <C-j> mz:m+<cr>`z
+nmap <C-k> mz:m-2<cr>`z
+vmap <C-j> :m'>+<cr>`<my`>mzgv`yo`z
+vmap <C-k> :m'<-2<cr>`>my`<mzgv`yo`z
 
 "可视模式下加各种括号和引号
 vnoremap <leader>( <esc>`>i)<esc>`<i(<esc>

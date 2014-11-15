@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-11-15 22:41:55 [534]
+" Modified: 2014-11-16 00:47:51 [545]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -126,8 +126,16 @@ Bundle 'wesleyche/SrcExpl'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " unite
-" like CtrlP
+" powerful than CtrlP|ACK ...
 Bundle 'Shougo/unite.vim'
+Bundle 'Shougo/vimproc.vim'
+Bundle 'Shougo/neomru.vim'
+let g:unite_data_directory = $VIMCACHE.'/unite'
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Grep
+Bundle 'yegappan/grep'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -211,7 +219,7 @@ Bundle 'rainbow_parentheses.vim'
 " fast jump to after current, \\f<char>
 Bundle 'Lokaltog/vim-easymotion'
   if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/vim-easymotion'))))
-    let g:EasyMotion_leader_key = "'"
+    let g:EasyMotion_leader_key = ";"
   else
     "echo 'easymotion plugin not found.'
   endif
