@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-11-15 21:48:11 [338]
+" Modified: 2014-11-15 23:23:03 [343]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -390,6 +390,18 @@ autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "norm
 " $ctags -R . 在当前目录下递归生成tags文件
 " 告诉vim在当前目录找不到tags文件时请到上层目录查找
 set tags=tags;/
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Diff command
+" Convenient command to see the difference between the current buffer and the
+" file it was loaded from, thus the changes you made.
+" Only define it when not defined already.
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if !exists(":DiffOrig")
+  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
+        \ | wincmd p | diffthis
+endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
