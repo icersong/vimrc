@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-11-16 00:47:32 [344]
+" Modified: 2014-11-17 22:36:11 [380]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -104,14 +104,15 @@ set report=0                    " 报告哪些行被修改过
 set go+=a                       " 选择后自动进入系统剪切板
 set completeopt=longest,menu    " 去掉智能补全预览，只显示菜单并自动插入
 set autoread                    " 文件变化自动载入
-"set nowrapscan                  " 搜索到文件末尾时，不再回绕到文件首
-"set hid                         " 放弃缓冲区时隐藏而不卸载
-"set selection=exclusive         " 设定选择区的行为为闭区间，选择的最后一个字符包含在操作范围之内
-"set linespace=4                 " 设置行间距，单位是像素
-"set shortmess+=I                " 启动时不显示介绍信息
-"set cmdheight=2                 " 命令行使用的屏幕行数
-"set cmdwinheight=2              " 命令行窗口的屏幕行数
-"clipboard+=unnamed              " 默认寄存器和系统剪贴板共享
+set t_vb=0                      " 关闭输出铃声
+" set nowrapscan                  " 搜索到文件末尾时，不再回绕到文件首
+" set hid                         " 放弃缓冲区时隐藏而不卸载
+" set selection=exclusive         " 设定选择区的行为为闭区间，选择的最后一个字符包含在操作范围之内
+" set linespace=4                 " 设置行间距，单位是像素
+" set shortmess+=I                " 启动时不显示介绍信息
+" set cmdheight=2                 " 命令行使用的屏幕行数
+" set cmdwinheight=2              " 命令行窗口的屏幕行数
+" set clipboard+=unnamed          " 默认寄存器和系统剪贴板共享
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -199,7 +200,8 @@ let mapleader = ","
 let g:mapleader = ","
 
 " 定义空格键暂时取消高亮匹配
-nmap <silent><space> :nohl<CR>:syntax on<CR>
+nmap <silent><space> :nohlsearch<CR>
+" :syntax on<CR>
 " 删除尾部空格
 nmap <S-Space> :%s/\s\+$//g<CR>
 
@@ -216,10 +218,10 @@ nmap <S-U> :redo<CR>
 
 " 文件操作
 " command! -nargs=0 Q :q!
-nmap <leader>q :q<CR>
-nmap <leader><S-Q> :q!<CR>
-nmap <leader>w :w<CR>
-nmap <leader><S-W> :w!<CR>
+nnoremap <leader>q :bd<CR>
+nnoremap <leader><S-Q> :q!<CR>
+nnoremap <leader>w :w<CR>
+nnoremap <leader><S-W> :w!<CR>
 " 文件格式设置成dos :set ff=dos<CR>
 " 文件格式设置成unix :set ff=unix<CR>
 
@@ -257,8 +259,8 @@ vnoremap ` <esc>`>i`<esc>`<i`<esc>
 vnoremap ' <esc>`>i'<esc>`<i'<esc>
 vnoremap " <esc>`>i"<esc>`<i"<esc>
 
-" only paset but not replace cut table
-" xnoremap p pgvy
+" visual mode: only paset but not replace cut table
+vnoremap p pgvy
 
 " mouse select copy & paset
 vnoremap <LeftRelease> "*y
@@ -424,17 +426,14 @@ source $VIMFILES/vimrc/.vundle.vim
 set cursorline                  " 设置光标十字坐标，高亮当前行
 set cursorcolumn                " 设置光标十字坐标，高亮当前列
 " 调整光标显示样式　
-" hi CursorLine   cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
-" hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
 hi CursorLine cterm=underline ctermbg=NONE ctermfg=NONE gui=underline guibg=NONE guifg=NONE
 
 if has('gui_running')
-  highlight Cursor guifg=white guibg=black
-  highlight iCursor guifg=white guibg=steelblue
-  set guicursor=n-v-c:block-Cursor
-  set guicursor+=i:ver100-iCursor
-  set guicursor+=n-v-c:blinkon0
-  set guicursor+=i:blinkwait10
+  highlight nCursor guifg=red guibg=yellow
+  highlight iCursor guifg=red guibg=yellow
+  set guicursor=n-v-c:block-nCursor-blinkon0
+  set guicursor+=r:block-nCursor-blinkwait300-blinkon900-blinkoff100
+  set guicursor+=i:ver20-iCursor-blinkwait300-blinkon200-blinkoff100
 else
   if &term =~ '^xterm'
     " insert cursor

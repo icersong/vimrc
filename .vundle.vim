@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-11-16 00:47:51 [545]
+" Modified: 2014-11-17 22:42:41 [547]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -248,7 +248,7 @@ Bundle 'honza/vim-snippets'
     let g:UltiSnipsListSnippets = '<c-l>'
     "let g:UltiSnipsJumpForwardTrigger = '<Tab>'
     "let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
-    let g:UltiSnipsExpandTrigger="<c-j>"
+    let g:UltiSnipsExpandTrigger="<c-Enter>"
     let g:UltiSnipsJumpForwardTrigger="<c-j>"
     let g:UltiSnipsJumpBackwardTrigger="<c-k>"
     let g:UltiSnipsSnippetsDir=simplify(expand($VIM_BUNDLE_PATH.'/vim-snippets/UltiSnips'))
