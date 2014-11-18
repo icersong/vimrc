@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-11-17 22:36:11 [380]
+" Modified: 2014-11-18 19:34:00 [381]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -336,7 +336,6 @@ function! GetVisualRange()
 
     " Return the result
     return VisualRange
-
 endfunction
 
 
