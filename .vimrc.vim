@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-11-18 19:36:48 [382]
+" Modified: 2014-11-20 02:42:36 [400]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -66,8 +66,8 @@ if has('gui_running')
 endif
 
 if !exists("syntax_on")
-  syntax enable                 " 语法高亮显示开
-  syntax on                     " 语法高亮显示开
+  " syntax enable                 " 语法高亮显示开
+  " syntax on                     " 语法高亮显示开
 endif
 " set t_Co=256
 " colorscheme torte
@@ -424,28 +424,32 @@ source $VIMFILES/vimrc/.vundle.vim
 "高亮当前行当前列(十字光标)
 set cursorline                  " 设置光标十字坐标，高亮当前行
 set cursorcolumn                " 设置光标十字坐标，高亮当前列
+
 " 调整光标显示样式　
-hi CursorLine cterm=underline ctermbg=NONE ctermfg=NONE gui=underline guibg=NONE guifg=NONE
+function! SetCursorStyle()
+  highlight CursorLine cterm=underline ctermbg=NONE ctermfg=NONE gui=underline guibg=NONE guifg=NONE
+  if has('gui_running')
+    highlight nCursor guifg=red guibg=yellow
+    highlight iCursor guifg=red guibg=yellow
+    set guicursor=n-v-c:block-nCursor-blinkon0
+    set guicursor+=r:block-nCursor-blinkwait300-blinkon900-blinkoff100
+    set guicursor+=i:ver20-iCursor-blinkwait300-blinkon200-blinkoff100
+  else
+    if &term =~ '^xterm'
+      " insert cursor
+      let &t_SI = "\<Esc>[6 q"
+      " normal cursor
+      let &t_EI = "\<Esc>[2 q"
 
-if has('gui_running')
-  highlight nCursor guifg=red guibg=yellow
-  highlight iCursor guifg=red guibg=yellow
-  set guicursor=n-v-c:block-nCursor-blinkon0
-  set guicursor+=r:block-nCursor-blinkwait300-blinkon900-blinkoff100
-  set guicursor+=i:ver20-iCursor-blinkwait300-blinkon200-blinkoff100
-else
-  if &term =~ '^xterm'
-    " insert cursor
-    let &t_SI = "\<Esc>[6 q"
-    " normal cursor
-    let &t_EI = "\<Esc>[2 q"
-
-    " 1 or 0 -> blinking block
-    " 2 -> solid block
-    " 3 -> blinking underscore
-    " 4 ->solid underscore
-    " Recent versions of xterm (282 or above) also support
-    " 5 -> blinking vertical bar
-    " 6 -> solid vertical bar
+      " 1 or 0 -> blinking block
+      " 2 -> solid block
+      " 3 -> blinking underscore
+      " 4 ->solid underscore
+      " Recent versions of xterm (282 or above) also support
+      " 5 -> blinking vertical bar
+      " 6 -> solid vertical bar
+    endif
   endif
-endif
+endfunction
+autocmd Syntax * call SetCursorStyle()
+autocmd BufEnter * call SetCursorStyle()

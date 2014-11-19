@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-11-17 22:42:41 [547]
+" Modified: 2014-11-20 02:25:53 [557]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -146,10 +146,9 @@ Bundle 'kien/ctrlp.vim'
     let g:ctrlp_map = '<c-p>'
     let g:ctrlp_cmd = 'CtrlPMRU'
     let g:ctrlp_show_hidden = 1
-    "let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
     let g:ctrlp_custom_ignore = {
-      \ 'dir':  '\v[\/](\.(git|hg|svn)|Caches)$',
-      \ 'file': '\v\.(exe|so|dll)$',
+      \ 'dir':  '\v[\/](\.(git|hg|svn)|cache)$',
+      \ 'file': '\v\.(exe|so|dll|png|jpg|bin)$',
       \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
       \ }
     "if g:ismacos || g:islinux
@@ -205,10 +204,10 @@ Bundle 'vim-voom/VOoM'
 Bundle 'rainbow_parentheses.vim'
   if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/rainbow_parentheses.vim'))))
     let g:rbpt_loadcmd_toggle = 0
-    au VimEnter * nested :RainbowParenthesesToggle
-    au Syntax * RainbowParenthesesLoadRound
-    au Syntax * RainbowParenthesesLoadSquare
-    au Syntax * RainbowParenthesesLoadBraces
+    autocmd VimEnter * nested :RainbowParenthesesToggle
+    autocmd Syntax * RainbowParenthesesLoadRound
+    autocmd Syntax * RainbowParenthesesLoadSquare
+    autocmd Syntax * RainbowParenthesesLoadBraces
   else
     "echo 'rainbo_parentheses plugin not found.'
   endif
@@ -249,7 +248,7 @@ Bundle 'honza/vim-snippets'
     "let g:UltiSnipsJumpForwardTrigger = '<Tab>'
     "let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
     let g:UltiSnipsExpandTrigger="<c-Enter>"
-    let g:UltiSnipsJumpForwardTrigger="<c-j>"
+    let g:UltiSnipsJumpForwardTrigger="<c-Enter>"
     let g:UltiSnipsJumpBackwardTrigger="<c-k>"
     let g:UltiSnipsSnippetsDir=simplify(expand($VIM_BUNDLE_PATH.'/vim-snippets/UltiSnips'))
     let g:UltiSnipsSnippetDirectories=[simplify(expand($VIM_BUNDLE_PATH.'/vim-snippets/UltiSnips'))]
@@ -309,15 +308,15 @@ Bundle 'scrooloose/syntastic'
     let g:syntastic_xhtml_tidy_quiet_messages={"regex":
                 \ ['unescaped & which should be written as &amp;']}
     if (g:iswindows)
-      let $PATH=$VIM.'/Utilities/;'.$PATH
-      let $PATH=$VIM.'/Utilities/GNU/;'.$PATH
-      let $PATH=$VIM.'/Utilities/jsl/;'.$PATH
-      let $PATH=$PATH.';c:/python27/scripts'
+      let $PATH=$VIM.'\\Utilities;'.$PATH
+      let $PATH=$VIM.'\\Utilities\\GNU;'.$PATH
+      let $PATH=$VIM.'\\Utilities\\jsl;'.$PATH
+      let $PATH='C:\\python27\\scripts;'.$PATH
       let g:syntastic_mode_map = { 'mode': 'active',
                   \ 'active_filetypes': ['javascript', 'html', 'xhtml', 'css', 'python'],
                   \ 'passive_filetypes': [] }
     else
-      au BufWritePost * :SyntasticCheck
+      " autocmd BufWritePost * :SyntasticCheck
       "let g:syntastic_python_pep8_exec = 'python /Library/Python/2.7/site-packages/pep8.pyc'
       let g:syntastic_mode_map = { 'mode': 'active',
                   \ 'active_filetypes': [],
