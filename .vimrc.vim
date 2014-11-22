@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-11-20 02:42:36 [400]
+" Modified: 2014-11-23 00:29:26 [407]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -268,16 +268,18 @@ vnoremap <RightRelease> "*y
 inoremap <RightRelease> <c-r>*
 
 " patch esc wait 1 second
-imap <esc> <esc><esc>
-vmap <esc> <esc><esc>
+if g:ismacos
+  imap <esc> <esc><esc>
+  vmap <esc> <esc><esc>
+endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 代码折叠
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set nofoldenable        " 关闭自动折叠
 " set foldenable        " 开启自动折叠
 " set foldclose=all     " 设置为自动关闭折叠
-" set nofoldenable        " 关闭自动折叠
 " set foldmethod=syntax   " 设置语法折叠 syntax | indent
 " set foldcolumn=0        " 设置折叠区域的宽度
 " set foldnestmax=2

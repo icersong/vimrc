@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-11-20 02:25:53 [557]
+" Modified: 2014-11-23 01:44:12 [596]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -52,7 +52,7 @@ Bundle 'mhinz/vim-startify'
 " airline   {{{1
 Bundle 'bling/vim-airline'
   " git need plugin https://github.com/tpope/vim-fugitive
-  if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/vim-airline'))))
+  " if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/vim-airline'))))
     set laststatus=2
     let g:airline_theme                      = "dark"
     let g:airline#extensions#tabline#enabled = 1
@@ -69,14 +69,14 @@ Bundle 'bling/vim-airline'
     let g:airline_enable_branch = 1
     let g:airline_enable_syntastic = 1
     let g:airline_detect_paste = 1
-    autocmd BufEnter <buffer> AirlineRefresh
-  endif
+    " autocmd BufEnter <buffer> AirlineRefresh
+  " endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " solarized theme  {{{1
 Bundle 'altercation/vim-colors-solarized'
-  if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/vim-colors-solarized'))))
+  " if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/vim-colors-solarized'))))
     let g:solarized_termcolors = 256
     let g:solarized_contrast = "high"
     let g:solarized_visibility = "high"
@@ -87,19 +87,19 @@ Bundle 'altercation/vim-colors-solarized'
       set background=dark
       colorscheme solarized
     endif
-  endif
+  " endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " molokai theme  {{{1
 Bundle 'tomasr/molokai'
-  if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/molokai'))))
+  " if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/molokai'))))
     let g:molokai_original = 1
     if !has('gui_running')
       set background=dark
       colorscheme molokai
     endif
-  endif
+  " endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -141,7 +141,7 @@ Bundle 'yegappan/grep'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CtrlP {{{1
 Bundle 'kien/ctrlp.vim'
-  if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/ctrlp.vim'))))
+  " if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/ctrlp.vim'))))
     map <F1> <c-p>
     let g:ctrlp_map = '<c-p>'
     let g:ctrlp_cmd = 'CtrlPMRU'
@@ -164,14 +164,14 @@ Bundle 'kien/ctrlp.vim'
     "  let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
     "endif
     nmap <leader>f :CtrlP<CR>
-  endif
+  " endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " minibufexpl   {{{1
 " Bundle "fholgado/minibufexpl.vim"
 Bundle "techlivezheng/vim-plugin-minibufexpl"
-  if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/vim-plugin-minibufexpl'))))
+  " if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/vim-plugin-minibufexpl'))))
     let g:did_minibufexplorer_syntax_inits = 1
     "hi MBENormal               guifg=#808080 guibg=fg
     "hi MBEChanged              guifg=#CD5907 guibg=fg
@@ -183,7 +183,7 @@ Bundle "techlivezheng/vim-plugin-minibufexpl"
     let g:miniBufExplCloseOnSelect = 1
     let g:miniBufExplorerAutoStart = 0
     let g:miniBufExplBuffersNeeded = 1
-  endif
+  " endif
 noremap <silent><Left> :bp<CR>
 noremap <silent><Right> :bn<CR>
 
@@ -191,47 +191,43 @@ noremap <silent><Right> :bn<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " VOoM  {{{1
 Bundle 'vim-voom/VOoM'
-  if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/VOoM'))))
+  " if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/VOoM'))))
     let g:voom_tree_placement = "right"
     let g:voom_tree_width = 40
     let g:voom_tab_key = "<C-Tab>"
-  endif
+  " endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " rainbow_parentheses   {{{1
 " high light parentheses with different color
 Bundle 'rainbow_parentheses.vim'
-  if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/rainbow_parentheses.vim'))))
+  " if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/rainbow_parentheses.vim'))))
     let g:rbpt_loadcmd_toggle = 0
     autocmd VimEnter * nested :RainbowParenthesesToggle
     autocmd Syntax * RainbowParenthesesLoadRound
     autocmd Syntax * RainbowParenthesesLoadSquare
     autocmd Syntax * RainbowParenthesesLoadBraces
-  else
-    "echo 'rainbo_parentheses plugin not found.'
-  endif
+  " endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " easymotion  {{{1
 " fast jump to after current, \\f<char>
 Bundle 'Lokaltog/vim-easymotion'
-  if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/vim-easymotion'))))
+  " if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/vim-easymotion'))))
     let g:EasyMotion_leader_key = ";"
-  else
-    "echo 'easymotion plugin not found.'
-  endif
+  " endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Indent guides   {{{1
 " Bundle 'Yggdroot/indentLine'
 Bundle 'nathanaelkane/vim-indent-guides'
-  if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/vim-indent-guides'))))
+  " if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/vim-indent-guides'))))
     let g:indent_guides_enable_on_vim_startup = 1
     let g:indent_guides_guide_size = 1
-  endif
+  " endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -239,7 +235,7 @@ Bundle 'nathanaelkane/vim-indent-guides'
 if has('python')
 Bundle 'SirVer/ultisnips'
 Bundle 'honza/vim-snippets'
-  if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/ultisnips'))))
+  " if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/ultisnips'))))
     let g:UltiSnipsEditSplit='vertical'
     "let g:UltiSnipsUsePythonVersion = 2
     "let g:UltiSnips = {}
@@ -253,25 +249,7 @@ Bundle 'honza/vim-snippets'
     let g:UltiSnipsSnippetsDir=simplify(expand($VIM_BUNDLE_PATH.'/vim-snippets/UltiSnips'))
     let g:UltiSnipsSnippetDirectories=[simplify(expand($VIM_BUNDLE_PATH.'/vim-snippets/UltiSnips'))]
   endif
-endif
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" python-mode   {{{1
-Bundle 'klen/python-mode'
-  if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/python-mode'))))
-    let g:pymode_rope = 0
-    let g:pymode_rope_lookup_project = 1
-    let g:pymode_rope_autoimport = 1
-    let g:pymode_rope_autoimport_modules = ['os', 'sys', 'logging']
-    let g:pymode_rope_completion = 1
-    let g:pymode_rope_complete_on_dot = 1
-    let g:pymode_rope_completion_bind = '<C-SPACE>'
-    let g:pymode_lint = 0
-    let g:pymode_lint_on_write = 1
-    let g:pymode_lint_unmodified = 0
-    let g:pymode_lint_checkers = ['pyflakes', 'pep8']
-    let g:pymode_lint_ignore = "E501,E401,E701,E731,C901,E111"
-  endif
+" endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -283,7 +261,7 @@ Bundle 'kevinw/pyflakes-vim'
 " syntastic   {{{1
 " check syntax for all language while write file.
 Bundle 'scrooloose/syntastic'
-  if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/syntastic'))))
+  " if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/syntastic'))))
     let g:syntastic_error_symbol        = '✗'
     let g:syntastic_warning_symbol      = '⚠'
     let g:syntastic_enable_balloons     = 1
@@ -294,7 +272,7 @@ Bundle 'scrooloose/syntastic'
     let g:syntastic_html_checkers       = ['tidy']  " 'jshint', 'jslint'
     let g:syntastic_xhtml_checkers      = ['tidy']
     let g:syntastic_javascript_checkers = ['jsl']
-    let g:syntastic_python_checkers     = ['pep8', 'pyflakes']  " 'pyflakes', 'pep8'
+    let g:syntastic_python_checkers     = [] " ['pep8', 'pyflakes']
     let g:syntastic_xml_checkers        = ['xmllint']
     let g:syntastic_python_pep8_quiet_messages={"regex": [
           \ '^E401', '^E501', '^E701', '^E731', '^E111', '^C901'] }
@@ -322,16 +300,37 @@ Bundle 'scrooloose/syntastic'
                   \ 'active_filetypes': [],
                   \ 'passive_filetypes': ['python', 'javascript', 'html', 'xhtml', 'css'] }
     endif
-  endif
+  " endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " auto complete plugin   {{{1
 Bundle 'Shougo/neocomplete.vim'
-if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/neocomplete'))))
+" if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/neocomplete'))))
   if (filereadable(simplify(expand('$VIMFILES/vimrc/neocomplete.vim'))))
     source $VIMFILES/vimrc/neocomplete.vim
+    inoremap <expr><C-N>  pumvisible() ?  "\<C-N>" : neocomplete#start_manual_complete()
   endif
+" endif
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" python-mode   {{{1
+if has('python')
+Bundle 'klen/python-mode'
+  " if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/python-mode'))))
+    let g:pymode_rope = 0
+    let g:pymode_rope_lookup_project = 1
+    let g:pymode_rope_autoimport = 1
+    let g:pymode_rope_autoimport_modules = ['os', 'sys', 'logging']
+    let g:pymode_rope_completion = 1
+    let g:pymode_rope_complete_on_dot = 0
+    " let g:pymode_rope_completion_bind = '<C-N>'
+    let g:pymode_lint = 0
+    let g:pymode_lint_unmodified = 1
+    let g:pymode_lint_checkers = ['pyflakes', 'pep8']
+    let g:pymode_lint_ignore = "E401,E501,E701,E731,E111,C901"
+  " endif
 endif
 
 
@@ -341,9 +340,10 @@ endif
 Bundle 'davidhalter/jedi-vim'
 let g:jedi#auto_initialization      = 1
 let g:jedi#auto_vim_configuration   = 0
-let g:jedi#use_tabs_not_buffers     = 1
+let g:jedi#use_tabs_not_buffers     = 0
+let g:jedi#use_splits_not_buffers   = 1
 let g:jedi#completions_enabled      = 1
-let g:jedi#popup_select_first       = 1
+let g:jedi#popup_select_first       = 0
 let g:jedi#popup_on_dot             = 0
 let g:jedi#auto_close_doc           = 1
 let g:jedi#completions_command      = "<C-N>"
@@ -430,11 +430,11 @@ map <leader>tl <Plug>TaskList
 " improve from trailing-whitespace
 " :StripWhitespace
 Bundle 'ntpeters/vim-better-whitespace'
-if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/vim-better-whitespace'))))
+" if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/vim-better-whitespace'))))
   autocmd FileType javascript,c,cpp,java,html,python,vim autocmd BufWritePre <buffer> StripWhitespace
   let g:better_whitespace_filetypes_blacklist=['text', 'rich']
   highlight ExtraWhitespace ctermbg=DarkGray
-endif
+" endif
 
 " ---- trailing-whitespace  ----
 " :FixWhitespace
@@ -507,7 +507,7 @@ nmap <Leader>tb :TagbarToggle<CR>
 let g:tagbar_width=30
 let g:tagbar_autoclose = 1
 let g:tagbar_autofocus = 1
-let g:tagbar_show_linenumbers = -1
+let g:tagbar_show_linenumbers = 1
 let g:tagbar_singleclick = 1
 "autocmd BufReadPost *.cpp,*.c,*.h,*.py call tagbar#autoopen()
 
@@ -544,8 +544,8 @@ Bundle 'xolox/vim-session'
   let g:session_autoload = 'no'
   let g:session_command_aliases = 1
   let g:session_directory = simplify(expand($VIMCACHE.'/session'))
-  " patch for compitable minibufexpl
   " let g:xolox#session#ignore_window_patterns = ['^\[unite\]', '^vimfiler\:', 'MiniBufExplorer']
+  " patch for compitable minibufexpl
   " let g:xolox#session#wipe_filetypes = ['unite', 'vimfiler']
   " let g:xolox#session#wipe_filetypes = [
   "   \ 'unite',
