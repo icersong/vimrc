@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-12-01 20:53:43 [427]
+" Modified: 2014-12-02 20:44:20 [432]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -246,24 +246,24 @@ vmap <C-j> :m'>+<cr>`<my`>mzgv`yo`z
 vmap <C-k> :m'<-2<cr>`>my`<mzgv`yo`z
 
 "可视模式下加各种括号和引号
-vnoremap <leader>( <esc>`>i)<esc>`<i(<esc>
-vnoremap <leader>[ <esc>`>i]<esc>`<i[<esc>
-vnoremap <leader>{ <esc>`>i}<esc>`<i{<esc>
-vnoremap <leader>) <esc>`>i)<esc>`<i(<esc>
-vnoremap <leader>] <esc>`>i]<esc>`<i[<esc>
-vnoremap <leader>} <esc>`>i}<esc>`<i{<esc>
-vnoremap <leader>` <esc>`>i`<esc>`<i`<esc>
-vnoremap <leader>' <esc>`>i'<esc>`<i'<esc>
-vnoremap <leader>" <esc>`>i"<esc>`<i"<esc>
-vnoremap ( <esc>`>i)<esc>`<i(<esc>
-vnoremap [ <esc>`>i]<esc>`<i[<esc>
-vnoremap { <esc>`>i}<esc>`<i{<esc>
-vnoremap ) <esc>`>i)<esc>`<i(<esc>
-vnoremap ] <esc>`>i]<esc>`<i[<esc>
-vnoremap } <esc>`>i}<esc>`<i{<esc>
-vnoremap ` <esc>`>i`<esc>`<i`<esc>
-vnoremap ' <esc>`>i'<esc>`<i'<esc>
-vnoremap " <esc>`>i"<esc>`<i"<esc>
+" vnoremap <leader>( <esc>`>i)<esc>`<i(<esc>
+" vnoremap <leader>[ <esc>`>i]<esc>`<i[<esc>
+" vnoremap <leader>{ <esc>`>i}<esc>`<i{<esc>
+" vnoremap <leader>) <esc>`>i)<esc>`<i(<esc>
+" vnoremap <leader>] <esc>`>i]<esc>`<i[<esc>
+" vnoremap <leader>} <esc>`>i}<esc>`<i{<esc>
+" vnoremap <leader>` <esc>`>i`<esc>`<i`<esc>
+" vnoremap <leader>' <esc>`>i'<esc>`<i'<esc>
+" vnoremap <leader>" <esc>`>i"<esc>`<i"<esc>
+" vnoremap ( <esc>`>i)<esc>`<i(<esc>
+" vnoremap [ <esc>`>i]<esc>`<i[<esc>
+" vnoremap { <esc>`>i}<esc>`<i{<esc>
+" vnoremap ) <esc>`>i)<esc>`<i(<esc>
+" vnoremap ] <esc>`>i]<esc>`<i[<esc>
+" vnoremap } <esc>`>i}<esc>`<i{<esc>
+" vnoremap ` <esc>`>i`<esc>`<i`<esc>
+" vnoremap ' <esc>`>i'<esc>`<i'<esc>
+" vnoremap " <esc>`>i"<esc>`<i"<esc>
 
 " visual mode: only paset but not replace cut table
 vnoremap p pgvy
@@ -275,8 +275,8 @@ inoremap <RightRelease> <c-r>*
 
 " patch esc wait 1 second
 if g:ismacos
-  imap <esc> <esc><esc>
-  vmap <esc> <esc><esc>
+  " imap <esc> <esc><esc>
+  " vmap <esc> <esc><esc>
 endif
 
 
@@ -460,3 +460,5 @@ function! SetCursorStyle()
   endif
 endfunction
 autocmd Syntax * call SetCursorStyle()
+syntax on
+call SetCursorStyle()
