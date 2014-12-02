@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-11-23 00:29:26 [407]
+" Modified: 2014-12-01 20:53:43 [427]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -105,6 +105,11 @@ set go+=a                       " 选择后自动进入系统剪切板
 set completeopt=longest,menu    " 去掉智能补全预览，只显示菜单并自动插入
 set autoread                    " 文件变化自动载入
 set t_vb=0                      " 关闭输出铃声
+set autochdir                   " 自动切换路径
+if g:iswindows
+  set directory=z:,d:,c:        " 设置交换文件路径
+endif
+" set noswapfile                  " 禁止交换文件
 " set nowrapscan                  " 搜索到文件末尾时，不再回绕到文件首
 " set hid                         " 放弃缓冲区时隐藏而不卸载
 " set selection=exclusive         " 设定选择区的行为为闭区间，选择的最后一个字符包含在操作范围之内
@@ -200,7 +205,8 @@ let mapleader = ","
 let g:mapleader = ","
 
 " 定义空格键暂时取消高亮匹配
-nmap <silent><space> :nohlsearch<CR>
+nmap <silent><space> :nohlsearch<CR>:call SetCursorStyle()<CR>
+
 " :syntax on<CR>
 " 删除尾部空格
 nmap <S-Space> :%s/\s\+$//g<CR>
@@ -388,7 +394,7 @@ autocmd FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -
 " au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 " 自动转换当前工作路径
-"autocmd BufEnter,BufRead * if isdirectory(expand('%:p:h')) | lcd %:p:h | endif
+" autocmd BufEnter,BufRead * if isdirectory(expand('%:p:h')) | lcd %:p:h | endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -454,4 +460,3 @@ function! SetCursorStyle()
   endif
 endfunction
 autocmd Syntax * call SetCursorStyle()
-autocmd BufEnter * call SetCursorStyle()

@@ -1,9 +1,8 @@
 "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
-let g:acp_enableAtStartup = 1
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#enable_insert_char_pre = 0
-" let g:neocomplete#disable_auto_complete = 0
+let g:neocomplete#disable_auto_complete = 1
 let g:neocomplete#enable_refresh_always = 1
 let g:neocomplete#auto_completion_start_length = 3
 let g:neocomplete#max_list = 9

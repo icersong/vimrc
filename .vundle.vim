@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-11-23 01:44:12 [596]
+" Modified: 2014-11-29 16:10:11 [617]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -103,20 +103,14 @@ Bundle 'tomasr/molokai'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" python-syntax  {{{1
-Bundle 'hdima/python-syntax'
-let python_highlight_all = 1
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NERDTree  {{{1
 Bundle "scrooloose/nerdtree"
 nmap <leader>nt :NERDTree<CR>
 let NERDTreeHighlightCursorline=1
 let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$' ]
-let g:netrw_home='~/bak'
+let g:netrw_home=$VIMCACHE.'/NERDTree'
 "close vim if the only window left open is a NERDTree
-autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | end
+autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | :bd<cr> | end
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -135,7 +129,8 @@ let g:unite_data_directory = $VIMCACHE.'/unite'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Grep
-Bundle 'yegappan/grep'
+" Search file content
+Bundle 'vim-scripts/grep.vim'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -272,7 +267,7 @@ Bundle 'scrooloose/syntastic'
     let g:syntastic_html_checkers       = ['tidy']  " 'jshint', 'jslint'
     let g:syntastic_xhtml_checkers      = ['tidy']
     let g:syntastic_javascript_checkers = ['jsl']
-    let g:syntastic_python_checkers     = [] " ['pep8', 'pyflakes']
+    let g:syntastic_python_checkers     = ['pep8', 'pyflakes']
     let g:syntastic_xml_checkers        = ['xmllint']
     let g:syntastic_python_pep8_quiet_messages={"regex": [
           \ '^E401', '^E501', '^E701', '^E731', '^E111', '^C901'] }
@@ -343,7 +338,7 @@ let g:jedi#auto_vim_configuration   = 0
 let g:jedi#use_tabs_not_buffers     = 0
 let g:jedi#use_splits_not_buffers   = 1
 let g:jedi#completions_enabled      = 1
-let g:jedi#popup_select_first       = 0
+let g:jedi#popup_select_first       = 1
 let g:jedi#popup_on_dot             = 0
 let g:jedi#auto_close_doc           = 1
 let g:jedi#completions_command      = "<C-N>"
@@ -363,6 +358,12 @@ let g:jedi#completions_command      = "<C-N>"
 Bundle 'mattn/emmet-vim'
 let g:user_emmet_install_global = 0
 autocmd FileType css,xml,html,xhtml,tpl EmmetInstall
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" python-syntax  {{{1
+Bundle 'hdima/python-syntax'
+let python_highlight_all = 1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
