@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-12-02 20:44:20 [432]
+" Modified: 2014-12-03 00:25:20 [446]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -56,19 +56,32 @@ if(g:iswindows)
   source $VIMRUNTIME/mswin.vim
 endif
 
+" function! s:SwitchPSCStyle()
+"   if exists('g:psc_style')
+"     if g:psc_style == 'cool'
+"       let g:psc_style = 'warm'
+"     elseif g:psc_style == 'warm'
+"       let g:psc_style = 'cool'
+"     endif
+"   else
+"     let g:psc_style = 'warm'
+"   endif
+"   colorscheme ps_color
+" endfunction
+" map <silent> <F6> :call <SID>SwitchPSCStyle()<CR>
+
 if has('gui_running')
   " 设置GUI行列数
   set lines=48 columns=128
   "set switchbuf=usetab          " 打开缓冲时在原来的窗口打开
   set showtabline=2             " 至少有两个标签页时才显示标签栏
   set guioptions=               "菜单栏、工具栏都不要了
-  let psc_style='cool'
 endif
 
-if !exists("syntax_on")
-  " syntax enable                 " 语法高亮显示开
-  " syntax on                     " 语法高亮显示开
-endif
+" if !exists("syntax_on")
+"   syntax enable                 " 语法高亮显示开
+"   syntax on                     " 语法高亮显示开
+" endif
 " set t_Co=256
 " colorscheme torte
 
@@ -76,16 +89,15 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim userinterface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set history=32     		" 历史记录最高数目
+set history=32                  " 历史记录最高数目
+set scrolloff=6                 " 光标所在行上下两侧最少保留的屏幕可见行数, 简写 set so=6
+set cmdheight=1                 " 命令行占1行
+set ruler                       " 显示行号和列号
 set showcmd                     " 显示输入的字符
 set mousehide                   " 默认不显示鼠标
-set scrolloff=6                 " 光标所在行上下两侧最少保留的屏幕可见行数, 简写 set so=6
-set ruler                       " 显示行号和列号
 set wildmenu                    " 加强自动补全
-set cmdheight=1                 " 命令行占1行
-set nu                          " 显示行号，切换行号显隐 set nu!
+set number                      " 显示行号，切换行号显隐 set nu!
 set numberwidth=1               " 显示光标位置的，行号列号和百分比，简写 set nuw
-set lazyredraw                  " 减少重绘
 set backspace=indent,eol,start  " 置光标在行首时按退格键，光标会回到上一行行尾
 set incsearch                   " 搜索时动态调到第一个匹配的位置
 set ignorecase                  " 搜索时忽略大小写
@@ -93,7 +105,7 @@ set smartcase                   " 如果搜索模式包含大写字母，忽略i
 set nohls                       " 快速查找，直接定位到文本
 set hlsearch                    " 高亮显示搜索结果
 set showmatch                   " 插入括号时，短暂的跳转到匹配的对应括号，显示匹配的时间由matchtime决定
-set matchtime=3                 " 单位是十分之一秒
+set matchtime=1                 " 单位是十分之一秒
 set matchpairs=(:),{:},[:],<:>  " 匹配括号的规则，增加针对html的<>
 set mat=2                       " 配对符号高亮"
 set magic
@@ -109,6 +121,7 @@ set autochdir                   " 自动切换路径
 if g:iswindows
   set directory=z:,d:,c:        " 设置交换文件路径
 endif
+" set lazyredraw                  " 减少重绘
 " set noswapfile                  " 禁止交换文件
 " set nowrapscan                  " 搜索到文件末尾时，不再回绕到文件首
 " set hid                         " 放弃缓冲区时隐藏而不卸载
@@ -123,15 +136,15 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "File format and encoding
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set formatoptions+=jmB           " formatoptions
-set fileformats=unix,dos,mac    " 文件格式支持
-set encoding=utf-8              " 文件默认编码
+set formatoptions+=jmB            " formatoptions
+set fileformats=unix,dos,mac      " 文件格式支持
+set encoding=utf-8                " 文件默认编码
 set fileencodings=ucs-bom,utf-8,cp936,big5,euc-jp,euc-kr,latin1
 if has('gui_running')
-  set termencoding=Chinese      " 指定终端使用的编码,在+multi_byte特性下有效,也可用utf-8
+  set termencoding=Chinese        " 指定终端使用的编码,在+multi_byte特性下有效,也可用utf-8
   set fileencoding=Chinese
 else
-  set termencoding=utf-8        " 指定终端使用的编码,在+multi_byte特性下有效,也可用utf-8
+  set termencoding=utf-8          " 指定终端使用的编码,在+multi_byte特性下有效,也可用utf-8
   set fileencoding=utf-8
 endif
 
@@ -240,8 +253,8 @@ vmap > >gv
 vmap < <gv
 
 " 上下移动一行文字
-nmap <C-j> mz:m+<cr>`z
-nmap <C-k> mz:m-2<cr>`z
+nmap <C-j> :m+<cr>
+nmap <C-k> :m-2<cr>
 vmap <C-j> :m'>+<cr>`<my`>mzgv`yo`z
 vmap <C-k> :m'<-2<cr>`>my`<mzgv`yo`z
 
