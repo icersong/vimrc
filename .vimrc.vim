@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-12-03 00:25:20 [446]
+" Modified: 2014-12-20 17:20:11 [453]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -119,7 +119,7 @@ set autoread                    " 文件变化自动载入
 set t_vb=0                      " 关闭输出铃声
 set autochdir                   " 自动切换路径
 if g:iswindows
-  set directory=z:,d:,c:        " 设置交换文件路径
+  set directory=$VIMCACHE       " 设置交换文件路径
 endif
 " set lazyredraw                  " 减少重绘
 " set noswapfile                  " 禁止交换文件
@@ -155,7 +155,7 @@ endif
 if g:iswindows
   "set guifont=consolas:h10:cANSI
   set guifont=Inconsolata:h10:cDEFAULT
-  set guifontwide=YtYaHei:h10:cDEFAULT
+  set guifontwide=YtYaHei:h9:cDEFAULT
 endif
 
 if g:ismacos
@@ -216,6 +216,10 @@ autocmd FileType vim,xml,css,html,xhtml setlocal tabstop=2 et softtabstop=2 shif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let mapleader = ","
 let g:mapleader = ","
+
+" buffer切换
+noremap <silent><Left> :bp<CR>
+noremap <silent><Right> :bn<CR>
 
 " 定义空格键暂时取消高亮匹配
 nmap <silent><space> :nohlsearch<CR>:call SetCursorStyle()<CR>
@@ -444,7 +448,7 @@ source $VIMFILES/vimrc/.vundle.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "高亮当前行当前列(十字光标)
 set cursorline                  " 设置光标十字坐标，高亮当前行
-set cursorcolumn                " 设置光标十字坐标，高亮当前列
+" set cursorcolumn                " 设置光标十字坐标，高亮当前列
 
 " 调整光标显示样式　
 function! SetCursorStyle()

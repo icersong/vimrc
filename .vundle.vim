@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-11-29 16:10:11 [617]
+" Modified: 2014-12-20 17:18:04 [628]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -165,22 +165,20 @@ Bundle 'kien/ctrlp.vim'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " minibufexpl   {{{1
 " Bundle "fholgado/minibufexpl.vim"
-Bundle "techlivezheng/vim-plugin-minibufexpl"
-  " if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/vim-plugin-minibufexpl'))))
-    let g:did_minibufexplorer_syntax_inits = 1
-    "hi MBENormal               guifg=#808080 guibg=fg
-    "hi MBEChanged              guifg=#CD5907 guibg=fg
-    "hi MBEVisibleNormal        guifg=#5DC2D6 guibg=fg
-    "hi MBEVisibleChanged       guifg=#F1266F guibg=fg
-    hi MBEVisibleActiveNormal  guifg=#0000FF guibg=#FFFF00
-    hi MBEVisibleActiveChanged guifg=#FF0000 guibg=#FFFF00
-    let g:miniBufExplUseSingleClick = 1
-    let g:miniBufExplCloseOnSelect = 1
-    let g:miniBufExplorerAutoStart = 0
-    let g:miniBufExplBuffersNeeded = 1
-  " endif
-noremap <silent><Left> :bp<CR>
-noremap <silent><Right> :bn<CR>
+" Bundle "techlivezheng/vim-plugin-minibufexpl"
+"   " if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/vim-plugin-minibufexpl'))))
+"     let g:did_minibufexplorer_syntax_inits = 1
+"     "hi MBENormal               guifg=#808080 guibg=fg
+"     "hi MBEChanged              guifg=#CD5907 guibg=fg
+"     "hi MBEVisibleNormal        guifg=#5DC2D6 guibg=fg
+"     "hi MBEVisibleChanged       guifg=#F1266F guibg=fg
+"     hi MBEVisibleActiveNormal  guifg=#0000FF guibg=#FFFF00
+"     hi MBEVisibleActiveChanged guifg=#FF0000 guibg=#FFFF00
+"     let g:miniBufExplUseSingleClick = 1
+"     let g:miniBufExplCloseOnSelect = 1
+"     let g:miniBufExplorerAutoStart = 0
+"     let g:miniBufExplBuffersNeeded = 1
+"   " endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -257,17 +255,18 @@ Bundle 'kevinw/pyflakes-vim'
 " check syntax for all language while write file.
 Bundle 'scrooloose/syntastic'
   " if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/syntastic'))))
-    let g:syntastic_error_symbol        = '✗'
-    let g:syntastic_warning_symbol      = '⚠'
-    let g:syntastic_enable_balloons     = 1
-    let g:syntastic_check_on_open       = 0
+    let g:syntastic_error_symbol        = 'EE'
+    let g:syntastic_warning_symbol      = 'WW'
+    let g:syntastic_style_error_symbol  = 'SE'
+    let g:syntastic_style_warning_symbol= 'SW'
+    let g:syntastic_aggregate_errors    = 1
     let g:syntastic_auto_loc_list       = 1
     let g:syntastic_auto_jump           = 2
     let g:syntastic_loc_list_height     = 3
     let g:syntastic_html_checkers       = ['tidy']  " 'jshint', 'jslint'
     let g:syntastic_xhtml_checkers      = ['tidy']
     let g:syntastic_javascript_checkers = ['jsl']
-    let g:syntastic_python_checkers     = ['pep8', 'pyflakes']
+    let g:syntastic_python_checkers     = ['pyflakes', 'pep8']
     let g:syntastic_xml_checkers        = ['xmllint']
     let g:syntastic_python_pep8_quiet_messages={"regex": [
           \ '^E401', '^E501', '^E701', '^E731', '^E111', '^C901'] }
@@ -284,7 +283,7 @@ Bundle 'scrooloose/syntastic'
       let $PATH=$VIM.'\\Utilities;'.$PATH
       let $PATH=$VIM.'\\Utilities\\GNU;'.$PATH
       let $PATH=$VIM.'\\Utilities\\jsl;'.$PATH
-      let $PATH='C:\\python27\\scripts;'.$PATH
+      let $PATH='C:\\Python27\\Scripts;'.$PATH
       let g:syntastic_mode_map = { 'mode': 'active',
                   \ 'active_filetypes': ['javascript', 'html', 'xhtml', 'css', 'python'],
                   \ 'passive_filetypes': [] }
@@ -333,7 +332,7 @@ endif
 " jedi-vim  {{{1
 " jedi-vim is a is a VIM binding to the autocompletion library Jedi.
 Bundle 'davidhalter/jedi-vim'
-let g:jedi#auto_initialization      = 1
+let g:jedi#auto_initialization      = 0
 let g:jedi#auto_vim_configuration   = 0
 let g:jedi#use_tabs_not_buffers     = 0
 let g:jedi#use_splits_not_buffers   = 1
