@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-12-20 17:20:11 [453]
+" Modified: 2014-12-22 18:53:30 [454]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -140,6 +140,7 @@ set formatoptions+=jmB            " formatoptions
 set fileformats=unix,dos,mac      " 文件格式支持
 set encoding=utf-8                " 文件默认编码
 set fileencodings=ucs-bom,utf-8,cp936,big5,euc-jp,euc-kr,latin1
+set ambiwidth=double    " 当encoding=<unicode>编码时有效,使用ASCII字符两倍的宽度处理东亚字符类
 if has('gui_running')
   set termencoding=Chinese        " 指定终端使用的编码,在+multi_byte特性下有效,也可用utf-8
   set fileencoding=Chinese
@@ -188,7 +189,6 @@ set smarttab            " 行首的tab用合适的空格代替
 set tabstop=4 et        " 文件里tab代表的空格数
 set softtabstop=4       " 输入tab后就跳了4格, set sts=4
 set linebreak           " 打开linebreak
-set ambiwidth=double    " 当encoding=<unicode>编码时有效,使用ASCII字符两倍的宽度处理东亚字符类
 set list                " trail:拖尾空白显示字符; extends/precedes是wrap关闭时,所在行在右左指示字符
 set autoindent          " 按语法自动缩进 ai
 set smartindent         " 智能缩进
