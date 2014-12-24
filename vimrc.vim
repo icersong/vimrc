@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-12-24 14:29:45 [468]
+" Modified: 2014-12-24 21:58:07 [469]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -156,7 +156,7 @@ endif
 if g:iswindows
   "set guifont=consolas:h10:cANSI
   set guifont=Inconsolata:h10:cDEFAULT
-  set guifontwide=YtYaHei:h9:cDEFAULT
+  set guifontwide=YtYaHei:h8:cDEFAULT
 endif
 
 if g:ismacos
