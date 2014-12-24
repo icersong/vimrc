@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-12-20 17:18:04 [628]
+" Modified: 2014-12-24 21:21:11 [630]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -215,12 +215,16 @@ Bundle 'Lokaltog/vim-easymotion'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Indent guides   {{{1
-" Bundle 'Yggdroot/indentLine'
-Bundle 'nathanaelkane/vim-indent-guides'
-  " if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/vim-indent-guides'))))
-    let g:indent_guides_enable_on_vim_startup = 1
-    let g:indent_guides_guide_size = 1
-  " endif
+" Bundle 'nathanaelkane/vim-indent-guides'
+"   " if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/vim-indent-guides'))))
+"     let g:indent_guides_enable_on_vim_startup = 1
+"     let g:indent_guides_guide_size = 1
+"   " endif
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Indent line {{{1
+Bundle 'Yggdroot/indentLine'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
