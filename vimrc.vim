@@ -2,8 +2,8 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-12-22 18:53:30 [454]
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
+" Modified: 2014-12-24 14:29:45 [468]
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -447,8 +447,10 @@ source $VIMFILES/vimrc/vundle.vim
 " Cursor
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "高亮当前行当前列(十字光标)
-set cursorline                  " 设置光标十字坐标，高亮当前行
-" set cursorcolumn                " 设置光标十字坐标，高亮当前列
+if g:ismacos
+  set cursorline                  " 设置光标十字坐标，高亮当前行
+  set cursorcolumn                " 设置光标十字坐标，高亮当前列
+endif
 
 " 调整光标显示样式　
 function! SetCursorStyle()
@@ -461,11 +463,6 @@ function! SetCursorStyle()
     set guicursor+=i:ver20-iCursor-blinkwait300-blinkon200-blinkoff100
   else
     if &term =~ '^xterm'
-      " insert cursor
-      let &t_SI = "\<Esc>[6 q"
-      " normal cursor
-      let &t_EI = "\<Esc>[2 q"
-
       " 1 or 0 -> blinking block
       " 2 -> solid block
       " 3 -> blinking underscore
@@ -473,9 +470,14 @@ function! SetCursorStyle()
       " Recent versions of xterm (282 or above) also support
       " 5 -> blinking vertical bar
       " 6 -> solid vertical bar
+      " insert cursor
+      let &t_SI = "\<Esc>[6 q"
+      " normal cursor
+      let &t_EI = "\<Esc>[2 q"
     endif
   endif
 endfunction
-autocmd Syntax * call SetCursorStyle()
+autocmd ColorScheme * silent call SetCursorStyle()
+" autocmd Syntax * silent call SetCursorStyle()
 syntax on
 call SetCursorStyle()
