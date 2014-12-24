@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-12-24 22:50:20 [486]
+" Modified: 2014-12-24 23:41:37 [487]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -450,7 +450,7 @@ source $VIMFILES/vimrc/vundle.vim
 "高亮当前行当前列(十字光标)
 if g:ismacos
   set cursorline                  " 设置光标十字坐标，高亮当前行
-  set cursorcolumn                " 设置光标十字坐标，高亮当前列
+  " set cursorcolumn                " 设置光标十字坐标，高亮当前列
 endif
 
 " 调整光标显示样式　

@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-12-24 21:56:57 [631]
+" Modified: 2014-12-24 23:53:38 [640]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -77,12 +77,14 @@ Bundle 'bling/vim-airline'
 " solarized theme  {{{1
 Bundle 'altercation/vim-colors-solarized'
   " if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/vim-colors-solarized'))))
-    let g:solarized_termcolors = 256
-    let g:solarized_contrast = "high"
+    " let g:solarized_termcolors = 256
+    " let g:solarized_termtrans  = 1
+    " let g:solarized_degrade    = 1
+    let g:solarized_contrast   = "high"
     let g:solarized_visibility = "high"
-    let g:solarized_termtrans=1
-    let g:solarized_contrast="normal"
-    let g:solarized_visibility="normal"
+    let g:solarized_termtrans  = 1
+    let g:solarized_contrast   = "normal"
+    let g:solarized_visibility = "normal"
     if has('gui_running')
       set background=dark
       colorscheme solarized
@@ -93,13 +95,13 @@ Bundle 'altercation/vim-colors-solarized'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " molokai theme  {{{1
 Bundle 'tomasr/molokai'
-  " if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/molokai'))))
-    let g:molokai_original = 1
-    if !has('gui_running')
+  if !has('gui_running')
+    if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/molokai'))))
+      let g:molokai_original = 1
       set background=dark
       colorscheme molokai
     endif
-  " endif
+  endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
