@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-12-24 22:31:47 [480]
+" Modified: 2014-12-24 22:50:20 [486]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -154,9 +154,10 @@ endif
 " Font & encoding
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if g:iswindows
-  "set guifont=consolas:h10:cANSI
-  set guifont=Inconsolata:h10:cDEFAULT
-  set guifontwide=YtYaHei:h8:cDEFAULT
+  " set guifont=Inconsolata:h10:cDEFAULT
+  " set guifontwide=YtYaHei:h8:cDEFAULT
+  set guifont=Menlo:h9:cDEFAULT
+  set guifontwide=Menlo:h9:cDEFAULT
 endif
 
 if g:ismacos
