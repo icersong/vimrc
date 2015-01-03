@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-12-24 23:53:38 [640]
+" Modified: 2015-01-03 22:58:16 [644]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -294,12 +294,14 @@ Bundle 'scrooloose/syntastic'
       let g:syntastic_mode_map = { 'mode': 'active',
                   \ 'active_filetypes': ['javascript', 'html', 'xhtml', 'css', 'python'],
                   \ 'passive_filetypes': [] }
-    else
+    endif
+
+    if (g:ismacos)
       " autocmd BufWritePost * :SyntasticCheck
       "let g:syntastic_python_pep8_exec = 'python /Library/Python/2.7/site-packages/pep8.pyc'
       let g:syntastic_mode_map = { 'mode': 'active',
-                  \ 'active_filetypes': [],
-                  \ 'passive_filetypes': ['python', 'javascript', 'html', 'xhtml', 'css'] }
+                  \ 'active_filetypes': ['javascript', 'html', 'xhtml', 'css', 'python'],
+                  \ 'passive_filetypes': [] }
     endif
   " endif
 
