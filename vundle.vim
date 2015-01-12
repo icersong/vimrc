@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2015-01-03 22:58:16 [644]
+" Modified: 2015-01-12 18:26:30 [657]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -109,6 +109,7 @@ Bundle 'tomasr/molokai'
 Bundle "scrooloose/nerdtree"
 nmap <leader>nt :NERDTree<CR>
 let NERDTreeHighlightCursorline=1
+let NERDTreeQuitOnOpen = 1
 let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$' ]
 let g:netrw_home=$VIMCACHE.'/NERDTree'
 "close vim if the only window left open is a NERDTree
@@ -237,16 +238,15 @@ Bundle 'SirVer/ultisnips'
 Bundle 'honza/vim-snippets'
   " if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/ultisnips'))))
     let g:UltiSnipsEditSplit='vertical'
-    "let g:UltiSnipsUsePythonVersion = 2
     "let g:UltiSnips = {}
+    let g:UltiSnipsListSnippets = '<C-L>'
     "let g:UltiSnipsExpandTrigger = '<Tab>'
-    let g:UltiSnipsListSnippets = '<c-l>'
     "let g:UltiSnipsJumpForwardTrigger = '<Tab>'
     "let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'
-    let g:UltiSnipsExpandTrigger="<c-Enter>"
-    let g:UltiSnipsJumpForwardTrigger="<c-Enter>"
-    let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-    let g:UltiSnipsSnippetsDir=simplify(expand($VIM_BUNDLE_PATH.'/vim-snippets/UltiSnips'))
+    let g:UltiSnipsExpandTrigger="<C-J>"
+    let g:UltiSnipsJumpForwardTrigger="<C-J>"
+    let g:UltiSnipsJumpBackwardTrigger="<C-K>"
+    let g:UltiSnipsSnippetsDir=simplify(expand($VIMFILES.'/vimrc/snippets/UltiSnips'))
     let g:UltiSnipsSnippetDirectories=[simplify(expand($VIM_BUNDLE_PATH.'/vim-snippets/UltiSnips'))]
   endif
 " endif
