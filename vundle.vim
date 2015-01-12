@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2015-01-12 18:26:30 [657]
+" Modified: 2015-01-12 23:54:34 [660]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -253,11 +253,6 @@ Bundle 'honza/vim-snippets'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" pyflakes    {{{1
-Bundle 'kevinw/pyflakes-vim'
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " syntastic   {{{1
 " check syntax for all language while write file.
 Bundle 'scrooloose/syntastic'
@@ -307,6 +302,11 @@ Bundle 'scrooloose/syntastic'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" pyflakes    {{{1
+Bundle 'kevinw/pyflakes-vim'
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " auto complete plugin   {{{1
 Bundle 'Shougo/neocomplete.vim'
 " if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/neocomplete'))))
@@ -315,6 +315,12 @@ Bundle 'Shougo/neocomplete.vim'
     inoremap <expr><C-N>  pumvisible() ?  "\<C-N>" : neocomplete#start_manual_complete()
   endif
 " endif
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" - YouCompleteMe   {{{1
+" YCM windows install guides needed.
+" Bundle 'Valloric/YouCompleteMe'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -413,12 +419,6 @@ let g:sqlutil_align_comma = 1
 let g:sqlutil_align_keyword_right = 0
 let g:sqlutil_keyword_case = '\U'
 " Bundle 'godlygeek/tabular'  " The featrues is same as Align
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" - YouCompleteMe   {{{1
-" YCM windows install guides needed.
-" Bundle 'Valloric/YouCompleteMe'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -545,21 +545,21 @@ Bundle 'airblade/vim-gitgutter'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim session   {{{1
-Bundle 'xolox/vim-misc'
-Bundle 'xolox/vim-session'
-  let g:loaded_session = 0
-  let g:session_menu = 0
-  let g:session_autosave = 'yes'
-  let g:session_autoload = 'no'
-  let g:session_command_aliases = 1
-  let g:session_directory = simplify(expand($VIMCACHE.'/session'))
-  " let g:xolox#session#ignore_window_patterns = ['^\[unite\]', '^vimfiler\:', 'MiniBufExplorer']
-  " patch for compitable minibufexpl
-  " let g:xolox#session#wipe_filetypes = ['unite', 'vimfiler']
-  " let g:xolox#session#wipe_filetypes = [
-  "   \ 'unite',
-  "   \ { name: 'vimfiler', command: 'VimFilerExplorer' }
-  "   \ ]
+" Bundle 'xolox/vim-misc'
+" Bundle 'xolox/vim-session'
+"   let g:loaded_session = 0
+"   let g:session_menu = 0
+"   let g:session_autosave = 'yes'
+"   let g:session_autoload = 'no'
+"   let g:session_command_aliases = 1
+"   let g:session_directory = simplify(expand($VIMCACHE.'/session'))
+"   " let g:xolox#session#ignore_window_patterns = ['^\[unite\]', '^vimfiler\:', 'MiniBufExplorer']
+"   " patch for compitable minibufexpl
+"   " let g:xolox#session#wipe_filetypes = ['unite', 'vimfiler']
+"   " let g:xolox#session#wipe_filetypes = [
+"   "   \ 'unite',
+"   "   \ { name: 'vimfiler', command: 'VimFilerExplorer' }
+"   "   \ ]
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
