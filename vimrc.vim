@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2014-12-24 23:41:37 [487]
+" Modified: 2015-01-14 20:02:18 [491]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -283,7 +283,7 @@ vmap <C-k> :m'<-2<cr>`>my`<mzgv`yo`z
 " vnoremap ' <esc>`>i'<esc>`<i'<esc>
 " vnoremap " <esc>`>i"<esc>`<i"<esc>
 
-" visual mode: only paset but not replace cut table
+" visual mode: only paste but not replace cut table
 vnoremap p pgvy
 
 " mouse select copy & paset
@@ -435,6 +435,14 @@ if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
         \ | wincmd p | diffthis
 endif
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" pylint for make command
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" autocmd FileType python set makeprg=pylint\ --reports=n\ /
+"     --msg-template=\"{path}:{line}:\ {msg_id}\ {symbol},\ {obj}\ {msg}\"\ %:p
+" autocmd FileType python set errorformat=%f:%l:\ %m
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2015-01-12 23:54:34 [660]
+" Modified: 2015-01-13 22:41:01 [675]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -324,23 +324,36 @@ Bundle 'Shougo/neocomplete.vim'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" python-dict   {{{1
+Bundle "rkulla/pydiction"
+" let g:pydiction_location = simplify(expand($VIMCACHE.'/python-dictionary'))
+let g:pydiction_location = simplify(expand($VIM_BUNDLE_PATH.'/pydiction/complete-dict'))
+let g:pydiction_menu_height = 3
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" python rope vim   {{{1
+" Bundle "python-rope/ropevim"
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " python-mode   {{{1
-if has('python')
-Bundle 'klen/python-mode'
-  " if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/python-mode'))))
-    let g:pymode_rope = 0
-    let g:pymode_rope_lookup_project = 1
-    let g:pymode_rope_autoimport = 1
-    let g:pymode_rope_autoimport_modules = ['os', 'sys', 'logging']
-    let g:pymode_rope_completion = 1
-    let g:pymode_rope_complete_on_dot = 0
-    " let g:pymode_rope_completion_bind = '<C-N>'
-    let g:pymode_lint = 0
-    let g:pymode_lint_unmodified = 1
-    let g:pymode_lint_checkers = ['pyflakes', 'pep8']
-    let g:pymode_lint_ignore = "E401,E501,E701,E731,E111,C901"
-  " endif
-endif
+" if has('python')
+" Bundle 'klen/python-mode'
+"   " if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/python-mode'))))
+"     let g:pymode_rope = 0
+"     let g:pymode_rope_lookup_project = 1
+"     let g:pymode_rope_autoimport = 1
+"     let g:pymode_rope_autoimport_modules = ['os', 'sys', 'logging']
+"     let g:pymode_rope_completion = 1
+"     let g:pymode_rope_complete_on_dot = 0
+"     " let g:pymode_rope_completion_bind = '<C-N>'
+"     let g:pymode_lint = 0
+"     let g:pymode_lint_unmodified = 1
+"     let g:pymode_lint_checkers = ['pyflakes', 'pep8']
+"     let g:pymode_lint_ignore = "E401,E501,E701,E731,E111,C901"
+"   " endif
+" endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -544,8 +557,12 @@ Bundle 'airblade/vim-gitgutter'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim misc (lib) {{{1
+Bundle 'xolox/vim-misc'
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim session   {{{1
-" Bundle 'xolox/vim-misc'
 " Bundle 'xolox/vim-session'
 "   let g:loaded_session = 0
 "   let g:session_menu = 0
@@ -598,6 +615,11 @@ Bundle 'icersong/timestamp.vim'
   let g:timestamp_regexp .= '\s*(\[(\d+)\])?$'
   let g:timestamp_rep = '\=strftime("%Y-%m-%d %H:%M:%S").(submatch(2)==submatch(9) ? "" : " [".(submatch(3)+1)."]")'
   let g:timestamp_modelines = 9
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-python-syntax {{{1
+Bundle 'icersong/vim-python'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
