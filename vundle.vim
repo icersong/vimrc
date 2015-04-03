@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2015-01-13 22:41:01 [675]
+" Modified: 2015-04-03 20:47:10 [679]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -263,7 +263,7 @@ Bundle 'scrooloose/syntastic'
     let g:syntastic_style_warning_symbol= 'SW'
     let g:syntastic_aggregate_errors    = 1
     let g:syntastic_auto_loc_list       = 1
-    let g:syntastic_auto_jump           = 2
+    let g:syntastic_auto_jump           = 0
     let g:syntastic_loc_list_height     = 3
     let g:syntastic_html_checkers       = ['tidy']  " 'jshint', 'jslint'
     let g:syntastic_xhtml_checkers      = ['tidy']
@@ -271,7 +271,7 @@ Bundle 'scrooloose/syntastic'
     let g:syntastic_python_checkers     = ['pyflakes', 'pep8']
     let g:syntastic_xml_checkers        = ['xmllint']
     let g:syntastic_python_pep8_quiet_messages={"regex": [
-          \ '^E401', '^E501', '^E701', '^E731', '^E111', '^C901'] }
+          \ '^E401', '^E501', '^E701', '^E731', '^E111', '^C901', '^E128'] }
     let g:syntastic_javascript_jsl_quiet_messages={"regex":
                 \ ['redeclaration of var',
                 \ 'missing default case in switch statement',
@@ -593,6 +593,11 @@ Bundle 'vim-scripts/CmdlineComplete'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " improved shell  {{{1
 Bundle 'xolox/vim-shell'
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" improved nodes  {{{1
+Bundle 'xolox/vim-nodes'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

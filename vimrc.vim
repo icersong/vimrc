@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2015-01-14 20:02:18 [491]
+" Modified: 2015-01-15 20:32:32 [493]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -118,9 +118,9 @@ set completeopt=longest,menu    " 去掉智能补全预览，只显示菜单并�
 set autoread                    " 文件变化自动载入
 set t_vb=0                      " 关闭输出铃声
 set autochdir                   " 自动切换路径
-if g:iswindows
-  set directory=$VIMCACHE       " 设置交换文件路径
-endif
+" if g:iswindows
+set directory=$VIMCACHE         " 设置交换文件路径
+" endif
 " set lazyredraw                  " 减少重绘
 " set noswapfile                  " 禁止交换文件
 " set nowrapscan                  " 搜索到文件末尾时，不再回绕到文件首
