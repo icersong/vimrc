@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2015-04-09 09:54:20 [693]
+" Modified: 2015-05-10 15:31:08 [723]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -273,7 +273,7 @@ Bundle 'scrooloose/syntastic'
     let g:syntastic_python_checkers     = ['pyflakes', 'pep8']
     let g:syntastic_xml_checkers        = ['xmllint']
     let g:syntastic_python_pep8_quiet_messages={"regex": [
-          \ '^E401', '^E501', '^E701', '^E731', '^E111', '^C901', '^E128'] }
+          \ '^E401', '^E501', '^E701', '^E731', '^E111', '^C901', '^E128', '^E127'] }
     let g:syntastic_javascript_jsl_quiet_messages={"regex":
                 \ ['redeclaration of var',
                 \ 'missing default case in switch statement',
@@ -331,6 +331,16 @@ Bundle "rkulla/pydiction"
 " let g:pydiction_location = simplify(expand($VIMCACHE.'/python-dictionary'))
 let g:pydiction_location = simplify(expand($VIM_BUNDLE_PATH.'/pydiction/complete-dict'))
 let g:pydiction_menu_height = 3
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" python-auto-indent    {{{1
+Bundle "hynek/vim-python-pep8-indent"
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" pydoc     {{{1
+Bundle "fs111/pydoc.vim"
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -471,7 +481,19 @@ Bundle 'tpope/vim-repeat'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" indent-object   {{{1
+" select object by indent
+" vii, viI, vai, vaI,
+Bundle 'michaeljsmith/vim-indent-object'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " surround    {{{1
+" normal-add-word: ysiw<symbol>  ysw<symbol>
+" normal-add-line: yss<symbol>
+" normal-change: cs<oldsymbol><newsymbol>  cst<newtag>
+" normal-delete: ds<symbol>
+" normal-delete-tag: dst
+" visual-add: S<symbol>
 Bundle 'tpope/vim-surround'
 
 

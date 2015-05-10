@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2015-01-15 20:32:32 [493]
+" Modified: 2015-05-10 14:45:42 [497]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -250,12 +250,8 @@ nnoremap <leader><S-W> :w!<CR>
 " 文件格式设置成unix :set ff=unix<CR>
 
 "缩进快捷键
-nmap <tab> V>
-nmap <S-tab> V<
-vmap <tab> >gv
-vmap <S-tab> <gv
-vmap > >gv
-vmap < <gv
+nmap > V>
+nmap < V<
 
 " 上下移动一行文字
 nmap <C-j> :m+<cr>
