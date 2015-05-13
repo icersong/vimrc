@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2015-05-10 14:45:42 [497]
+" Modified: 2015-05-12 01:48:13 [550]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -39,43 +39,23 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General Setting
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"不要vim模仿vi模式
 set nocompatible
-
 if has('mouse')
-  set mouse=a "允许使用鼠标
+  set mouse=a " enable mouse
 endif
 
-" 鼠标启用
 if(g:iswindows)
-  " 窗口最大化
-  if has('gui_running')
-    " au GUIEnter * simalt ~x
-  endif
-  let g:skip_loading_mswin = 1  " 不启用mswin.vim
-  source $VIMRUNTIME/mswin.vim
+  let g:skip_loading_mswin = 1  " do not load mswin.vim
 endif
-
-" function! s:SwitchPSCStyle()
-"   if exists('g:psc_style')
-"     if g:psc_style == 'cool'
-"       let g:psc_style = 'warm'
-"     elseif g:psc_style == 'warm'
-"       let g:psc_style = 'cool'
-"     endif
-"   else
-"     let g:psc_style = 'warm'
-"   endif
-"   colorscheme ps_color
-" endfunction
-" map <silent> <F6> :call <SID>SwitchPSCStyle()<CR>
 
 if has('gui_running')
-  " 设置GUI行列数
+  set guioptions=
   set lines=48 columns=128
-  "set switchbuf=usetab          " 打开缓冲时在原来的窗口打开
-  set showtabline=2             " 至少有两个标签页时才显示标签栏
-  set guioptions=               "菜单栏、工具栏都不要了
+  set showtabline=2
+  " set switchbuf=usetab
+  " if has('gui_running')
+  "   au GUIEnter * simalt ~x
+  " endif
 endif
 
 " if !exists("syntax_on")
@@ -118,9 +98,7 @@ set completeopt=longest,menu    " 去掉智能补全预览，只显示菜单并�
 set autoread                    " 文件变化自动载入
 set t_vb=0                      " 关闭输出铃声
 set autochdir                   " 自动切换路径
-" if g:iswindows
 set directory=$VIMCACHE         " 设置交换文件路径
-" endif
 " set lazyredraw                  " 减少重绘
 " set noswapfile                  " 禁止交换文件
 " set nowrapscan                  " 搜索到文件末尾时，不再回绕到文件首
@@ -139,7 +117,7 @@ set directory=$VIMCACHE         " 设置交换文件路径
 set formatoptions+=jmB            " formatoptions
 set fileformats=unix,dos,mac      " 文件格式支持
 set encoding=utf-8                " 文件默认编码
-set fileencodings=ucs-bom,utf-8,cp936,big5,euc-jp,euc-kr,latin1
+set fileencodings=ucs-bom,utf-8,cp936,big5,gb18030,euc-jp,euc-kr,latin1
 set ambiwidth=double    " 当encoding=<unicode>编码时有效,使用ASCII字符两倍的宽度处理东亚字符类
 if has('gui_running')
   set termencoding=Chinese        " 指定终端使用的编码,在+multi_byte特性下有效,也可用utf-8
@@ -166,15 +144,15 @@ if g:ismacos
   " au BufEnter * :set guifont=   " fixed sometime not show chinese
 endif
 
-"解决菜单乱码
-source $VIMRUNTIME/delmenu.vim
-source $VIMRUNTIME/menu.vim
-
 if has('gui_running')
   "set langmenu=zh_CN.utf-8
 else
   language messages zh_CN.utf-8   " 解决consle输出乱码
 endif
+
+" 解决菜单乱码
+" source $VIMRUNTIME/delmenu.vim
+" source $VIMRUNTIME/menu.vim
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -206,6 +184,7 @@ set listchars=tab:»»,trail:.,extends:>,precedes:<
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " File type
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+autocmd BufRead,BufNewFile .wsgi setlocal filetype=python syntax=python
 autocmd BufRead,BufNewFile jquery.*.js setlocal filetype=javascript syntax=jquery
 autocmd BufRead,BufNewFile *.json setlocal filetype=json
 autocmd BufRead,BufNewFile *vimrc setlocal filetype=vim syntax=vim
@@ -225,19 +204,11 @@ noremap <silent><Right> :bn<CR>
 " 定义空格键暂时取消高亮匹配
 nmap <silent><space> :nohlsearch<CR>:call SetCursorStyle()<CR>
 
-" :syntax on<CR>
 " 删除尾部空格
 nmap <S-Space> :%s/\s\+$//g<CR>
 
-if has('gui_running')
-  " 前一个标签 shift+left
-  map <S-Left> :tabp<CR>
-  " 后一个标签 shift+right
-  map <S-Right> :tabn<CR>
-endif
-
 " 重做，用于撤销后返撤销
-"imap <C-U> <esc>:redo<CR>
+" imap <C-U> <esc>:redo<CR>
 nmap <S-U> :redo<CR>
 
 " 文件操作
@@ -259,26 +230,6 @@ nmap <C-k> :m-2<cr>
 vmap <C-j> :m'>+<cr>`<my`>mzgv`yo`z
 vmap <C-k> :m'<-2<cr>`>my`<mzgv`yo`z
 
-"可视模式下加各种括号和引号
-" vnoremap <leader>( <esc>`>i)<esc>`<i(<esc>
-" vnoremap <leader>[ <esc>`>i]<esc>`<i[<esc>
-" vnoremap <leader>{ <esc>`>i}<esc>`<i{<esc>
-" vnoremap <leader>) <esc>`>i)<esc>`<i(<esc>
-" vnoremap <leader>] <esc>`>i]<esc>`<i[<esc>
-" vnoremap <leader>} <esc>`>i}<esc>`<i{<esc>
-" vnoremap <leader>` <esc>`>i`<esc>`<i`<esc>
-" vnoremap <leader>' <esc>`>i'<esc>`<i'<esc>
-" vnoremap <leader>" <esc>`>i"<esc>`<i"<esc>
-" vnoremap ( <esc>`>i)<esc>`<i(<esc>
-" vnoremap [ <esc>`>i]<esc>`<i[<esc>
-" vnoremap { <esc>`>i}<esc>`<i{<esc>
-" vnoremap ) <esc>`>i)<esc>`<i(<esc>
-" vnoremap ] <esc>`>i]<esc>`<i[<esc>
-" vnoremap } <esc>`>i}<esc>`<i{<esc>
-" vnoremap ` <esc>`>i`<esc>`<i`<esc>
-" vnoremap ' <esc>`>i'<esc>`<i'<esc>
-" vnoremap " <esc>`>i"<esc>`<i"<esc>
-
 " visual mode: only paste but not replace cut table
 vnoremap p pgvy
 
@@ -292,6 +243,35 @@ if g:ismacos
   " imap <esc> <esc><esc>
   " vmap <esc> <esc><esc>
 endif
+
+" abbreviations
+abbreviate CDATE <esc>"=strftime("%F")<CR>gP
+abbreviate CTIME <esc>"=strftime("%T")<CR>gP
+abbreviate CDATETIME <esc>"=strftime("%F %T")<CR>gP
+
+if has('gui_running')
+  map <S-Left> :tabp<CR>
+  map <S-Right> :tabn<CR>
+endif
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" file undo redo history auto save & load
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" au BufReadPost * call ReadUndo()
+" au BufWritePost * call WriteUndo()
+" function! ReadUndo()
+"   if filereadable(expand('%:h'). '/UNDO/' . expand('%:t'))
+"     rundo %:h/UNDO/%:t
+"   endif
+" endfunc
+" function! WriteUndo()
+"   let dirname = expand('%:h') . '/UNDO'
+"   if !isdirectory(dirname)
+"     call mkdir(dirname)
+"   endif
+"   wundo %:h/UNDO/%:t
+" endfunc
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
