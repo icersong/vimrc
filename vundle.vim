@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2015-05-10 15:31:08 [723]
+" Modified: 2015-05-12 00:36:47 [742]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -336,6 +336,20 @@ let g:pydiction_menu_height = 3
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " python-auto-indent    {{{1
 Bundle "hynek/vim-python-pep8-indent"
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" autopep8    {{{1
+" : Autopep8 [--range 1 5]
+" : call Autopep8(" --range 1 5")
+Bundle "tell-k/vim-autopep8"
+" let g:autopep8_indent_size=4
+" let g:autopep8_ignore="E501,W293"
+" let g:autopep8_select="E501,W293"
+let g:autopep8_pep8_passes=99
+let g:autopep8_max_line_length=127
+let g:autopep8_aggressive=0
+let g:autopep8_disable_show_diff=1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
