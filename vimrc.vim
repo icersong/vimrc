@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2015-05-12 01:48:13 [550]
+" Modified: 2015-06-02 21:04:41 [559]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -44,14 +44,14 @@ if has('mouse')
   set mouse=a " enable mouse
 endif
 
-if(g:iswindows)
+if !g:iswindows
   let g:skip_loading_mswin = 1  " do not load mswin.vim
 endif
 
 if has('gui_running')
   set guioptions=
-  set lines=48 columns=128
   set showtabline=2
+  set lines=48 columns=128
   " set switchbuf=usetab
   " if has('gui_running')
   "   au GUIEnter * simalt ~x
@@ -184,7 +184,7 @@ set listchars=tab:»»,trail:.,extends:>,precedes:<
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " File type
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-autocmd BufRead,BufNewFile .wsgi setlocal filetype=python syntax=python
+autocmd BufRead,BufNewFile *.wsgi setlocal filetype=python syntax=python
 autocmd BufRead,BufNewFile jquery.*.js setlocal filetype=javascript syntax=jquery
 autocmd BufRead,BufNewFile *.json setlocal filetype=json
 autocmd BufRead,BufNewFile *vimrc setlocal filetype=vim syntax=vim

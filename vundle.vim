@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2015-05-12 00:36:47 [742]
+" Modified: 2015-06-02 20:45:01 [790]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -591,7 +591,19 @@ autocmd QuickFixCmdPost *grep* cwindow
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-gitgutter
 " git display on ruler
+" GitGutterDisable
+" GitGutterEnable
+
 Bundle 'airblade/vim-gitgutter'
+let g:gitgutter_map_keys = 0
+
+function! Gitgutter_Disabled_in_Largefile()
+  if line2byte(line("$")+1) > g:LargeFile*1024*1024
+    call gitgutter#disable()
+    " call gitgutter#enable()
+  endif
+endfunction
+autocmd BufRead * silent call Gitgutter_Disabled_in_Largefile()
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
