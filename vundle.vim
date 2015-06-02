@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2015-06-02 20:45:01 [790]
+" Modified: 2015-06-02 22:22:23 [798]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -398,6 +398,14 @@ let g:jedi#completions_command      = "<C-N>"
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vimpdb  {{{1
+" ???.py
+"   import pdb; pdb.set_trace()
+"   import vimpdb; vimpdb.hookPdb()
+" :PDB???
+" Bundle 'gotcha/vimpdb'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " - xmledit   {{{1
 "Bundle 'othree/xml.vim'
 "Bundle 'vim-scripts/xmledit'
@@ -642,17 +650,13 @@ Bundle 'vim-scripts/CmdlineComplete'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " improved shell  {{{1
-Bundle 'xolox/vim-shell'
+" Bundle 'xolox/vim-shell'
+Bundle 'Shougo/vimshell.vim'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " improved notes  {{{1
 Bundle 'xolox/vim-notes'
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" shell window    {{{1
-Bundle 'vim-scripts/Conque-Shell'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
