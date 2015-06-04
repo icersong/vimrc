@@ -4,6 +4,7 @@ let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#enable_insert_char_pre = 0
 let g:neocomplete#disable_auto_complete = 1
 let g:neocomplete#enable_refresh_always = 1
+let g:neocomplete#enable_auto_select = 1
 let g:neocomplete#auto_completion_start_length = 3
 let g:neocomplete#max_list = 9
 let g:neocomplete#min_keyword_length = 4
@@ -16,6 +17,7 @@ endif
 let g:neocomplete#same_filetypes.c = 'h,cpp'
 let g:neocomplete#same_filetypes.cpp = 'c,h'
 let g:neocomplete#same_filetypes.html = 'xml,xhtml'
+let g:neocomplete#same_filetypes.python = 'py,wsgi'
 let g:neocomplete#same_filetypes.javascript = 'html'
 let g:neocomplete#same_filetypes.gitconfig = '_'
 let g:neocomplete#same_filetypes.txt = '_'

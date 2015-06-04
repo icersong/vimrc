@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2015-06-02 22:22:23 [798]
+" Modified: 2015-06-04 18:16:59 [844]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -54,7 +54,10 @@ Bundle 'bling/vim-airline'
   " git need plugin https://github.com/tpope/vim-fugitive
   " if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/vim-airline'))))
     set laststatus=2
-    let g:airline_theme                      = "dark"
+    let g:airline_theme = "dark"
+    let g:airline_left_sep = ''
+    let g:airline_right_sep = ''
+    let g:airline_extensions = ['branch', 'tabline', 'syntastic', 'whitespace', 'tagbar']
     let g:airline#extensions#tabline#enabled = 1
     let g:airline#extensions#tabline#tab_nr_type = 1
     let g:airline#extensions#tabline#fnamemod = ':p:t'
@@ -62,13 +65,9 @@ Bundle 'bling/vim-airline'
     let g:airline#extensions#tabline#left_alt_sep = ''
     let g:airline#extensions#tabline#buffer_nr_show = 1
     let g:airline#extensions#tabline#buffer_nr_format = '%s:'
-    let g:airline_left_sep = ''
-    let g:airline_right_sep = ''
-    let g:airline_detect_whitespace = 0
-    let g:airline_powerline_fonts = 0
-    let g:airline_enable_branch = 1
-    let g:airline_enable_syntastic = 1
-    let g:airline_detect_paste = 1
+    let g:airline#extensions#syntastic#enabled = 1
+    let g:airline#extensions#whitespace#enabled = 1
+    let g:airline#extensions#tagbar#enabled = 1
     " autocmd BufEnter <buffer> AirlineRefresh
   " endif
 
@@ -311,12 +310,19 @@ Bundle 'kevinw/pyflakes-vim'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " auto complete plugin   {{{1
 Bundle 'Shougo/neocomplete.vim'
-" if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/neocomplete'))))
+if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/neocomplete'))))
   if (filereadable(simplify(expand('$VIMFILES/vimrc/neocomplete.vim'))))
     source $VIMFILES/vimrc/neocomplete.vim
     inoremap <expr><C-N>  pumvisible() ?  "\<C-N>" : neocomplete#start_manual_complete()
+    inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
   endif
-" endif
+endif
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" AutoComplPop    {{1
+" Bundle 'icersong/AutoComplPop'
+" let g:acp_enableAtStartup = 0
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -503,6 +509,11 @@ Bundle 'tpope/vim-repeat'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" gundo (visualize undo tree) {{{1
+Bundle 'sjl/gundo.vim'
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " indent-object   {{{1
 " select object by indent
 " vii, viI, vai, vaI,
@@ -615,29 +626,6 @@ autocmd BufRead * silent call Gitgutter_Disabled_in_Largefile()
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim misc (lib) {{{1
-Bundle 'xolox/vim-misc'
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim session   {{{1
-" Bundle 'xolox/vim-session'
-"   let g:loaded_session = 0
-"   let g:session_menu = 0
-"   let g:session_autosave = 'yes'
-"   let g:session_autoload = 'no'
-"   let g:session_command_aliases = 1
-"   let g:session_directory = simplify(expand($VIMCACHE.'/session'))
-"   " let g:xolox#session#ignore_window_patterns = ['^\[unite\]', '^vimfiler\:', 'MiniBufExplorer']
-"   " patch for compitable minibufexpl
-"   " let g:xolox#session#wipe_filetypes = ['unite', 'vimfiler']
-"   " let g:xolox#session#wipe_filetypes = [
-"   "   \ 'unite',
-"   "   \ { name: 'vimfiler', command: 'VimFilerExplorer' }
-"   "   \ ]
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-signature  {{{1
 " virtual mark
 Bundle 'kshenoy/vim-signature'
@@ -650,13 +638,20 @@ Bundle 'vim-scripts/CmdlineComplete'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " improved shell  {{{1
-" Bundle 'xolox/vim-shell'
 Bundle 'Shougo/vimshell.vim'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" improved notes  {{{1
-Bundle 'xolox/vim-notes'
+" calendar  {{{1
+Bundle 'itchyny/calendar.vim'
+let g:calendar_frame = 'default'
+let g:calendar_cache_directory = simplify(expand($VIMCACHE.'/calendar'))
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim markdown  {{{1
+Bundle 'plasticboy/vim-markdown'
+let g:vim_markdown_frontmatter=1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
