@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2015-06-04 18:16:59 [844]
+" Modified: 2015-06-05 12:08:59 [886]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -11,8 +11,11 @@
 set nocompatible                " be improved
 filetype off                    " required!
 
+" Variables
 let $VIM_BUNDLE_PATH = $VIMFILES.'/bundle'
 let $GIT_LOCAL_URL = $VIMFILES.'/repostory'
+let s:no_python_support = "Vim is compiled without python support"
+let s:no_ruby_support = "Vim is compiled without ruby support"
 
 " initalize vundle
 set rtp +=$VIMFILES/bundle/vundle/
@@ -216,7 +219,7 @@ Bundle 'Lokaltog/vim-easymotion'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Indent guides   {{{1
+" - Indent guides   {{{1
 " 依靠背景色显示缩进效果，速度比Indent line慢，且显示效果不佳
 " Bundle 'nathanaelkane/vim-indent-guides'
 "   " if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/vim-indent-guides'))))
@@ -235,8 +238,8 @@ let g:indentLine_faster = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " UltiSnips   {{{1
 if has('python')
-Bundle 'SirVer/ultisnips'
 Bundle 'honza/vim-snippets'
+Bundle 'SirVer/ultisnips'
   " if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/ultisnips'))))
     let g:UltiSnipsEditSplit='vertical'
     "let g:UltiSnips = {}
@@ -308,19 +311,7 @@ Bundle 'kevinw/pyflakes-vim'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" auto complete plugin   {{{1
-Bundle 'Shougo/neocomplete.vim'
-if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/neocomplete'))))
-  if (filereadable(simplify(expand('$VIMFILES/vimrc/neocomplete.vim'))))
-    source $VIMFILES/vimrc/neocomplete.vim
-    inoremap <expr><C-N>  pumvisible() ?  "\<C-N>" : neocomplete#start_manual_complete()
-    inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-  endif
-endif
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" AutoComplPop    {{1
+" - AutoComplPop    {{{1
 " Bundle 'icersong/AutoComplPop'
 " let g:acp_enableAtStartup = 0
 
@@ -332,11 +323,43 @@ endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" neocomplete   {{{1
+Bundle 'Shougo/neocomplete.vim'
+" if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/neocomplete'))))
+"   if (filereadable(simplify(expand('$VIMFILES/vimrc/neocomplete.vim'))))
+"     source $VIMFILES/vimrc/neocomplete.vim
+"     inoremap <expr><C-N>  pumvisible() ?  "\<C-N>" : neocomplete#start_manual_complete()
+"     inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+"   endif
+" endif
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " python-dict   {{{1
+" usage: os.p<tab>
 Bundle "rkulla/pydiction"
-" let g:pydiction_location = simplify(expand($VIMCACHE.'/python-dictionary'))
 let g:pydiction_location = simplify(expand($VIM_BUNDLE_PATH.'/pydiction/complete-dict'))
-let g:pydiction_menu_height = 3
+let g:pydiction_menu_height = 9
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" jedi-vim  {{{1
+" jedi-vim is a is a VIM binding to the autocompletion library Jedi.
+Bundle 'davidhalter/jedi-vim'
+let g:jedi#auto_initialization      = 1
+let g:jedi#auto_vim_configuration   = 1
+let g:jedi#use_tabs_not_buffers     = 0
+let g:jedi#use_splits_not_buffers   = 1
+let g:jedi#completions_enabled      = 1
+let g:jedi#popup_select_first       = 1
+let g:jedi#popup_on_dot             = 1
+let g:jedi#auto_close_doc           = 1
+" let g:jedi#completions_command      = "<C-N>"
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" python rope vim   {{{1
+" Bundle "python-rope/ropevim"
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -364,11 +387,6 @@ Bundle "fs111/pydoc.vim"
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" python rope vim   {{{1
-" Bundle "python-rope/ropevim"
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " python-mode   {{{1
 " if has('python')
 " Bundle 'klen/python-mode'
@@ -386,21 +404,6 @@ Bundle "fs111/pydoc.vim"
 "     let g:pymode_lint_ignore = "E401,E501,E701,E731,E111,C901"
 "   " endif
 " endif
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" jedi-vim  {{{1
-" jedi-vim is a is a VIM binding to the autocompletion library Jedi.
-Bundle 'davidhalter/jedi-vim'
-let g:jedi#auto_initialization      = 0
-let g:jedi#auto_vim_configuration   = 0
-let g:jedi#use_tabs_not_buffers     = 0
-let g:jedi#use_splits_not_buffers   = 1
-let g:jedi#completions_enabled      = 1
-let g:jedi#popup_select_first       = 1
-let g:jedi#popup_on_dot             = 0
-let g:jedi#auto_close_doc           = 1
-let g:jedi#completions_command      = "<C-N>"
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -471,7 +474,6 @@ Bundle 'vim-scripts/SQLUtilities'
 let g:sqlutil_align_comma = 1
 let g:sqlutil_align_keyword_right = 0
 let g:sqlutil_keyword_case = '\U'
-" Bundle 'godlygeek/tabular'  " The featrues is same as Align
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -511,6 +513,12 @@ Bundle 'tpope/vim-repeat'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " gundo (visualize undo tree) {{{1
 Bundle 'sjl/gundo.vim'
+if !has("python")
+  call janus#disable_plugin("gundo", s:no_python_support)
+else
+  let g:gundo_close_on_revert = 1
+  let g:gundo_tree_statusline = 'Gundo'
+endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -581,23 +589,27 @@ let g:vimrc_email='icersong@gmail.com'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Tagbar {{{1
 Bundle 'majutsushi/tagbar'
-nmap <Leader>tb :TagbarToggle<CR>
-"let g:tagbar_ctags_bin='/usr/bin/ctags'
-let g:tagbar_width=30
-let g:tagbar_autoclose = 1
-let g:tagbar_autofocus = 1
-let g:tagbar_show_linenumbers = 1
-let g:tagbar_singleclick = 1
-"autocmd BufReadPost *.cpp,*.c,*.h,*.py call tagbar#autoopen()
+if !executable("ctags")
+  call janus#disable_plugin("tagbar", "The ctags program is not installed")
+else
+  nmap <Leader>tb :TagbarToggle<CR>
+  "let g:tagbar_ctags_bin='/usr/bin/ctags'
+  let g:tagbar_width=30
+  let g:tagbar_autoclose = 1
+  let g:tagbar_autofocus = 1
+  let g:tagbar_show_linenumbers = 1
+  let g:tagbar_singleclick = 1
+  "autocmd BufReadPost *.cpp,*.c,*.h,*.py call tagbar#autoopen()
+endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " VCS   {{{1
 Bundle 'vim-scripts/vcscommand.vim'
-  if (g:iswindows)
-    let g:VCSCommandSVNExec="D:\\PROGRA~1\\TORTOI~1\\bin\\svn.exe"
-    let g:VCSCommandVCSTypeOverride= [['D:/tmp', 'SVN'], ['D:/MyWork', 'SVN']]
-  endif
+if (g:iswindows)
+  let g:VCSCommandSVNExec="D:\\PROGRA~1\\TORTOI~1\\bin\\svn.exe"
+  let g:VCSCommandVCSTypeOverride= [['D:/tmp', 'SVN'], ['D:/MyWork', 'SVN']]
+endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -615,7 +627,6 @@ autocmd QuickFixCmdPost *grep* cwindow
 
 Bundle 'airblade/vim-gitgutter'
 let g:gitgutter_map_keys = 0
-
 function! Gitgutter_Disabled_in_Largefile()
   if line2byte(line("$")+1) > g:LargeFile*1024*1024
     call gitgutter#disable()
@@ -649,7 +660,13 @@ let g:calendar_cache_directory = simplify(expand($VIMCACHE.'/calendar'))
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ZoomWin  {{{1
+Bundle 'vim-scripts/ZoomWin'
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim markdown  {{{1
+Bundle 'godlygeek/tabular'
 Bundle 'plasticboy/vim-markdown'
 let g:vim_markdown_frontmatter=1
 

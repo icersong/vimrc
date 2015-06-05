@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2015-06-02 21:28:36 [563]
+" Modified: 2015-06-05 12:16:24 [634]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -94,7 +94,8 @@ set virtualedit=all,onemore
 set display=lastline            " 解决自动换行格式下, 如折行之后高在超过窗口高度看不到最后一行的问题
 set report=0                    " 报告哪些行被修改过
 set go+=a                       " 选择后自动进入系统剪切板
-set completeopt=longest,menu    " 去掉智能补全预览，只显示菜单并自动插入
+set pumheight=9                 " 设置智能补全菜单长度
+set completeopt=menuone         " 去掉智能补全预览，只显示菜单并自动插入
 set autoread                    " 文件变化自动载入
 set t_vb=0                      " 关闭输出铃声
 set autochdir                   " 自动切换路径
@@ -200,6 +201,8 @@ let g:mapleader = ","
 " buffer切换
 noremap <silent><Left> :bp<CR>
 noremap <silent><Right> :bn<CR>
+noremap <silent><c-h> :bp<CR>
+noremap <silent><c-l> :bn<CR>
 
 " 定义空格键暂时取消高亮匹配
 nmap <silent><space> :nohlsearch<CR>:call SetCursorStyle()<CR>
@@ -221,14 +224,18 @@ nnoremap <leader><S-W> :w!<CR>
 " 文件格式设置成unix :set ff=unix<CR>
 
 "缩进快捷键
-nmap > V>
-nmap < V<
+nmap <silent>> V><esc>
+nmap <silent>< V<<esc>
+vmap <silent>> :><cr>gv
+vmap <silent>< :<<cr>gv
 
 " 上下移动一行文字
-nmap <C-j> :m+<cr>
-nmap <C-k> :m-2<cr>
-vmap <C-j> :m'>+<cr>`<my`>mzgv`yo`z
-vmap <C-k> :m'<-2<cr>`>my`<mzgv`yo`z
+nmap <C-J> :m+<cr>
+nmap <C-K> :m-2<cr>
+vmap <S-K> :m'<-2<cr>gv
+vmap <S-J> :m'>+1<cr>gv
+" vmap <C-j> :m'>+<cr>`<my`>mzgv`yo`z
+" vmap <C-k> :m'<-2<cr>`>my`<mzgv`yo`z
 
 " visual mode: only paste but not replace cut table
 vnoremap p pgvy
@@ -465,4 +472,4 @@ endfunction
 autocmd ColorScheme * silent call SetCursorStyle()
 " autocmd Syntax * silent call SetCursorStyle()
 syntax on
-call SetCursorStyle()
+" call SetCursorStyle()
