@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2015-06-05 12:08:59 [886]
+" Modified: 2015-06-06 03:12:47 [930]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -556,14 +556,15 @@ au FileType python let b:delimitMate_nesting_quotes = ['"']
 " nerdcommenter   {{{1
 " <leader>cc add common
 " <leader>cu remove common
-Bundle 'scrooloose/nerdcommenter'
+" Bundle 'scrooloose/nerdcommenter'
+Bundle 'icersong/nerdcommenter'
 let NERDSpaceDelims = 1
 let NERDCreateDefaultMappings = 'OFF'
-vmap <BS> <plug>NERDCommenterAlignBoth
-vmap <S-BS> <plug>NERDCommenterUncomment
-vmap <C-BS> <plug>NERDCommenterUncomment
+" vmap <BS> <plug>NERDCommenterToggle gv
+vmap <BS> <plug>NERDCommenterToggle gv
 nmap <BS> <plug>NERDCommenterToggle
-vmap <leader>cu <plug>NERDCommenterUncomment
+vmap <leader>cc <plug>NERDCommenterAlignBoth gv
+nmap <leader>cu <plug>NERDCommenterUncomment gv
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
