@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2015-06-05 12:16:24 [634]
+" Modified: 2015-06-06 01:59:05 [642]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -42,6 +42,8 @@ endif
 set nocompatible
 if has('mouse')
   set mouse=a " enable mouse
+  set selection=exclusive
+  set selectmode=mouse,key
 endif
 
 if !g:iswindows
@@ -199,10 +201,10 @@ let mapleader = ","
 let g:mapleader = ","
 
 " buffer切换
-noremap <silent><Left> :bp<CR>
-noremap <silent><Right> :bn<CR>
-noremap <silent><c-h> :bp<CR>
-noremap <silent><c-l> :bn<CR>
+nmap <silent><Left> :bp<CR>
+nmap <silent><Right> :bn<CR>
+nmap <silent><c-h> :bp<CR>
+nmap <silent><c-l> :bn<CR>
 
 " 定义空格键暂时取消高亮匹配
 nmap <silent><space> :nohlsearch<CR>:call SetCursorStyle()<CR>
@@ -216,10 +218,10 @@ nmap <S-U> :redo<CR>
 
 " 文件操作
 " command! -nargs=0 Q :q!
-nnoremap <leader>q :bd<CR>
-nnoremap <leader><S-Q> :q!<CR>
-nnoremap <leader>w :w<CR>
-nnoremap <leader><S-W> :w!<CR>
+nmap <leader>q :bd<CR>
+nmap <leader><S-Q> :q!<CR>
+nmap <leader>w :w<CR>
+nmap <leader><S-W> :w!<CR>
 " 文件格式设置成dos :set ff=dos<CR>
 " 文件格式设置成unix :set ff=unix<CR>
 
@@ -238,12 +240,7 @@ vmap <S-J> :m'>+1<cr>gv
 " vmap <C-k> :m'<-2<cr>`>my`<mzgv`yo`z
 
 " visual mode: only paste but not replace cut table
-vnoremap p pgvy
-
-" mouse select copy & paset
-vnoremap <LeftRelease> "*y
-vnoremap <RightRelease> "*y
-inoremap <RightRelease> <c-r>*
+vmap p pgvy
 
 " patch esc wait 1 second
 if g:ismacos
