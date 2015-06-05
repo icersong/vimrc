@@ -429,7 +429,7 @@ endif
 " vondle plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "source <sfile>:p:h/vundle.vim
-source $VIMFILES/vimrc/vundle.vim
+source $VIMFILES/vimrc/plugins.vim
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
