@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2015-06-09 00:38:46 [1002]
+" Modified: 2015-06-09 22:53:27 [1003]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -20,7 +20,7 @@ let s:no_python_support = "Vim is compiled without python support"
 let s:no_ruby_support = "Vim is compiled without ruby support"
 
 " initalize vundle
-set rtp +=$VIMFILES/bundle/vundle/
+set rtp +=$VIMFILES/bundle/Vundle/
 call vundle#rc($VIM_BUNDLE_PATH)
 
 " let Vundle manage Vundle
