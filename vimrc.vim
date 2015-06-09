@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2015-06-09 23:47:19 [689]
+" Modified: 2015-06-10 03:04:49 [691]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -439,10 +439,8 @@ source $VIMFILES/vimrc/plugins.vim
 " Cursor
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "高亮当前行当前列(十字光标)
-if g:ismacos
-  set cursorline                  " 设置光标十字坐标，高亮当前行
-  " set cursorcolumn                " 设置光标十字坐标，高亮当前列
-endif
+set cursorline                  " 设置光标十字坐标，高亮当前行
+" set cursorcolumn                " 设置光标十字坐标，高亮当前列
 
 " 调整光标显示样式　
 function! SetCursorStyle()
