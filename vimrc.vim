@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2015-06-09 14:26:07 [646]
+" Modified: 2015-06-09 15:17:08 [685]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -447,9 +447,10 @@ function! SetCursorStyle()
   if has('gui_running')
     highlight nCursor guifg=red guibg=yellow
     highlight iCursor guifg=red guibg=yellow
+    highlight vCursor guifg=red guibg=yellow
     " set guicursor=n-v-c:block-nCursor-blinkon0
     set guicursor=n-c:block-nCursor-blinkon0
-    set guicursor+=v:ver20-iCursor-blinkwait300-blinkon200-blinkoff100
+    set guicursor+=v:ver20-vCursor-blinkwait300-blinkon200-blinkoff100
     set guicursor+=r:block-nCursor-blinkwait300-blinkon300-blinkoff100
     set guicursor+=i:ver20-iCursor-blinkwait300-blinkon200-blinkoff100
   else
@@ -461,10 +462,14 @@ function! SetCursorStyle()
       " Recent versions of xterm (282 or above) also support
       " 5 -> blinking vertical bar
       " 6 -> solid vertical bar
-      " insert cursor
-      let &t_SI = "\<Esc>[6 q"
-      " normal cursor
-      let &t_EI = "\<Esc>[2 q"
+      if &term == 'xterm-256color' || &term == 'screen-256color'
+        let &t_SI = "\<Esc>[6 q"
+        let &t_EI = "\<Esc>[2 q"
+      endif
+      if exists('$TMUX')
+        let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+        let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+      endif
     endif
   endif
 endfunction
