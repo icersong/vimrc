@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2015-06-06 01:59:05 [642]
+" Modified: 2015-06-09 14:26:07 [646]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -447,8 +447,10 @@ function! SetCursorStyle()
   if has('gui_running')
     highlight nCursor guifg=red guibg=yellow
     highlight iCursor guifg=red guibg=yellow
-    set guicursor=n-v-c:block-nCursor-blinkon0
-    set guicursor+=r:block-nCursor-blinkwait300-blinkon900-blinkoff100
+    " set guicursor=n-v-c:block-nCursor-blinkon0
+    set guicursor=n-c:block-nCursor-blinkon0
+    set guicursor+=v:ver20-iCursor-blinkwait300-blinkon200-blinkoff100
+    set guicursor+=r:block-nCursor-blinkwait300-blinkon300-blinkoff100
     set guicursor+=i:ver20-iCursor-blinkwait300-blinkon200-blinkoff100
   else
     if &term =~ '^xterm'

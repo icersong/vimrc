@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2015-06-06 03:12:47 [930]
+" Modified: 2015-06-09 00:38:46 [1002]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -14,6 +14,8 @@ filetype off                    " required!
 " Variables
 let $VIM_BUNDLE_PATH = $VIMFILES.'/bundle'
 let $GIT_LOCAL_URL = $VIMFILES.'/repostory'
+let $VIMWIKI = $VIMFILES.'/wiki'
+let $WEBROOT = '/Users/apple/Sites'
 let s:no_python_support = "Vim is compiled without python support"
 let s:no_ruby_support = "Vim is compiled without ruby support"
 
@@ -130,12 +132,26 @@ Bundle 'Shougo/unite.vim'
 Bundle 'Shougo/vimproc.vim'
 Bundle 'Shougo/neomru.vim'
 let g:unite_data_directory = $VIMCACHE.'/unite'
+let g:unite_no_default_keymapping = 1
+let g:unite_enable_start_insert = 1
+let g:unite_source_history_yank_enable = 1
+let g:unite_prompt = '» '
+let g:unite_split_rule = 'botright'
+let g:unite_ignore_source_files = ['function.vim', 'command.vim']
+if executable('ag')
+  let g:unite_source_grep_command = 'ag'
+  let g:unite_source_grep_default_opts = '--nocolor --nogroup -S -C4'
+  let g:unite_source_grep_recursive_opt = ''
+endif
+nnoremap <silent><c-s> :Unite -auto-resize file file_mru file_rec<cr>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Grep
 " Search file content
 Bundle 'vim-scripts/grep.vim'
+let Grep_Skip_Files = '*.bak *~'
+" let Grep_Default_Options = '-rli'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -658,6 +674,40 @@ Bundle 'Shougo/vimshell.vim'
 Bundle 'itchyny/calendar.vim'
 let g:calendar_frame = 'default'
 let g:calendar_cache_directory = simplify(expand($VIMCACHE.'/calendar'))
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vimwiki  {{{1
+Bundle 'vimwiki/vimwiki'
+let g:vimwiki_list = [
+  \ {'path': simplify(expand($VIMWIKI.'/technology')),
+  \ 'path_html': simplify(expand($WEBROOT.'/wiki/technology')),
+  \ 'html_header': simplify(expand($VIMWIKI.'/templetes/header.tpl')),
+  \ 'html_footer': simplify(expand($VIMWIKI.'/templetes/footer.tpl')),
+  \ 'syntax': 'markdown',
+  \ 'ext': '.md',
+  \ 'auto_export': 1,
+  \ 'custom_wiki2html': simplify(expand($VIMWIKI.'/misaka_md2html.py')),
+  \ 'diary_link_count': 5}
+  \ ]
+
+" 对中文用户来说，我们并不怎么需要驼峰英文成为维基词条
+let g:vimwiki_camel_case = 0
+
+" 标记为完成的 checklist 项目会有特别的颜色
+let g:vimwiki_hl_cb_checked = 1
+
+" 禁止添加菜单
+let g:vimwiki_menu = ''
+
+" 是否在计算字串长度时用特别考虑中文字符
+let g:vimwiki_CJK_length = 1
+
+" 详见下文...
+let g:vimwiki_valid_html_tags='b,i,s,u,sub,sup,kbd,del,br,hr,div,code,h1'
+
+" 是否开启按语法折叠  会让文件比较慢
+"let g:vimwiki_folding = 1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
