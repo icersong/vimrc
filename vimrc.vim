@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2015-06-09 15:17:08 [685]
+" Modified: 2015-06-09 23:47:19 [689]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -117,7 +117,8 @@ set directory=$VIMCACHE         " 设置交换文件路径
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "File format and encoding
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set formatoptions+=jmB            " formatoptions
+" set formatoptions+=jmB            " centos vim7.2 not 'j' option
+set formatoptions+=mB             " formatoptions
 set fileformats=unix,dos,mac      " 文件格式支持
 set encoding=utf-8                " 文件默认编码
 set fileencodings=ucs-bom,utf-8,cp936,big5,gb18030,euc-jp,euc-kr,latin1
@@ -178,7 +179,9 @@ set cindent             " 按C的语法缩进
 set wrap                " 到屏幕边会回绕
 set iskeyword+=_,$,@,%,#,-,*    " 将这些字符作为关键字，带有这些符号的单词不换行
 set whichwrap=b,s,<,>,[,]
-set colorcolumn=80      " 设置第列高亮
+if version >= 703
+  set colorcolumn=80      " 设置第列高亮
+endif
 " set textwidth=512       " textwidth, 一行的最大宽度
 " listchars tabe用..显示，尾部空格用-显示，eol不显示"
 set listchars=tab:»»,trail:.,extends:>,precedes:<

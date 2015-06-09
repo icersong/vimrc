@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2015-06-09 22:53:27 [1003]
+" Modified: 2015-06-09 23:24:32 [1009]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -20,11 +20,11 @@ let s:no_python_support = "Vim is compiled without python support"
 let s:no_ruby_support = "Vim is compiled without ruby support"
 
 " initalize vundle
-set rtp +=$VIMFILES/bundle/Vundle/
+set rtp +=$VIMFILES/bundle/Vundle.vim
 call vundle#rc($VIM_BUNDLE_PATH)
 
 " let Vundle manage Vundle
-Bundle 'gmarik/vundle'
+Bundle 'gmarik/Vundle.vim'
 "filetype plugin indent on       " required!
 
 
@@ -216,13 +216,13 @@ Bundle 'vim-voom/VOoM'
 " rainbow_parentheses   {{{1
 " high light parentheses with different color
 Bundle 'rainbow_parentheses.vim'
-  " if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/rainbow_parentheses.vim'))))
-    let g:rbpt_loadcmd_toggle = 0
-    autocmd VimEnter * nested :RainbowParenthesesToggle
-    autocmd Syntax * RainbowParenthesesLoadRound
-    autocmd Syntax * RainbowParenthesesLoadSquare
-    autocmd Syntax * RainbowParenthesesLoadBraces
-  " endif
+if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/rainbow_parentheses.vim'))))
+  let g:rbpt_loadcmd_toggle = 0
+  autocmd VimEnter * nested :RainbowParenthesesToggle
+  autocmd Syntax * RainbowParenthesesLoadRound
+  autocmd Syntax * RainbowParenthesesLoadSquare
+  autocmd Syntax * RainbowParenthesesLoadBraces
+endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -510,11 +510,11 @@ map <leader>tl <Plug>TaskList
 " improve from trailing-whitespace
 " :StripWhitespace
 Bundle 'ntpeters/vim-better-whitespace'
-" if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/vim-better-whitespace'))))
+if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/vim-better-whitespace'))))
   autocmd FileType javascript,c,cpp,java,html,python,vim autocmd BufWritePre <buffer> StripWhitespace
   let g:better_whitespace_filetypes_blacklist=['text', 'rich']
   highlight ExtraWhitespace ctermbg=DarkGray
-" endif
+endif
 
 " ---- trailing-whitespace  ----
 " :FixWhitespace
