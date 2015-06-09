@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2015-06-10 02:49:10 [1021]
+" Modified: 2015-06-10 03:15:38 [1029]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -292,32 +292,32 @@ Bundle 'scrooloose/syntastic'
     let g:syntastic_python_checkers     = ['pyflakes', 'pep8']
     let g:syntastic_xml_checkers        = ['xmllint']
     let g:syntastic_python_pep8_quiet_messages={"regex": [
-          \ '^E401', '^E501', '^E701', '^E731', '^E111', '^C901', '^E128', '^E127'] }
+        \ '^E111', '^E127', '^E128', '^E401', '^E402', '^E501', '^E701', '^E731', '^C901'] }
     let g:syntastic_javascript_jsl_quiet_messages={"regex":
-                \ ['redeclaration of var',
-                \ 'missing default case in switch statement',
-                \ 'anonymous function does not always return a value',
-                \ 'increment (++) and decrement (--) operators used as part of greater statement']}
+        \ ['redeclaration of var',
+        \ 'missing default case in switch statement',
+        \ 'anonymous function does not always return a value',
+        \ 'increment (++) and decrement (--) operators used as part of greater statement']}
     let g:syntastic_html_tidy_quiet_messages={"regex":
-                \ ['unescaped & which should be written as &amp;']}
+        \ ['unescaped & which should be written as &amp;']}
     let g:syntastic_xhtml_tidy_quiet_messages={"regex":
-                \ ['unescaped & which should be written as &amp;']}
+        \ ['unescaped & which should be written as &amp;']}
     if (g:iswindows)
       let $PATH=$VIM.'\\Utilities;'.$PATH
       let $PATH=$VIM.'\\Utilities\\GNU;'.$PATH
       let $PATH=$VIM.'\\Utilities\\jsl;'.$PATH
       let $PATH='C:\\Python27\\Scripts;'.$PATH
       let g:syntastic_mode_map = { 'mode': 'active',
-                  \ 'active_filetypes': ['javascript', 'html', 'xhtml', 'css', 'python'],
-                  \ 'passive_filetypes': [] }
+          \ 'active_filetypes': ['javascript', 'html', 'xhtml', 'css', 'python'],
+          \ 'passive_filetypes': [] }
     endif
 
     if (g:ismacos)
       " autocmd BufWritePost * :SyntasticCheck
       "let g:syntastic_python_pep8_exec = 'python /Library/Python/2.7/site-packages/pep8.pyc'
       let g:syntastic_mode_map = { 'mode': 'active',
-                  \ 'active_filetypes': ['javascript', 'html', 'xhtml', 'css', 'python'],
-                  \ 'passive_filetypes': [] }
+          \ 'active_filetypes': ['javascript', 'html', 'xhtml', 'css', 'python'],
+          \ 'passive_filetypes': [] }
     endif
   " endif
 
