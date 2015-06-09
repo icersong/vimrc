@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2015-06-10 02:40:46 [1014]
+" Modified: 2015-06-10 02:49:10 [1021]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -127,6 +127,7 @@ Bundle 'wesleyche/SrcExpl'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " unite
 " powerful than CtrlP|ACK ...
+if version > 702
 Bundle 'Shougo/unite.vim'
 Bundle 'Shougo/vimproc.vim'
 Bundle 'Shougo/neomru.vim'
@@ -143,6 +144,7 @@ if executable('ag')
   let g:unite_source_grep_recursive_opt = ''
 endif
 nnoremap <silent><c-s> :Unite -auto-resize file file_mru file_rec<cr>
+endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -339,6 +341,7 @@ Bundle 'kevinw/pyflakes-vim'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " neocomplete   {{{1
+if version > 702
 Bundle 'Shougo/neocomplete.vim'
 " if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/neocomplete'))))
 "   if (filereadable(simplify(expand('$VIMFILES/vimrc/neocomplete.vim'))))
@@ -347,6 +350,7 @@ Bundle 'Shougo/neocomplete.vim'
 "     inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 "   endif
 " endif
+endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -667,7 +671,9 @@ Bundle 'vim-scripts/CmdlineComplete'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " improved shell  {{{1
+if version > 702
 Bundle 'Shougo/vimshell.vim'
+endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
