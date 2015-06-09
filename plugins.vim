@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2015-06-09 23:51:32 [1010]
+" Modified: 2015-06-10 02:40:46 [1014]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -21,7 +21,8 @@ let s:no_ruby_support = "Vim is compiled without ruby support"
 
 " initalize vundle
 set rtp +=$VIMFILES/bundle/Vundle.vim
-call vundle#rc($VIM_BUNDLE_PATH)
+" call vundle#rc($VIM_BUNDLE_PATH)
+call vundle#begin($VIM_BUNDLE_PATH)
 
 " let Vundle manage Vundle
 Bundle 'gmarik/Vundle.vim'
@@ -91,7 +92,6 @@ Bundle 'altercation/vim-colors-solarized'
     let g:solarized_visibility = "normal"
     if has('gui_running')
       set background=dark
-      colorscheme solarized
     endif
   " endif
 
@@ -103,7 +103,6 @@ Bundle 'tomasr/molokai'
     if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/molokai'))))
       let g:molokai_original = 1
       set background=dark
-      colorscheme molokai
     endif
   endif
 
@@ -763,4 +762,10 @@ Bundle 'icersong/vim-python'
 " NOTE: comments after Bundle command are not allowed
 "
 
+call vundle#end()
 filetype plugin indent on
+if has('gui_running')
+  colorscheme solarized
+else
+  colorscheme molokai
+endif
