@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2015-06-09 23:24:32 [1009]
+" Modified: 2015-06-09 23:51:32 [1010]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -607,7 +607,9 @@ let g:vimrc_email='icersong@gmail.com'
 " Tagbar {{{1
 Bundle 'majutsushi/tagbar'
 if !executable("ctags")
-  call janus#disable_plugin("tagbar", "The ctags program is not installed")
+  if exists('janus#disable_plugin')
+    call janus#disable_plugin("tagbar", "The ctags program is not installed")
+  endif
 else
   nmap <Leader>tb :TagbarToggle<CR>
   "let g:tagbar_ctags_bin='/usr/bin/ctags'
