@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2015-06-10 03:15:38 [1029]
+" Modified: 2015-06-11 02:34:14 [1048]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -689,8 +689,10 @@ Bundle 'vimwiki/vimwiki'
 let g:vimwiki_list = [
   \ {'path': simplify(expand($VIMWIKI.'/technology')),
   \ 'path_html': simplify(expand($WEBROOT.'/wiki/technology')),
-  \ 'html_header': simplify(expand($VIMWIKI.'/templetes/header.tpl')),
-  \ 'html_footer': simplify(expand($VIMWIKI.'/templetes/footer.tpl')),
+  \ 'css_name': '/style.css',
+  \ 'template_ext': '.tpl',
+  \ 'template_path': simplify(expand($VIMWIKI.'/templetes')),
+  \ 'template_default': 'default.tpl',
   \ 'syntax': 'markdown',
   \ 'ext': '.md',
   \ 'auto_export': 1,
