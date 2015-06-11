@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2015-06-11 02:34:14 [1048]
+" Modified: 2015-06-11 20:58:06 [1051]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -685,7 +685,8 @@ let g:calendar_cache_directory = simplify(expand($VIMCACHE.'/calendar'))
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vimwiki  {{{1
-Bundle 'vimwiki/vimwiki'
+" Bundle 'vimwiki/vimwiki'
+Bundle 'icersong/vimwiki'
 let g:vimwiki_list = [
   \ {'path': simplify(expand($VIMWIKI.'/technology')),
   \ 'path_html': simplify(expand($WEBROOT.'/wiki/technology')),
@@ -696,7 +697,7 @@ let g:vimwiki_list = [
   \ 'syntax': 'markdown',
   \ 'ext': '.md',
   \ 'auto_export': 1,
-  \ 'custom_wiki2html': simplify(expand($VIMWIKI.'/misaka_md2html.py')),
+  \ 'custom_wiki2html': simplify(expand($VIM_BUNDLE_PATH.'/vimwiki/bin/misaka_md2html.py')),
   \ 'diary_link_count': 5}
   \ ]
 
