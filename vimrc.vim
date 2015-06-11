@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2015-06-10 03:04:49 [691]
+" Modified: 2015-06-11 18:53:41 [701]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -42,7 +42,6 @@ endif
 set nocompatible
 if has('mouse')
   set mouse=a " enable mouse
-  set selection=exclusive
   set selectmode=mouse,key
 endif
 
@@ -102,11 +101,11 @@ set autoread                    " 文件变化自动载入
 set t_vb=0                      " 关闭输出铃声
 set autochdir                   " 自动切换路径
 set directory=$VIMCACHE         " 设置交换文件路径
+set selection=exclusive         " 设定选择区是否包含最后一个光标所在字符
 " set lazyredraw                  " 减少重绘
 " set noswapfile                  " 禁止交换文件
 " set nowrapscan                  " 搜索到文件末尾时，不再回绕到文件首
 " set hid                         " 放弃缓冲区时隐藏而不卸载
-" set selection=exclusive         " 设定选择区的行为为闭区间，选择的最后一个字符包含在操作范围之内
 " set linespace=4                 " 设置行间距，单位是像素
 " set shortmess+=I                " 启动时不显示介绍信息
 " set cmdheight=2                 " 命令行使用的屏幕行数
@@ -243,7 +242,10 @@ vmap <S-J> :m'>+1<cr>gv
 " vmap <C-k> :m'<-2<cr>`>my`<mzgv`yo`z
 
 " visual mode: only paste but not replace cut table
-vmap p pgvy
+" if set selection=exclusive
+vmap p pgv<right>y
+" if set selection=inclusive
+" vmap p pgvy
 
 " patch esc wait 1 second
 if g:ismacos
