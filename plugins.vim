@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2015-06-11 20:58:06 [1051]
+" Modified: 2015-07-02 18:11:57 [1053]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -364,12 +364,13 @@ let g:pydiction_menu_height = 9
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " jedi-vim  {{{1
 " jedi-vim is a is a VIM binding to the autocompletion library Jedi.
+" 此插件会导致键入时迟缓，严重时会卡住
 Bundle 'davidhalter/jedi-vim'
-let g:jedi#auto_initialization      = 1
-let g:jedi#auto_vim_configuration   = 1
+let g:jedi#auto_initialization      = 0
+let g:jedi#auto_vim_configuration   = 0
 let g:jedi#use_tabs_not_buffers     = 0
 let g:jedi#use_splits_not_buffers   = 1
-let g:jedi#completions_enabled      = 1
+let g:jedi#completions_enabled      = 0
 let g:jedi#popup_select_first       = 1
 let g:jedi#popup_on_dot             = 1
 let g:jedi#auto_close_doc           = 1
