@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2015-06-11 18:53:41 [701]
+" Modified: 2015-08-31 21:28:31 [748]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -267,20 +267,25 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " file undo redo history auto save & load
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" au BufReadPost * call ReadUndo()
-" au BufWritePost * call WriteUndo()
-" function! ReadUndo()
-"   if filereadable(expand('%:h'). '/UNDO/' . expand('%:t'))
-"     rundo %:h/UNDO/%:t
-"   endif
-" endfunc
-" function! WriteUndo()
-"   let dirname = expand('%:h') . '/UNDO'
-"   if !isdirectory(dirname)
-"     call mkdir(dirname)
-"   endif
-"   wundo %:h/UNDO/%:t
-" endfunc
+" set undofile
+execute('set undodir=' . $VIMCACHE . '/undo/')
+au BufReadPost * call ReadUndo()
+au BufWritePost * call WriteUndo()
+function! ReadUndo()
+  " let fname = undofile(expand('%'))
+  let fname = join(split(undofile(expand('%')), '%'), '&')
+  if filereadable(fname)
+    execute('silent rundo ' . fname)
+  endif
+endfunc
+function! WriteUndo()
+  let fname = join(split(undofile(expand('%')), '%'), '&')
+  let dirname = expand('~/.cache/undo')
+  if !isdirectory(dirname)
+    call mkdir(dirname)
+  endif
+  execute('wundo ' . fname)
+endfunc
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

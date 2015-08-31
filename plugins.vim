@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2015-07-02 18:11:57 [1053]
+" Modified: 2015-08-31 21:30:02 [1071]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -442,6 +442,11 @@ Bundle "fs111/pydoc.vim"
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-project     {{{1
+Bundle 'hemerey/vim-project'
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " html/css tools  {{{1
 " fast create xml css html
 " eg: root>elememnt#property*3>default<ctrl-y>,
@@ -491,9 +496,12 @@ Bundle 'leshill/vim-json'
 Bundle 'vim-scripts/Align'
 Bundle 'vim-scripts/dbext.vim'
 Bundle 'vim-scripts/SQLUtilities'
+Bundle 'vim-scripts/SQLComplete.vim'
 let g:sqlutil_align_comma = 1
 let g:sqlutil_align_keyword_right = 0
 let g:sqlutil_keyword_case = '\U'
+let g:sqlutil_wrap_expressions = 1
+let g:sqlutil_default_menu_mode = 0
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -538,6 +546,9 @@ if !has("python")
 else
   let g:gundo_close_on_revert = 1
   let g:gundo_tree_statusline = 'Gundo'
+  let g:gundo_width = 45
+  let g:gundo_preview_height = 11
+  let g:gundo_right = 1
 endif
 
 
@@ -663,6 +674,16 @@ autocmd BufRead * silent call Gitgutter_Disabled_in_Largefile()
 " vim-signature  {{{1
 " virtual mark
 Bundle 'kshenoy/vim-signature'
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-vinegar  {{{1
+Bundle 'tpope/vim-vinegar'
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" netrw   {{{1
+Bundle 'eiginn/netrw'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
