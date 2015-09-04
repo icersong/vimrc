@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2015-08-31 21:28:31 [748]
+" Modified: 2015-09-03 02:28:00 [750]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -451,6 +451,11 @@ set cursorline                  " 设置光标十字坐标，高亮当前行
 
 " 调整光标显示样式　
 function! SetCursorStyle()
+  " pop menu setting
+  highlight Pmenu ctermfg=2 ctermbg=3 guifg=#005f87 guibg=#EEE8D5
+  highlight PmenuSel ctermfg=2 ctermbg=3 guifg=#AFD700 guibg=#106900
+
+  " cursor setting
   highlight CursorLine cterm=underline ctermbg=NONE ctermfg=NONE gui=underline guibg=NONE guifg=NONE
   if has('gui_running')
     highlight nCursor guifg=red guibg=yellow

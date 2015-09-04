@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2015-08-31 21:30:02 [1071]
+" Modified: 2015-09-04 23:40:39 [1098]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -36,6 +36,11 @@ Bundle 'gmarik/Vundle.vim'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " screen saver {{{1
 Bundle 'uguu-org/vim-matrix-screensaver'
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" recover swap file {{{1
+Bundle 'chrisbra/Recover.vim'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -336,7 +341,10 @@ Bundle 'kevinw/pyflakes-vim'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " - YouCompleteMe   {{{1
 " YCM windows install guides needed.
-" Bundle 'Valloric/YouCompleteMe'
+Bundle 'Valloric/YouCompleteMe'
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
+highlight Pmenu ctermfg=2 ctermbg=3 guifg=#005f87 guibg=#EEE8D5
+highlight PmenuSel ctermfg=2 ctermbg=3 guifg=#AFD700 guibg=#106900
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -442,8 +450,8 @@ Bundle "fs111/pydoc.vim"
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim-project     {{{1
-Bundle 'hemerey/vim-project'
+" -- vim-project     {{{1
+" Bundle 'hemerey/vim-project'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -606,6 +614,23 @@ let g:vimrc_email='icersong@gmail.com'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" NrrwRgn  {{{1
+Bundle 'chrisbra/NrrwRgn'
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" multiple-cursors  {{{1
+Bundle 'terryma/vim-multiple-cursors'
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" CoVim  {{{1
+Bundle 'FredKSchott/CoVim'
+let CoVim_default_name = "icersong"
+let CoVim_default_port = "8888"
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " - taglist   {{{1
 " Bundle 'vim-scripts/taglist.vim'
 " "let Tlist_Auto_Open = 1
@@ -616,7 +641,6 @@ let g:vimrc_email='icersong@gmail.com'
 " let Tlist_Use_Right_Window = 1
 " let Tlist_Use_SingleClick = 1
 " $ctags -R . 在当前目录下递归生成tags文件
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Tagbar {{{1
@@ -629,12 +653,17 @@ else
   nmap <Leader>tb :TagbarToggle<CR>
   "let g:tagbar_ctags_bin='/usr/bin/ctags'
   let g:tagbar_width=30
-  let g:tagbar_autoclose = 1
+  let g:tagbar_autoclose = 2
   let g:tagbar_autofocus = 1
   let g:tagbar_show_linenumbers = 1
   let g:tagbar_singleclick = 1
   "autocmd BufReadPost *.cpp,*.c,*.h,*.py call tagbar#autoopen()
 endif
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Buffergator {{{1
+Bundle 'jeetsukumaran/vim-buffergator'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -748,8 +777,18 @@ Bundle 'vim-scripts/ZoomWin'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim markdown  {{{1
+" EnhancedDiff {{{1
+Plugin 'chrisbra/vim-diff-enhanced'
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Tabular  {{{1
 Bundle 'godlygeek/tabular'
+let g:tabular_loaded = 1
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim markdown  {{{1
 Bundle 'plasticboy/vim-markdown'
 let g:vim_markdown_frontmatter=1
 
