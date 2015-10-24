@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2015-09-03 02:28:00 [750]
+" Modified: 2015-09-29 17:17:54 [794]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -194,6 +194,7 @@ autocmd BufRead,BufNewFile jquery.*.js setlocal filetype=javascript syntax=jquer
 autocmd BufRead,BufNewFile *.json setlocal filetype=json
 autocmd BufRead,BufNewFile *vimrc setlocal filetype=vim syntax=vim
 autocmd FileType vim,xml,css,html,xhtml setlocal tabstop=2 et softtabstop=2 shiftwidth=2
+autocmd BufRead,BufNewFile *.tpl setlocal filetype=jinja syntax=jinja
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -490,3 +491,12 @@ autocmd ColorScheme * silent call SetCursorStyle()
 " autocmd Syntax * silent call SetCursorStyle()
 syntax on
 " call SetCursorStyle()
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" clear cache
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! CleanCache()
+  exe '!find "'.$VIMCACHE.'/undo" -mtime +7 -exec rm -f {} \;'
+endfunction
+au VimLeave * silent call CleanCache()

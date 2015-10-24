@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2015-09-04 23:40:39 [1098]
+" Modified: 2015-10-24 19:47:01 [1137]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -162,7 +162,11 @@ let Grep_Skip_Files = '*.bak *~'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CtrlP {{{1
-Bundle 'kien/ctrlp.vim'
+" Bundle 'kien/ctrlp.vim'
+Bundle 'ctrlpvim/ctrlp.vim'
+Bundle 'tacahiroy/ctrlp-funky'
+Bundle 'FelikZ/ctrlp-py-matcher'
+
   " if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/ctrlp.vim'))))
     map <F1> <c-p>
     let g:ctrlp_map = '<c-p>'
@@ -187,6 +191,11 @@ Bundle 'kien/ctrlp.vim'
     "endif
     nmap <leader>f :CtrlP<CR>
   " endif
+
+  let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Bundle 'haya14busa/incsearch.vim'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -283,14 +292,15 @@ Bundle 'SirVer/ultisnips'
 " check syntax for all language while write file.
 Bundle 'scrooloose/syntastic'
   " if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/syntastic'))))
-    let g:syntastic_error_symbol        = 'EE'
-    let g:syntastic_warning_symbol      = 'WW'
-    let g:syntastic_style_error_symbol  = 'SE'
-    let g:syntastic_style_warning_symbol= 'SW'
+    let g:syntastic_error_symbol        = "✘"
+    let g:syntastic_warning_symbol      = "⚠"
+    let g:syntastic_style_error_symbol  = "✗"
+    let g:syntastic_style_warning_symbol= "◬"
     let g:syntastic_aggregate_errors    = 1
     let g:syntastic_auto_loc_list       = 1
     let g:syntastic_auto_jump           = 0
     let g:syntastic_loc_list_height     = 3
+    let g:syntastic_ignore_files        = ['.*\.log$']
     let g:syntastic_html_checkers       = ['tidy']  " 'jshint', 'jslint'
     let g:syntastic_xhtml_checkers      = ['tidy']
     let g:syntastic_javascript_checkers = ['jsl']
@@ -329,7 +339,8 @@ Bundle 'scrooloose/syntastic'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " pyflakes    {{{1
-Bundle 'kevinw/pyflakes-vim'
+" Bundle 'kevinw/pyflakes-vim'
+Bundle 'icersong/pyflakes-vim'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -565,6 +576,10 @@ endif
 " select object by indent
 " vii, viI, vai, vaI,
 Bundle 'michaeljsmith/vim-indent-object'
+nmap /  <Plug>(incsearch-forward)
+nmap ?  <Plug>(incsearch-backward)
+nmap g/ <Plug>(incsearch-stay)
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " surround    {{{1
@@ -729,10 +744,12 @@ endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " calendar  {{{1
-Bundle 'itchyny/calendar.vim'
-let g:calendar_frame = 'default'
-let g:calendar_cache_directory = simplify(expand($VIMCACHE.'/calendar'))
+" Bundle 'itchyny/calendar.vim'
+" let g:calendar_frame = 'default'
+" let g:calendar_cache_directory = simplify(expand($VIMCACHE.'/calendar'))
 
+
+Bundle 'mattn/calendar-vim'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vimwiki  {{{1
@@ -752,21 +769,18 @@ let g:vimwiki_list = [
   \ 'diary_link_count': 5}
   \ ]
 
+let g:vimwiki_debug = 0
+let g:vimwiki_user_htmls = '404.html,search.html'
 " 对中文用户来说，我们并不怎么需要驼峰英文成为维基词条
 let g:vimwiki_camel_case = 0
-
 " 标记为完成的 checklist 项目会有特别的颜色
 let g:vimwiki_hl_cb_checked = 1
-
-" 禁止添加菜单
+" 禁止添加vimwiki菜单到GUIVim菜单
 let g:vimwiki_menu = ''
-
 " 是否在计算字串长度时用特别考虑中文字符
 let g:vimwiki_CJK_length = 1
-
 " 详见下文...
 let g:vimwiki_valid_html_tags='b,i,s,u,sub,sup,kbd,del,br,hr,div,code,h1'
-
 " 是否开启按语法折叠  会让文件比较慢
 "let g:vimwiki_folding = 1
 
