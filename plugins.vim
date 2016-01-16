@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2015-10-24 19:47:01 [1137]
+" Modified: 2016-01-16 23:18:46 [1160]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -500,8 +500,21 @@ autocmd FileType javascript,html,css ColorHighlight
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " javascript indentation and syntax     {{{1
 " Vastly improved Javascript indentation and syntax support in Vim
-" Bundle 'pangloss/vim-javascript'
-" let javascript_enable_domhtmlcss = 1
+Bundle 'pangloss/vim-javascript'
+let javascript_enable_domhtmlcss = 1
+let g:javascript_conceal_function   = "ƒ"
+let g:javascript_conceal_null       = "ø"
+let g:javascript_conceal_this       = "@"
+let g:javascript_conceal_return     = "⇚"
+let g:javascript_conceal_undefined  = "¿"
+let g:javascript_conceal_NaN        = "ℕ"
+let g:javascript_conceal_prototype  = "¶"
+let g:javascript_conceal_static     = "•"
+let g:javascript_conceal_super      = "Ω"
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Bundle 'othree/html5.vim'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -516,7 +529,9 @@ Bundle 'vim-scripts/Align'
 Bundle 'vim-scripts/dbext.vim'
 Bundle 'vim-scripts/SQLUtilities'
 Bundle 'vim-scripts/SQLComplete.vim'
+let g:sqlutil_align_where = 1
 let g:sqlutil_align_comma = 1
+let g:sqlutil_align_first_word = 1
 let g:sqlutil_align_keyword_right = 0
 let g:sqlutil_keyword_case = '\U'
 let g:sqlutil_wrap_expressions = 1
@@ -695,7 +710,23 @@ endif
 " git wapper
 Bundle 'tpope/vim-fugitive'
 autocmd QuickFixCmdPost *grep* cwindow
-
+nnoremap ,gl :silent! Glog -1<CR>:copen 33<CR><C-W>p:silent! Glog<CR><C-W>p
+nnoremap ,gL :!git --no-pager log --oneline --decorate --graph -40 %<CR>
+" nnoremap <space>ga :Git add %:p<CR><CR>
+" nnoremap <space>gs :Gstatus<CR>
+" nnoremap <space>gc :Gcommit -v -q<CR>
+" nnoremap <space>gt :Gcommit -v -q %:p<CR>
+" nnoremap <space>gd :Gdiff<CR>
+" nnoremap <space>ge :Gedit<CR>
+" nnoremap <space>gr :Gread<CR>
+" nnoremap <space>gw :Gwrite<CR><CR>
+" nnoremap <space>gl :silent! Glog<CR>:bot copen<CR>
+" nnoremap <space>gp :Ggrep<Space>
+" nnoremap <space>gm :Gmove<Space>
+" nnoremap <space>gb :Git branch<Space>
+" nnoremap <space>go :Git checkout<Space>
+" nnoremap <space>gps :Dispatch! git push<CR>
+" nnoremap <space>gpl :Dispatch! git pull<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-gitgutter
