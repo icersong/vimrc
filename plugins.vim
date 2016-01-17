@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2016-01-16 23:18:46 [1160]
+" Modified: 2016-01-17 10:06:41 [1174]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -356,6 +356,10 @@ Bundle 'Valloric/YouCompleteMe'
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
 highlight Pmenu ctermfg=2 ctermbg=3 guifg=#005f87 guibg=#EEE8D5
 highlight PmenuSel ctermfg=2 ctermbg=3 guifg=#AFD700 guibg=#106900
+nmap <leader>jj :YcmCompleter GoTo<CR>
+nmap <leader>jr :YcmCompleter GoToReferences<CR>
+nmap <leader>jd :YcmCompleter GoToDefinition<CR>
+nmap <leader>ji :YcmCompleter GoToDeclaration<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

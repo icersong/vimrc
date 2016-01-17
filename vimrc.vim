@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2015-09-29 17:17:54 [794]
+" Modified: 2016-01-17 10:48:00 [802]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -74,10 +74,10 @@ set history=32                  " 历史记录最高数目
 set scrolloff=6                 " 光标所在行上下两侧最少保留的屏幕可见行数, 简写 set so=6
 set cmdheight=1                 " 命令行占1行
 set ruler                       " 显示行号和列号
+set number                      " 显示行号，切换行号显隐 set nu!
 set showcmd                     " 显示输入的字符
 set mousehide                   " 默认不显示鼠标
 set wildmenu                    " 加强自动补全
-set number                      " 显示行号，切换行号显隐 set nu!
 set numberwidth=1               " 显示光标位置的，行号列号和百分比，简写 set nuw
 set backspace=indent,eol,start  " 置光标在行首时按退格键，光标会回到上一行行尾
 set incsearch                   " 搜索时动态调到第一个匹配的位置
@@ -99,16 +99,15 @@ set pumheight=9                 " 设置智能补全菜单长度
 set completeopt=menuone         " 去掉智能补全预览，只显示菜单并自动插入
 set autoread                    " 文件变化自动载入
 set t_vb=0                      " 关闭输出铃声
-set autochdir                   " 自动切换路径
 set directory=$VIMCACHE         " 设置交换文件路径
 set selection=exclusive         " 设定选择区是否包含最后一个光标所在字符
+" set autochdir                   " 自动切换路径
 " set lazyredraw                  " 减少重绘
 " set noswapfile                  " 禁止交换文件
 " set nowrapscan                  " 搜索到文件末尾时，不再回绕到文件首
-" set hid                         " 放弃缓冲区时隐藏而不卸载
+" set hidden                      " 放弃缓冲区时隐藏而不卸载
 " set linespace=4                 " 设置行间距，单位是像素
 " set shortmess+=I                " 启动时不显示介绍信息
-" set cmdheight=2                 " 命令行使用的屏幕行数
 " set cmdwinheight=2              " 命令行窗口的屏幕行数
 " set clipboard+=unnamed          " 默认寄存器和系统剪贴板共享
 
@@ -216,7 +215,6 @@ nmap <silent><space> :nohlsearch<CR>:call SetCursorStyle()<CR>
 nmap <S-Space> :%s/\s\+$//g<CR>
 
 " 重做，用于撤销后返撤销
-" imap <C-U> <esc>:redo<CR>
 nmap <S-U> :redo<CR>
 
 " 文件操作
@@ -402,8 +400,8 @@ autocmd FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -
 " 恢复退出时viminfo保存的光标位置
 " au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-" 自动转换当前工作路径
-" autocmd BufEnter,BufRead * if isdirectory(expand('%:p:h')) | lcd %:p:h | endif
+" 自动转换当前工作路径，替代autochdir，防止插件冲突
+autocmd BufEnter,BufRead * if isdirectory(expand('%:p:h')) | lcd %:p:h | endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
