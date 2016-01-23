@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2016-01-17 10:06:41 [1174]
+" Modified: 2016-01-23 21:11:54 [1176]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -46,7 +46,7 @@ Bundle 'chrisbra/Recover.vim'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " start page {{{1
 Bundle 'mhinz/vim-startify'
-
+let g:startify_session_dir = $VIMCACHE.'session'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "Bundle 'Lokaltog/vim-powerline'
