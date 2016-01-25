@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2016-01-23 21:11:54 [1176]
+" Modified: 2016-01-25 15:55:16 [1177]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -196,6 +196,14 @@ Bundle 'FelikZ/ctrlp-py-matcher'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 Bundle 'haya14busa/incsearch.vim'
+set hlsearch
+let g:incsearch#auto_nohlsearch = 1
+map n  <Plug>(incsearch-nohl-n)
+map N  <Plug>(incsearch-nohl-N)
+map *  <Plug>(incsearch-nohl-*)
+map #  <Plug>(incsearch-nohl-#)
+map g* <Plug>(incsearch-nohl-g*)
+map g# <Plug>(incsearch-nohl-g#)
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
