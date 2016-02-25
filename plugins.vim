@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2016-01-25 15:55:16 [1177]
+" Modified: 2016-02-25 11:23:41 [1201]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -68,7 +68,8 @@ Bundle 'bling/vim-airline'
     let g:airline_theme = "dark"
     let g:airline_left_sep = ''
     let g:airline_right_sep = ''
-    let g:airline_extensions = ['branch', 'tabline', 'syntastic', 'whitespace', 'tagbar']
+    let g:airline_extensions = ['branch', 'tabline', 'syntastic', 'whitespace',
+        'tagbar', 'virtualenv', 'syntastic']
     let g:airline#extensions#tabline#enabled = 1
     let g:airline#extensions#tabline#tab_nr_type = 1
     let g:airline#extensions#tabline#fnamemod = ':p:t'
@@ -79,6 +80,18 @@ Bundle 'bling/vim-airline'
     let g:airline#extensions#syntastic#enabled = 1
     let g:airline#extensions#whitespace#enabled = 1
     let g:airline#extensions#tagbar#enabled = 1
+    let g:airline#extensions#virtualenv#enabled = 1
+
+    let g:airline#extensions#tabline#buffer_idx_mode = 1
+    nmap <leader>1 <Plug>AirlineSelectTab1
+    nmap <leader>2 <Plug>AirlineSelectTab2
+    nmap <leader>3 <Plug>AirlineSelectTab3
+    nmap <leader>4 <Plug>AirlineSelectTab4
+    nmap <leader>5 <Plug>AirlineSelectTab5
+    nmap <leader>6 <Plug>AirlineSelectTab6
+    nmap <leader>7 <Plug>AirlineSelectTab7
+    nmap <leader>8 <Plug>AirlineSelectTab8
+    nmap <leader>9 <Plug>AirlineSelectTab9
     " autocmd BufEnter <buffer> AirlineRefresh
   " endif
 
@@ -358,16 +371,35 @@ Bundle 'icersong/pyflakes-vim'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-virtualenv    {{{1
+Bundle 'jmcantrell/vim-virtualenv'
+
+
+" ----------------------------------------
+" function to list virtualenvs
+" change the directory path to point to your virtualenvs
+fun ReturnVirtualEnvs(A,L,P)
+    return system("ls -d /Users/apple/.virtualenvs/*/ \| cut -d'/' -f5")
+endfun
+
+" changing virtualenv should restart ycmserver
+" Venv <virtualenv-name>
+command -nargs=+ -complete=custom,ReturnVirtualEnvs Venv :VirtualEnvActivate <args> | YcmRestartServer
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " - YouCompleteMe   {{{1
 " YCM windows install guides needed.
 Bundle 'Valloric/YouCompleteMe'
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
 highlight Pmenu ctermfg=2 ctermbg=3 guifg=#005f87 guibg=#EEE8D5
 highlight PmenuSel ctermfg=2 ctermbg=3 guifg=#AFD700 guibg=#106900
 nmap <leader>jj :YcmCompleter GoTo<CR>
-nmap <leader>jr :YcmCompleter GoToReferences<CR>
-nmap <leader>jd :YcmCompleter GoToDefinition<CR>
-nmap <leader>ji :YcmCompleter GoToDeclaration<CR>
+" nmap <leader>jr :YcmCompleter GoToReferences<CR>
+" nmap <leader>jd :YcmCompleter GoToDefinition<CR>
+" nmap <leader>ji :YcmCompleter GoToDeclaration<CR>
+nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -781,6 +813,7 @@ Bundle 'vim-scripts/CmdlineComplete'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " improved shell  {{{1
 if version > 702
+" Bundle 'Shougo/vimproc.vim'
 Bundle 'Shougo/vimshell.vim'
 endif
 
@@ -846,8 +879,9 @@ let g:tabular_loaded = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim markdown  {{{1
-Bundle 'plasticboy/vim-markdown'
-let g:vim_markdown_frontmatter=1
+" 较大文件会导致中文输入极其缓慢
+" Bundle 'plasticboy/vim-markdown'
+" let g:vim_markdown_frontmatter=0
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
