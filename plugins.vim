@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2016-02-25 11:23:41 [1201]
+" Modified: 2016-03-03 09:31:04 [1221]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -69,7 +69,7 @@ Bundle 'bling/vim-airline'
     let g:airline_left_sep = ''
     let g:airline_right_sep = ''
     let g:airline_extensions = ['branch', 'tabline', 'syntastic', 'whitespace',
-        'tagbar', 'virtualenv', 'syntastic']
+        \ 'tagbar', 'virtualenv', 'syntastic']
     let g:airline#extensions#tabline#enabled = 1
     let g:airline#extensions#tabline#tab_nr_type = 1
     let g:airline#extensions#tabline#fnamemod = ':p:t'
@@ -118,11 +118,14 @@ Bundle 'altercation/vim-colors-solarized'
 " molokai theme  {{{1
 Bundle 'tomasr/molokai'
   if !has('gui_running')
-    if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/molokai'))))
-      let g:molokai_original = 1
-      set background=dark
-    endif
+    let g:molokai_original = 1
+    set background=dark
   endif
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" dracula theme   {{{1
+Bundle 'icersong/dracula.vim'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -360,8 +363,7 @@ Bundle 'scrooloose/syntastic'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " pyflakes    {{{1
-" Bundle 'kevinw/pyflakes-vim'
-Bundle 'icersong/pyflakes-vim'
+Bundle 'kevinw/pyflakes-vim'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -928,5 +930,6 @@ filetype plugin indent on
 if has('gui_running')
   colorscheme solarized
 else
-  colorscheme molokai
+  " colorscheme molokai
+  colorscheme dracula
 endif
