@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2016-03-03 09:31:04 [1221]
+" Modified: 2016-04-04 17:12:41 [1231]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -68,7 +68,8 @@ Bundle 'bling/vim-airline'
     let g:airline_theme = "dark"
     let g:airline_left_sep = ''
     let g:airline_right_sep = ''
-    let g:airline_extensions = ['branch', 'tabline', 'syntastic', 'whitespace',
+    let g:airline_extensions = ['branch',
+        \ 'tabline', 'syntastic', 'whitespace',
         \ 'tagbar', 'virtualenv', 'syntastic']
     let g:airline#extensions#tabline#enabled = 1
     let g:airline#extensions#tabline#tab_nr_type = 1
@@ -316,6 +317,7 @@ Bundle 'SirVer/ultisnips'
 " check syntax for all language while write file.
 Bundle 'scrooloose/syntastic'
   " if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/syntastic'))))
+    " let g:syntastic_debug               = 33
     let g:syntastic_error_symbol        = "✘"
     let g:syntastic_warning_symbol      = "⚠"
     let g:syntastic_style_error_symbol  = "✗"
@@ -341,6 +343,8 @@ Bundle 'scrooloose/syntastic'
         \ ['unescaped & which should be written as &amp;']}
     let g:syntastic_xhtml_tidy_quiet_messages={"regex":
         \ ['unescaped & which should be written as &amp;']}
+    let g:syntastic_po_msgfmt_quiet_messages={"regex":
+        \ ['header field ''Last-Translator'' still has the initial default value']}
     if (g:iswindows)
       let $PATH=$VIM.'\\Utilities;'.$PATH
       let $PATH=$VIM.'\\Utilities\\GNU;'.$PATH
