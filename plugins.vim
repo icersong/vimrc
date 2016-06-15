@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2016-05-13 14:31:37 [1282]
+" Modified: 2016-06-15 13:20:04 [1245]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -352,28 +352,38 @@ Bundle 'jmcantrell/vim-virtualenv'
 " function to list virtualenvs
 " change the directory path to point to your virtualenvs
 fun ReturnVirtualEnvs(A,L,P)
+  if g:isMacos
     return system("ls -d /Users/apple/.virtualenvs/*/ \| cut -d'/' -f5")
+  endif
+  if g:islinux
+    return system("ls -d /root/.virtualenvs/*/ \| cut -d'/' -f5")
+  endif
 endfun
 
 " changing virtualenv should restart ycmserver
-" Venv <virtualenv-name>
-command -nargs=+ -complete=custom,ReturnVirtualEnvs Venv :VirtualEnvActivate <args> | YcmRestartServer
+" vENV <Virtualenv-name>
+if g:ismacos
+  command -nargs=+ -complete=custom,ReturnVirtualEnvs Venv :VirtualEnvActivate <args> | YcmRestartServer
+else
+  command -nargs=+ -complete=custom,ReturnVirtualEnvs Venv :VirtualEnvActivate <args>
+endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " - YouCompleteMe   {{{1
 " YCM windows install guides needed.
-Bundle 'Valloric/YouCompleteMe'
-let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
-let g:ycm_collect_identifiers_from_comments_and_strings = 1
-highlight Pmenu ctermfg=2 ctermbg=3 guifg=#005f87 guibg=#EEE8D5
-highlight PmenuSel ctermfg=2 ctermbg=3 guifg=#AFD700 guibg=#106900
-nmap <leader>jj :YcmCompleter GoTo<CR>
-" nmap <leader>jr :YcmCompleter GoToReferences<CR>
-" nmap <leader>jd :YcmCompleter GoToDefinition<CR>
-" nmap <leader>ji :YcmCompleter GoToDeclaration<CR>
-nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
-
+if g:ismacos
+  Bundle 'Valloric/YouCompleteMe'
+  let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
+  let g:ycm_collect_identifiers_from_comments_and_strings = 1
+  highlight Pmenu ctermfg=2 ctermbg=3 guifg=#005f87 guibg=#EEE8D5
+  highlight PmenuSel ctermfg=2 ctermbg=3 guifg=#AFD700 guibg=#106900
+  nmap <leader>jj :YcmCompleter GoTo<CR>
+  " nmap <leader>jr :YcmCompleter GoToReferences<CR>
+  " nmap <leader>jd :YcmCompleter GoToDefinition<CR>
+  " nmap <leader>ji :YcmCompleter GoToDeclaration<CR>
+  nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " neocomplete   {{{1
@@ -677,9 +687,11 @@ Bundle 'terryma/vim-multiple-cursors'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CoVim  {{{1
-Bundle 'FredKSchott/CoVim'
-let CoVim_default_name = "icersong"
-let CoVim_default_port = "8888"
+if g:ismacos
+  Bundle 'FredKSchott/CoVim'
+  let CoVim_default_name = "icersong"
+  let CoVim_default_port = "8888"
+endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
