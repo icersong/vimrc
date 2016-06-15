@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2016-04-04 17:12:41 [1231]
+" Modified: 2016-05-13 14:31:37 [1282]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -14,6 +14,7 @@ filetype off                    " required!
 " Variables
 let $VIM_BUNDLE_PATH = $VIMFILES.'/bundle'
 let $GIT_LOCAL_URL = $VIMFILES.'/repostory'
+let $VIM_TOOL_PATH = $VIMFILES.'/tools'
 let $VIMWIKI = $VIMFILES.'/wiki'
 let $WEBROOT = '/Users/apple/Sites'
 let s:no_python_support = "Vim is compiled without python support"
@@ -48,16 +49,6 @@ Bundle 'chrisbra/Recover.vim'
 Bundle 'mhinz/vim-startify'
 let g:startify_session_dir = $VIMCACHE.'session'
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"Bundle 'Lokaltog/vim-powerline'
-"  if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/vim-powerline'))))
-"    "set t_Co=256
-"    set laststatus=2
-"    let g:Powline_symbols='fancy'
-"    "let g:Powerline_cache_dir = g:iswindows ? $VIM.'/cache/powerline' : '~/.vim/cache/powerline'
-"    let g:Powerline_cache_dir = simplify(expand($VIMCACHE.'/powerline'))
-"  endif
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " airline   {{{1
@@ -70,7 +61,7 @@ Bundle 'bling/vim-airline'
     let g:airline_right_sep = ''
     let g:airline_extensions = ['branch',
         \ 'tabline', 'syntastic', 'whitespace',
-        \ 'tagbar', 'virtualenv', 'syntastic']
+        \ 'tagbar', 'virtualenv']
     let g:airline#extensions#tabline#enabled = 1
     let g:airline#extensions#tabline#tab_nr_type = 1
     let g:airline#extensions#tabline#fnamemod = ':p:t'
@@ -113,20 +104,6 @@ Bundle 'altercation/vim-colors-solarized'
       set background=dark
     endif
   " endif
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" molokai theme  {{{1
-Bundle 'tomasr/molokai'
-  if !has('gui_running')
-    let g:molokai_original = 1
-    set background=dark
-  endif
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" dracula theme   {{{1
-Bundle 'icersong/dracula.vim'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -272,16 +249,6 @@ Bundle 'Lokaltog/vim-easymotion'
   " if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/vim-easymotion'))))
     let g:EasyMotion_leader_key = ";"
   " endif
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" - Indent guides   {{{1
-" 依靠背景色显示缩进效果，速度比Indent line慢，且显示效果不佳
-" Bundle 'nathanaelkane/vim-indent-guides'
-"   " if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/vim-indent-guides'))))
-"     let g:indent_guides_enable_on_vim_startup = 1
-"     let g:indent_guides_guide_size = 1
-"   " endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -513,6 +480,11 @@ Bundle "fs111/pydoc.vim"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " -- vim-project     {{{1
 " Bundle 'hemerey/vim-project'
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" coffee-script     {{{1
+Bundle 'kchmck/vim-coffee-script'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -835,24 +807,36 @@ Bundle 'mattn/calendar-vim'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vimwiki  {{{1
-" Bundle 'vimwiki/vimwiki'
-Bundle 'icersong/vimwiki'
+" Bundle 'icersong/vimwiki'
+Bundle 'vimwiki/vimwiki'
 let g:vimwiki_list = [
-  \ {'path': simplify(expand($VIMWIKI.'/technology')),
-  \ 'path_html': simplify(expand($WEBROOT.'/wiki/technology')),
-  \ 'css_name': '/style.css',
+  \ {'path': simplify(expand($VIMWIKI.'/projects/soc')),
+  \ 'path_html': simplify(expand($VIMWIKI.'/static/soc')),
+  \ 'css_name': 'css/style.css',
+  \ 'template_path': simplify(expand($VIMWIKI.'/templetes')),
+  \ 'template_default': 'default',
   \ 'template_ext': '.tpl',
+  \ 'auto_export': 1,
+  \ 'auto_toc': 1,
+  \ 'nested_syntaxes': {'python': 'python', 'c++': 'cpp','html': 'html',},
+  \ 'diary_link_count': 5},
+  \ {'path': simplify(expand($VIMWIKI.'/projects/technology')),
+  \ 'path_html': simplify(expand($VIMWIKI.'/static/technology')),
+  \ 'css_name': '/style.css',
   \ 'template_path': simplify(expand($VIMWIKI.'/templetes')),
   \ 'template_default': 'default.tpl',
+  \ 'template_ext': '.tpl',
   \ 'syntax': 'markdown',
   \ 'ext': '.md',
   \ 'auto_export': 1,
-  \ 'custom_wiki2html': simplify(expand($VIM_BUNDLE_PATH.'/vimwiki/bin/misaka_md2html.py')),
+  \ 'nested_syntaxes': {'python': 'python', 'c++': 'cpp','html': 'html',},
+  \ 'custom_wiki2html': simplify(expand($VIM_TOOL_PATH.'/misaka_md2html.py')),
   \ 'diary_link_count': 5}
   \ ]
-
-let g:vimwiki_debug = 0
+let g:vimwiki_use_mouse = 1
+let g:vimwiki_list_ignore_newline = 0
 let g:vimwiki_user_htmls = '404.html,search.html'
+let g:vimwiki_toc_header = 'Catalogue'
 " 对中文用户来说，我们并不怎么需要驼峰英文成为维基词条
 let g:vimwiki_camel_case = 0
 " 标记为完成的 checklist 项目会有特别的颜色
@@ -862,7 +846,7 @@ let g:vimwiki_menu = ''
 " 是否在计算字串长度时用特别考虑中文字符
 let g:vimwiki_CJK_length = 1
 " 详见下文...
-let g:vimwiki_valid_html_tags='b,i,s,u,sub,sup,kbd,del,br,hr,div,code,h1'
+let g:vimwiki_valid_html_tags='b,i,s,u,sub,sup,kbd,del,br,hr,div,code,h1,nav'
 " 是否开启按语法折叠  会让文件比较慢
 "let g:vimwiki_folding = 1
 
@@ -934,6 +918,6 @@ filetype plugin indent on
 if has('gui_running')
   colorscheme solarized
 else
-  " colorscheme molokai
-  colorscheme dracula
+  set background=dark
+  colorscheme solarized
 endif

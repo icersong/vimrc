@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2016-03-03 00:30:30 [807]
+" Modified: 2016-06-15 11:09:59 [808]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -120,7 +120,7 @@ set formatoptions+=mB             " formatoptions
 set fileformats=unix,dos,mac      " 文件格式支持
 set encoding=utf-8                " 文件默认编码
 set fileencodings=ucs-bom,utf-8,cp936,big5,gb18030,euc-jp,euc-kr,latin1
-set ambiwidth=double    " 当encoding=<unicode>编码时有效,使用ASCII字符两倍的宽度处理东亚字符类
+set ambiwidth=double              " 当encoding=<unicode>编码时有效,使用ASCII字符两倍的宽度处理东亚字符类
 if has('gui_running')
   set termencoding=Chinese        " 指定终端使用的编码,在+multi_byte特性下有效,也可用utf-8
   set fileencoding=Chinese
