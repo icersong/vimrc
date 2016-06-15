@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2016-06-15 13:20:04 [1245]
+" Modified: 2016-06-16 01:41:29 [1274]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -161,32 +161,37 @@ Bundle 'ctrlpvim/ctrlp.vim'
 Bundle 'tacahiroy/ctrlp-funky'
 Bundle 'FelikZ/ctrlp-py-matcher'
 
-  " if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/ctrlp.vim'))))
-    map <F1> <c-p>
-    let g:ctrlp_map = '<c-p>'
-    let g:ctrlp_cmd = 'CtrlPMRU'
-    let g:ctrlp_show_hidden = 1
-    let g:ctrlp_custom_ignore = {
-      \ 'dir':  '\v[\/](\.(git|hg|svn)|cache)$',
-      \ 'file': '\v\.(exe|so|dll|png|jpg|bin)$',
-      \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
-      \ }
-    "if g:ismacos || g:islinux
-    "  set wildignore+=*/.git/*,*/.hg/*,*/.svn/*           " Linux/MacOSX
-    "  set wildignore+=*/tmp/*,*.so,*.swp,*.zip            " MacOSX/Linux
-    "  set wildignore+=*/.cache/*,.cache/*
-    "  set wildignore+=*/Caches/*,Caches/*
-    "  let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
-    "endif
-    "if g:iswindows
-    "  set wildignore+=*\\.git\\*,*\\.hg\\*,*\\.svn\\*     " Windows ('noshellslash')
-    "  set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe         " Windows
-    "  let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
-    "endif
-    nmap <leader>f :CtrlP<CR>
+" if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/ctrlp.vim'))))
+  map <F1> <c-p>
+  let g:ctrlp_map = '<c-p>'
+  let g:ctrlp_cmd = 'CtrlPMRU'
+  let g:ctrlp_show_hidden = 1
+  let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\v[\/](\.(git|hg|svn)|cache)$',
+    \ 'file': '\v\.(exe|so|dll|png|jpg|gif|zip|7z|gz|tgz|swp|bin)$',
+    \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
+    \ }
+  " if g:ismacos || g:islinux
+  "   set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.png,*.jpg,*.jpeg,*.gif " MacOSX/Linux
+  "   let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
   " endif
+  " if g:iswindows
+  "   set wildignore+=*\\.git\\*,*\\.hg\\*,*\\.svn\\*     " Windows ('noshellslash')
+  "   set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe         " Windows
+  "   let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
+  " endif
+  if executable('ag')
+    " Use Ag over Grep
+    set grepprg=ag\ --nogroup\ --nocolor
+    " Use ag in CtrlP for listing files.
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+    " Ag is fast enough that CtrlP doesn't need to cache
+    let g:ctrlp_use_caching = 0
+  endif
+  nmap <leader>f :CtrlP<CR>
+" endif
 
-  let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 Bundle 'haya14busa/incsearch.vim'
@@ -744,8 +749,9 @@ endif
 " git wapper
 Bundle 'tpope/vim-fugitive'
 autocmd QuickFixCmdPost *grep* cwindow
-nnoremap ,gl :silent! Glog -1<CR>:copen 33<CR><C-W>p:silent! Glog<CR><C-W>p
-nnoremap ,gL :!git --no-pager log --oneline --decorate --graph -40 %<CR>
+" nnoremap ,gl :silent! Glog -1<CR>:copen 33<CR><C-W>p:silent! Glog<CR><C-W>
+nnoremap ,gl :Glog --graph --pretty=format:%h\ %ai\ %an\ %s<CR>
+nnoremap ,gL :!git --no-pager log --oneline --decorate --graph -40<CR>
 " nnoremap <space>ga :Git add %:p<CR><CR>
 " nnoremap <space>gs :Gstatus<CR>
 " nnoremap <space>gc :Gcommit -v -q<CR>
@@ -884,6 +890,11 @@ let g:tabular_loaded = 1
 " 较大文件会导致中文输入极其缓慢
 " Bundle 'plasticboy/vim-markdown'
 " let g:vim_markdown_frontmatter=0
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" suan/vim-instant-markdown
+" 可在浏览器中实时预览正在编写的MD文档
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
