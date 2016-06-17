@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2016-06-15 11:09:59 [808]
+" Modified: 2016-06-17 16:20:57 [809]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -58,13 +58,6 @@ if has('gui_running')
   "   au GUIEnter * simalt ~x
   " endif
 endif
-
-" if !exists("syntax_on")
-"   syntax enable                 " 语法高亮显示开
-"   syntax on                     " 语法高亮显示开
-" endif
-" set t_Co=256
-" colorscheme torte
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

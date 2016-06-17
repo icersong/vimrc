@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2016-06-16 02:00:44 [1275]
+" Modified: 2016-06-17 16:26:18 [1283]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -17,17 +17,16 @@ let $GIT_LOCAL_URL = $VIMFILES.'/repostory'
 let $VIM_TOOL_PATH = $VIMFILES.'/tools'
 let $VIMWIKI = $VIMFILES.'/wiki'
 let $WEBROOT = '/Users/apple/Sites'
-let s:no_python_support = "Vim is compiled without python support"
-let s:no_ruby_support = "Vim is compiled without ruby support"
+let s:no_python_support = "Warning! Vim is compiled without python support."
+let s:no_ruby_support = "Warning! Vim is compiled without ruby support."
 
 " initalize vundle
 set rtp +=$VIMFILES/bundle/Vundle.vim
 " call vundle#rc($VIM_BUNDLE_PATH)
 call vundle#begin($VIM_BUNDLE_PATH)
 
-" let Vundle manage Vundle
+" let Bundle managed by Vundle
 Bundle 'gmarik/Vundle.vim'
-"filetype plugin indent on       " required!
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -36,6 +35,7 @@ Bundle 'gmarik/Vundle.vim'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " screen saver {{{1
+" bug: When after run matrix, all other syntax gone.
 Bundle 'uguu-org/vim-matrix-screensaver'
 
 
@@ -203,25 +203,6 @@ map *  <Plug>(incsearch-nohl-*)
 map #  <Plug>(incsearch-nohl-#)
 map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" minibufexpl   {{{1
-" Bundle "fholgado/minibufexpl.vim"
-" Bundle "techlivezheng/vim-plugin-minibufexpl"
-"   " if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/vim-plugin-minibufexpl'))))
-"     let g:did_minibufexplorer_syntax_inits = 1
-"     "hi MBENormal               guifg=#808080 guibg=fg
-"     "hi MBEChanged              guifg=#CD5907 guibg=fg
-"     "hi MBEVisibleNormal        guifg=#5DC2D6 guibg=fg
-"     "hi MBEVisibleChanged       guifg=#F1266F guibg=fg
-"     hi MBEVisibleActiveNormal  guifg=#0000FF guibg=#FFFF00
-"     hi MBEVisibleActiveChanged guifg=#FF0000 guibg=#FFFF00
-"     let g:miniBufExplUseSingleClick = 1
-"     let g:miniBufExplCloseOnSelect = 1
-"     let g:miniBufExplorerAutoStart = 0
-"     let g:miniBufExplBuffersNeeded = 1
-"   " endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -484,6 +465,7 @@ Bundle "fs111/pydoc.vim"
 "   import vimpdb; vimpdb.hookPdb()
 " :PDB???
 " Bundle 'gotcha/vimpdb'
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " - xmledit   {{{1
