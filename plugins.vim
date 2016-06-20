@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2016-06-17 16:26:18 [1283]
+" Modified: 2016-06-20 20:06:03 [1285]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -674,11 +674,12 @@ Bundle 'terryma/vim-multiple-cursors'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CoVim  {{{1
-if g:ismacos
-  Bundle 'FredKSchott/CoVim'
-  let CoVim_default_name = "icersong"
-  let CoVim_default_port = "8888"
-endif
+" It is for Collaborative Editing. But not stable
+" if g:ismacos
+"   Bundle 'FredKSchott/CoVim'
+"   let CoVim_default_name = "icersong"
+"   let CoVim_default_port = "8888"
+" endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -801,9 +802,8 @@ endif
 " Bundle 'itchyny/calendar.vim'
 " let g:calendar_frame = 'default'
 " let g:calendar_cache_directory = simplify(expand($VIMCACHE.'/calendar'))
-
-
 Bundle 'mattn/calendar-vim'
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vimwiki  {{{1
