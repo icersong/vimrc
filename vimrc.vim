@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2016-06-17 16:20:57 [809]
+" Modified: 2016-06-21 14:54:19 [810]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -212,10 +212,10 @@ nmap <S-U> :redo<CR>
 
 " 文件操作
 " command! -nargs=0 Q :q!
-nmap <leader>q :bd<CR>
-nmap <leader><S-Q> :q!<CR>
-nmap <leader>w :w<CR>
-nmap <leader><S-W> :w!<CR>
+nmap <silent><leader>q :bd<CR>
+nmap <silent><leader><S-Q> :q!<CR>
+nmap <silent><leader>w :w<CR>
+nmap <silent><leader><S-W> :w!<CR>
 " 文件格式设置成dos :set ff=dos<CR>
 " 文件格式设置成unix :set ff=unix<CR>
 

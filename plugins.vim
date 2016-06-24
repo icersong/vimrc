@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2016-06-20 20:06:03 [1285]
+" Modified: 2016-06-24 15:52:15 [1291]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -143,6 +143,7 @@ if executable('ag')
   let g:unite_source_grep_recursive_opt = ''
 endif
 nnoremap <silent><c-s> :Unite -auto-resize file file_mru file_rec<cr>
+nnoremap <silent><c-a> :UniteWithProjectDir -auto-resize file file_mru file_rec<cr>
 endif
 
 
@@ -319,11 +320,6 @@ Bundle 'scrooloose/syntastic'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" pyflakes    {{{1
-Bundle 'kevinw/pyflakes-vim'
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " - AutoComplPop    {{{1
 " Bundle 'icersong/AutoComplPop'
 " let g:acp_enableAtStartup = 0
@@ -415,6 +411,11 @@ let g:jedi#auto_close_doc           = 1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" pyflakes    {{{1
+Bundle 'kevinw/pyflakes-vim'
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " python-auto-indent    {{{1
 Bundle "hynek/vim-python-pep8-indent"
 
@@ -425,8 +426,8 @@ Bundle "hynek/vim-python-pep8-indent"
 " : call Autopep8(" --range 1 5")
 Bundle "tell-k/vim-autopep8"
 " let g:autopep8_indent_size=4
-" let g:autopep8_ignore="E501,W293"
-" let g:autopep8_select="E501,W293"
+" let g:autopep8_ignore="E501,E701,W293"
+" let g:autopep8_select="E501,E701,W293"
 let g:autopep8_pep8_passes=99
 let g:autopep8_max_line_length=127
 let g:autopep8_aggressive=0
