@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2016-06-21 14:54:19 [810]
+" Modified: 2016-06-27 17:00:45 [826]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -283,13 +283,13 @@ endfunc
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 代码折叠
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set nofoldenable        " 关闭自动折叠
-" set foldenable        " 开启自动折叠
-" set foldclose=all     " 设置为自动关闭折叠
-" set foldmethod=syntax   " 设置语法折叠 syntax | indent
+" set nofoldenable        " 关闭折叠
+set foldenable          " 开启折叠
+set foldmethod=indent   " 设置语法折叠 syntax | indent
+set foldlevel=9         " 设置折叠层数为
 " set foldcolumn=0        " 设置折叠区域的宽度
-" set foldnestmax=2
-" set foldlevel=1         " 设置折叠层数为
+" set foldclose=all       " 设置为默认折叠所有
+" set foldnestmax=9
 " 用空格键来开关折叠
 " nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 
