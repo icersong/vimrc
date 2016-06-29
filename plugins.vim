@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2016-06-24 16:25:43 [1296]
+" Modified: 2016-06-29 23:48:49 [1318]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -148,11 +148,25 @@ endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Grep
+" Grepper
 " Search file content
-Bundle 'vim-scripts/grep.vim'
-let Grep_Skip_Files = '*.bak *~'
-" let Grep_Default_Options = '-rli'
+" eg: ,ag<cr>
+"    ...> mhinz
+"    ...> mhinz\\|bling
+Bundle 'mhinz/vim-grepper'
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ag    {{{1
+Bundle 'rking/ag.vim'
+let g:ag_prg="ag --vimgrep --nocolor --nogroup --smart-case --ignore .git --ignore .svn --ignore .DS_Store"
+let g:ag_working_path_mode="r"
+
+
+" vim-action-ag   {{{1
+" plugin for ag
+Bundle 'Chun-Yang/vim-action-ag'
+let g:vim_action_ag_escape_chars = '#%.^$*+?()[{\\|'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -517,15 +531,15 @@ autocmd FileType javascript,html,css ColorHighlight
 " Vastly improved Javascript indentation and syntax support in Vim
 Bundle 'pangloss/vim-javascript'
 let javascript_enable_domhtmlcss = 1
-let g:javascript_conceal_function   = "ƒ"
-let g:javascript_conceal_null       = "ø"
-let g:javascript_conceal_this       = "@"
-let g:javascript_conceal_return     = "⇚"
-let g:javascript_conceal_undefined  = "¿"
-let g:javascript_conceal_NaN        = "ℕ"
-let g:javascript_conceal_prototype  = "¶"
-let g:javascript_conceal_static     = "•"
-let g:javascript_conceal_super      = "Ω"
+" let g:javascript_conceal_function   = "ƒ"
+" let g:javascript_conceal_null       = "ø"
+" let g:javascript_conceal_this       = "@"
+" let g:javascript_conceal_return     = "⇚"
+" let g:javascript_conceal_undefined  = "¿"
+" let g:javascript_conceal_NaN        = "ℕ"
+" let g:javascript_conceal_prototype  = "¶"
+" let g:javascript_conceal_static     = "•"
+" let g:javascript_conceal_super      = "Ω"
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
