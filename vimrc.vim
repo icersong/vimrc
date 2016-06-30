@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2016-06-27 17:00:45 [826]
+" Modified: 2016-06-30 [827]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -187,6 +187,7 @@ autocmd BufRead,BufNewFile *.json setlocal filetype=json
 autocmd BufRead,BufNewFile *vimrc setlocal filetype=vim syntax=vim
 autocmd FileType vim,xml,css,html,xhtml setlocal tabstop=2 et softtabstop=2 shiftwidth=2
 autocmd BufRead,BufNewFile *.tpl setlocal filetype=jinja syntax=jinja
+autocmd BufRead,BufNewFile *.md setlocal filetype=markdown syntax=markdown
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

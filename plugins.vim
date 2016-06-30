@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2016-06-29 23:48:49 [1318]
+" Modified: 2016-06-30 12:34:38 [1343]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -167,6 +167,11 @@ let g:ag_working_path_mode="r"
 " plugin for ag
 Bundle 'Chun-Yang/vim-action-ag'
 let g:vim_action_ag_escape_chars = '#%.^$*+?()[{\\|'
+
+
+" ctrlsf    {{{1
+" like ag.vim but show context with matches line
+Bundle 'dyng/ctrlsf.vim'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -819,8 +824,28 @@ Bundle 'mattn/calendar-vim'
 " vimwiki  {{{1
 " Bundle 'icersong/vimwiki'
 Bundle 'vimwiki/vimwiki'
+
+let g:vimwiki_ext2syntax = {'.md': 'markdown',
+                \ '.mkd': 'markdown',
+                \ '.wiki': 'media'}
+
 let g:vimwiki_list = [
-  \ {'path': simplify(expand($VIMWIKI.'/projects/soc')),
+  \ {
+  \ 'path': simplify(expand($VIMWIKI.'/projects/technology')),
+  \ 'path_html': simplify(expand($VIMWIKI.'/static/technology')),
+  \ 'css_name': '/style.css',
+  \ 'template_path': simplify(expand($VIMWIKI.'/templetes')),
+  \ 'template_default': 'default',
+  \ 'template_ext': '.tpl',
+  \ 'syntax': 'markdown',
+  \ 'ext': '.md',
+  \ 'auto_export': 1,
+  \ 'auto_toc': 0,
+  \ 'nested_syntaxes': {'python': 'python', 'c++': 'cpp', 'html': 'html',},
+  \ 'custom_wiki2html': simplify(expand($VIM_TOOL_PATH.'/misaka_md2html/misaka_md2html.py')),
+  \ 'diary_link_count': 5},
+  \ {
+  \ 'path': simplify(expand($VIMWIKI.'/projects/soc')),
   \ 'path_html': simplify(expand($VIMWIKI.'/static/soc')),
   \ 'css_name': 'css/style.css',
   \ 'template_path': simplify(expand($VIMWIKI.'/templetes')),
@@ -829,18 +854,6 @@ let g:vimwiki_list = [
   \ 'auto_export': 1,
   \ 'auto_toc': 1,
   \ 'nested_syntaxes': {'python': 'python', 'c++': 'cpp','html': 'html',},
-  \ 'diary_link_count': 5},
-  \ {'path': simplify(expand($VIMWIKI.'/projects/technology')),
-  \ 'path_html': simplify(expand($VIMWIKI.'/static/technology')),
-  \ 'css_name': '/style.css',
-  \ 'template_path': simplify(expand($VIMWIKI.'/templetes')),
-  \ 'template_default': 'default.tpl',
-  \ 'template_ext': '.tpl',
-  \ 'syntax': 'markdown',
-  \ 'ext': '.md',
-  \ 'auto_export': 1,
-  \ 'nested_syntaxes': {'python': 'python', 'c++': 'cpp','html': 'html',},
-  \ 'custom_wiki2html': simplify(expand($VIM_TOOL_PATH.'/misaka_md2html.py')),
   \ 'diary_link_count': 5}
   \ ]
 let g:vimwiki_use_mouse = 1
