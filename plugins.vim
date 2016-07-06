@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2016-06-30 12:34:38 [1343]
+" Modified: 2016-07-06 14:59:51 [1348]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -825,9 +825,10 @@ Bundle 'mattn/calendar-vim'
 " Bundle 'icersong/vimwiki'
 Bundle 'vimwiki/vimwiki'
 
-let g:vimwiki_ext2syntax = {'.md': 'markdown',
-                \ '.mkd': 'markdown',
-                \ '.wiki': 'media'}
+let g:vimwiki_ext2syntax = {
+      \ '.md': 'markdown',
+      \ '.mkd': 'markdown',
+      \ '.wiki': 'media'}
 
 let g:vimwiki_list = [
   \ {
@@ -856,6 +857,8 @@ let g:vimwiki_list = [
   \ 'nested_syntaxes': {'python': 'python', 'c++': 'cpp','html': 'html',},
   \ 'diary_link_count': 5}
   \ ]
+let g:vimwiki_global_ext = 0
+let g:vimwiki_listsyms = '✗○◐●✓'
 let g:vimwiki_use_mouse = 1
 let g:vimwiki_list_ignore_newline = 0
 let g:vimwiki_user_htmls = '404.html,search.html'
@@ -871,7 +874,7 @@ let g:vimwiki_CJK_length = 1
 " 详见下文...
 let g:vimwiki_valid_html_tags='b,i,s,u,sub,sup,kbd,del,br,hr,div,code,h1,nav'
 " 是否开启按语法折叠  会让文件比较慢
-"let g:vimwiki_folding = 1
+"let g:vimwiki_folding = 'syntax'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
