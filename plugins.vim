@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2016-07-06 14:59:51 [1348]
+" Modified: 2016-07-25 19:21:46 [1358]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -685,6 +685,9 @@ Bundle 'chrisbra/NrrwRgn'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " multiple-cursors  {{{1
 Bundle 'terryma/vim-multiple-cursors'
+let g:multi_cursor_insert_maps={'I':1, 'i':1, 'a':1, 'A':1}
+let g:multi_cursor_exit_from_visual_mode=0
+let g:multi_cursor_exit_from_insert_mode=0
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

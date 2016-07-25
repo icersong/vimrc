@@ -93,7 +93,7 @@ set completeopt=menuone         " 去掉智能补全预览，只显示菜单并�
 set autoread                    " 文件变化自动载入
 set t_vb=0                      " 关闭输出铃声
 set directory=$VIMCACHE         " 设置交换文件路径
-set selection=exclusive         " 设定选择区是否包含最后一个光标所在字符
+set selection=inclusive         " 设定选择区是否包含最后一个光标所在字符
 " set autochdir                   " 自动切换路径
 " set lazyredraw                  " 减少重绘
 " set noswapfile                  " 禁止交换文件
@@ -287,7 +287,7 @@ endfunc
 " set nofoldenable        " 关闭折叠
 set foldenable          " 开启折叠
 set foldmethod=indent   " 设置语法折叠 syntax | indent
-set foldlevel=9         " 设置折叠层数为
+set foldlevel=99        " 默认折叠开始层数
 " set foldcolumn=0        " 设置折叠区域的宽度
 " set foldclose=all       " 设置为默认折叠所有
 " set foldnestmax=9
@@ -455,9 +455,10 @@ function! SetCursorStyle()
     highlight iCursor guifg=red guibg=yellow
     highlight vCursor guifg=red guibg=yellow
     " set guicursor=n-v-c:block-nCursor-blinkon0
+    " set guicursor+=v:ver20-vCursor-blinkwait300-blinkon200-blinkoff100
     set guicursor=n-c:block-nCursor-blinkon0
-    set guicursor+=v:ver20-vCursor-blinkwait300-blinkon200-blinkoff100
-    set guicursor+=r:block-nCursor-blinkwait300-blinkon300-blinkoff100
+    set guicursor+=v:block-vCursor-blinkwait300-blinkon100-blinkoff300
+    set guicursor+=r:block-nCursor-blinkwait300-blinkon100-blinkoff300
     set guicursor+=i:ver20-iCursor-blinkwait300-blinkon200-blinkoff100
   else
     if &term =~ '^xterm'
