@@ -187,7 +187,6 @@ autocmd BufRead,BufNewFile *.json setlocal filetype=json
 autocmd BufRead,BufNewFile *vimrc setlocal filetype=vim syntax=vim
 autocmd FileType vim,xml,css,html,xhtml setlocal tabstop=2 et softtabstop=2 shiftwidth=2
 autocmd BufRead,BufNewFile *.tpl setlocal filetype=jinja syntax=jinja
-autocmd BufRead,BufNewFile *.md setlocal filetype=markdown syntax=markdown
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

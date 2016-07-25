@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2016-07-25 19:21:46 [1358]
+" Modified: 2016-07-26 00:06:35 [1363]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -828,11 +828,6 @@ Bundle 'mattn/calendar-vim'
 " Bundle 'icersong/vimwiki'
 Bundle 'vimwiki/vimwiki'
 
-let g:vimwiki_ext2syntax = {
-      \ '.md': 'markdown',
-      \ '.mkd': 'markdown',
-      \ '.wiki': 'media'}
-
 let g:vimwiki_list = [
   \ {
   \ 'path': simplify(expand($VIMWIKI.'/projects/technology')),
@@ -869,7 +864,7 @@ let g:vimwiki_toc_header = 'Catalogue'
 " 对中文用户来说，我们并不怎么需要驼峰英文成为维基词条
 let g:vimwiki_camel_case = 0
 " 标记为完成的 checklist 项目会有特别的颜色
-let g:vimwiki_hl_cb_checked = 1
+let g:vimwiki_hl_cb_checked = 2
 " 禁止添加vimwiki菜单到GUIVim菜单
 let g:vimwiki_menu = ''
 " 是否在计算字串长度时用特别考虑中文字符
