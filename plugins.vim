@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2016-07-26 00:06:35 [1363]
+" Modified: 2016-09-22 15:26:16 [1371]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -161,7 +161,8 @@ Bundle 'mhinz/vim-grepper'
 Bundle 'rking/ag.vim'
 let g:ag_prg="ag --vimgrep --nocolor --nogroup --smart-case --ignore .git --ignore .svn --ignore .DS_Store"
 let g:ag_working_path_mode="r"
-
+let g:ag_format="%f:%l:%c:%m"
+let g:ag_hightlight=1
 
 " vim-action-ag   {{{1
 " plugin for ag
@@ -305,8 +306,10 @@ Bundle 'scrooloose/syntastic'
     let g:syntastic_javascript_checkers = ['jsl']
     let g:syntastic_python_checkers     = ['pyflakes', 'pep8']
     let g:syntastic_xml_checkers        = ['xmllint']
+    let g:syntastic_python_pyflakes_quiet_messages={"regex": [
+        \ 'unable to detect undefined names$']}
     let g:syntastic_python_pep8_quiet_messages={"regex": [
-        \ '^E111', '^E127', '^E128', '^E401', '^E402', '^E501', '^E701', '^E731', '^C901'] }
+        \ '^E111', '^E127', '^E128', '^E401', '^E402', '^E501', '^E701', '^E731', '^C901']}
     let g:syntastic_javascript_jsl_quiet_messages={"regex":
         \ ['redeclaration of var',
         \ 'missing default case in switch statement',
