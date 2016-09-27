@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2016-09-22 15:26:16 [1371]
+" Modified: 2016-09-28 00:27:22 [1372]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -356,7 +356,7 @@ Bundle 'jmcantrell/vim-virtualenv'
 " function to list virtualenvs
 " change the directory path to point to your virtualenvs
 fun ReturnVirtualEnvs(A,L,P)
-  if g:isMacos
+  if g:ismacos
     return system("ls -d /Users/apple/.virtualenvs/*/ \| cut -d'/' -f5")
   endif
   if g:islinux
