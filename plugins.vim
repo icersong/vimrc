@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2016-09-28 00:27:22 [1372]
+" Modified: 2016-10-25 10:21:33 [1388]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -84,6 +84,7 @@ Bundle 'bling/vim-airline'
     nmap <leader>7 <Plug>AirlineSelectTab7
     nmap <leader>8 <Plug>AirlineSelectTab8
     nmap <leader>9 <Plug>AirlineSelectTab9
+    nmap <leader>0 <Plug>AirlineSelectTab10
     " autocmd BufEnter <buffer> AirlineRefresh
   " endif
 
@@ -215,6 +216,8 @@ Bundle 'FelikZ/ctrlp-py-matcher'
 let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" incsearch {{{1
+" highlighting search results
 Bundle 'haya14busa/incsearch.vim'
 set hlsearch
 let g:incsearch#auto_nohlsearch = 1
@@ -309,7 +312,7 @@ Bundle 'scrooloose/syntastic'
     let g:syntastic_python_pyflakes_quiet_messages={"regex": [
         \ 'unable to detect undefined names$']}
     let g:syntastic_python_pep8_quiet_messages={"regex": [
-        \ '^E111', '^E127', '^E128', '^E401', '^E402', '^E501', '^E701', '^E731', '^C901']}
+        \ '^E111', '^E127', '^E128', '^E401', '^E402', '^E501', '^E701', '^E731', '^C901', '^E721']}
     let g:syntastic_javascript_jsl_quiet_messages={"regex":
         \ ['redeclaration of var',
         \ 'missing default case in switch statement',
@@ -594,15 +597,10 @@ map <leader>tl <Plug>TaskList
 " :StripWhitespace
 Bundle 'ntpeters/vim-better-whitespace'
 if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/vim-better-whitespace'))))
-  autocmd FileType javascript,c,cpp,java,html,python,vim autocmd BufWritePre <buffer> StripWhitespace
-  let g:better_whitespace_filetypes_blacklist=['text', 'rich']
-  highlight ExtraWhitespace ctermbg=DarkGray
+  autocmd FileType javascript,c,cpp,java,html,python,vim,tpl,css,jinja,markdown autocmd BufWritePre <buffer> StripWhitespace
+  let g:better_whitespace_filetypes_blacklist=['text', 'rich', 'diff', 'gitcommit', 'unite', 'qf', 'help']
+  highlight ExtraWhitespace ctermbg=Red
 endif
-
-" ---- trailing-whitespace  ----
-" :FixWhitespace
-" Bundle 'bronson/vim-trailing-whitespace'
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " repeat  {{{1
@@ -828,8 +826,8 @@ Bundle 'mattn/calendar-vim'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vimwiki  {{{1
-" Bundle 'icersong/vimwiki'
-Bundle 'vimwiki/vimwiki'
+Bundle 'icersong/vimwiki'
+" Bundle 'vimwiki/vimwiki'
 
 let g:vimwiki_list = [
   \ {

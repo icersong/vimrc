@@ -93,12 +93,12 @@ set completeopt=menuone         " 去掉智能补全预览，只显示菜单并�
 set autoread                    " 文件变化自动载入
 set t_vb=0                      " 关闭输出铃声
 set directory=$VIMCACHE         " 设置交换文件路径
-set selection=inclusive         " 设定选择区是否包含最后一个光标所在字符
+set selection=exclusive         " 设定选择区是否包含最后一个光标所在字符
+set lazyredraw                  " 减少重绘
+set nowrapscan                  " 搜索到文件末尾时，不再回绕到文件首
+set hidden                      " 放弃缓冲区时隐藏而不卸载
 " set autochdir                   " 自动切换路径
-" set lazyredraw                  " 减少重绘
 " set noswapfile                  " 禁止交换文件
-" set nowrapscan                  " 搜索到文件末尾时，不再回绕到文件首
-" set hidden                      " 放弃缓冲区时隐藏而不卸载
 " set linespace=4                 " 设置行间距，单位是像素
 " set shortmess+=I                " 启动时不显示介绍信息
 " set cmdwinheight=2              " 命令行窗口的屏幕行数
