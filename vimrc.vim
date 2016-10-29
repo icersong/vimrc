@@ -450,13 +450,13 @@ function! SetCursorStyle()
   " cursor setting
   highlight CursorLine cterm=underline ctermbg=NONE ctermfg=NONE gui=underline guibg=NONE guifg=NONE
   if has('gui_running')
-    highlight nCursor guifg=red guibg=yellow
-    highlight iCursor guifg=red guibg=yellow
-    highlight vCursor guifg=red guibg=yellow
+    highlight nCursor guifg=Red guibg=Yellow
+    highlight iCursor guifg=Red guibg=Yellow
+    highlight vCursor guifg=Red guibg=Yellow
     " set guicursor=n-v-c:block-nCursor-blinkon0
     " set guicursor+=v:ver20-vCursor-blinkwait300-blinkon200-blinkoff100
     set guicursor=n-c:block-nCursor-blinkon0
-    set guicursor+=v:block-vCursor-blinkwait300-blinkon100-blinkoff300
+    set guicursor+=v:ver50-vCursor-blinkwait300-blinkon100-blinkoff300
     set guicursor+=r:block-nCursor-blinkwait300-blinkon100-blinkoff300
     set guicursor+=i:ver20-iCursor-blinkwait300-blinkon200-blinkoff100
   else

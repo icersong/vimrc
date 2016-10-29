@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2016-10-25 10:21:33 [1388]
+" Modified: 2016-10-29 12:38:41 [1401]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -315,9 +315,13 @@ Bundle 'scrooloose/syntastic'
         \ '^E111', '^E127', '^E128', '^E401', '^E402', '^E501', '^E701', '^E731', '^C901', '^E721']}
     let g:syntastic_javascript_jsl_quiet_messages={"regex":
         \ ['redeclaration of var',
+        \ 'variable rid hides argument',
         \ 'missing default case in switch statement',
+        \ 'missing break statement for last case in switch',
         \ 'anonymous function does not always return a value',
-        \ 'increment (++) and decrement (--) operators used as part of greater statement']}
+        \ 'function GetLicense does not always return a value',
+        \ 'increment (++) and decrement (--) operators used as part of greater statement',
+        \ 'unexpected end of line; it is ambiguous whether these lines are part of the same statement']}
     let g:syntastic_html_tidy_quiet_messages={"regex":
         \ ['unescaped & which should be written as &amp;']}
     let g:syntastic_xhtml_tidy_quiet_messages={"regex":
@@ -813,6 +817,13 @@ Bundle 'vim-scripts/CmdlineComplete'
 if version > 702
 " Bundle 'Shougo/vimproc.vim'
 Bundle 'Shougo/vimshell.vim'
+endif
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" asyncrun shell  {{{1
+if version >= 800
+Bundle "skywind3000/asyncrun.vim"
 endif
 
 
