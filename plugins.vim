@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2016-11-08 09:48:52 [1489]
+" Modified: 2016-11-08 14:04:11 [1541]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -60,9 +60,11 @@ Bundle 'bling/vim-airline'
   let g:airline_left_sep = ''
   let g:airline_right_sep = ''
   let g:airline_section_z = '%B %P %l/%L %v'
+  let g:airline_section_z = '%B %P %l/%L %v'
   let g:airline_extensions = ['branch',
       \ 'tabline', 'syntastic', 'whitespace',
       \ 'tagbar', 'virtualenv']
+  let g:airline_powerline_fonts = 1
   let g:airline#extensions#tabline#enabled = 1
   let g:airline#extensions#tabline#tab_nr_type = 1
   let g:airline#extensions#tabline#fnamemod = ':p:t'
@@ -98,19 +100,20 @@ Bundle 'bling/vim-airline'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " solarized theme  {{{1
 Bundle 'altercation/vim-colors-solarized'
-  " if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/vim-colors-solarized'))))
-    " let g:solarized_termcolors = 256
-    " let g:solarized_termtrans  = 1
-    " let g:solarized_degrade    = 1
-    let g:solarized_contrast   = "high"
-    let g:solarized_visibility = "high"
-    let g:solarized_termtrans  = 1
-    let g:solarized_contrast   = "normal"
-    let g:solarized_visibility = "normal"
-    if has('gui_running')
-      set background=dark
-    endif
-  " endif
+if has('gui_running')
+  let g:solarized_contrast   = "high"
+  let g:solarized_visibility = "high"
+else
+  " let g:solarized_termcolors = 256
+  let g:solarized_contrast   = "normal"
+  let g:solarized_visibility = "normal"
+  let g:solarized_termtrans  = 1
+  let g:solarized_degrade    = 1
+endif
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim devicons  {{{1
+" Bundle "ryanoasis/vim-devicons"
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1002,8 +1005,15 @@ Bundle 'icersong/vim-python'
 "
 
 call vundle#end()
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" syntax on
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 filetype plugin indent on
+syntax enable
 if has('gui_running')
+  set background=dark
   colorscheme solarized
 else
   set background=dark

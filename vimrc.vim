@@ -136,7 +136,6 @@ endif
 if g:ismacos
   set guifontwide=Menlo:h12
   set guifont=Menlo:h12
-  " au BufEnter * :set guifont=   " fixed sometime not show chinese
 endif
 
 if has('gui_running')
@@ -455,17 +454,17 @@ source $VIMFILES/vimrc/plugins.vim
 " Cursor
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "高亮当前行当前列(十字光标)
-set cursorline                  " 设置光标十字坐标，高亮当前行
 " set cursorcolumn                " 设置光标十字坐标，高亮当前列
+set cursorline                  " 设置光标十字坐标，高亮当前行
+highlight CursorLine cterm=underline ctermbg=NONE ctermfg=NONE gui=underline guibg=NONE guifg=NONE
+
+" pop menu setting
+highlight Pmenu ctermfg=2 ctermbg=3 guifg=#005f87 guibg=#EEE8D5
+highlight PmenuSel ctermfg=2 ctermbg=3 guifg=#AFD700 guibg=#106900
 
 " 调整光标显示样式　
 function! SetCursorStyle()
-  " pop menu setting
-  highlight Pmenu ctermfg=2 ctermbg=3 guifg=#005f87 guibg=#EEE8D5
-  highlight PmenuSel ctermfg=2 ctermbg=3 guifg=#AFD700 guibg=#106900
-
   " cursor setting
-  highlight CursorLine cterm=underline ctermbg=NONE ctermfg=NONE gui=underline guibg=NONE guifg=NONE
   if has('gui_running')
     highlight nCursor guifg=Red guibg=Yellow
     highlight iCursor guifg=Red guibg=Yellow
@@ -481,8 +480,7 @@ function! SetCursorStyle()
       " 1 or 0 -> blinking block
       " 2 -> solid block
       " 3 -> blinking underscore
-      " 4 ->solid underscore
-      " Recent versions of xterm (282 or above) also support
+      " 4 -> solid underscore
       " 5 -> blinking vertical bar
       " 6 -> solid vertical bar
       if &term == 'xterm-256color' || &term == 'screen-256color'
@@ -498,7 +496,6 @@ function! SetCursorStyle()
 endfunction
 autocmd ColorScheme * silent call SetCursorStyle()
 " autocmd Syntax * silent call SetCursorStyle()
-syntax on
 " call SetCursorStyle()
 
 
