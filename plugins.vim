@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2016-11-08 14:04:11 [1541]
+" Modified: 2016-11-08 16:14:32 [1556]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -105,8 +105,8 @@ if has('gui_running')
   let g:solarized_visibility = "high"
 else
   " let g:solarized_termcolors = 256
-  let g:solarized_contrast   = "normal"
-  let g:solarized_visibility = "normal"
+  let g:solarized_contrast   = "high"
+  let g:solarized_visibility = "high"
   let g:solarized_termtrans  = 1
   let g:solarized_degrade    = 1
 endif
@@ -712,9 +712,9 @@ let g:vimrc_email='icersong@gmail.com'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " multiple-cursors  {{{1
 Bundle 'terryma/vim-multiple-cursors'
-let g:multi_cursor_insert_maps={'I':1, 'i':1, 'a':1, 'A':1}
 let g:multi_cursor_exit_from_visual_mode=0
 let g:multi_cursor_exit_from_insert_mode=0
+let g:multi_cursor_insert_maps={'I':1, 'i':1, 'a':1, 'A':1}
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

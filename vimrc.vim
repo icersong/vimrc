@@ -466,6 +466,7 @@ highlight PmenuSel ctermfg=2 ctermbg=3 guifg=#AFD700 guibg=#106900
 function! SetCursorStyle()
   " cursor setting
   if has('gui_running')
+    highlight Cursor guifg=Red guibg=Yellow
     highlight nCursor guifg=Red guibg=Yellow
     highlight iCursor guifg=Red guibg=Yellow
     highlight vCursor guifg=Red guibg=Yellow
@@ -494,13 +495,13 @@ function! SetCursorStyle()
     endif
   endif
 endfunction
+call SetCursorStyle()
 autocmd ColorScheme * silent call SetCursorStyle()
 " autocmd Syntax * silent call SetCursorStyle()
-" call SetCursorStyle()
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" clear cache
+" clear undo cache
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! CleanCache()
   exe '!find "'.$VIMCACHE.'/undo" -mtime +7 -exec rm -f {} \;'
