@@ -201,7 +201,7 @@ nmap <silent><Right> :bn<CR>
 " nmap <silent><c-l> :bn<CR>
 
 " 定义空格键暂时取消高亮匹配
-nmap <silent><space> :nohlsearch<CR>:call SetCursorStyle()<CR>
+nmap <silent><space> za
 
 " 删除尾部空格
 nmap <S-Space> :%s/\s\+$//g<CR>
@@ -234,15 +234,9 @@ vmap <S-J> :m'>+1<cr>gv
 
 " visual mode: only paste but not replace cut table
 " if set selection=exclusive
-vmap p pgv<right>y
+" vmap p pgv<right>y
 " if set selection=inclusive
-" vmap p pgvy
-
-" patch esc wait 1 second
-if g:ismacos
-  " imap <esc> <esc><esc>
-  " vmap <esc> <esc><esc>
-endif
+vmap p pgvy
 
 " abbreviations
 abbreviate CDATE <esc>"=strftime("%F")<CR>gP

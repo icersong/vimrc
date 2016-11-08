@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2016-11-08 16:14:32 [1556]
+" Modified: 2016-11-08 16:52:28 [1558]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -64,7 +64,6 @@ Bundle 'bling/vim-airline'
   let g:airline_extensions = ['branch',
       \ 'tabline', 'syntastic', 'whitespace',
       \ 'tagbar', 'virtualenv']
-  let g:airline_powerline_fonts = 1
   let g:airline#extensions#tabline#enabled = 1
   let g:airline#extensions#tabline#tab_nr_type = 1
   let g:airline#extensions#tabline#fnamemod = ':p:t'
@@ -119,7 +118,7 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " minimap   {{{1
 Bundle "everin-lemaignan/vim-minimap"
-let g:minimap_highlight='Visual'
+" let g:minimap_highlight='Visual'
 " let g:minimap_show='<leader>ms'
 " let g:minimap_update='<leader>mu'
 " let g:minimap_close='<leader>gc'
