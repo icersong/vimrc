@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2016-10-29 12:38:41 [1401]
+" Modified: 2016-11-08 09:48:52 [1489]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -55,37 +55,43 @@ let g:startify_session_dir = $VIMCACHE.'session'
 Bundle 'bling/vim-airline'
   " git need plugin https://github.com/tpope/vim-fugitive
   " if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/vim-airline'))))
-    set laststatus=2
-    let g:airline_theme = "dark"
-    let g:airline_left_sep = ''
-    let g:airline_right_sep = ''
-    let g:airline_extensions = ['branch',
-        \ 'tabline', 'syntastic', 'whitespace',
-        \ 'tagbar', 'virtualenv']
-    let g:airline#extensions#tabline#enabled = 1
-    let g:airline#extensions#tabline#tab_nr_type = 1
-    let g:airline#extensions#tabline#fnamemod = ':p:t'
-    let g:airline#extensions#tabline#left_sep = ''
-    let g:airline#extensions#tabline#left_alt_sep = ''
-    let g:airline#extensions#tabline#buffer_nr_show = 1
-    let g:airline#extensions#tabline#buffer_nr_format = '%s:'
-    let g:airline#extensions#syntastic#enabled = 1
-    let g:airline#extensions#whitespace#enabled = 1
-    let g:airline#extensions#tagbar#enabled = 1
-    let g:airline#extensions#virtualenv#enabled = 1
-
-    let g:airline#extensions#tabline#buffer_idx_mode = 1
-    nmap <leader>1 <Plug>AirlineSelectTab1
-    nmap <leader>2 <Plug>AirlineSelectTab2
-    nmap <leader>3 <Plug>AirlineSelectTab3
-    nmap <leader>4 <Plug>AirlineSelectTab4
-    nmap <leader>5 <Plug>AirlineSelectTab5
-    nmap <leader>6 <Plug>AirlineSelectTab6
-    nmap <leader>7 <Plug>AirlineSelectTab7
-    nmap <leader>8 <Plug>AirlineSelectTab8
-    nmap <leader>9 <Plug>AirlineSelectTab9
-    nmap <leader>0 <Plug>AirlineSelectTab10
-    " autocmd BufEnter <buffer> AirlineRefresh
+  set laststatus=2
+  let g:airline_theme = "dark"
+  let g:airline_left_sep = ''
+  let g:airline_right_sep = ''
+  let g:airline_section_z = '%B %P %l/%L %v'
+  let g:airline_extensions = ['branch',
+      \ 'tabline', 'syntastic', 'whitespace',
+      \ 'tagbar', 'virtualenv']
+  let g:airline#extensions#tabline#enabled = 1
+  let g:airline#extensions#tabline#tab_nr_type = 1
+  let g:airline#extensions#tabline#fnamemod = ':p:t'
+  let g:airline#extensions#tabline#left_sep = ''
+  let g:airline#extensions#tabline#left_alt_sep = ''
+  let g:airline#extensions#tabline#buffer_nr_show = 1
+  let g:airline#extensions#tabline#buffer_nr_format = '%s:'
+  let g:airline#extensions#syntastic#enabled = 1
+  let g:airline#extensions#whitespace#enabled = 1
+  let g:airline#extensions#tagbar#enabled = 1
+  let g:airline#extensions#virtualenv#enabled = 1
+  let g:airline#extensions#tabline#buffer_idx_mode = 1
+  let airline#extensions#tabline#ignore_bufadd_pat =
+        \ '\c\vgundo|undotree|vimfiler|tagbar|nerd_tree|vim-minimap'
+  nmap <leader>1 <Plug>AirlineSelectTab1
+  nmap <leader>2 <Plug>AirlineSelectTab2
+  nmap <leader>3 <Plug>AirlineSelectTab3
+  nmap <leader>4 <Plug>AirlineSelectTab4
+  nmap <leader>5 <Plug>AirlineSelectTab5
+  nmap <leader>6 <Plug>AirlineSelectTab6
+  nmap <leader>7 <Plug>AirlineSelectTab7
+  nmap <leader>8 <Plug>AirlineSelectTab8
+  nmap <leader>9 <Plug>AirlineSelectTab9
+  nmap <leader>0 <Plug>AirlineSelectTab10
+  nmap <leader>- <Plug>AirlineSelectPrevTab
+  nmap <leader>+ <Plug>AirlineSelectNextTab
+  nmap <silent><c-h> <Plug>AirlineSelectPrevTab
+  nmap <silent><c-l> <Plug>AirlineSelectNextTab
+  " autocmd BufEnter <buffer> AirlineRefresh
   " endif
 
 
@@ -106,6 +112,19 @@ Bundle 'altercation/vim-colors-solarized'
     endif
   " endif
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" minimap   {{{1
+Bundle "everin-lemaignan/vim-minimap"
+let g:minimap_highlight='Visual'
+" let g:minimap_show='<leader>ms'
+" let g:minimap_update='<leader>mu'
+" let g:minimap_close='<leader>gc'
+" let g:minimap_toggle='<leader>gt'
+
+
+" minimap   {{{1
+" Bundle "koron/minimap-vim"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NERDTree  {{{1
@@ -164,6 +183,7 @@ let g:ag_prg="ag --vimgrep --nocolor --nogroup --smart-case --ignore .git --igno
 let g:ag_working_path_mode="r"
 let g:ag_format="%f:%l:%c:%m"
 let g:ag_hightlight=1
+" let g:ag_qhandler="copen"
 
 " vim-action-ag   {{{1
 " plugin for ag
@@ -173,7 +193,14 @@ let g:vim_action_ag_escape_chars = '#%.^$*+?()[{\\|'
 
 " ctrlsf    {{{1
 " like ag.vim but show context with matches line
+" CtrlSF [options] <patten> [path]
 Bundle 'dyng/ctrlsf.vim'
+let g:ctrlsf_auto_close = 1
+let g:ctrlsf_default_root = 'project+ww'
+let g:ctrlsf_populate_qflist = 1
+let g:ctrlsf_regex_pattern = 1
+let g:ctrlsf_winsize = '30%'
+let g:ctrlsf_position = 'bottom'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -319,9 +346,11 @@ Bundle 'scrooloose/syntastic'
         \ 'missing default case in switch statement',
         \ 'missing break statement for last case in switch',
         \ 'anonymous function does not always return a value',
-        \ 'function GetLicense does not always return a value',
+        \ 'function \{\w\}\+ does not always return a value',
         \ 'increment (++) and decrement (--) operators used as part of greater statement',
         \ 'unexpected end of line; it is ambiguous whether these lines are part of the same statement']}
+    let g:syntastic_css_csslint_quiet_messages={
+        \ "regex": ["^Duplicate property"]}
     let g:syntastic_html_tidy_quiet_messages={"regex":
         \ ['unescaped & which should be written as &amp;']}
     let g:syntastic_xhtml_tidy_quiet_messages={"regex":
@@ -334,7 +363,7 @@ Bundle 'scrooloose/syntastic'
       let $PATH=$VIM.'\\Utilities\\jsl;'.$PATH
       let $PATH='C:\\Python27\\Scripts;'.$PATH
       let g:syntastic_mode_map = { 'mode': 'active',
-          \ 'active_filetypes': ['javascript', 'html', 'xhtml', 'css', 'python'],
+          \ 'active_filetypes': ['javascript', 'html', 'xhtml', 'css', 'python', 'xml'],
           \ 'passive_filetypes': [] }
     endif
 
@@ -342,7 +371,7 @@ Bundle 'scrooloose/syntastic'
       " autocmd BufWritePost * :SyntasticCheck
       "let g:syntastic_python_pep8_exec = 'python /Library/Python/2.7/site-packages/pep8.pyc'
       let g:syntastic_mode_map = { 'mode': 'active',
-          \ 'active_filetypes': ['javascript', 'html', 'xhtml', 'css', 'python'],
+          \ 'active_filetypes': ['javascript', 'html', 'xhtml', 'css', 'python', 'xml'],
           \ 'passive_filetypes': [] }
     endif
   " endif
@@ -372,7 +401,7 @@ fun ReturnVirtualEnvs(A,L,P)
 endfun
 
 " changing virtualenv should restart ycmserver
-" vENV <Virtualenv-name>
+" Venv <Virtualenv-name>
 if g:ismacos
   command -nargs=+ -complete=custom,ReturnVirtualEnvs Venv :VirtualEnvActivate <args> | YcmRestartServer
 else
@@ -442,6 +471,7 @@ let g:jedi#auto_close_doc           = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " python-auto-indent    {{{1
 Bundle "hynek/vim-python-pep8-indent"
+let g:pymode_indent = 0
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -535,13 +565,6 @@ Bundle 'Glench/Vim-Jinja2-Syntax'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" javascript regex color  {{{1
-" :ColorHighLight
-Bundle 'slevithan/regex-colorizer'
-autocmd FileType javascript,html,css ColorHighlight
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " javascript indentation and syntax     {{{1
 " Vastly improved Javascript indentation and syntax support in Vim
 Bundle 'pangloss/vim-javascript'
@@ -583,6 +606,12 @@ let g:sqlutil_default_menu_mode = 0
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Tabular  {{{1
+Bundle 'godlygeek/tabular'
+let g:tabular_loaded = 1
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " matchit   {{{1
 " The matchit.vim script allows you to configure % to match more than just single characters.
 Bundle 'vim-scripts/matchit.zip'
@@ -605,6 +634,7 @@ if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/vim-better-whitespace'))))
   let g:better_whitespace_filetypes_blacklist=['text', 'rich', 'diff', 'gitcommit', 'unite', 'qf', 'help']
   highlight ExtraWhitespace ctermbg=Red
 endif
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " repeat  {{{1
@@ -647,12 +677,6 @@ Bundle 'tpope/vim-surround'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" expand-region {{{1
-" select region by key "+" & "-"
-Bundle 'terryma/vim-expand-region'
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Raimondi/delimitMate {{{1
 " automatic closing of quotes, parenthesis, brackets, etc.
 Bundle 'Raimondi/delimitMate'
@@ -683,16 +707,24 @@ let g:vimrc_email='icersong@gmail.com'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" NrrwRgn  {{{1
-Bundle 'chrisbra/NrrwRgn'
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " multiple-cursors  {{{1
 Bundle 'terryma/vim-multiple-cursors'
 let g:multi_cursor_insert_maps={'I':1, 'i':1, 'a':1, 'A':1}
 let g:multi_cursor_exit_from_visual_mode=0
 let g:multi_cursor_exit_from_insert_mode=0
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" expand-region   {{{1
+" select region by key "+" & "-"
+Bundle 'terryma/vim-expand-region'
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" NrrwRgn   {{{1
+" :NR      - Open the selected region in a new narrowed window
+" :NW      - Open the current visual window in a new narrowed window
+Bundle 'chrisbra/NrrwRgn'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -821,6 +853,11 @@ endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-tmux-navigator  {{{1
+" Bundle "christoomey/vim-tmux-navigator"
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " asyncrun shell  {{{1
 if version >= 800
 Bundle "skywind3000/asyncrun.vim"
@@ -884,7 +921,7 @@ let g:vimwiki_CJK_length = 1
 " 详见下文...
 let g:vimwiki_valid_html_tags='b,i,s,u,sub,sup,kbd,del,br,hr,div,code,h1,nav'
 " 是否开启按语法折叠  会让文件比较慢
-"let g:vimwiki_folding = 'syntax'
+" let g:vimwiki_folding = 'syntax'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -898,10 +935,12 @@ Plugin 'chrisbra/vim-diff-enhanced'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Tabular  {{{1
-Bundle 'godlygeek/tabular'
-let g:tabular_loaded = 1
+" vim-markdown  {{{1
+Plugin 'tpope/vim-markdown'
+let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'shell=sh']
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugin 'gabrielelana/vim-markdown'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim markdown  {{{1
@@ -913,6 +952,14 @@ let g:tabular_loaded = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " suan/vim-instant-markdown
 " 可在浏览器中实时预览正在编写的MD文档
+" 安装需要node.js
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" python-vim-instant-markdown   {{{1
+" python markdown实时预览，与其它markdown syntax冲突
+" :Instantmd
+" Bundle 'isnowfy/python-vim-instant-markdown'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
