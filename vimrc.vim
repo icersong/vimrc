@@ -198,8 +198,8 @@ let g:mapleader = ","
 " buffer切换
 nmap <silent><Left> :bp<CR>
 nmap <silent><Right> :bn<CR>
-nmap <silent><c-h> :bp<CR>
-nmap <silent><c-l> :bn<CR>
+" nmap <silent><c-h> :bp<CR>
+" nmap <silent><c-l> :bn<CR>
 
 " 定义空格键暂时取消高亮匹配
 nmap <silent><space> :nohlsearch<CR>:call SetCursorStyle()<CR>
@@ -250,10 +250,10 @@ abbreviate CDATE <esc>"=strftime("%F")<CR>gP
 abbreviate CTIME <esc>"=strftime("%T")<CR>gP
 abbreviate CDATETIME <esc>"=strftime("%F %T")<CR>gP
 
-if has('gui_running')
-  map <S-Left> :tabp<CR>
-  map <S-Right> :tabn<CR>
-endif
+" if has('gui_running')
+"   map <S-Left> :tabp<CR>
+"   map <S-Right> :tabn<CR>
+" endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -425,6 +425,23 @@ endif
 " autocmd FileType python set makeprg=pylint\ --reports=n\ /
 "     --msg-template=\"{path}:{line}:\ {msg_id}\ {symbol},\ {obj}\ {msg}\"\ %:p
 " autocmd FileType python set errorformat=%f:%l:\ %m
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"python with virtualenv support
+" .bash_profile
+" .zshrc
+" export VIRTUAL_ENV=$WORKON_HOME/py2.7
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+py << EOF
+import os
+import sys
+import vim
+if 'VIRTUAL_ENV' in os.environ:
+  project_base_dir = os.environ['VIRTUAL_ENV']
+  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+  execfile(activate_this, dict(__file__=activate_this))
+EOF
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
