@@ -39,12 +39,12 @@ if !(isdirectory($VIMCACHE))
   call mkdir($VIMCACHE, 'p', 0700)
 endif
 
-let BACKUPDIR = simplify(expand($VIMCACHE.'/backup/'))
+let $BACKUPDIR = simplify(expand($VIMCACHE.'/backup/'))
 if !(isdirectory($BACKUPDIR))
   call mkdir($BACKUPDIR, 'p', 0700)
 endif
 
-let UNDODIR = simplify(expand($VIMCACHE.'/undo/'))
+let $UNDODIR = simplify(expand($VIMCACHE.'/undo/'))
 if !(isdirectory($UNDODIR))
   call mkdir($UNDODIR, 'p', 0700)
 endif
@@ -270,7 +270,7 @@ abbreviate CDATETIME <esc>"=strftime("%F %T")<CR>gP
 " file undo redo history auto save & load
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " set undofile
-" execute('set undodir=' . $VIMCACHE . '/undo/')
+" execute('set undodir=' . $UNDODIR)
 au BufReadPost * silent call ReadUndo()
 au BufWritePost * silent call WriteUndo()
 au VimLeave * silent call CleanCache()
