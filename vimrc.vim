@@ -17,8 +17,8 @@ let g:platform = ""
 if (has("win32") || has("win95") || has("win64") || has("win16"))
   let g:platform = "windows"
   let g:iswindows = 1
-  let $VIMFILES = $VIM.'/vimfiles'
-  let $VIMCACHE = $VIM.'/cache'
+  let $VIMFILES = simplify(expand($VIM.'/vimfiles'))
+  let $VIMCACHE = simplify(expand($VIM.'/cache'))
   set nossl
 else
   if has('mac')
@@ -31,8 +31,22 @@ else
     let g:platform = "linux"
     let g:islinux = 1
   endif
-  let $VIMFILES = $HOME.'/.vim'
-  let $VIMCACHE = $HOME.'/.cache'
+  let $VIMFILES = simplify(expand($HOME.'/.vim'))
+  let $VIMCACHE = simplify(expand($HOME.'/.cache'))
+endif
+
+if !(isdirectory($VIMCACHE))
+  call mkdir($VIMCACHE, 'p', 0700)
+endif
+
+let BACKUPDIR = simplify(expand($VIMCACHE.'/backup/'))
+if !(isdirectory($BACKUPDIR))
+  call mkdir($BACKUPDIR, 'p', 0700)
+endif
+
+let UNDODIR = simplify(expand($VIMCACHE.'/undo/'))
+if !(isdirectory($UNDODIR))
+  call mkdir($UNDODIR, 'p', 0700)
 endif
 
 
@@ -92,18 +106,19 @@ set pumheight=9                 " 设置智能补全菜单长度
 set completeopt=menuone         " 去掉智能补全预览，只显示菜单并自动插入
 set autoread                    " 文件变化自动载入
 set t_vb=0                      " 关闭输出铃声
-set directory=$VIMCACHE         " 设置交换文件路径
 set selection=exclusive         " 设定选择区是否包含最后一个光标所在字符
 set lazyredraw                  " 减少重绘
 set nowrapscan                  " 搜索到文件末尾时，不再回绕到文件首
 set hidden                      " 放弃缓冲区时隐藏而不卸载
+set directory=$VIMCACHE         " 设置交换文件路径
+set backupdir=$BACKUPDIR
+set undodir=$UNDODIR
 " set autochdir                   " 自动切换路径
 " set noswapfile                  " 禁止交换文件
 " set linespace=4                 " 设置行间距，单位是像素
 " set shortmess+=I                " 启动时不显示介绍信息
 " set cmdwinheight=2              " 命令行窗口的屏幕行数
 " set clipboard+=unnamed          " 默认寄存器和系统剪贴板共享
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "File format and encoding
@@ -129,8 +144,10 @@ endif
 if g:iswindows
   " set guifont=Inconsolata:h10:cDEFAULT
   " set guifontwide=YtYaHei:h8:cDEFAULT
-  set guifont=Menlo:h9:cDEFAULT
-  set guifontwide=Menlo:h9:cDEFAULT
+  " set guifont=Menlo:h9:cDEFAULT
+  " set guifontwide=Menlo:h9:cDEFAULT
+  set guifont=Courier\ New:h9:cDEFAULT
+  set guifontwide=Courier\ New:h9:cDEFAULT
 endif
 
 if g:ismacos
@@ -201,7 +218,7 @@ nmap <silent><Right> :bn<CR>
 " nmap <silent><c-l> :bn<CR>
 
 " 定义空格键暂时取消高亮匹配
-nmap <silent><space> za
+nmap <silent><space> :nohls<CR>za
 
 " 删除尾部空格
 nmap <S-Space> :%s/\s\+$//g<CR>
@@ -253,9 +270,10 @@ abbreviate CDATETIME <esc>"=strftime("%F %T")<CR>gP
 " file undo redo history auto save & load
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " set undofile
-execute('set undodir=' . $VIMCACHE . '/undo/')
-au BufReadPost * call ReadUndo()
-au BufWritePost * call WriteUndo()
+" execute('set undodir=' . $VIMCACHE . '/undo/')
+au BufReadPost * silent call ReadUndo()
+au BufWritePost * silent call WriteUndo()
+au VimLeave * silent call CleanCache()
 function! ReadUndo()
   " let fname = undofile(expand('%'))
   let fname = join(split(undofile(expand('%')), '%'), '&')
@@ -264,13 +282,14 @@ function! ReadUndo()
   endif
 endfunc
 function! WriteUndo()
-  let fname = join(split(undofile(expand('%')), '%'), '&')
-  let dirname = expand('~/.cache/undo')
-  if !isdirectory(dirname)
-    call mkdir(dirname)
+  if isdirectory($UNDODIR)
+    let fname = join(split(undofile(expand('%')), '%'), '&')
+    execute('wundo ' . fname)
   endif
-  execute('wundo ' . fname)
 endfunc
+function! CleanCache()
+  exe '!find "'.$VIMCACHE.'/undo" -mtime +7 -exec rm -f {} \;'
+endfunction
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -421,28 +440,15 @@ endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"python with virtualenv support
-" .bash_profile
-" .zshrc
-" export VIRTUAL_ENV=$WORKON_HOME/py2.7
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-py << EOF
-import os
-import sys
-import vim
-if 'VIRTUAL_ENV' in os.environ:
-  project_base_dir = os.environ['VIRTUAL_ENV']
-  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-  execfile(activate_this, dict(__file__=activate_this))
-EOF
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vondle plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "source <sfile>:p:h/vundle.vim
-source $VIMFILES/vimrc/plugins.vim
-
+" $VIMFILES/vimrc/plugins.vim
+if filereadable(simplify(expand($VIMFILES.'/vimrc/plugins.vim')))
+  source $VIMFILES/vimrc/plugins.vim
+else
+  colorscheme desert
+endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Cursor
@@ -497,7 +503,3 @@ autocmd ColorScheme * silent call SetCursorStyle()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " clear undo cache
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! CleanCache()
-  exe '!find "'.$VIMCACHE.'/undo" -mtime +7 -exec rm -f {} \;'
-endfunction
-au VimLeave * silent call CleanCache()

@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2016-11-08 16:52:28 [1558]
+" Modified: 2016-11-14 14:24:17 [1597]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -100,12 +100,12 @@ Bundle 'bling/vim-airline'
 " solarized theme  {{{1
 Bundle 'altercation/vim-colors-solarized'
 if has('gui_running')
-  let g:solarized_contrast   = "high"
-  let g:solarized_visibility = "high"
+  let g:solarized_contrast   = "normal"
+  let g:solarized_visibility = "normal"
 else
   " let g:solarized_termcolors = 256
-  let g:solarized_contrast   = "high"
-  let g:solarized_visibility = "high"
+  let g:solarized_contrast   = "normal"
+  let g:solarized_visibility = "normal"
   let g:solarized_termtrans  = 1
   let g:solarized_degrade    = 1
 endif
@@ -336,14 +336,14 @@ Bundle 'scrooloose/syntastic'
     let g:syntastic_html_checkers       = ['tidy']  " 'jshint', 'jslint'
     let g:syntastic_xhtml_checkers      = ['tidy']
     let g:syntastic_javascript_checkers = ['jsl']
-    let g:syntastic_python_checkers     = ['pyflakes', 'pep8']
+    let g:syntastic_python_checkers     = ['pep8', 'pyflakes']
     let g:syntastic_xml_checkers        = ['xmllint']
     let g:syntastic_python_pyflakes_quiet_messages={"regex": [
         \ 'unable to detect undefined names$']}
     let g:syntastic_python_pep8_quiet_messages={"regex": [
         \ '^E111', '^E127', '^E128', '^E401', '^E402', '^E501', '^E701', '^E731', '^C901', '^E721']}
-    let g:syntastic_javascript_jsl_quiet_messages={"regex":
-        \ ['redeclaration of var',
+    let g:syntastic_javascript_jsl_quiet_messages={"regex": [
+        \ 'redeclaration of var',
         \ 'variable rid hides argument',
         \ 'missing default case in switch statement',
         \ 'missing break statement for last case in switch',
@@ -393,17 +393,30 @@ Bundle 'jmcantrell/vim-virtualenv'
 " ----------------------------------------
 " function to list virtualenvs
 " change the directory path to point to your virtualenvs
-fun ReturnVirtualEnvs(A,L,P)
-  if g:ismacos
-    return system("ls -d /Users/apple/.virtualenvs/*/ \| cut -d'/' -f5")
-  endif
-  if g:islinux
-    return system("ls -d /root/.virtualenvs/*/ \| cut -d'/' -f5")
-  endif
-endfun
+" default load virtualenv VIRTUAL_ENV
+" .bash_profile or .zshrc
+" export VIRTUAL_ENV=$WORKON_HOME/<virtual_env_name>
+
+" function _VirtualEnvActivate()
+" py << EOF
+" import os
+" import sys
+" import vim
+" if 'VIRTUAL_ENV' in os.environ:
+"   project_base_dir = os.environ['VIRTUAL_ENV']
+"   activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+"   execfile(activate_this, dict(__file__=activate_this))
+"   print 'Activate', os.environ['VIRTUAL_ENV']
+" else:
+"   print 'VIRTUAL_ENV not found.'
+" EOF
+" endfunction
 
 " changing virtualenv should restart ycmserver
 " Venv <Virtualenv-name>
+fun ReturnVirtualEnvs(A,L,P)
+  return system("ls -d ~/.virtualenvs/*/ \| cut -d'/' -f5")
+endfun
 if g:ismacos
   command -nargs=+ -complete=custom,ReturnVirtualEnvs Venv :VirtualEnvActivate <args> | YcmRestartServer
 else
@@ -635,6 +648,8 @@ if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/vim-better-whitespace'))))
   autocmd FileType javascript,c,cpp,java,html,python,vim,tpl,css,jinja,markdown autocmd BufWritePre <buffer> StripWhitespace
   let g:better_whitespace_filetypes_blacklist=['text', 'rich', 'diff', 'gitcommit', 'unite', 'qf', 'help']
   highlight ExtraWhitespace ctermbg=Red
+  unmap <silent><space>
+  nmap <silent><space> :nohls<CR>:StripWhitespace<CR>za
 endif
 
 
@@ -761,12 +776,12 @@ if !executable("ctags")
 else
   nmap <Leader>tb :TagbarToggle<CR>
   "let g:tagbar_ctags_bin='/usr/bin/ctags'
-  let g:tagbar_width=30
-  let g:tagbar_autoclose = 2
-  let g:tagbar_autofocus = 1
+  let g:tagbar_width=33
+  " let g:tagbar_autoclose = 1
+  " let g:tagbar_autofocus = 1
   let g:tagbar_show_linenumbers = 1
-  let g:tagbar_singleclick = 1
-  "autocmd BufReadPost *.cpp,*.c,*.h,*.py call tagbar#autoopen()
+  " let g:tagbar_singleclick = 1
+  " autocmd BufReadPost *.cpp,*.c,*.h,*.py,*.js,*.php call tagbar#autoopen()
 endif
 
 
