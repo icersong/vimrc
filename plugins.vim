@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2016-11-14 14:24:17 [1597]
+" Modified: 2016-11-15 12:15:14 [1623]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -36,7 +36,7 @@ Bundle 'gmarik/Vundle.vim'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " screen saver {{{1
 " bug: When after run matrix, all other syntax gone.
-Bundle 'uguu-org/vim-matrix-screensaver'
+" Bundle 'uguu-org/vim-matrix-screensaver'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -99,6 +99,8 @@ Bundle 'bling/vim-airline'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " solarized theme  {{{1
 Bundle 'altercation/vim-colors-solarized'
+let g:solarized_hitrail          = 1
+let g:solarized_menu             = 0
 if has('gui_running')
   let g:solarized_contrast   = "normal"
   let g:solarized_visibility = "normal"
@@ -138,11 +140,6 @@ let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^
 let g:netrw_home=$VIMCACHE.'/NERDTree'
 "close vim if the only window left open is a NERDTree
 autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | :bd<cr> | end
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" SrcExpl   {{{1
-Bundle 'wesleyche/SrcExpl'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -709,11 +706,10 @@ au FileType python let b:delimitMate_nesting_quotes = ['"']
 Bundle 'icersong/nerdcommenter'
 let NERDSpaceDelims = 1
 let NERDCreateDefaultMappings = 'OFF'
-" vmap <BS> <plug>NERDCommenterToggle gv
-vmap <BS> <plug>NERDCommenterToggle gv
+vmap <BS> <plug>NERDCommenterToggle:nohls<CR>gv
 nmap <BS> <plug>NERDCommenterToggle
-vmap <leader>cc <plug>NERDCommenterAlignBoth gv
-nmap <leader>cu <plug>NERDCommenterUncomment gv
+vmap <leader>cc <plug>NERDCommenterAlignBoth:nohls<CR>gv
+nmap <leader>cu <plug>NERDCommenterUncomment:nohls<CR>gv
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

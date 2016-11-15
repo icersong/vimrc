@@ -106,7 +106,7 @@ set pumheight=9                 " 设置智能补全菜单长度
 set completeopt=menuone         " 去掉智能补全预览，只显示菜单并自动插入
 set autoread                    " 文件变化自动载入
 set t_vb=0                      " 关闭输出铃声
-set selection=exclusive         " 设定选择区是否包含最后一个光标所在字符
+set selection=inclusive         " 设定选择区是否包含最后一个光标所在字符
 set lazyredraw                  " 减少重绘
 set nowrapscan                  " 搜索到文件末尾时，不再回绕到文件首
 set hidden                      " 放弃缓冲区时隐藏而不卸载
@@ -250,14 +250,10 @@ vmap <S-J> :m'>+1<cr>gv
 " vmap <C-k> :m'<-2<cr>`>my`<mzgv`yo`z
 
 " visual mode: only paste but not replace cut table
-" if set selection=exclusive
-" vmap p pgv<right>y
-" if set selection=inclusive
 vmap p pgvy
 
 " abbreviations
 abbreviate CDATE <esc>"=strftime("%F")<CR>gP
-abbreviate CTIME <esc>"=strftime("%T")<CR>gP
 abbreviate CDATETIME <esc>"=strftime("%F %T")<CR>gP
 
 " if has('gui_running')
@@ -473,7 +469,7 @@ function! SetCursorStyle()
     " set guicursor=n-v-c:block-nCursor-blinkon0
     " set guicursor+=v:ver20-vCursor-blinkwait300-blinkon200-blinkoff100
     set guicursor=n-c:block-nCursor-blinkon0
-    set guicursor+=v:ver50-vCursor-blinkwait300-blinkon100-blinkoff300
+    set guicursor+=v:ver100-vCursor-blinkwait300-blinkon100-blinkoff300
     set guicursor+=r:block-nCursor-blinkwait300-blinkon100-blinkoff300
     set guicursor+=i:ver20-iCursor-blinkwait300-blinkon200-blinkoff100
   else
