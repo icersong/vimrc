@@ -229,7 +229,7 @@ nmap <S-U> :redo<CR>
 " 文件操作
 " command! -nargs=0 Q :q!
 nmap <silent><leader>q :bd<CR>
-nmap <silent><leader><S-Q> :q!<CR>
+nmap <silent><leader><S-Q> :bd!<CR>
 nmap <silent><leader>w :w<CR>
 nmap <silent><leader><S-W> :w!<CR>
 " 文件格式设置成dos :set ff=dos<CR>

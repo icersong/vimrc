@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2016-11-15 12:15:14 [1623]
+" Modified: 2016-11-15 17:00:00 [1638]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -377,12 +377,6 @@ Bundle 'scrooloose/syntastic'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" - AutoComplPop    {{{1
-" Bundle 'icersong/AutoComplPop'
-" let g:acp_enableAtStartup = 0
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-virtualenv    {{{1
 Bundle 'jmcantrell/vim-virtualenv'
 
@@ -702,8 +696,7 @@ au FileType python let b:delimitMate_nesting_quotes = ['"']
 " nerdcommenter   {{{1
 " <leader>cc add common
 " <leader>cu remove common
-" Bundle 'scrooloose/nerdcommenter'
-Bundle 'icersong/nerdcommenter'
+Bundle 'scrooloose/nerdcommenter'
 let NERDSpaceDelims = 1
 let NERDCreateDefaultMappings = 'OFF'
 vmap <BS> <plug>NERDCommenterToggle:nohls<CR>gv
@@ -783,6 +776,7 @@ endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Buffergator {{{1
+" <leader>b to open buffer list
 Bundle 'jeetsukumaran/vim-buffergator'
 
 
@@ -839,17 +833,21 @@ autocmd BufRead * silent call Gitgutter_Disabled_in_Largefile()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-signature  {{{1
 " virtual mark
+" m.        If no mark on line, place the next available mark. Otherwise, remove (first) existing mark.
+" m<space>  Delete all marks from te current buffer
+" [` or ]`  Jump to prev or next mark
 Bundle 'kshenoy/vim-signature'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-vinegar  {{{1
-Bundle 'tpope/vim-vinegar'
-
+" vinegar.vim enhances netrw
+" Bundle 'tpope/vim-vinegar'
+" let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " netrw   {{{1
-Bundle 'eiginn/netrw'
+" Bundle 'eiginn/netrw'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -935,16 +933,7 @@ let g:vimwiki_CJK_length = 1
 let g:vimwiki_valid_html_tags='b,i,s,u,sub,sup,kbd,del,br,hr,div,code,h1,nav'
 " 是否开启按语法折叠  会让文件比较慢
 " let g:vimwiki_folding = 'syntax'
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ZoomWin  {{{1
-Bundle 'vim-scripts/ZoomWin'
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" EnhancedDiff {{{1
-Plugin 'chrisbra/vim-diff-enhanced'
+autocmd BufNewFile $VIMWIKI/** set fileencoding=utf8
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -952,8 +941,6 @@ Plugin 'chrisbra/vim-diff-enhanced'
 Plugin 'tpope/vim-markdown'
 let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'shell=sh']
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plugin 'gabrielelana/vim-markdown'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim markdown  {{{1
@@ -974,6 +961,19 @@ let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'shell=sh']
 " :Instantmd
 " Bundle 'isnowfy/python-vim-instant-markdown'
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ZoomWin  {{{1
+Bundle 'vim-scripts/ZoomWin'
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" EnhancedDiff {{{1
+Plugin 'chrisbra/vim-diff-enhanced'
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugin 'gabrielelana/vim-markdown'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " lage file   {{{1
