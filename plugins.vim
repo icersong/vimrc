@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2016-11-15 17:00:00 [1638]
+" Modified: 2016-11-17 15:27:09 [1660]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -173,6 +173,15 @@ endif
 "    ...> mhinz
 "    ...> mhinz\\|bling
 Bundle 'mhinz/vim-grepper'
+let g:grepper           = {}
+let g:grepper.tools     = ['ag', 'git', 'grep']
+let g:grepper.open      = 1
+let g:grepper.jump      = 0
+let g:grepper.next_tool = '<leader>g'
+" let g:grepper.ag = { 'grepprg': 'ag --vimgrep --' }
+nnoremap <leader>g :Grepper -tool git<cr>
+nnoremap <leader>G :Grepper -tool ag<cr>
+nnoremap <leader>* :Grepper -tool ag -cword -noprompt<cr>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -778,6 +787,9 @@ endif
 " Buffergator {{{1
 " <leader>b to open buffer list
 Bundle 'jeetsukumaran/vim-buffergator'
+let g:buffergator_split_size = 0
+let g:buffergator_vsplit_size = 80
+let g:buffergator_show_full_directory_path = 0
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
