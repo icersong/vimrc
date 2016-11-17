@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2016-11-17 15:27:09 [1660]
+" Modified: 2016-11-17 20:16:53 [1678]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -329,6 +329,7 @@ Bundle 'SirVer/ultisnips'
 " check syntax for all language while write file.
 Bundle 'scrooloose/syntastic'
   " if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/syntastic'))))
+  " examine debug messages with :mes
     " let g:syntastic_debug               = 33
     let g:syntastic_error_symbol        = "✘"
     let g:syntastic_warning_symbol      = "⚠"
@@ -354,7 +355,7 @@ Bundle 'scrooloose/syntastic'
         \ 'missing default case in switch statement',
         \ 'missing break statement for last case in switch',
         \ 'anonymous function does not always return a value',
-        \ 'function \{\w\}\+ does not always return a value',
+        \ 'function {\\w}\+ does not always return a value',
         \ 'increment (++) and decrement (--) operators used as part of greater statement',
         \ 'unexpected end of line; it is ambiguous whether these lines are part of the same statement']}
     let g:syntastic_css_csslint_quiet_messages={
@@ -377,7 +378,7 @@ Bundle 'scrooloose/syntastic'
 
     if (g:ismacos)
       " autocmd BufWritePost * :SyntasticCheck
-      "let g:syntastic_python_pep8_exec = 'python /Library/Python/2.7/site-packages/pep8.pyc'
+      let g:syntastic_python_pep8_exec = "/usr/local/bin/pep8"
       let g:syntastic_mode_map = { 'mode': 'active',
           \ 'active_filetypes': ['javascript', 'html', 'xhtml', 'css', 'python', 'xml'],
           \ 'passive_filetypes': [] }
