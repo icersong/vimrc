@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2016-11-17 20:16:53 [1678]
+" Modified: 2016-11-21 16:56:44 [1689]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -650,7 +650,7 @@ if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/vim-better-whitespace'))))
   let g:better_whitespace_filetypes_blacklist=['text', 'rich', 'diff', 'gitcommit', 'unite', 'qf', 'help']
   highlight ExtraWhitespace ctermbg=Red
   unmap <silent><space>
-  nmap <silent><space> :nohls<CR>:StripWhitespace<CR>za
+  nmap <silent><space> :nohls<CR>za
 endif
 
 
@@ -707,8 +707,13 @@ au FileType python let b:delimitMate_nesting_quotes = ['"']
 " <leader>cc add common
 " <leader>cu remove common
 Bundle 'scrooloose/nerdcommenter'
-let NERDSpaceDelims = 1
 let NERDCreateDefaultMappings = 'OFF'
+let NERDSpaceDelims           = 1
+let NERDAllowAnyVisualDelims  = 1
+let NERDCommentEmptyLines     = 1
+let NERDCompactSexyComs       = 1
+let NERDDefaultAlign          = 'start'
+let NERDTrimTrailingWhitespace = 1
 vmap <BS> <plug>NERDCommenterToggle:nohls<CR>gv
 nmap <BS> <plug>NERDCommenterToggle
 vmap <leader>cc <plug>NERDCommenterAlignBoth:nohls<CR>gv
