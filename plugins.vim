@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2016-11-21 16:56:44 [1689]
+" Modified: 2016-11-22 17:11:28 [1690]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -712,7 +712,7 @@ let NERDSpaceDelims           = 1
 let NERDAllowAnyVisualDelims  = 1
 let NERDCommentEmptyLines     = 1
 let NERDCompactSexyComs       = 1
-let NERDDefaultAlign          = 'start'
+let NERDDefaultAlign          = 'left'
 let NERDTrimTrailingWhitespace = 1
 vmap <BS> <plug>NERDCommenterToggle:nohls<CR>gv
 nmap <BS> <plug>NERDCommenterToggle
