@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2016-11-22 17:11:28 [1690]
+" Modified: 2016-11-25 13:16:55 [1694]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -12,16 +12,17 @@ set nocompatible                " be improved
 filetype off                    " required!
 
 " Variables
-let $VIM_BUNDLE_PATH = $VIMFILES.'/bundle'
-let $GIT_LOCAL_URL = $VIMFILES.'/repostory'
-let $VIM_TOOL_PATH = $VIMFILES.'/tools'
-let $VIMWIKI = $VIMFILES.'/wiki'
+let $VIM_BUNDLE_PATH = simplify(expand($VIMFILES.'/bundle'))
+let $GIT_LOCAL_URL = simplify(expand($VIMFILES.'/repostory'))
+let $VIM_TOOL_PATH = simplify(expand($VIMFILES.'/tools'))
+let $VIMWIKI = simplify(expand($VIMFILES.'/wiki'))
 let $WEBROOT = '/Users/apple/Sites'
 let s:no_python_support = "Warning! Vim is compiled without python support."
 let s:no_ruby_support = "Warning! Vim is compiled without ruby support."
 
 " initalize vundle
-set rtp +=$VIMFILES/bundle/Vundle.vim
+let $VUNDLEFILE = simplify(expand($VIMFILES.'/bundle/Vundle.vim'))
+set rtp+=$VUNDLEFILE
 " call vundle#rc($VIM_BUNDLE_PATH)
 call vundle#begin($VIM_BUNDLE_PATH)
 
