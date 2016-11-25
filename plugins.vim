@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2016-11-25 13:16:55 [1694]
+" Modified: 2016-11-25
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -120,7 +120,7 @@ endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " minimap   {{{1
-Bundle "everin-lemaignan/vim-minimap"
+Bundle "severin-lemaignan/vim-minimap"
 " let g:minimap_highlight='Visual'
 " let g:minimap_show='<leader>ms'
 " let g:minimap_update='<leader>mu'
