@@ -436,7 +436,7 @@ endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vondle plugins
+" vundle plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "source <sfile>:p:h/vundle.vim
 " $VIMFILES/vimrc/plugins.vim

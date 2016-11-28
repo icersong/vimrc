@@ -4,6 +4,19 @@
 " Modified: 2016-11-25
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+let g:enable_youcompleteme = 0
+let g:enable_neocomplete = 0
+let g:enable_pydiction = 0
+let g:enable_jedi = 0
+let g:enable_ropevim = 0
+
+if g:ismacos
+  let g:enable_youcompleteme = 1
+else
+  let g:enable_neocomplete = 1
+  let g:enable_pydiction = 1
+  let g:enable_jedi = 1
+endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle  {{{1
@@ -53,6 +66,7 @@ let g:startify_session_dir = $VIMCACHE.'session'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " airline   {{{1
+" g ctrl-g 可显示选中字符数量信息
 Bundle 'bling/vim-airline'
   " git need plugin https://github.com/tpope/vim-fugitive
   " if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/vim-airline'))))
@@ -60,7 +74,6 @@ Bundle 'bling/vim-airline'
   let g:airline_theme = "dark"
   let g:airline_left_sep = ''
   let g:airline_right_sep = ''
-  let g:airline_section_z = '%B %P %l/%L %v'
   let g:airline_section_z = '%B %P %l/%L %v'
   let g:airline_extensions = ['branch',
       \ 'tabline', 'syntastic', 'whitespace',
@@ -210,6 +223,9 @@ let g:ctrlsf_populate_qflist = 1
 let g:ctrlsf_regex_pattern = 1
 let g:ctrlsf_winsize = '30%'
 let g:ctrlsf_position = 'bottom'
+let g:ctrlsf_context = '-B 0 -A 0'
+nmap <F3> <Plug>CtrlSFCwordPath
+vmap <F3> <Plug>CtrlSFVwordExec
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -278,11 +294,11 @@ Bundle 'vim-voom/VOoM'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " rainbow_parentheses   {{{1
 " high light parentheses with different color
-Bundle 'rainbow_parentheses.vim'
+Bundle 'kien/rainbow_parentheses.vim'
 if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/rainbow_parentheses.vim'))))
   let g:rbpt_loadcmd_toggle = 0
   autocmd VimEnter * nested :RainbowParenthesesToggle
-  autocmd Syntax * RainbowParenthesesLoadRound
+  " autocmd Syntax * RainbowParenthesesLoadRound
   autocmd Syntax * RainbowParenthesesLoadSquare
   autocmd Syntax * RainbowParenthesesLoadBraces
 endif
@@ -391,7 +407,6 @@ Bundle 'scrooloose/syntastic'
 " vim-virtualenv    {{{1
 Bundle 'jmcantrell/vim-virtualenv'
 
-
 " ----------------------------------------
 " function to list virtualenvs
 " change the directory path to point to your virtualenvs
@@ -413,6 +428,7 @@ Bundle 'jmcantrell/vim-virtualenv'
 "   print 'VIRTUAL_ENV not found.'
 " EOF
 " endfunction
+" ----------------------------------------
 
 " changing virtualenv should restart ycmserver
 " Venv <Virtualenv-name>
@@ -427,24 +443,45 @@ endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" - YouCompleteMe   {{{1
+" YouCompleteMe   {{{1
 " YCM windows install guides needed.
-if g:ismacos
+if g:enable_youcompleteme
   Bundle 'Valloric/YouCompleteMe'
-  let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
-  let g:ycm_collect_identifiers_from_comments_and_strings = 1
+  " set completeopt=longest,menu    " 让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
   highlight Pmenu ctermfg=2 ctermbg=3 guifg=#005f87 guibg=#EEE8D5
   highlight PmenuSel ctermfg=2 ctermbg=3 guifg=#AFD700 guibg=#106900
+  let g:ycm_global_ycm_extra_conf = simplify(expand(
+      \ $VIM_BUNDLE_PATH.'/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'))
+  let g:ycm_min_num_of_chars_for_completion = 2
+  let g:ycm_collect_identifiers_from_comments_and_strings = 0
+  let g:ycm_complete_in_comments = 1
+  let g:ycm_complete_in_strings = 1
+  let g:ycm_seed_identifiers_with_syntax = 1
+  let g:syntastic_always_populate_loc_list = 1
+  " let g:ycm_path_to_python_interpreter='/usr/local/bin/python'
+  " let g:ycm_collect_identifiers_from_tags_files = 1
+  autocmd InsertLeave * if pumvisible() == 0|pclose|endif   " 离开插入模式后自动关闭预览窗口
   nmap <leader>jj :YcmCompleter GoTo<CR>
   " nmap <leader>jr :YcmCompleter GoToReferences<CR>
   " nmap <leader>jd :YcmCompleter GoToDefinition<CR>
   " nmap <leader>ji :YcmCompleter GoToDeclaration<CR>
   nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+  "nnoremap <leader>lo :lopen<CR>	"open locationlist
+  "nnoremap <leader>lc :lclose<CR>	"close locationlist
+  inoremap <leader><leader> <C-x><C-o>
+  inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"  " 回车即选中当前项
+
+  " 上下左右键的行为 会显示其他信息
+  " inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
+  " inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
+  " inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
+  " inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
+
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " neocomplete   {{{1
-if version > 702
+if g:enable_neocomplete
 Bundle 'Shougo/neocomplete.vim'
 " if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/neocomplete'))))
 "   if (filereadable(simplify(expand('$VIMFILES/vimrc/neocomplete.vim'))))
@@ -459,30 +496,36 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " python-dict   {{{1
 " usage: os.p<tab>
-Bundle "rkulla/pydiction"
-let g:pydiction_location = simplify(expand($VIM_BUNDLE_PATH.'/pydiction/complete-dict'))
-let g:pydiction_menu_height = 9
+if g:enable_pydiction
+  Bundle "rkulla/pydiction"
+  let g:pydiction_location = simplify(expand($VIM_BUNDLE_PATH.'/pydiction/complete-dict'))
+  let g:pydiction_menu_height = 9
+endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " jedi-vim  {{{1
 " jedi-vim is a is a VIM binding to the autocompletion library Jedi.
 " 此插件会导致键入时迟缓，严重时会卡住
-Bundle 'davidhalter/jedi-vim'
-let g:jedi#auto_initialization      = 0
-let g:jedi#auto_vim_configuration   = 0
-let g:jedi#use_tabs_not_buffers     = 0
-let g:jedi#use_splits_not_buffers   = 1
-let g:jedi#completions_enabled      = 0
-let g:jedi#popup_select_first       = 1
-let g:jedi#popup_on_dot             = 1
-let g:jedi#auto_close_doc           = 1
-" let g:jedi#completions_command      = "<C-N>"
+if g:enable_jedi
+  Bundle 'davidhalter/jedi-vim'
+  let g:jedi#auto_initialization      = 0
+  let g:jedi#auto_vim_configuration   = 0
+  let g:jedi#use_tabs_not_buffers     = 0
+  let g:jedi#use_splits_not_buffers   = 1
+  let g:jedi#completions_enabled      = 0
+  let g:jedi#popup_select_first       = 1
+  let g:jedi#popup_on_dot             = 1
+  let g:jedi#auto_close_doc           = 1
+  " let g:jedi#completions_command      = "<C-N>"
+endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " python rope vim   {{{1
-" Bundle "python-rope/ropevim"
+if g:enable_ropevim
+  Bundle "python-rope/ropevim"
+endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -700,7 +743,8 @@ Bundle 'tpope/vim-surround'
 " automatic closing of quotes, parenthesis, brackets, etc.
 Bundle 'Raimondi/delimitMate'
 " for python docstring "
-au FileType python let b:delimitMate_nesting_quotes = ['"']
+let delimitMate_matchpairs = "[:],{:}"
+au FileType python let b:delimitMate_nesting_quotes = ['"', "'"]
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
