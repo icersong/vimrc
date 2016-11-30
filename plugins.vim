@@ -77,7 +77,7 @@ Bundle 'bling/vim-airline'
   let g:airline_section_z = '%B %P %l/%L %v'
   let g:airline_extensions = ['branch',
       \ 'tabline', 'syntastic', 'whitespace',
-      \ 'tagbar', 'virtualenv']
+      \ 'tagbar', 'virtualenv', 'unite']
   let g:airline#extensions#tabline#enabled = 1
   let g:airline#extensions#tabline#tab_nr_type = 1
   let g:airline#extensions#tabline#fnamemod = ':p:t'
@@ -157,31 +157,99 @@ autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" unite
+" CtrlP {{{1
+" Bundle 'kien/ctrlp.vim'
+Bundle 'ctrlpvim/ctrlp.vim'
+Bundle 'tacahiroy/ctrlp-funky'
+Bundle 'FelikZ/ctrlp-py-matcher'
+
+" if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/ctrlp.vim'))))
+  map <F1> <c-p>
+  let g:ctrlp_map = '<c-p>'
+  let g:ctrlp_cmd = 'CtrlPMRU'
+  let g:ctrlp_show_hidden = 1
+  let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+  let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\v[\/](\.(git|hg|svn)|cache)$',
+    \ 'file': '\v\.(exe|so|dll|png|jpg|gif|zip|7z|gz|tgz|swp|bin)$',
+    \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
+    \ }
+  " if g:ismacos || g:islinux
+  "   set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.png,*.jpg,*.jpeg,*.gif " MacOSX/Linux
+  "   let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
+  " endif
+  " if g:iswindows
+  "   set wildignore+=*\\.git\\*,*\\.hg\\*,*\\.svn\\*     " Windows ('noshellslash')
+  "   set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe         " Windows
+  "   let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
+  " endif
+  if executable('ag')
+    " Use Ag over Grep
+    set grepprg=ag\ --nogroup\ --nocolor
+    " Use ag in CtrlP for listing files.
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+    " Ag is fast enough that CtrlP doesn't need to cache
+    let g:ctrlp_use_caching = 0
+  endif
+  nmap <leader>f :CtrlP<CR>
+" endif
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" unite     {{{1
 " powerful than CtrlP|ACK ...
-if version > 702
+" search project
+"   :UniteWithProjectDir -toggle -auto-resize -buffer-name=project file
+"   >> **/????  !xx
 Bundle 'Shougo/unite.vim'
 Bundle 'Shougo/vimproc.vim'
 Bundle 'Shougo/neomru.vim'
+" call unite#filters#matcher_default#use(['matcher_fuzzy'])
+" call unite#filters#sorter_default#use(['sorter_rank'])
+" call unite#set_profile('files', 'smartcase', 1)
 let g:unite_data_directory = $VIMCACHE.'/unite'
-let g:unite_no_default_keymapping = 1
 let g:unite_enable_start_insert = 1
+let g:unite_no_default_keymapping = 1
 let g:unite_source_history_yank_enable = 1
+" let g:unite_source_rec_max_cache_files = 5000
 let g:unite_prompt = '» '
 let g:unite_split_rule = 'botright'
 let g:unite_ignore_source_files = ['function.vim', 'command.vim']
 if executable('ag')
-  let g:unite_source_grep_command = 'ag'
-  let g:unite_source_grep_default_opts = '--nocolor --nogroup -S -C4'
-  let g:unite_source_grep_recursive_opt = ''
+  let g:unite_source_grep_command='ag'
+  let g:unite_source_grep_default_opts='--nocolor --nogroup -S -C4'
+  let g:unite_source_grep_recursive_opt=''
+elseif executable('ack')
+  let g:unite_source_grep_command='ack'
+  let g:unite_source_grep_default_opts='--no-heading --no-color -C4'
+  let g:unite_source_grep_recursive_opt=''
 endif
-nnoremap <silent><c-s> :Unite -auto-resize file file_mru file_rec<cr>
-nnoremap <silent><c-a> :UniteWithProjectDir -auto-resize file file_mru file_rec<cr>
-endif
+function! s:unite_settings()
+  nmap <buffer> Q <plug>(unite_exit)
+  nmap <buffer> <esc> <plug>(unite_exit)
+  " imap <buffer> <esc> <plug>(unite_exit)
+  imap <buffer> <C-j>   <Plug>(unite_select_next_line)
+  imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
+endfunction
+autocmd FileType unite call s:unite_settings()
+nnoremap <silent><c-s> :Unite -toggle -auto-resize -buffer-name=mixed
+      \ file_mru file_rec/async buffer bookmark<cr>
+nnoremap <silent><c-a> :UniteWithProjectDir -toggle -auto-resize -buffer-name=project file<cr>**/<space>
+nnoremap <silent><leader>ul :Unite -auto-resize -buffer-name=line line<cr>
+nnoremap <silent><leader>u/ :Unite -no-quit -buffer-name=search grep:.<cr>
+" nnoremap <silent> [unite]<space> :<C-u>Unite -toggle -auto-resize
+"       \ -buffer-name=mixed file_mru file_rec/async buffer bookmark<cr><c-u>
+" nnoremap <silent> [unite]f :<C-u>Unite -toggle -auto-resize -buffer-name=files file_rec/async<cr><c-u>
+" nnoremap <silent> [unite]y :<C-u>Unite -buffer-name=yanks history/yank<cr>
+" nnoremap <silent> [unite]l :<C-u>Unite -auto-resize -buffer-name=line line<cr>
+" nnoremap <silent> [unite]b :<C-u>Unite -auto-resize -buffer-name=buffers buffer<cr>
+" nnoremap <silent> [unite]/ :<C-u>Unite -no-quit -buffer-name=search grep:.<cr>
+" nnoremap <silent> [unite]m :<C-u>Unite -auto-resize -buffer-name=mappings mapping<cr>
+" nnoremap <silent> [unite]s :<C-u>Unite -quick-match buffer<cr>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Grepper
+" Grepper   {{{1
 " Search file content
 " eg: ,ag<cr>
 "    ...> mhinz
@@ -208,7 +276,11 @@ let g:ag_hightlight=1
 " let g:ag_qhandler="copen"
 
 " vim-action-ag   {{{1
-" plugin for ag
+" Normal Mode
+"   gagiw to search the word
+"   gagi' to search the words inside single quotes.
+" Visual Mode
+"   gag to search the selected text
 Bundle 'Chun-Yang/vim-action-ag'
 let g:vim_action_ag_escape_chars = '#%.^$*+?()[{\\|'
 
@@ -227,45 +299,6 @@ let g:ctrlsf_context = '-B 0 -A 0'
 nmap <F3> <Plug>CtrlSFCwordPath
 vmap <F3> <Plug>CtrlSFVwordExec
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" CtrlP {{{1
-" Bundle 'kien/ctrlp.vim'
-Bundle 'ctrlpvim/ctrlp.vim'
-Bundle 'tacahiroy/ctrlp-funky'
-Bundle 'FelikZ/ctrlp-py-matcher'
-
-" if (isdirectory(simplify(expand($VIM_BUNDLE_PATH.'/ctrlp.vim'))))
-  map <F1> <c-p>
-  let g:ctrlp_map = '<c-p>'
-  let g:ctrlp_cmd = 'CtrlPMRU'
-  let g:ctrlp_show_hidden = 1
-  let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\v[\/](\.(git|hg|svn)|cache)$',
-    \ 'file': '\v\.(exe|so|dll|png|jpg|gif|zip|7z|gz|tgz|swp|bin)$',
-    \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
-    \ }
-  " if g:ismacos || g:islinux
-  "   set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.png,*.jpg,*.jpeg,*.gif " MacOSX/Linux
-  "   let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
-  " endif
-  " if g:iswindows
-  "   set wildignore+=*\\.git\\*,*\\.hg\\*,*\\.svn\\*     " Windows ('noshellslash')
-  "   set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe         " Windows
-  "   let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
-  " endif
-  if executable('ag')
-    " Use Ag over Grep
-    set grepprg=ag\ --nogroup\ --nocolor
-    " Use ag in CtrlP for listing files.
-    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-    " Ag is fast enough that CtrlP doesn't need to cache
-    let g:ctrlp_use_caching = 0
-  endif
-  nmap <leader>f :CtrlP<CR>
-" endif
-
-let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " incsearch {{{1
