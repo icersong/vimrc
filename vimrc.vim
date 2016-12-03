@@ -9,6 +9,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General ENV
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set runtimepath+=
 let g:iswindows = 0
 let g:ismacos = 0
 let g:isunix = 0
@@ -455,8 +456,10 @@ set cursorline                  " 设置光标十字坐标，高亮当前行
 highlight CursorLine cterm=underline ctermbg=NONE ctermfg=NONE gui=underline guibg=NONE guifg=NONE
 
 " pop menu setting
-highlight Pmenu ctermfg=2 ctermbg=3 guifg=#005f87 guibg=#EEE8D5
-highlight PmenuSel ctermfg=2 ctermbg=3 guifg=#AFD700 guibg=#106900
+" highlight Pmenu ctermfg=DarkMagenta ctermbg=Blue guifg=#005f87 guibg=#EEE8D5
+" highlight PmenuSel ctermfg=2 ctermbg=3 guifg=#AFD700 guibg=#106900
+highlight Pmenu guifg=#005f87 guibg=#EEE8D5
+highlight PmenuSel guifg=#AFD700 guibg=#106900
 
 " 调整光标显示样式　
 function! SetCursorStyle()

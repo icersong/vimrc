@@ -119,7 +119,7 @@ if has('gui_running')
   let g:solarized_contrast   = "normal"
   let g:solarized_visibility = "normal"
 else
-  " let g:solarized_termcolors = 256
+  let g:solarized_termcolors = 256
   let g:solarized_contrast   = "normal"
   let g:solarized_visibility = "normal"
   let g:solarized_termtrans  = 1
@@ -211,7 +211,7 @@ let g:unite_data_directory = $VIMCACHE.'/unite'
 let g:unite_enable_start_insert = 1
 let g:unite_no_default_keymapping = 1
 let g:unite_source_history_yank_enable = 1
-" let g:unite_source_rec_max_cache_files = 5000
+let g:unite_source_rec_max_cache_files = 5000
 let g:unite_prompt = '» '
 let g:unite_split_rule = 'botright'
 let g:unite_ignore_source_files = ['function.vim', 'command.vim']
@@ -465,6 +465,7 @@ Bundle 'jmcantrell/vim-virtualenv'
 
 " changing virtualenv should restart ycmserver
 " Venv <Virtualenv-name>
+let g:virtualenv_directory = simplify(expand('~/.virtualenvs'))
 fun ReturnVirtualEnvs(A,L,P)
   return system("ls -d ~/.virtualenvs/*/ \| cut -d'/' -f5")
 endfun
