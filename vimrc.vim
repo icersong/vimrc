@@ -9,7 +9,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General ENV
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set runtimepath+=
 let g:iswindows = 0
 let g:ismacos = 0
 let g:isunix = 0
@@ -170,7 +169,7 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Indent
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-filetype on             " 文件类型检测开
+filetype off            " 文件类型检测开
 filetype indent on      " 自动缩进开
 filetype plugin on
 filetype plugin indent on
