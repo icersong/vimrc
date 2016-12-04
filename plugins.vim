@@ -298,9 +298,6 @@ nmap <leader>f :CtrlP<CR>
 " Plug 'Shougo/unite.vim'
 " Plug 'Shougo/vimproc.vim'
 " Plug 'Shougo/neomru.vim'
-" call unite#filters#matcher_default#use(['matcher_fuzzy'])
-" call unite#filters#sorter_default#use(['sorter_rank'])
-" call unite#set_profile('files', 'smartcase', 1)
 let g:unite_data_directory = $VIMCACHE.'/unite'
 let g:unite_enable_start_insert = 1
 let g:unite_no_default_keymapping = 1
@@ -325,12 +322,17 @@ function! s:unite_settings()
   imap <buffer> <C-j>   <Plug>(unite_select_next_line)
   imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
 endfunction
-autocmd FileType unite call s:unite_settings()
-nnoremap <silent><c-s> :Unite -toggle -auto-resize -buffer-name=mixed
-      \ file_mru file_rec/async buffer bookmark<cr>
-nnoremap <silent><c-a> :UniteWithProjectDir -toggle -auto-resize -buffer-name=project file<cr>**/<space>
-nnoremap <silent><leader>ul :Unite -auto-resize -buffer-name=line line<cr>
-nnoremap <silent><leader>u/ :Unite -no-quit -buffer-name=search grep:.<cr>
+if hasmapto('Unite')
+  call unite#filters#matcher_default#use(['matcher_fuzzy'])
+  call unite#filters#sorter_default#use(['sorter_rank'])
+  call unite#set_profile('files', 'smartcase', 1)
+  autocmd FileType unite call s:unite_settings()
+  nnoremap <silent><c-s> :Unite -toggle -auto-resize -buffer-name=mixed
+        \ file_mru file_rec/async buffer bookmark<cr>
+  nnoremap <silent><c-a> :UniteWithProjectDir -toggle -auto-resize -buffer-name=project file<cr>**/<space>
+  nnoremap <silent><leader>ul :Unite -auto-resize -buffer-name=line line<cr>
+  nnoremap <silent><leader>u/ :Unite -no-quit -buffer-name=search grep:.<cr>
+endif
 " nnoremap <silent> [unite]<space> :<C-u>Unite -toggle -auto-resize
 "       \ -buffer-name=mixed file_mru file_rec/async buffer bookmark<cr><c-u>
 " nnoremap <silent> [unite]f :<C-u>Unite -toggle -auto-resize -buffer-name=files file_rec/async<cr><c-u>
