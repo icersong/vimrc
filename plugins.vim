@@ -38,6 +38,24 @@ if has('nvim')
 " endif
 endif
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" function for test command is exists
+function! HasCmdValid(cmd)
+  let cc = execute('command ' . a:cmd)
+  if len(matchstr(cc, ' '.a:cmd.' '))
+    return 1
+  endif
+  return 0
+endfunction
+
+function! HasFuncValid(func)
+  let cc = execute('function ' . a:func)
+  if len(matchstr(cc, ' '.a:func.' '))
+    return 1
+  endif
+  return 0
+endfunction
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle  {{{1
@@ -565,8 +583,8 @@ endif
 " YCM windows install guides needed.
 " Plug 'Valloric/YouCompleteMe'
 " set completeopt=longest,menu    " 让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
-highlight Pmenu ctermfg=2 ctermbg=3 guifg=#005f87 guibg=#EEE8D5
-highlight PmenuSel ctermfg=2 ctermbg=3 guifg=#AFD700 guibg=#106900
+" highlight Pmenu ctermfg=2 ctermbg=3 guifg=#005f87 guibg=#EEE8D5
+" highlight PmenuSel ctermfg=2 ctermbg=3 guifg=#AFD700 guibg=#106900
 let g:ycm_global_ycm_extra_conf = simplify(expand(
     \ $VIM_BUNDLE_PATH.'/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'))
 let g:ycm_min_num_of_chars_for_completion = 2
@@ -578,16 +596,26 @@ let g:syntastic_always_populate_loc_list = 1
 " let g:ycm_path_to_python_interpreter='/usr/local/bin/python'
 " let g:ycm_collect_identifiers_from_tags_files = 1
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif   " 离开插入模式后自动关闭预览窗口
-nmap <leader>jj :YcmCompleter GoTo<CR>
+" nmap <leader>jj :YcmCompleter GoTo<CR>
 " nmap <leader>jr :YcmCompleter GoToReferences<CR>
 " nmap <leader>jd :YcmCompleter GoToDefinition<CR>
 " nmap <leader>ji :YcmCompleter GoToDeclaration<CR>
-nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 "nnoremap <leader>lo :lopen<CR>	"open locationlist
 "nnoremap <leader>lc :lclose<CR>	"close locationlist
-inoremap <leader><leader> <C-x><C-o>
+" inoremap <leader><leader> <C-x><C-o>
 " 回车即选中当前项
 inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
+
+function! MappingForYcm()
+  if HasCmdValid('YcmCompleter')
+    nmap <buffer> <leader>jj :YcmCompleter GoTo<CR>
+    nmap <buffer> <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+    " inoremap <buffer> <leader><leader> <C-x><C-o>
+  endif
+endfunction
+autocmd BufReadPost * call  MappingForYcm()
+
 
 " 上下左右键的行为 会显示其他信息
 " inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
@@ -621,7 +649,7 @@ let g:pydiction_menu_height = 9
 " jedi-vim is a is a VIM binding to the autocompletion library Jedi.
 " 此插件会导致键入时迟缓，严重时会卡住
 " Plug 'davidhalter/jedi-vim'
-let g:jedi#auto_initialization      = 1
+let g:jedi#auto_initialization      = 0
 let g:jedi#auto_vim_configuration   = 1
 let g:jedi#use_tabs_not_buffers     = 0
 let g:jedi#use_splits_not_buffers   = 1
@@ -630,6 +658,16 @@ let g:jedi#popup_select_first       = 1
 let g:jedi#popup_on_dot             = 1
 let g:jedi#auto_close_doc           = 1
 let g:jedi#completions_command      = "<C-N>"
+function! MappingForJedi()
+  if HasCmdValid('PythonJedi') && !HasCmdValid('YcmCompleter')
+    inoremap <silent> <buffer> <C-N> <c-x><c-o>
+    nnoremap <silent> <buffer> <leader>jj :call jedi#goto()<cr>
+    nnoremap <silent> <buffer> <leader>jr :call jedi#rename()<cr>
+    nnoremap <silent> <buffer> <leader>ju :call jedi#usages()<cr>
+    nnoremap <silent> <buffer> <leader>jk :call jedi#documentation()<cr>
+  endif
+endfunction
+autocmd FileType python call  MappingForJedi()
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

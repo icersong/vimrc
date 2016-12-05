@@ -457,8 +457,8 @@ highlight CursorLine cterm=underline ctermbg=NONE ctermfg=NONE gui=underline gui
 " pop menu setting
 " highlight Pmenu ctermfg=DarkMagenta ctermbg=Blue guifg=#005f87 guibg=#EEE8D5
 " highlight PmenuSel ctermfg=2 ctermbg=3 guifg=#AFD700 guibg=#106900
-highlight Pmenu guifg=#005f87 guibg=#EEE8D5
-highlight PmenuSel guifg=#AFD700 guibg=#106900
+" highlight Pmenu guifg=#005f87 guibg=#EEE8D5
+" highlight PmenuSel guifg=#AFD700 guibg=#106900
 
 " 调整光标显示样式　
 function! SetCursorStyle()
