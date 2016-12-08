@@ -186,9 +186,7 @@ set cindent             " 按C的语法缩进
 set wrap                " 到屏幕边会回绕
 set iskeyword+=_,$,@,%,#,-,*    " 将这些字符作为关键字，带有这些符号的单词不换行
 set whichwrap=b,s,<,>,[,]
-if version >= 703
-  set colorcolumn=80      " 设置第列高亮
-endif
+set colorcolumn=80      " 设置第列高亮
 " set textwidth=512       " textwidth, 一行的最大宽度
 " listchars tabe用..显示，尾部空格用-显示，eol不显示"
 set listchars=tab:»»,trail:.,extends:>,precedes:<

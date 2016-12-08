@@ -340,17 +340,20 @@ function! s:unite_settings()
   imap <buffer> <C-j>   <Plug>(unite_select_next_line)
   imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
 endfunction
-if hasmapto('Unite')
-  call unite#filters#matcher_default#use(['matcher_fuzzy'])
-  call unite#filters#sorter_default#use(['sorter_rank'])
-  call unite#set_profile('files', 'smartcase', 1)
-  autocmd FileType unite call s:unite_settings()
-  nnoremap <silent><c-s> :Unite -toggle -auto-resize -buffer-name=mixed
-        \ file_mru file_rec/async buffer bookmark<cr>
-  nnoremap <silent><c-a> :UniteWithProjectDir -toggle -auto-resize -buffer-name=project file<cr>**/<space>
-  nnoremap <silent><leader>ul :Unite -auto-resize -buffer-name=line line<cr>
-  nnoremap <silent><leader>u/ :Unite -no-quit -buffer-name=search grep:.<cr>
-endif
+function! s:init_unite()
+  if HasCmdValid('Unite')
+    " call unite#filters#matcher_default#use(['matcher_fuzzy'])
+    call unite#filters#sorter_default#use(['sorter_rank'])
+    call unite#set_profile('files', 'context.smartcase', 1)
+    autocmd FileType unite call s:unite_settings()
+    nnoremap <silent><c-s> :Unite -toggle -auto-resize -buffer-name=mixed
+          \ file_mru file_rec/async buffer bookmark<cr>
+    nnoremap <silent><c-a> :UniteWithProjectDir -toggle -auto-resize -buffer-name=project file<cr>**/<space>
+    nnoremap <silent><leader>ul :Unite -auto-resize -buffer-name=line line<cr>
+    nnoremap <silent><leader>u/ :Unite -no-quit -buffer-name=search grep:.<cr>
+  endif
+endfunction
+autocmd VimEnter * call s:init_unite()
 " nnoremap <silent> [unite]<space> :<C-u>Unite -toggle -auto-resize
 "       \ -buffer-name=mixed file_mru file_rec/async buffer bookmark<cr><c-u>
 " nnoremap <silent> [unite]f :<C-u>Unite -toggle -auto-resize -buffer-name=files file_rec/async<cr><c-u>
@@ -696,7 +699,12 @@ let g:autopep8_disable_show_diff=1
 " eg: root>elememnt#property*3>default<ctrl-y>,
 " Plug 'mattn/emmet-vim'
 let g:user_emmet_install_global = 0
-autocmd FileType css,xml,html,xhtml,tpl EmmetInstall
+function! ProxyEmmetInstall()
+  if HasCmdValid('EmmetInstall')
+    execute('EmmetInstall')
+  endif
+endfunction
+autocmd FileType css,xml,html,xhtml,tpl call ProxyEmmetInstall()
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -803,7 +811,7 @@ nmap g/ <Plug>(incsearch-stay)
 " automatic closing of quotes, parenthesis, brackets, etc.
 " Plug 'Raimondi/delimitMate'
 " for python docstring "
-let delimitMate_matchpairs = "[:],{:}"
+let delimitMate_matchpairs = "(:),[:],{:}"
 au FileType python let b:delimitMate_nesting_quotes = ['"', "'"]
 
 
@@ -812,7 +820,7 @@ au FileType python let b:delimitMate_nesting_quotes = ['"', "'"]
 " <leader>cc add common
 " <leader>cu remove common
 " Plug 'scrooloose/nerdcommenter'
-let NERDCreateDefaultMappings = 'OFF'
+let NERDCreateDefaultMappings = 0
 let NERDSpaceDelims           = 1
 let NERDAllowAnyVisualDelims  = 1
 let NERDCommentEmptyLines     = 1
