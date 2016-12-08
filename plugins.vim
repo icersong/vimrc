@@ -114,9 +114,7 @@ Plug 'tell-k/vim-autopep8', { 'for': ['python'] }
 Plug 'fs111/pydoc.vim', { 'for': ['python'] }
 " Plug 'klen/python-mode'
 " Plug 'gotcha/vimpdb'
-" Plug 'othree/xml.vim'
-" Plug 'vim-scripts/xmledit'
-" Plug 'tpope/vim-ragtag'
+Plug 'othree/xml.vim'
 " Plug 'hemerey/vim-project'
 Plug 'chrisbra/Colorizer'
 Plug 'hdima/python-syntax', { 'for': ['python'] }
@@ -201,15 +199,16 @@ let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline#extensions#tabline#fnamemod = ':p:t'
 let g:airline#extensions#tabline#left_sep = ''
 let g:airline#extensions#tabline#left_alt_sep = ''
-let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#tabline#buffer_nr_show = 0
 let g:airline#extensions#tabline#buffer_nr_format = '%s:'
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#whitespace#enabled = 1
 let g:airline#extensions#tagbar#enabled = 1
 let g:airline#extensions#virtualenv#enabled = 1
-let g:airline#extensions#tabline#buffer_idx_mode = 1
 let airline#extensions#tabline#ignore_bufadd_pat =
       \ '\c\vgundo|undotree|vimfiler|tagbar|nerd_tree|vim-minimap'
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+" let g:airline#extensions#tabline#buffer_idx_format = {}
 nmap <leader>1 <Plug>AirlineSelectTab1
 nmap <leader>2 <Plug>AirlineSelectTab2
 nmap <leader>3 <Plug>AirlineSelectTab3
@@ -1100,6 +1099,10 @@ let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'shell=sh']
 " EnhancedDiff {{{1
 " Plugin 'chrisbra/vim-diff-enhanced'
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plug 'othree/xml.vim'
+" auto close tag
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin 'gabrielelana/vim-markdown'
