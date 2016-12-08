@@ -114,7 +114,7 @@ Plug 'tell-k/vim-autopep8', { 'for': ['python'] }
 Plug 'fs111/pydoc.vim', { 'for': ['python'] }
 " Plug 'klen/python-mode'
 " Plug 'gotcha/vimpdb'
-Plug 'othree/xml.vim'
+Plug 'othree/xml.vim', { 'for': ['xml', 'html', 'xhtml', 'jinja']}
 " Plug 'hemerey/vim-project'
 Plug 'chrisbra/Colorizer'
 Plug 'hdima/python-syntax', { 'for': ['python'] }
