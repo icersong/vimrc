@@ -9,28 +9,15 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General ENV
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:iswindows = 0
-let g:ismacos = 0
-let g:isunix = 0
-let g:islinux = 0
-let g:platform = ""
-if (has("win32") || has("win95") || has("win64") || has("win16"))
-  let g:platform = "windows"
-  let g:iswindows = 1
+let g:iswin = has("win64") || has("win32") || has("win16") || has("win95")
+let g:ismacos = has('mac')
+let g:islinux = has('linux') && !g:ismacos
+let g:isunix = has('unix') && !g:ismacos && !g:islinux
+
+if g:iswin
   let $VIMFILES = simplify(expand($VIM.'/vimfiles'))
   let $VIMCACHE = simplify(expand($VIM.'/cache'))
-  set nossl
 else
-  if has('mac')
-    let g:platform = "macos"
-    let g:ismacos = 1
-  elseif has('unix')
-    let g:platform = "unix"
-    let g:isunix = 1
-  elseif has('linux')
-    let g:platform = "linux"
-    let g:islinux = 1
-  endif
   let $VIMFILES = simplify(expand($HOME.'/.vim'))
   let $VIMCACHE = simplify(expand($HOME.'/.cache'))
 endif
@@ -55,11 +42,12 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible
 if has('mouse')
-  set mouse=a " enable mouse
+  set mouse=r " enable mouse (a, r, v)
   set selectmode=mouse,key
 endif
 
-if !g:iswindows
+if !g:iswin
+  set nossl
   let g:skip_loading_mswin = 1  " do not load mswin.vim
 endif
 
@@ -68,9 +56,7 @@ if has('gui_running')
   set showtabline=2
   set lines=48 columns=128
   " set switchbuf=usetab
-  " if has('gui_running')
-  "   au GUIEnter * simalt ~x
-  " endif
+  " au GUIEnter * simalt ~x
 endif
 
 
@@ -95,10 +81,10 @@ set hlsearch                    " 高亮显示搜索结果
 set showmatch                   " 插入括号时，短暂的跳转到匹配的对应括号，显示匹配的时间由matchtime决定
 set matchtime=1                 " 单位是十分之一秒
 set matchpairs=(:),{:},[:],<:>  " 匹配括号的规则，增加针对html的<>
-set mat=2                       " 配对符号高亮"
-set magic
+set mat=2                       " 配对符号高亮
+set magic                       " 使用转义字符识别
 set nosol                       " 普通模式下光标行间移动时不到行首的第一个非空白，而是尽量在同一列
-set virtualedit=all,onemore
+set virtualedit=all,onemore     " 虚环境编辑空间
 set display=lastline            " 解决自动换行格式下, 如折行之后高在超过窗口高度看不到最后一行的问题
 set report=0                    " 报告哪些行被修改过
 set go+=a                       " 选择后自动进入系统剪切板
@@ -141,7 +127,7 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Font & encoding
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if g:iswindows
+if g:iswin
   " set guifont=Inconsolata:h10:cDEFAULT
   " set guifontwide=YtYaHei:h8:cDEFAULT
   " set guifont=Menlo:h9:cDEFAULT
@@ -298,18 +284,6 @@ set foldlevel=99        " 默认折叠开始层数
 " set foldnestmax=9
 " 用空格键来开关折叠
 " nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 自动加载编辑后的_vimrc配置
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"if(g:iswindows)
-"  autocmd BufWritePost _vimrc :source $VIM\_vimrc
-"  autocmd BufWritePost _vimrc :set fileencoding=utf8
-"else
-"  autocmd BufWritePost .vimrc :source ~\.vimrc
-"  autocmd BufWritePost .vimrc :set fileencoding=utf8
-"endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

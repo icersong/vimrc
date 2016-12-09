@@ -65,6 +65,7 @@ let $PLUGPATH = simplify(expand($VIMFILES.'/plugins/vim-plug'))
 set rtp+=$PLUGPATH
 call plug#begin($VIM_PLUGING_PATH)
 
+Plug 'CodeFalling/fcitx-vim-osx'
 Plug 'junegunn/vim-plug'
 " Plug 'uguu-org/vim-matrix-screensaver'
 Plug 'chrisbra/Recover.vim'
@@ -208,7 +209,9 @@ let g:airline#extensions#virtualenv#enabled = 1
 let airline#extensions#tabline#ignore_bufadd_pat =
       \ '\c\vgundo|undotree|vimfiler|tagbar|nerd_tree|vim-minimap'
 let g:airline#extensions#tabline#buffer_idx_mode = 1
-" let g:airline#extensions#tabline#buffer_idx_format = {}
+" let g:airline#extensions#tabline#buffer_idx_format = {
+"       \ '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴',
+"       \ '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹'}
 nmap <leader>1 <Plug>AirlineSelectTab1
 nmap <leader>2 <Plug>AirlineSelectTab2
 nmap <leader>3 <Plug>AirlineSelectTab3
@@ -298,7 +301,7 @@ endif
 "   set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.png,*.jpg,*.jpeg,*.gif " MacOSX/Linux
 "   let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
 " endif
-" if g:iswindows
+" if g:iswin
 "   set wildignore+=*\\.git\\*,*\\.hg\\*,*\\.svn\\*     " Windows ('noshellslash')
 "   set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe         " Windows
 "   let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
@@ -340,7 +343,7 @@ function! s:unite_settings()
   imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
 endfunction
 function! s:init_unite()
-  if HasCmdValid('Unite')
+  if HasCmdValid('Unite') && !hasmapto('Unite')
     " call unite#filters#matcher_default#use(['matcher_fuzzy'])
     call unite#filters#sorter_default#use(['sorter_rank'])
     call unite#set_profile('files', 'context.smartcase', 1)
@@ -521,7 +524,7 @@ let g:syntastic_xhtml_tidy_quiet_messages={"regex":
     \ ['unescaped & which should be written as &amp;']}
 let g:syntastic_po_msgfmt_quiet_messages={"regex":
     \ ['header field ''Last-Translator'' still has the initial default value']}
-if (g:iswindows)
+if g:iswin
   let $PATH=$VIM.'\\Utilities;'.$PATH
   let $PATH=$VIM.'\\Utilities\\GNU;'.$PATH
   let $PATH=$VIM.'\\Utilities\\jsl;'.$PATH
@@ -531,7 +534,7 @@ if (g:iswindows)
       \ 'passive_filetypes': [] }
 endif
 
-if (g:ismacos)
+if g:ismacos
   " autocmd BufWritePost * :SyntasticCheck
   let g:syntastic_python_pep8_exec = "/usr/local/bin/pep8"
   let g:syntastic_mode_map = { 'mode': 'active',
@@ -913,7 +916,7 @@ let g:buffergator_show_full_directory_path = 0
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " VCS   {{{1
 " Plug 'vim-scripts/vcscommand.vim'
-if (g:iswindows)
+if g:iswin
   let g:VCSCommandSVNExec="D:\\PROGRA~1\\TORTOI~1\\bin\\svn.exe"
   let g:VCSCommandVCSTypeOverride= [['D:/tmp', 'SVN'], ['D:/MyWork', 'SVN']]
 endif
@@ -954,7 +957,6 @@ let g:gitgutter_map_keys = 0
 function! Gitgutter_Disabled_in_Largefile()
   if line2byte(line("$")+1) > g:LargeFile*1024*1024
     call gitgutter#disable()
-    " call gitgutter#enable()
   endif
 endfunction
 autocmd BufRead * silent call Gitgutter_Disabled_in_Largefile()
@@ -987,10 +989,8 @@ autocmd BufRead * silent call Gitgutter_Disabled_in_Largefile()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " improved shell  {{{1
-if version > 702
 " Plug 'Shougo/vimproc.vim'
 " Plug 'Shougo/vimshell.vim'
-endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1016,8 +1016,7 @@ endif
 " Plug 'icersong/vimwiki'
 " Plug 'vimwiki/vimwiki'
 
-let g:vimwiki_list = [
-  \ {
+let g:vimwiki_list = [{
   \ 'path': simplify(expand($VIMWIKI.'/projects/technology')),
   \ 'path_html': simplify(expand($VIMWIKI.'/static/technology')),
   \ 'css_name': '/style.css',
@@ -1030,8 +1029,8 @@ let g:vimwiki_list = [
   \ 'auto_toc': 0,
   \ 'nested_syntaxes': {'python': 'python', 'c++': 'cpp', 'html': 'html',},
   \ 'custom_wiki2html': simplify(expand($VIM_TOOL_PATH.'/misaka_md2html/misaka_md2html.py')),
-  \ 'diary_link_count': 5},
-  \ {
+  \ 'diary_link_count': 5
+  \ }, {
   \ 'path': simplify(expand($VIMWIKI.'/projects/soc')),
   \ 'path_html': simplify(expand($VIMWIKI.'/static/soc')),
   \ 'css_name': 'css/style.css',
@@ -1041,8 +1040,8 @@ let g:vimwiki_list = [
   \ 'auto_export': 1,
   \ 'auto_toc': 1,
   \ 'nested_syntaxes': {'python': 'python', 'c++': 'cpp','html': 'html',},
-  \ 'diary_link_count': 5}
-  \ ]
+  \ 'diary_link_count': 5
+  \ }]
 let g:vimwiki_global_ext = 0
 let g:vimwiki_listsyms = '✗○◐●✓'
 let g:vimwiki_use_mouse = 1
