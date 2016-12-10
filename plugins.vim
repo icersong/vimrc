@@ -716,6 +716,12 @@ let python_highlight_all = 1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plug 'chrisbra/Colorizer'
+let g:colorizer_auto_color = 1
+let g:colorizer_auto_filetype='css,html'
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " javascript indentation and syntax     {{{1
 " Vastly improved Javascript indentation and syntax support in Vim
 " Plug 'pangloss/vim-javascript'
