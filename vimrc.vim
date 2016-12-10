@@ -141,9 +141,12 @@ if g:ismacos
   set guifont=Menlo:h12
 endif
 
-if has('gui_running')
-  "set langmenu=zh_CN.utf-8
-else
+if g:isunix
+  set guifont=Courier\ New:h9:cDEFAULT
+  set guifontwide=Courier\ New:h9:cDEFAULT
+endif
+
+if !has('gui_running')
   language messages zh_CN.utf-8   " 解决consle输出乱码
 endif
 
@@ -174,8 +177,8 @@ set iskeyword+=_,$,@,%,#,-,*    " 将这些字符作为关键字，带有这些�
 set whichwrap=b,s,<,>,[,]
 set colorcolumn=80      " 设置第列高亮
 " set textwidth=512       " textwidth, 一行的最大宽度
-" listchars tabe用..显示，尾部空格用-显示，eol不显示"
-set listchars=tab:»»,trail:.,extends:>,precedes:<
+" listchars tabe用..显示，尾部空格用-显示，eol不显示 ˫ ￩ ￪ ￫ ￬ ˖ · ˽ ⊹ ∙ ⋅⋆⋇
+set listchars=tab:˖￫,trail:·,extends:>,precedes:<
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
