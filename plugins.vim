@@ -38,24 +38,6 @@ if has('nvim')
 " endif
 endif
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" function for test command is exists
-function! HasCmdValid(cmd)
-  let cc = execute('command ' . a:cmd)
-  if len(matchstr(cc, ' '.a:cmd.' '))
-    return 1
-  endif
-  return 0
-endfunction
-
-function! HasFuncValid(func)
-  let cc = execute('function ' . a:func)
-  if len(matchstr(cc, ' '.a:func.' '))
-    return 1
-  endif
-  return 0
-endfunction
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vundle  {{{1
@@ -343,7 +325,7 @@ function! s:unite_settings()
   imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
 endfunction
 function! s:init_unite()
-  if HasCmdValid('Unite') && !hasmapto('Unite')
+  if executable('Unite') && !hasmapto('Unite')
     " call unite#filters#matcher_default#use(['matcher_fuzzy'])
     call unite#filters#sorter_default#use(['sorter_rank'])
     call unite#set_profile('files', 'context.smartcase', 1)
@@ -613,7 +595,7 @@ autocmd InsertLeave * if pumvisible() == 0|pclose|endif   " 离开插入模式�
 inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
 
 function! MappingForYcm()
-  if HasCmdValid('YcmCompleter')
+  if executable('YcmCompleter')
     nmap <buffer> <leader>jj :YcmCompleter GoTo<CR>
     nmap <buffer> <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
     " inoremap <buffer> <leader><leader> <C-x><C-o>
@@ -664,7 +646,7 @@ let g:jedi#popup_on_dot             = 1
 let g:jedi#auto_close_doc           = 1
 let g:jedi#completions_command      = "<C-N>"
 function! MappingForJedi()
-  if HasCmdValid('PythonJedi') && !HasCmdValid('YcmCompleter')
+  if executable('PythonJedi') && !executable('YcmCompleter')
     inoremap <silent> <buffer> <C-N> <c-x><c-o>
     nnoremap <silent> <buffer> <leader>jj :call jedi#goto()<cr>
     nnoremap <silent> <buffer> <leader>jr :call jedi#rename()<cr>
@@ -702,7 +684,7 @@ let g:autopep8_disable_show_diff=1
 " Plug 'mattn/emmet-vim'
 let g:user_emmet_install_global = 0
 function! ProxyEmmetInstall()
-  if HasCmdValid('EmmetInstall')
+  if executable('EmmetInstall')
     execute('EmmetInstall')
   endif
 endfunction
