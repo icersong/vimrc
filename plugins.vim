@@ -1,9 +1,8 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
-" Created: 2013-10-10 00:00:00
-" Modified: 2016-11-25
+" Created: 2013-10-10
+" Modified: 2016-12-13
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 let g:enable_youcompleteme = 0
 let g:enable_neocomplete = 0
 let g:enable_pydiction = 0
@@ -27,20 +26,32 @@ let $WEBROOT = '/Users/apple/Sites'
 let s:no_python_support = "Warning! Vim is compiled without python support."
 let s:no_ruby_support = "Warning! Vim is compiled without ruby support."
 
-if has('nvim')
-" if g:ismacos
-"   " set shell=/bin/bash
+" if has('nvim') && g:ismacos
+"   set shell=/bin/bash
 "   let g:python_host_skip_check = 1
 "   let g:python_host_prog = simplify(expand('~/.virtualenvs/py2.7/bin/python'))
 "   let g:python3_host_prog = '/usr/local/bin/python3'
-"   " let g:loaded_python_provider = 1
-"   " let g:loaded_python3_provider = 1
+"   let g:loaded_python_provider = 1
+"   let g:loaded_python3_provider = 1
 " endif
-endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Vundle  {{{1
+" function for test command is exists
+function! HasCmdValid(cmd)
+  if g:iswin
+    return executable(cmd)
+  endif
+  let cc = execute('command ' . a:cmd)
+  if len(matchstr(cc, ' '.a:cmd.' '))
+    return 1
+  endif
+  return 0
+endfunction
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugs {{{1
 
 " initalize vundle
 let $PLUGPATH = simplify(expand($VIMFILES.'/plugins/vim-plug'))
@@ -58,13 +69,11 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'severin-lemaignan/vim-minimap'
 " Plug 'koron/minimap-vim'
 Plug 'scrooloose/nerdtree'
+Plug 'myusuf3/numbers.vim'
 " Plug 'kien/ctrlp.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tacahiroy/ctrlp-funky'
 Plug 'FelikZ/ctrlp-py-matcher'
-Plug 'Shougo/unite.vim'
-Plug 'Shougo/vimproc.vim'
-Plug 'Shougo/neomru.vim'
 Plug 'mhinz/vim-grepper'
 Plug 'rking/ag.vim'
 Plug 'Chun-Yang/vim-action-ag'
@@ -75,7 +84,7 @@ Plug 'kien/rainbow_parentheses.vim'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'Yggdroot/indentLine'
 Plug 'honza/vim-snippets'
-Plug 'SirVer/ultisnips'
+Plug 'SirVer/ultisnips', {'for': ['c', 'cpp', 'javascript', 'python']}
 Plug 'scrooloose/syntastic'
 if has('nvim')
   Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer',
@@ -86,20 +95,30 @@ else
         \ 'for': ['c', 'cpp', 'css', 'html', 'python'] }
   Plug 'davidhalter/jedi-vim', { 'for': ['None'] }
 endif
+Plug 'Shougo/unite.vim'
+Plug 'Shougo/vimproc.vim'
+Plug 'Shougo/neomru.vim'
+if has('nvim')
+  Plug 'Shougo/vimshell.vim', {'for': ['None']}
+  command! -nargs=0 VimShell :e term://zsh
+  tnoremap <Esc> <C-\><C-n>
+else
+  Plug 'Shougo/vimshell.vim'
+endif
 " Plug 'Shougo/neocomplete.vim'
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'rizzatti/funcoo.vim'
 Plug 'rizzatti/dash.vim', { 'for': ['c', 'cpp', 'python', 'php'] }
 Plug 'jmcantrell/vim-virtualenv', { 'for': ['python'] }
 " Plug 'rkulla/pydiction', { 'for': ['python'] }
 " Plug 'python-rope/ropevim', { 'for': ['python'] }
 Plug 'hynek/vim-python-pep8-indent', { 'for': ['python'] }
 Plug 'tell-k/vim-autopep8', { 'for': ['python'] }
-Plug 'fs111/pydoc.vim', { 'for': ['python'] }
-" Plug 'klen/python-mode'
+Plug 'fs111/pydoc.vim', {'for': ['python'] }
 " Plug 'gotcha/vimpdb'
 Plug 'othree/xml.vim', { 'for': ['xml', 'html', 'xhtml', 'jinja']}
 " Plug 'hemerey/vim-project'
-Plug 'chrisbra/Colorizer'
+Plug 'chrisbra/Colorizer', { 'for': ['css', 'html', 'javascript', 'jinja', 'python'] }
 Plug 'hdima/python-syntax', { 'for': ['python'] }
 Plug 'icersong/vim-python', { 'for': ['python'] }
 Plug 'Glench/Vim-Jinja2-Syntax', { 'for': ['jinja', 'jinja2'] }
@@ -133,10 +152,10 @@ Plug 'vim-scripts/vcscommand.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'kshenoy/vim-signature'
+Plug 'joonty/vdebug', {'for': ['python', 'php']}
 " Plug 'tpope/vim-vinegar'
 " Plug 'eiginn/netrw'
 Plug 'vim-scripts/CmdlineComplete'
-Plug 'Shougo/vimshell.vim'
 " Plug 'christoomey/vim-tmux-navigator'
 Plug 'skywind3000/asyncrun.vim'
 " Plug 'itchyny/calendar.vim'
@@ -146,9 +165,9 @@ Plug 'tpope/vim-markdown'
 " Plug 'plasticboy/vim-markdown'
 " Plug 'suan/vim-instant-markdown'
 " Plug 'isnowfy/python-vim-instant-markdown'
+" Plug 'gabrielelana/vim-markdown'
 Plug 'vim-scripts/ZoomWin'
 Plug 'chrisbra/vim-diff-enhanced'
-" Plug 'gabrielelana/vim-markdown'
 Plug 'vim-scripts/LargeFile'
 Plug 'icersong/timestamp.vim'
 " Plug 'git://git.wincent.com/command-t.git'
@@ -189,7 +208,7 @@ let g:airline#extensions#whitespace#enabled = 1
 let g:airline#extensions#tagbar#enabled = 1
 let g:airline#extensions#virtualenv#enabled = 1
 let airline#extensions#tabline#ignore_bufadd_pat =
-      \ '\c\vgundo|undotree|vimfiler|tagbar|nerd_tree|vim-minimap'
+      \ '\c\vgundo|undotree|vimfiler|tagbar|nerd_tree|vim-minimap|DebuggerWatch'
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 " let g:airline#extensions#tabline#buffer_idx_format = {
 "       \ '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴',
@@ -271,7 +290,7 @@ let g:ctrlp_custom_ignore = {
   \ 'file': '\v\.(exe|so|dll|png|jpg|gif|zip|7z|gz|tgz|swp|bin)$',
   \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
   \ }
-if executable('ag')
+if HasCmdValid('ag')
   " Use Ag over Grep
   set grepprg=ag\ --nogroup\ --nocolor
   " Use ag in CtrlP for listing files.
@@ -288,7 +307,14 @@ endif
 "   set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe         " Windows
 "   let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
 " endif
-nmap <leader>f :CtrlP<CR>
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Numbers {{{1
+" Plug 'scrooloose/nerdtree'
+
+let g:numbers_exclude = ['nerdtree', 'unite', 'tagbar', 'startify', 'gundo', 'vimshell', 'w3m']
+autocmd VimEnter * NumbersDisable
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -308,11 +334,11 @@ let g:unite_source_rec_max_cache_files = 5000
 let g:unite_prompt = '» '
 let g:unite_split_rule = 'botright'
 let g:unite_ignore_source_files = ['function.vim', 'command.vim']
-if executable('ag')
+if HasCmdValid('ag')
   let g:unite_source_grep_command='ag'
   let g:unite_source_grep_default_opts='--nocolor --nogroup -S -C4'
   let g:unite_source_grep_recursive_opt=''
-elseif executable('ack')
+elseif HasCmdValid('ack')
   let g:unite_source_grep_command='ack'
   let g:unite_source_grep_default_opts='--no-heading --no-color -C4'
   let g:unite_source_grep_recursive_opt=''
@@ -325,14 +351,14 @@ function! s:unite_settings()
   imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
 endfunction
 function! s:init_unite()
-  if executable('Unite') && !hasmapto('Unite')
+  if HasCmdValid('Unite') && !hasmapto('Unite')
     " call unite#filters#matcher_default#use(['matcher_fuzzy'])
     call unite#filters#sorter_default#use(['sorter_rank'])
     call unite#set_profile('files', 'context.smartcase', 1)
     autocmd FileType unite call s:unite_settings()
-    nnoremap <silent><c-s> :Unite -toggle -auto-resize -buffer-name=mixed
-          \ file_mru file_rec/async buffer bookmark<cr>
-    nnoremap <silent><c-a> :UniteWithProjectDir -toggle -auto-resize -buffer-name=project file<cr>**/<space>
+    nnoremap <silent><leader>s :UniteWithProjectDir -toggle -auto-resize -buffer-name=project file<cr>**/<space>
+    " nnoremap <silent><c-s> :Unite -toggle -auto-resize -buffer-name=mixed
+    "       \ file_mru file_rec/async buffer bookmark<cr>
     nnoremap <silent><leader>ul :Unite -auto-resize -buffer-name=line line<cr>
     nnoremap <silent><leader>u/ :Unite -no-quit -buffer-name=search grep:.<cr>
   endif
@@ -397,8 +423,8 @@ let g:ctrlsf_regex_pattern = 1
 let g:ctrlsf_winsize = '30%'
 let g:ctrlsf_position = 'bottom'
 let g:ctrlsf_context = '-B 0 -A 0'
-nmap <F3> <Plug>CtrlSFCwordPath
-vmap <F3> <Plug>CtrlSFVwordExec
+nmap <leader>f <Plug>CtrlSFCwordPath
+nmap <leader>f <Plug>CtrlSFVwordExec
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -595,7 +621,7 @@ autocmd InsertLeave * if pumvisible() == 0|pclose|endif   " 离开插入模式�
 inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
 
 function! MappingForYcm()
-  if executable('YcmCompleter')
+  if HasCmdValid('YcmCompleter')
     nmap <buffer> <leader>jj :YcmCompleter GoTo<CR>
     nmap <buffer> <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
     " inoremap <buffer> <leader><leader> <C-x><C-o>
@@ -646,7 +672,7 @@ let g:jedi#popup_on_dot             = 1
 let g:jedi#auto_close_doc           = 1
 let g:jedi#completions_command      = "<C-N>"
 function! MappingForJedi()
-  if executable('PythonJedi') && !executable('YcmCompleter')
+  if HasCmdValid('PythonJedi') && !HasCmdValid('YcmCompleter')
     inoremap <silent> <buffer> <C-N> <c-x><c-o>
     nnoremap <silent> <buffer> <leader>jj :call jedi#goto()<cr>
     nnoremap <silent> <buffer> <leader>jr :call jedi#rename()<cr>
@@ -684,7 +710,7 @@ let g:autopep8_disable_show_diff=1
 " Plug 'mattn/emmet-vim'
 let g:user_emmet_install_global = 0
 function! ProxyEmmetInstall()
-  if executable('EmmetInstall')
+  if HasCmdValid('EmmetInstall')
     execute('EmmetInstall')
   endif
 endfunction
@@ -698,9 +724,17 @@ let python_highlight_all = 1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vdebug {{{1
+" Plug 'joonty/vdebug'
+
+let g:vdebug_options = {"timeout": 99}
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plug 'chrisbra/Colorizer'
+" 注：此插件可能极度影响光标及输入的速度
 let g:colorizer_auto_color = 1
-let g:colorizer_auto_filetype='css,html'
+let g:colorizer_auto_filetype='css,html,javascript,jinia,python'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -876,7 +910,7 @@ let g:multi_cursor_insert_maps={'I':1, 'i':1, 'a':1, 'A':1}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Tagbar {{{1
 " Plug 'majutsushi/tagbar'
-if !executable("ctags")
+if !HasCmdValid("ctags")
   if exists('janus#disable_plugin')
     call janus#disable_plugin("tagbar", "The ctags program is not installed")
   endif
@@ -1105,9 +1139,9 @@ let g:LargeFile=9
 " Plug 'icersong/timestamp.vim'
 "@ Modified: 2014-09-09 00:00:00 [0]
 let g:timestamp_regexp = '\v\C%(<%(Last %([cC]hanged?|modified)|Modified)\s*:\s+)@<='
-let g:timestamp_regexp .= '(\d{4}[-/]\d{2}[-/]\d{2} \d{2}:\d{2}:\d{2}|TIMESTAMP)'
+let g:timestamp_regexp .= '(\d{4}[-/]\d{2}[-/]\d{2}|\d{4}[-/]\d{2}[-/]\d{2} \d{2}:\d{2}:\d{2}|TIMESTAMP)'
 let g:timestamp_regexp .= '\s*(\[(\d+)\])?$'
-let g:timestamp_rep = '\=strftime("%Y-%m-%d %H:%M:%S").(submatch(2)==submatch(9) ? "" : " [".(submatch(3)+1)."]")'
+let g:timestamp_rep = '\=strftime("%Y-%m-%d").(submatch(2)==submatch(9) ? "" : " [".(submatch(3)+1)."]")'
 let g:timestamp_modelines = 9
 
 
@@ -1116,10 +1150,5 @@ let g:timestamp_modelines = 9
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 filetype plugin indent on
 syntax enable
-if has('gui_running')
-  set background=dark
-  colorscheme solarized
-else
-  set background=dark
-  colorscheme solarized
-endif
+set background=dark
+colorscheme solarized
