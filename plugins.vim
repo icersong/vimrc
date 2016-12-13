@@ -208,7 +208,7 @@ let g:airline#extensions#whitespace#enabled = 1
 let g:airline#extensions#tagbar#enabled = 1
 let g:airline#extensions#virtualenv#enabled = 1
 let airline#extensions#tabline#ignore_bufadd_pat =
-      \ '\c\vgundo|undotree|vimfiler|tagbar|nerd_tree|vim-minimap|DebuggerWatch'
+      \ '\c\vgundo|undotree|vimfiler|tagbar|nerd_tree|vim-minimap|DebuggerWatch|[No Name]'
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 " let g:airline#extensions#tabline#buffer_idx_format = {
 "       \ '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴',
