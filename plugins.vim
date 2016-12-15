@@ -424,7 +424,7 @@ let g:ctrlsf_winsize = '30%'
 let g:ctrlsf_position = 'bottom'
 let g:ctrlsf_context = '-B 0 -A 0'
 nmap <leader>f <Plug>CtrlSFCwordPath
-nmap <leader>f <Plug>CtrlSFVwordExec
+vmap <leader>f <Plug>CtrlSFVwordExec
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
