@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2016-12-13
+" Modified: 2017-01-13
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:enable_youcompleteme = 0
 let g:enable_neocomplete = 0
@@ -662,14 +662,15 @@ let g:pydiction_menu_height = 9
 " jedi-vim is a is a VIM binding to the autocompletion library Jedi.
 " 此插件会导致键入时迟缓，严重时会卡住
 " Plug 'davidhalter/jedi-vim'
-let g:jedi#auto_initialization      = 0
+let g:jedi#auto_initialization      = 1
 let g:jedi#auto_vim_configuration   = 1
 let g:jedi#use_tabs_not_buffers     = 0
 let g:jedi#use_splits_not_buffers   = 1
 let g:jedi#completions_enabled      = 1
-let g:jedi#popup_select_first       = 1
+let g:jedi#popup_select_first       = 0
 let g:jedi#popup_on_dot             = 1
 let g:jedi#auto_close_doc           = 1
+let g:jedi#show_call_signatures     = 1
 let g:jedi#completions_command      = "<C-N>"
 function! MappingForJedi()
   if HasCmdValid('PythonJedi') && !HasCmdValid('YcmCompleter')
@@ -733,7 +734,7 @@ let g:vdebug_options = {"timeout": 99}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plug 'chrisbra/Colorizer'
 " 注：此插件可能极度影响光标及输入的速度
-let g:colorizer_auto_color = 1
+let g:colorizer_auto_color = 0
 let g:colorizer_auto_filetype='css,html,javascript,jinia,python'
 
 
@@ -799,7 +800,9 @@ nmap <silent><space> :nohls<CR>za
 " gundo (visualize undo tree) {{{1
 " Plug 'sjl/gundo.vim'
 if !has('python')
-  call janus#disable_plugin('gundo', s:no_python_support)
+  if exists('janus#disable_plugin')
+    call janus#disable_plugin('gundo', s:no_python_support)
+  endif
 else
   let g:gundo_close_on_revert = 1
   let g:gundo_tree_statusline = 'Gundo'
