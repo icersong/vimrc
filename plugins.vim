@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2017-01-13
+" Modified: 2017-01-17
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:enable_youcompleteme = 0
 let g:enable_neocomplete = 0
@@ -118,7 +118,8 @@ Plug 'fs111/pydoc.vim', {'for': ['python'] }
 " Plug 'gotcha/vimpdb'
 Plug 'othree/xml.vim', { 'for': ['xml', 'html', 'xhtml', 'jinja']}
 " Plug 'hemerey/vim-project'
-Plug 'chrisbra/Colorizer', { 'for': ['css', 'html', 'javascript', 'jinja', 'python'] }
+" Plug 'chrisbra/Colorizer', { 'for': ['css', 'html', 'javascript', 'jinja', 'python'] }
+Plug 'gko/vim-coloresque', { 'for': ['css', 'html', 'javascript', 'jinja', 'python', 'vim'] }
 Plug 'hdima/python-syntax', { 'for': ['python'] }
 Plug 'icersong/vim-python', { 'for': ['python'] }
 Plug 'Glench/Vim-Jinja2-Syntax', { 'for': ['jinja', 'jinja2'] }
@@ -734,8 +735,8 @@ let g:vdebug_options = {"timeout": 99}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plug 'chrisbra/Colorizer'
 " 注：此插件可能极度影响光标及输入的速度
-let g:colorizer_auto_color = 0
-let g:colorizer_auto_filetype='css,html,javascript,jinia,python'
+" let g:colorizer_auto_color = 0
+" let g:colorizer_auto_filetype='css,html,javascript,jinia,python'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
