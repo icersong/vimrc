@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2017-01-13 [834]
+" Modified: 2017-03-30 [837]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -178,7 +178,7 @@ set whichwrap=b,s,<,>,[,]
 set colorcolumn=80      " 设置第列高亮
 " set textwidth=512       " textwidth, 一行的最大宽度
 " listchars tabe用..显示，尾部空格用-显示，eol不显示 ˫ ￩ ￪ ￫ ￬ ˖ · ˽ ⊹ ∙ ⋅⋆⋇ ༓
-set listchars=tab:˖￫,trail:·,extends:>,precedes:<
+set listchars=tab:￫￫,trail:·,extends:>,precedes:<
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -206,6 +206,8 @@ nmap <silent><Right> :bn<CR>
 
 " 定义空格键暂时取消高亮匹配
 nmap <silent><space> :nohls<CR>za
+nmap <silent>z0 :set foldlevel=0<CR>
+nmap <silent>z9 :set foldlevel=9<CR>
 
 " 删除尾部空格
 nmap <S-Space> :%s/\s\+$//g<CR>

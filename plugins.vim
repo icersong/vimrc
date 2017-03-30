@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2017-01-17
+" Modified: 2017-02-20
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:enable_youcompleteme = 0
 let g:enable_neocomplete = 0
@@ -312,7 +312,7 @@ endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Numbers {{{1
-" Plug 'scrooloose/nerdtree'
+" Plug 'myusuf3/numbers.vim'
 
 let g:numbers_exclude = ['nerdtree', 'unite', 'tagbar', 'startify', 'gundo', 'vimshell', 'w3m']
 autocmd VimEnter * NumbersDisable
