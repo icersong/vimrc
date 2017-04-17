@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2017-02-20
+" Modified: 2017-04-17
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:enable_youcompleteme = 0
 let g:enable_neocomplete = 0
@@ -163,6 +163,7 @@ Plug 'skywind3000/asyncrun.vim'
 Plug 'mattn/calendar-vim'
 Plug 'icersong/vimwiki'
 Plug 'tpope/vim-markdown'
+Plug 'iamcco/markdown-preview.vim'
 " Plug 'plasticboy/vim-markdown'
 " Plug 'suan/vim-instant-markdown'
 " Plug 'isnowfy/python-vim-instant-markdown'
@@ -1093,6 +1094,15 @@ autocmd BufNewFile $VIMWIKI/** set fileencoding=utf8
 " vim-markdown  {{{1
 " Plugin 'tpope/vim-markdown'
 let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'shell=sh']
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plug 'iamcco/markdown-preview.vim'
+" :MarkdownPreview
+" :MarkdownPreviewStop
+if g:ismacos
+  let g:mkdp_path_to_chrome = "open -a Google\\ Chrome"
+endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
