@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2017-01-17
+" Modified: 2017-03-25
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:enable_youcompleteme = 0
 let g:enable_neocomplete = 0
@@ -163,7 +163,7 @@ Plug 'skywind3000/asyncrun.vim'
 Plug 'mattn/calendar-vim'
 Plug 'icersong/vimwiki'
 Plug 'tpope/vim-markdown'
-" Plug 'plasticboy/vim-markdown'
+" Plug 'plasticboy/vim-markdown'   " 较大文件会导致中文输入极其缓慢
 " Plug 'suan/vim-instant-markdown'
 " Plug 'isnowfy/python-vim-instant-markdown'
 " Plug 'gabrielelana/vim-markdown'
@@ -1093,13 +1093,6 @@ autocmd BufNewFile $VIMWIKI/** set fileencoding=utf8
 " vim-markdown  {{{1
 " Plugin 'tpope/vim-markdown'
 let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'shell=sh']
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim markdown  {{{1
-" 较大文件会导致中文输入极其缓慢
-" Plug 'plasticboy/vim-markdown'
-" let g:vim_markdown_frontmatter=0
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
