@@ -504,7 +504,7 @@ let g:UltiSnipsSnippetDirectories=[simplify(expand($VIM_BUNDLE_PATH.'/vim-snippe
 " check syntax for all language while write file.
 " Plug 'scrooloose/syntastic'
 " examine debug messages with :mes
-let g:syntastic_debug               = 33
+" let g:syntastic_debug               = 1
 let g:syntastic_error_symbol        = "✘"
 let g:syntastic_warning_symbol      = "⚠"
 let g:syntastic_style_error_symbol  = "✗"
