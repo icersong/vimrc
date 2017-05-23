@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2017-04-17
+" Modified: 2017-05-23
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:enable_youcompleteme = 0
 let g:enable_neocomplete = 0
@@ -83,6 +83,7 @@ Plug 'vim-voom/VOoM'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'Yggdroot/indentLine'
+Plug 'tmhedberg/SimpylFold'
 Plug 'honza/vim-snippets'
 Plug 'SirVer/ultisnips', {'for': ['c', 'cpp', 'javascript', 'python']}
 Plug 'scrooloose/syntastic'
@@ -477,6 +478,11 @@ let g:indentLine_faster = 1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plug 'tmhedberg/SimpylFold' {{{1
+let g:SimpylFold_docstring_preview=0
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " UltiSnips   {{{1
 " Plug 'honza/vim-snippets'
 " Plug 'SirVer/ultisnips'
@@ -498,7 +504,7 @@ let g:UltiSnipsSnippetDirectories=[simplify(expand($VIM_BUNDLE_PATH.'/vim-snippe
 " check syntax for all language while write file.
 " Plug 'scrooloose/syntastic'
 " examine debug messages with :mes
-" let g:syntastic_debug               = 33
+let g:syntastic_debug               = 33
 let g:syntastic_error_symbol        = "✘"
 let g:syntastic_warning_symbol      = "⚠"
 let g:syntastic_style_error_symbol  = "✗"
@@ -515,8 +521,13 @@ let g:syntastic_python_checkers     = ['pep8', 'pyflakes']
 let g:syntastic_xml_checkers        = ['xmllint']
 let g:syntastic_python_pyflakes_quiet_messages={"regex": [
     \ 'unable to detect undefined names$']}
+let g:syntastic_python_pep8_args='--ignore=C901,E111'
+if executable('/usr/local/bin/pep8')
+  let g:syntastic_python_pep8_exec='/usr/local/bin/pep8'
+endif
+" let g:syntastic_python_pep8_options='-std=c++11 -I$ROOTSYS/include/'
 let g:syntastic_python_pep8_quiet_messages={"regex": [
-    \ '^E111', '^E127', '^E128', '^E401', '^E402', '^E501', '^E701', '^E731', '^C901', '^E721']}
+    \ '^E111', '^E127', '^E128', '^E401', '^E402', '^E501', '^E701', '^E731', '^E721']}
 let g:syntastic_javascript_jsl_quiet_messages={"regex": [
     \ 'redeclaration of var',
     \ 'variable rid hides argument',
@@ -1102,6 +1113,8 @@ let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'shell=sh']
 " :MarkdownPreviewStop
 if g:ismacos
   let g:mkdp_path_to_chrome = "open -a Google\\ Chrome"
+else
+  let g:mkdp_path_to_chrome = "chromium-browser"
 endif
 
 
