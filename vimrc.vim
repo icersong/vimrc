@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2017-03-30 [837]
+" Modified: 2017-06-02 [839]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -477,5 +477,9 @@ autocmd ColorScheme * silent call SetCursorStyle()
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" clear undo cache
+" TIPS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 粘贴出现多余缩进问题
+"   :set paste
+"   [do paste]
+"   :set nopaste
