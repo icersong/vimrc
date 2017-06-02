@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2017-06-02 [839]
+" Modified: 2017-06-02 [854]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -477,8 +477,25 @@ autocmd ColorScheme * silent call SetCursorStyle()
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Copy & Paste clipboard by xclip shell command
+" $ sudo apt-get install xclip
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if executable('xclip')
+  command! -nargs=0 XCopy :!xclip -f -sel clip<CR>
+  command! -nargs=0 XPaste :-1r !xclip -o -sel clip<CR>
+endif
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " TIPS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 历史消息
+"   :messages
+" 查看错误
+"   :echo errmsg
+" 错误说明
+"   :help <error no>
+"
 " 粘贴出现多余缩进问题
 "   :set paste
 "   [do paste]
