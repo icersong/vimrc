@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2017-05-23
+" Modified: 2017-06-09
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:enable_youcompleteme = 0
 let g:enable_neocomplete = 0
@@ -40,11 +40,16 @@ let s:no_ruby_support = "Warning! Vim is compiled without ruby support."
 " function for test command is exists
 function! HasCmdValid(cmd)
   if g:iswin
-    return executable(cmd)
+    return executable(a:cmd)
   endif
-  let cc = execute('command ' . a:cmd)
-  if len(matchstr(cc, ' '.a:cmd.' '))
-    return 1
+  if g:islinux
+    return executable(a:cmd)
+  endif
+  if g:ismacos
+    let cc = execute('command ' . a:cmd)
+    if len(matchstr(cc, ' '.a:cmd.' '))
+      return 1
+    endif
   endif
   return 0
 endfunction

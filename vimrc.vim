@@ -2,17 +2,16 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2017-06-02 [854]
+" Modified: 2017-06-09 [859]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General ENV
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:iswin = has("win64") || has("win32") || has("win16") || has("win95")
 let g:ismacos = has('mac')
-let g:islinux = has('linux') && !g:ismacos
-let g:isunix = has('unix') && !g:ismacos && !g:islinux
+let g:islinux = (has('linux') || has('unix') )&& !g:ismacos
+let g:iswin = has("win64") || has("win32") || has("win16") || has("win95")
 
 if g:iswin
   let $VIMFILES = simplify(expand($VIM.'/vimfiles'))
@@ -141,7 +140,7 @@ if g:ismacos
   set guifont=Menlo:h12
 endif
 
-if g:isunix
+if g:islinux
   set guifont=Courier\ New:h9:cDEFAULT
   set guifontwide=Courier\ New:h9:cDEFAULT
 endif
