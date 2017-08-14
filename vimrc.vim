@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2017-06-19 [866]
+" Modified: 2017-08-14 [868]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -437,7 +437,7 @@ highlight CursorLine cterm=underline ctermbg=NONE ctermfg=NONE gui=underline gui
 " highlight Pmenu guifg=#005f87 guibg=#EEE8D5
 " highlight PmenuSel guifg=#AFD700 guibg=#106900
 
-" 调整光标显示样式　
+" 调整光标显示样式
 function! SetCursorStyle()
   " cursor setting
   if has('gui_running')
@@ -501,3 +501,6 @@ endif
 "   :set paste
 "   [do paste]
 "   :set nopaste
+"
+" 格式化json
+"   :%!python -m json.tool
