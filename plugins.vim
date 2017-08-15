@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2017-06-09
+" Modified: 2017-08-15
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:enable_youcompleteme = 0
 let g:enable_neocomplete = 0
@@ -275,6 +275,7 @@ endif
 nmap <leader>nt :NERDTree<CR>
 let NERDTreeHighlightCursorline=1
 let NERDTreeQuitOnOpen = 1
+let NERDTreeWinSize = 48
 let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$' ]
 let g:netrw_home=$VIMCACHE.'/NERDTree'
 "close vim if the only window left open is a NERDTree
