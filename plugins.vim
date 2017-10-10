@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2017-08-15
+" Modified: 2017-10-10
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:enable_youcompleteme = 0
 let g:enable_neocomplete = 0
@@ -111,6 +111,7 @@ if has('nvim')
 else
   Plug 'Shougo/vimshell.vim'
 endif
+Plug 'benmills/vimux'
 " Plug 'Shougo/neocomplete.vim'
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'rizzatti/funcoo.vim'
@@ -125,7 +126,7 @@ Plug 'fs111/pydoc.vim', {'for': ['python'] }
 Plug 'othree/xml.vim', { 'for': ['xml', 'html', 'xhtml', 'jinja']}
 " Plug 'hemerey/vim-project'
 " Plug 'chrisbra/Colorizer', { 'for': ['css', 'html', 'javascript', 'jinja', 'python'] }
-Plug 'gko/vim-coloresque', { 'for': ['css', 'html', 'javascript', 'jinja', 'python', 'vim'] }
+Plug 'gko/vim-coloresque', { 'for': ['css', 'html', 'javascript', 'jinja', 'python', 'vim', 'xdefaults'] }
 Plug 'hdima/python-syntax', { 'for': ['python'] }
 Plug 'icersong/vim-python', { 'for': ['python'] }
 Plug 'Glench/Vim-Jinja2-Syntax', { 'for': ['jinja', 'jinja2'] }
@@ -216,7 +217,7 @@ let g:airline#extensions#whitespace#enabled = 1
 let g:airline#extensions#tagbar#enabled = 1
 let g:airline#extensions#virtualenv#enabled = 1
 let airline#extensions#tabline#ignore_bufadd_pat =
-      \ '\c\vgundo|undotree|vimfiler|tagbar|nerd_tree|vim-minimap|DebuggerWatch|[No Name]'
+      \ '\c\vgundo|undotree|vimfiler|tagbar|nerd_tree|vim-minimap|DebuggerWatch|gitcommit|[No Name]'
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 " let g:airline#extensions#tabline#buffer_idx_format = {
 "       \ '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴',
@@ -640,11 +641,11 @@ autocmd InsertLeave * if pumvisible() == 0|pclose|endif   " 离开插入模式�
 inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
 
 function! MappingForYcm()
-  if HasCmdValid('YcmCompleter')
+  " if HasCmdValid('YcmCompleter')
     nmap <buffer> <leader>jj :YcmCompleter GoTo<CR>
     nmap <buffer> <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
-    " inoremap <buffer> <leader><leader> <C-x><C-o>
-  endif
+    inoremap <buffer> <leader><leader> <C-x><C-o>
+  " endif
 endfunction
 autocmd BufReadPost * call  MappingForYcm()
 
@@ -754,7 +755,7 @@ let g:vdebug_options = {"timeout": 99}
 " Plug 'chrisbra/Colorizer'
 " 注：此插件可能极度影响光标及输入的速度
 " let g:colorizer_auto_color = 0
-" let g:colorizer_auto_filetype='css,html,javascript,jinia,python'
+" let g:colorizer_auto_filetype='css,html,javascript,jinia,python,xdefaults'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1040,6 +1041,12 @@ autocmd BufRead * silent call Gitgutter_Disabled_in_Largefile()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-tmux-navigator  {{{1
 " Plug "christoomey/vim-tmux-navigator"
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vimux  {{{1
+" Plug 'benmills/vimux'
+nmap <Leader>r :VimuxPromptCommand<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

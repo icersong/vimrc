@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2017-08-14 [868]
+" Modified: 2017-10-10 [874]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -178,6 +178,8 @@ set colorcolumn=80      " 设置第列高亮
 " set textwidth=512       " textwidth, 一行的最大宽度
 " listchars tabe用..显示，尾部空格用-显示，eol不显示 ˫ ￩ ￪ ￫ ￬ ˖ · ˽ ⊹ ∙ ⋅⋆⋇ ༓
 set listchars=tab:￫￫,trail:·,extends:>,precedes:<
+" set listchars=tab:→,trail:·,extends:>,precedes:<
+
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
