@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2017-10-10 [874]
+" Modified: 2017-10-10 [877]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -142,7 +142,8 @@ endif
 
 if g:islinux
   set guifont=Courier\ New:h9:cDEFAULT
-  set guifontwide=Courier\ New:h9:cDEFAULT
+  " set guifontwide=Courier\ New:h9:cDEFAULT
+  set guifontwide=WenQuanYi\ Bitmap\ Song:h9:cDEFAULT
 endif
 
 if !has('gui_running')
@@ -483,9 +484,9 @@ autocmd ColorScheme * silent call SetCursorStyle()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if executable('xclip')
   command! -nargs=0 XCopy :!xclip -f -sel clip<CR>
-  command! -nargs=0 XPaste :-1r !xclip -o -sel clip<CR>
+  command! -nargs=0 XPaste :r !xclip -o -sel clip<CR>
   vmap <leader>y !xclip -f -sel clip<CR>u
-  nmap <leader>p :-1r !xclip -o -sel clip<CR>
+  nmap <leader>p :r !xclip -o -sel clip<CR>
 endif
 
 
