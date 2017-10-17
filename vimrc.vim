@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2017-10-10 [877]
+" Modified: 2017-10-17 [911]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -142,8 +142,8 @@ endif
 
 if g:islinux
   set guifont=Courier\ New:h9:cDEFAULT
-  " set guifontwide=Courier\ New:h9:cDEFAULT
-  set guifontwide=WenQuanYi\ Bitmap\ Song:h9:cDEFAULT
+  set guifontwide=Courier\ New:h9:cDEFAULT
+  " set guifontwide=WenQuanYi\ Micro\ Hei:h9:cDEFAULT
 endif
 
 if !has('gui_running')
@@ -177,10 +177,12 @@ set iskeyword+=_,$,@,%,#,-,*    " 将这些字符作为关键字，带有这些�
 set whichwrap=b,s,<,>,[,]
 set colorcolumn=80      " 设置第列高亮
 " set textwidth=512       " textwidth, 一行的最大宽度
-" listchars tabe用..显示，尾部空格用-显示，eol不显示 ˫ ￩ ￪ ￫ ￬ ˖ · ˽ ⊹ ∙ ⋅⋆⋇ ༓
-set listchars=tab:￫￫,trail:·,extends:>,precedes:<
-" set listchars=tab:→,trail:·,extends:>,precedes:<
-
+" listchars tabe用..显示，尾部空格用-显示，eol不显示 ˫ ￩ ￪ ￫ ￬ ˖ · ˽ ⊹ ∙ ⋅⋆⋇ ༓ » ‣
+if &term == 'xterm' || &term == 'xterm-256color'
+  set listchars=tab:»»,trail:·,extends:>,precedes:<
+else
+  set listchars=tab:￫￫,trail:·,extends:>,precedes:<
+endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -479,8 +481,16 @@ autocmd ColorScheme * silent call SetCursorStyle()
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Copy & Paste clipboard by xclip shell command
-" $ sudo apt-get install xclip
+" Copy & Paste clipboard
+" 查看是否支持系统剪切板
+"   $ vim --version | grep clipboard
+"
+" Linux (install vim-gtk or vim-gnome)
+"   $ sudo apt install vim-gtk
+"   $ sudo apt-get install vim-gnome
+"
+" xclip command
+"   $ sudo apt-get install xclip
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if executable('xclip')
   command! -nargs=0 XCopy :!xclip -f -sel clip<CR>
