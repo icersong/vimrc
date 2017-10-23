@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2017-10-17 [911]
+" Modified: 2017-10-23 [918]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -177,7 +177,7 @@ set iskeyword+=_,$,@,%,#,-,*    " 将这些字符作为关键字，带有这些�
 set whichwrap=b,s,<,>,[,]
 set colorcolumn=80      " 设置第列高亮
 " set textwidth=512       " textwidth, 一行的最大宽度
-" listchars tabe用..显示，尾部空格用-显示，eol不显示 ˫ ￩ ￪ ￫ ￬ ˖ · ˽ ⊹ ∙ ⋅⋆⋇ ༓ » ‣
+" listchars tabe用..显示，尾部空格用-显示，eol不显示 ˫ ￩ ￪ ￫ ￬ ˖ · ˽ ⊹ ∙ ⋅⋆⋇ ༓ » ‣ ¬ ‽
 if &term == 'xterm' || &term == 'xterm-256color'
   set listchars=tab:»»,trail:·,extends:>,precedes:<
 else
@@ -233,6 +233,13 @@ nmap <silent>> V><esc>
 nmap <silent>< V<<esc>
 vmap <silent>> :><cr>gv
 vmap <silent>< :<<cr>gv
+
+" shifting text left and right
+" = auto shifting
+nmap <D-[> <<
+nmap <D-]> >>
+vmap <D-[> <gv
+vmap <D-]> >gv
 
 " 上下移动一行文字
 nmap <C-J> :m+<cr>
