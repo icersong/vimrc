@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2017-10-23 [918]
+" Modified: 2017-10-30 [924]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -34,6 +34,9 @@ let $UNDODIR = simplify(expand($VIMCACHE.'/undo/'))
 if !(isdirectory($UNDODIR))
   call mkdir($UNDODIR, 'p', 0700)
 endif
+set undodir=$UNDODIR
+set undolevels=99   "maximum number of changes that can be undone
+set undoreload=10000  "maximum number lines to save for undo on a buffer
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -97,7 +100,6 @@ set nowrapscan                  " 搜索到文件末尾时，不再回绕到文�
 set hidden                      " 放弃缓冲区时隐藏而不卸载
 set directory=$VIMCACHE         " 设置交换文件路径
 set backupdir=$BACKUPDIR
-set undodir=$UNDODIR
 " set autochdir                   " 自动切换路径
 " set noswapfile                  " 禁止交换文件
 " set linespace=4                 " 设置行间距，单位是像素
@@ -280,11 +282,11 @@ endfunc
 function! WriteUndo()
   if isdirectory($UNDODIR)
     let fname = join(split(undofile(expand('%')), '%'), '&')
-    execute('wundo ' . fname)
+    execute('silent wundo ' . fname)
   endif
 endfunc
 function! CleanCache()
-  exe '!find "'.$VIMCACHE.'/undo" -mtime +7 -exec rm -f {} \;'
+  exe '!find "'.$VIMCACHE.'/undo/" -mtime +33 -exec rm -f {} \;'
 endfunction
 
 
