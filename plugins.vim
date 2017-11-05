@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2017-10-10
+" Modified: 2017-11-05
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:enable_youcompleteme = 0
 let g:enable_neocomplete = 0
@@ -545,7 +545,9 @@ let g:syntastic_javascript_jsl_quiet_messages={"regex": [
     \ 'increment (++) and decrement (--) operators used as part of greater statement',
     \ 'unexpected end of line; it is ambiguous whether these lines are part of the same statement']}
 let g:syntastic_css_csslint_quiet_messages={
-    \ "regex": ["^Duplicate property"]}
+    \ "regex": ["^Duplicate property",
+    \ 'Using width with border can sometimes make elements larger than you expect. (box-model)',
+    \ 'Using height with border can sometimes make elements larger than you expect. (box-model)']}
 let g:syntastic_html_tidy_quiet_messages={"regex":
     \ ['unescaped & which should be written as &amp;']}
 let g:syntastic_xhtml_tidy_quiet_messages={"regex":

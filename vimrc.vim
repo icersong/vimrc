@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2017-10-22 [912]
+" Modified: 2017-11-06 [922]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -265,14 +265,14 @@ au BufWritePost * silent call WriteUndo()
 au VimLeave * silent call CleanCache()
 function! ReadUndo()
   " let fname = undofile(expand('%'))
-  let fname = join(split(undofile(expand('%')), '\s'), '&')
+  let fname = join(split(join(split(undofile(expand('%')), '%'), '&'), '\s'), '_')
   if filereadable(fname)
     execute('silent rundo ' . fname)
   endif
 endfunc
 function! WriteUndo()
+  let fname = join(split(join(split(undofile(expand('%')), '%'), '&'), '\s'), '_')
   if isdirectory($UNDODIR)
-    let fname = join(split(undofile(expand('%')), '\s'), '&')
     execute('wundo ' . fname)
   endif
 endfunc
