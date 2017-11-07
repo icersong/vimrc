@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2017-10-30 [924]
+" Modified: 2017-11-06 [922]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -34,9 +34,6 @@ let $UNDODIR = simplify(expand($VIMCACHE.'/undo/'))
 if !(isdirectory($UNDODIR))
   call mkdir($UNDODIR, 'p', 0700)
 endif
-set undodir=$UNDODIR
-set undolevels=99   "maximum number of changes that can be undone
-set undoreload=10000  "maximum number lines to save for undo on a buffer
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -100,6 +97,7 @@ set nowrapscan                  " 搜索到文件末尾时，不再回绕到文�
 set hidden                      " 放弃缓冲区时隐藏而不卸载
 set directory=$VIMCACHE         " 设置交换文件路径
 set backupdir=$BACKUPDIR
+set undodir=$UNDODIR
 " set autochdir                   " 自动切换路径
 " set noswapfile                  " 禁止交换文件
 " set linespace=4                 " 设置行间距，单位是像素
@@ -179,7 +177,7 @@ set iskeyword+=_,$,@,%,#,-,*    " 将这些字符作为关键字，带有这些�
 set whichwrap=b,s,<,>,[,]
 set colorcolumn=80      " 设置第列高亮
 " set textwidth=512       " textwidth, 一行的最大宽度
-" listchars tabe用..显示，尾部空格用-显示，eol不显示 ˫ ￩ ￪ ￫ ￬ ˖ · ˽ ⊹ ∙ ⋅⋆⋇ ༓ » ‣ ¬ ‽
+" listchars tabe用..显示，尾部空格用-显示，eol不显示 ˫ ￩ ￪ ￫ ￬ ˖ · ˽ ⊹ ∙ ⋅⋆⋇ ༓ » ‣
 if &term == 'xterm' || &term == 'xterm-256color'
   set listchars=tab:»»,trail:·,extends:>,precedes:<
 else
@@ -236,13 +234,6 @@ nmap <silent>< V<<esc>
 vmap <silent>> :><cr>gv
 vmap <silent>< :<<cr>gv
 
-" shifting text left and right
-" = auto shifting
-nmap <D-[> <<
-nmap <D-]> >>
-vmap <D-[> <gv
-vmap <D-]> >gv
-
 " 上下移动一行文字
 nmap <C-J> :m+<cr>
 nmap <C-K> :m-2<cr>
@@ -274,19 +265,19 @@ au BufWritePost * silent call WriteUndo()
 au VimLeave * silent call CleanCache()
 function! ReadUndo()
   " let fname = undofile(expand('%'))
-  let fname = join(split(undofile(expand('%')), '%'), '&')
+  let fname = join(split(join(split(undofile(expand('%')), '%'), '&'), '\s'), '_')
   if filereadable(fname)
     execute('silent rundo ' . fname)
   endif
 endfunc
 function! WriteUndo()
+  let fname = join(split(join(split(undofile(expand('%')), '%'), '&'), '\s'), '_')
   if isdirectory($UNDODIR)
-    let fname = join(split(undofile(expand('%')), '%'), '&')
-    execute('silent wundo ' . fname)
+    execute('wundo ' . fname)
   endif
 endfunc
 function! CleanCache()
-  exe '!find "'.$VIMCACHE.'/undo/" -mtime +33 -exec rm -f {} \;'
+  exe '!find "'.$VIMCACHE.'/undo" -mtime +7 -exec rm -f {} \;'
 endfunction
 
 
