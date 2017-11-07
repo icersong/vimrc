@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2017-10-10
+" Modified: 2017-11-07
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:enable_youcompleteme = 0
 let g:enable_neocomplete = 0
@@ -524,15 +524,17 @@ let g:syntastic_ignore_files        = ['.*\.log$']
 let g:syntastic_html_checkers       = ['tidy']  " 'jshint', 'jslint'
 let g:syntastic_xhtml_checkers      = ['tidy']
 let g:syntastic_javascript_checkers = ['jsl']
-let g:syntastic_python_checkers     = ['pep8', 'pyflakes']
 let g:syntastic_xml_checkers        = ['xmllint']
-let g:syntastic_python_pyflakes_quiet_messages={"regex": [
-    \ 'unable to detect undefined names$']}
-let g:syntastic_python_pep8_args='--ignore=C901,E111'
-if executable('/usr/local/bin/pep8')
-  let g:syntastic_python_pep8_exec='/usr/local/bin/pep8'
+let g:syntastic_python_checkers     = ['pep8', 'pyflakes']
+let g:syntastic_python_pep8_args='--ignore=C901 --max-line-length=120'
+if !executable('pep8')
+  if executable('/usr/local/bin/pep8')
+    let g:syntastic_python_pep8_exec='/usr/local/bin/pep8'
+  endif
 endif
 " let g:syntastic_python_pep8_options='-std=c++11 -I$ROOTSYS/include/'
+let g:syntastic_python_pyflakes_quiet_messages={"regex": [
+    \ 'unable to detect undefined names$']}
 let g:syntastic_python_pep8_quiet_messages={"regex": [
     \ '^E111', '^E127', '^E128', '^E401', '^E402', '^E501', '^E701', '^E731', '^E721']}
 let g:syntastic_javascript_jsl_quiet_messages={"regex": [
