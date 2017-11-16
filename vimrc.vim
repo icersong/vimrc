@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2017-11-06 [922]
+" Modified: 2017-11-16 [926]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -205,8 +205,6 @@ let g:mapleader = ","
 " buffer切换
 nmap <silent><Left> :bp<CR>
 nmap <silent><Right> :bn<CR>
-" nmap <silent><c-h> :bp<CR>
-" nmap <silent><c-l> :bn<CR>
 
 " 定义空格键暂时取消高亮匹配
 nmap <silent><space> :nohls<CR>za
@@ -498,22 +496,3 @@ if executable('xclip')
   vmap <leader>y !xclip -f -sel clip<CR>u
   nmap <leader>p :r !xclip -o -sel clip<CR>
 endif
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" TIPS
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 历史消息
-"   :messages
-" 查看错误
-"   :echo errmsg
-" 错误说明
-"   :help <error no>
-"
-" 粘贴出现多余缩进问题
-"   :set paste
-"   [do paste]
-"   :set nopaste
-"
-" 格式化json
-"   :%!python -m json.tool

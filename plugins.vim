@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2017-11-07
+" Modified: 2017-11-16
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:enable_youcompleteme = 0
 let g:enable_neocomplete = 0
@@ -63,32 +63,70 @@ let $PLUGPATH = simplify(expand($VIMFILES.'/plugins/vim-plug'))
 set rtp+=$PLUGPATH
 call plug#begin($VIM_PLUGING_PATH)
 
-Plug 'CodeFalling/fcitx-vim-osx'
+if g:ismacos
+  Plug 'CodeFalling/fcitx-vim-osx'
+endif
+" 插件加载工具
 Plug 'junegunn/vim-plug'
+" 性能分析插件
+" Plug 'hyiltiz/vim-plugins-profile'
+" 屏幕保护matrix
 " Plug 'uguu-org/vim-matrix-screensaver'
+" 打开文件检查.swp冲突并提示操作
 Plug 'chrisbra/Recover.vim'
+" 启动页面
 Plug 'mhinz/vim-startify'
+" Buffer标签页&状态栏
 Plug 'bling/vim-airline'
+" 配色方案
 Plug 'altercation/vim-colors-solarized'
+" 特殊字体符号
 " Plug 'ryanoasis/vim-devicons'
-Plug 'severin-lemaignan/vim-minimap'
+" 缩略图显示显示代码及光标位置
+" Plug 'severin-lemaignan/vim-minimap'
 " Plug 'koron/minimap-vim'
+"
+"""""""""""""""""""""""""""""""" 文件搜索 """"""""""""""""""""""""""""""""
+" 文件浏览器
 Plug 'scrooloose/nerdtree'
-Plug 'myusuf3/numbers.vim'
-" Plug 'kien/ctrlp.vim'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'tacahiroy/ctrlp-funky'
-Plug 'FelikZ/ctrlp-py-matcher'
-Plug 'mhinz/vim-grepper'
-Plug 'rking/ag.vim'
-Plug 'Chun-Yang/vim-action-ag'
-Plug 'dyng/ctrlsf.vim'
-Plug 'haya14busa/incsearch.vim'
+" 自定义目录数工具
 Plug 'vim-voom/VOoM'
-Plug 'kien/rainbow_parentheses.vim'
+" Ctrl-P波峰式文件搜索利器
+Plug 'ctrlpvim/ctrlp.vim'
+" Ctrl-P匹配加速器，利用python匹配提升速度
+Plug 'FelikZ/ctrlp-py-matcher'
+" Grepper当前目录文件内容搜索
+Plug 'mhinz/vim-grepper'
+" 搜索当前工程内文件或内容, Ag & AgFile
+Plug 'rking/ag.vim'
+" 用Ag搜索选中内容或光标下单词, gag|gagi|gagiw
+Plug 'Chun-Yang/vim-action-ag'
+" 搜索选中内容或光标下单词, <leader>f
+Plug 'dyng/ctrlsf.vim'
+" 指定字母快速移动光标
 Plug 'Lokaltog/vim-easymotion'
+" 扩展%快速匹配跳转
+Plug 'vim-scripts/matchit.zip'
+
+"""""""""""""""""""""""""""""""" 辅助提示 """"""""""""""""""""""""""""""""
+" place, toggle and display marks
+Plug 'kshenoy/vim-signature'
+" 编辑器左侧相对行数显示
+" Plug 'myusuf3/numbers.vim'
+Plug 'jeffkreeftmeijer/vim-numbertoggle'
+" hilight search result runtime
+Plug 'haya14busa/incsearch.vim'
+" 括号匹配颜色(用下一个插件替代)
+" Plug 'kien/rainbow_parentheses.vim'
+" 括号或配对标签颜色
+Plug 'luochen1990/rainbow'
+" 缩进显示
 Plug 'Yggdroot/indentLine'
-Plug 'tmhedberg/SimpylFold'
+" Python语法折叠, 可增强折叠import&docstring
+Plug 'tmhedberg/SimpylFold', {'for': ['python']}
+
+"""""""""""""""""""""""""""""""" 输入辅助 """"""""""""""""""""""""""""""""
+" 语法快速输入提示
 Plug 'honza/vim-snippets'
 Plug 'SirVer/ultisnips', {'for': ['c', 'cpp', 'javascript', 'python']}
 Plug 'scrooloose/syntastic'
@@ -104,14 +142,7 @@ endif
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/vimproc.vim'
 Plug 'Shougo/neomru.vim'
-if has('nvim')
-  Plug 'Shougo/vimshell.vim', {'for': ['None']}
-  command! -nargs=0 VimShell :e term://zsh
-  tnoremap <Esc> <C-\><C-n>
-else
-  Plug 'Shougo/vimshell.vim'
-endif
-Plug 'benmills/vimux'
+
 " Plug 'Shougo/neocomplete.vim'
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'rizzatti/funcoo.vim'
@@ -135,36 +166,55 @@ Plug 'pangloss/vim-javascript', { 'for': ['javascript'] }
 Plug 'mattn/emmet-vim', { 'for': ['xml', 'htm', 'html', 'xhtml'] }
 Plug 'othree/html5.vim', { 'for': ['htm', 'html', 'xhtml'] }
 Plug 'leshill/vim-json', { 'for': ['json'] }
+
+
+" Configurable, flexible, intuitive text aligning
+Plug 'godlygeek/tabular'
 Plug 'vim-scripts/Align'
 Plug 'vim-scripts/dbext.vim'
 Plug 'vim-scripts/SQLUtilities'
 Plug 'vim-scripts/SQLComplete.vim'
-Plug 'godlygeek/tabular'
-Plug 'vim-scripts/matchit.zip'
 Plug 'vim-scripts/TaskList.vim'
-Plug 'ntpeters/vim-better-whitespace'
-Plug 'tpope/vim-repeat'
+
+"""""""""""""""""""""""""""""""" edit """"""""""""""""""""""""""""""""
+" Undo tree
 Plug 'sjl/gundo.vim'
-Plug 'michaeljsmith/vim-indent-object'
+" Muti select and edit, <c-n>, <c-p>
+Plug 'terryma/vim-multiple-cursors'
+" Remove tail space when save
+Plug 'ntpeters/vim-better-whitespace'
+" Repeat pre action by key '.'
+Plug 'tpope/vim-repeat'
+" Add or del parentheses symbols for word or selected
 Plug 'tpope/vim-surround'
+" Fast select by key "+" & "-"
+Plug 'terryma/vim-expand-region'
+" text object ...
+Plug 'michaeljsmith/vim-indent-object'
+" Range select for edit, :NR
+Plug 'chrisbra/NrrwRgn'
+
 Plug 'Raimondi/delimitMate'
 Plug 'scrooloose/nerdcommenter'
 Plug 'vim-scripts/AuthorInfo'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'terryma/vim-expand-region'
-Plug 'chrisbra/NrrwRgn'
 " Plug 'vim-scripts/taglist.vim'
 Plug 'majutsushi/tagbar'
 Plug 'jeetsukumaran/vim-buffergator'
+
+"""""""""""""""""""""""""""""""" vcs """"""""""""""""""""""""""""""""
+" VCS command
 Plug 'vim-scripts/vcscommand.vim'
+" Git wrapper
 Plug 'tpope/vim-fugitive'
+" VCS state signs display [GIT, SVN, HG, ...] (sn, sp)
+" Plug 'mhinz/vim-signify'
+" VCS state signs display [GIT, SVN, HG, ...] (gn, gp)
 Plug 'airblade/vim-gitgutter'
-Plug 'kshenoy/vim-signature'
+
 Plug 'joonty/vdebug', {'for': ['python', 'php']}
 " Plug 'tpope/vim-vinegar'
 " Plug 'eiginn/netrw'
 Plug 'vim-scripts/CmdlineComplete'
-" Plug 'christoomey/vim-tmux-navigator'
 Plug 'skywind3000/asyncrun.vim'
 " Plug 'itchyny/calendar.vim'
 Plug 'mattn/calendar-vim'
@@ -181,7 +231,24 @@ Plug 'vim-scripts/LargeFile'
 Plug 'icersong/timestamp.vim'
 " Plug 'git://git.wincent.com/command-t.git'
 
+"""""""""""""""""""""""""""""""" Shell """"""""""""""""""""""""""""""""
+if has('nvim')
+  Plug 'Shougo/vimshell.vim', {'for': ['None']}
+  command! -nargs=0 VimShell :e term://zsh
+  tnoremap <Esc> <C-\><C-n>
+else
+  Plug 'Shougo/vimshell.vim'
+endif
+" Run command to tmux, <leader>r
+Plug 'benmills/vimux'
+" Navigate seamlessly between vim and tmux splits using a consistent set of hotkeys
+" Plug 'christoomey/vim-tmux-navigator'
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#end()
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugins configure
@@ -318,13 +385,17 @@ endif
 "   let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
 " endif
 
+" 使用ctrl-py-matcher加速
+if has('python')
+  let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Numbers {{{1
 " Plug 'myusuf3/numbers.vim'
 
-let g:numbers_exclude = ['nerdtree', 'unite', 'tagbar', 'startify', 'gundo', 'vimshell', 'w3m']
-autocmd VimEnter * NumbersDisable
+" let g:numbers_exclude = ['nerdtree', 'unite', 'tagbar', 'startify', 'gundo', 'vimshell', 'w3m']
+" autocmd VimEnter * NumbersDisable
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -404,28 +475,38 @@ nnoremap <leader>* :Grepper -tool ag -cword -noprompt<cr>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ag    {{{1
+" Ag    {{{1
 " Plug 'rking/ag.vim'
+" Search by file name
+" :AgFile [options] {pattern} [{directory}]
+" Search file content
+" :Ag [options] {pattern} [{directory}]
+" :Ag '\\\#define foo' to search for #define foo
 let g:ag_prg="ag --vimgrep --nocolor --nogroup --smart-case --ignore .git --ignore .svn --ignore .DS_Store"
 let g:ag_working_path_mode="r"
 let g:ag_format="%f:%l:%c:%m"
 let g:ag_hightlight=1
 " let g:ag_qhandler="copen"
 
+
 " vim-action-ag   {{{1
+" Plug 'Chun-Yang/vim-action-ag'
+" Dependency 'rking/ag.vim'
 " Normal Mode
 "   gagiw to search the word
 "   gagi' to search the words inside single quotes.
 " Visual Mode
 "   gag to search the selected text
-" Plug 'Chun-Yang/vim-action-ag'
+
 let g:vim_action_ag_escape_chars = '#%.^$*+?()[{\\|'
 
 
-" ctrlsf    {{{1
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" CtrlSF    {{{1
+" Plug 'dyng/ctrlsf.vim'
 " like ag.vim but show context with matches line
 " CtrlSF [options] <patten> [path]
-" Plug 'dyng/ctrlsf.vim'
+
 let g:ctrlsf_auto_close = 1
 let g:ctrlsf_default_root = 'project+ww'
 let g:ctrlsf_populate_qflist = 1
@@ -463,11 +544,47 @@ let g:voom_tab_key = "<C-Tab>"
 " rainbow_parentheses   {{{1
 " high light parentheses with different color
 " Plug 'kien/rainbow_parentheses.vim'
-let g:rbpt_loadcmd_toggle = 0
-autocmd VimEnter * nested :RainbowParenthesesToggle
+
+" let g:rbpt_loadcmd_toggle = 0
+" let g:rbpt_max = 9
+" " autocmd VimEnter * nested :RainbowParenthesesToggle
+" autocmd VimEnter * RainbowParenthesesToggle
 " autocmd Syntax * RainbowParenthesesLoadRound
-autocmd Syntax * RainbowParenthesesLoadSquare
-autocmd Syntax * RainbowParenthesesLoadBraces
+" autocmd Syntax * RainbowParenthesesLoadSquare
+" autocmd Syntax * RainbowParenthesesLoadBraces
+" " autocmd Syntax * RainbowParenthesesLoadChevrons
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" rainbow  {{{1
+" Plug 'luochen1990/rainbow'
+" :RainbowToggle  --you can use it to toggle this plugin.
+let g:rainbow_active = 1
+let g:rainbow_conf = {
+  \  'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
+  \  'ctermfgs': ['darkblue', 'darkgreen', 'darkmagenta', 'darkred'],
+  \  'operators': '_,_',
+  \  'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+  \  'separately': {
+  \    '*': {},
+  \    'tex': {
+  \      'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
+  \    },
+  \    'lisp': {
+  \      'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
+  \    },
+  \    'vim': {
+  \      'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
+  \    },
+  \    'html': {
+  \      'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
+  \    },
+  \    'jinja': {
+  \      'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
+  \    },
+  \    'css': 0,
+  \  }
+  \}
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -475,6 +592,12 @@ autocmd Syntax * RainbowParenthesesLoadBraces
 " fast jump to after current, \\f<char>
 " Plug 'Lokaltog/vim-easymotion'
 let g:EasyMotion_leader_key = ";"
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" matchit  {{{1
+" Plug 'vim-scripts/matchit.zip'
+let loaded_matchit = 1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -622,27 +745,42 @@ endif
 " set completeopt=longest,menu    " 让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
 " highlight Pmenu ctermfg=2 ctermbg=3 guifg=#005f87 guibg=#EEE8D5
 " highlight PmenuSel ctermfg=2 ctermbg=3 guifg=#AFD700 guibg=#106900
-let g:ycm_global_ycm_extra_conf = simplify(expand(
-    \ $VIM_BUNDLE_PATH.'/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'))
-let g:ycm_min_num_of_chars_for_completion = 2
-let g:ycm_collect_identifiers_from_comments_and_strings = 0
-let g:ycm_complete_in_comments = 1
-let g:ycm_complete_in_strings = 1
-let g:ycm_seed_identifiers_with_syntax = 1
-let g:syntastic_always_populate_loc_list = 1
+
 " let g:ycm_path_to_python_interpreter='/usr/local/bin/python'
-" let g:ycm_collect_identifiers_from_tags_files = 1
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif   " 离开插入模式后自动关闭预览窗口
 " nmap <leader>jj :YcmCompleter GoTo<CR>
 " nmap <leader>jr :YcmCompleter GoToReferences<CR>
 " nmap <leader>jd :YcmCompleter GoToDefinition<CR>
 " nmap <leader>ji :YcmCompleter GoToDeclaration<CR>
 " nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
-"nnoremap <leader>lo :lopen<CR>	"open locationlist
-"nnoremap <leader>lc :lclose<CR>	"close locationlist
+" nnoremap <leader>lo :lopen<CR>	"open locationlist
+" nnoremap <leader>lc :lclose<CR>	"close locationlist
 " inoremap <leader><leader> <C-x><C-o>
+
+" 配置文件
+let g:ycm_global_ycm_extra_conf = simplify(expand(
+    \ $VIM_BUNDLE_PATH.'/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'))
+" 关闭加载.ycm_extra_conf.py提示
+let g:ycm_confirm_extra_conf=0
+" 禁止缓存匹配项,每次都重新生成匹配项
+let g:ycm_cache_omnifunc=0
+" 开启 YCM 基于标签引擎
+let g:ycm_collect_identifiers_from_tags_files=1
+" 从第2个键入字符就开始罗列匹配项
+let g:ycm_min_num_of_chars_for_completion = 2
+" 语法关键字补全
+let g:ycm_seed_identifiers_with_syntax = 1
+" 在local-list中显示错误
+let g:syntastic_always_populate_loc_list = 1
+" 在注释输入中也能补全
+let g:ycm_complete_in_comments = 1
+" 在字符串输入中也能补全
+let g:ycm_complete_in_strings = 1
+" 注释和字符串中的文字也会被收入补全
+let g:ycm_collect_identifiers_from_comments_and_strings = 0
+" 离开插入模式后自动关闭预览窗口
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 " 回车即选中当前项
-inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
 
 function! MappingForYcm()
   " if HasCmdValid('YcmCompleter')
@@ -652,7 +790,6 @@ function! MappingForYcm()
   " endif
 endfunction
 autocmd BufReadPost * call  MappingForYcm()
-
 
 " 上下左右键的行为 会显示其他信息
 " inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
@@ -686,11 +823,11 @@ let g:pydiction_menu_height = 9
 " jedi-vim is a is a VIM binding to the autocompletion library Jedi.
 " 此插件会导致键入时迟缓，严重时会卡住
 " Plug 'davidhalter/jedi-vim'
+let g:jedi#completions_enabled      = 0
 let g:jedi#auto_initialization      = 1
 let g:jedi#auto_vim_configuration   = 1
-let g:jedi#use_tabs_not_buffers     = 0
+let g:jedi#use_tabs_not_buffers     = 1
 let g:jedi#use_splits_not_buffers   = 1
-let g:jedi#completions_enabled      = 1
 let g:jedi#popup_select_first       = 0
 let g:jedi#popup_on_dot             = 1
 let g:jedi#auto_close_doc           = 1
@@ -868,9 +1005,9 @@ au FileType python let b:delimitMate_nesting_quotes = ['"', "'"]
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " nerdcommenter   {{{1
+" Plug 'scrooloose/nerdcommenter'
 " <leader>cc add common
 " <leader>cu remove common
-" Plug 'scrooloose/nerdcommenter'
 let NERDCreateDefaultMappings = 0
 let NERDSpaceDelims           = 1
 let NERDAllowAnyVisualDelims  = 1
@@ -996,12 +1133,33 @@ nnoremap ,gL :!git --no-pager log --oneline --decorate --graph -40<CR>
 " nnoremap <space>gpl :Dispatch! git pull<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-signify   {{{1
+" Plug 'mhinz/vim-signify'
+" UPDATE it to reflect your preferences, it will speed up opening files
+
+let g:signify_vcs_list = ['git', 'svn']
+" mappings to jump to changed blocks
+nmap <leader>sn <plug>(signify-next-hunk)
+nmap <leader>sp <plug>(signify-prev-hunk)
+
+" nicer colors
+highlight DiffAdd           cterm=bold ctermbg=none ctermfg=119
+highlight DiffDelete        cterm=bold ctermbg=none ctermfg=167
+highlight DiffChange        cterm=bold ctermbg=none ctermfg=227
+highlight SignifySignAdd    cterm=bold ctermbg=237  ctermfg=119
+highlight SignifySignDelete cterm=bold ctermbg=237  ctermfg=167
+highlight SignifySignChange cterm=bold ctermbg=237  ctermfg=227
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-gitgutter
+" Plug 'airblade/vim-gitgutter'
 " git display on ruler
 " GitGutterDisable
 " GitGutterEnable
+nmap gn <Plug>GitGutterNextHunk
+nmap gp <Plug>GitGutterPrevHunk
 
-Plug 'airblade/vim-gitgutter'
 let g:gitgutter_map_keys = 0
 function! Gitgutter_Disabled_in_Largefile()
   if line2byte(line("$")+1) > g:LargeFile*1024*1024
@@ -1013,11 +1171,11 @@ autocmd BufRead * silent call Gitgutter_Disabled_in_Largefile()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-signature  {{{1
+" Plug 'kshenoy/vim-signature'
 " virtual mark
 " m.        If no mark on line, place the next available mark. Otherwise, remove (first) existing mark.
 " m<space>  Delete all marks from te current buffer
 " [` or ]`  Jump to prev or next mark
-" Plug 'kshenoy/vim-signature'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1051,6 +1209,7 @@ autocmd BufRead * silent call Gitgutter_Disabled_in_Largefile()
 " vimux  {{{1
 " Plug 'benmills/vimux'
 nmap <Leader>r :VimuxPromptCommand<CR>
+let g:VimuxPromptString = "(tmux)$"
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
