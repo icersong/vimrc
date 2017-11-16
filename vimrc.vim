@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2017-11-16 [926]
+" Modified: 2017-11-17 [937]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -67,6 +67,7 @@ set scrolloff=6                 " 光标所在行上下两侧最少保留的屏�
 set cmdheight=1                 " 命令行占1行
 set ruler                       " 显示行号和列号
 set number                      " 显示行号，切换行号显隐 set nu!
+set number relativenumber       " 显示相对行号
 set showcmd                     " 显示输入的字符
 set mousehide                   " 默认不显示鼠标
 set wildmenu                    " 加强自动补全
@@ -183,18 +184,19 @@ if &term == 'xterm' || &term == 'xterm-256color'
 else
   set listchars=tab:￫￫,trail:·,extends:>,precedes:<
 endif
+let g:xml_syntax_folding = 1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " File type
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-autocmd BufRead,BufNewFile *.wsgi setlocal filetype=python syntax=python
+autocmd BufRead,BufNewFile *.wsgi setlocal filetype=python syntax=python foldmethod=indent
 autocmd BufRead,BufNewFile jquery.*.js setlocal filetype=javascript syntax=jquery
 autocmd BufRead,BufNewFile *.json setlocal filetype=json
 autocmd BufRead,BufNewFile *vimrc setlocal filetype=vim syntax=vim
-autocmd FileType vim,xml,css,html,xhtml setlocal tabstop=2 et softtabstop=2 shiftwidth=2
+autocmd FileType vim,css setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 autocmd BufRead,BufNewFile *.tpl setlocal filetype=jinja syntax=jinja
-
+autocmd FileType xml,html,xhtml setlocal foldmethod=marker tabstop=2 shiftwidth=2 softtabstop=2 smartindent smarttab expandtab
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Shortcuts

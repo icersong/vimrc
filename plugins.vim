@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2017-11-16
+" Modified: 2017-11-17
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:enable_youcompleteme = 0
 let g:enable_neocomplete = 0
@@ -109,11 +109,11 @@ Plug 'Lokaltog/vim-easymotion'
 Plug 'vim-scripts/matchit.zip'
 
 """""""""""""""""""""""""""""""" 辅助提示 """"""""""""""""""""""""""""""""
-" place, toggle and display marks
-Plug 'kshenoy/vim-signature'
 " 编辑器左侧相对行数显示
 " Plug 'myusuf3/numbers.vim'
-Plug 'jeffkreeftmeijer/vim-numbertoggle'
+" Plug 'jeffkreeftmeijer/vim-numbertoggle'
+" place, toggle and display marks
+Plug 'kshenoy/vim-signature'
 " hilight search result runtime
 Plug 'haya14busa/incsearch.vim'
 " 括号匹配颜色(用下一个插件替代)
@@ -124,6 +124,11 @@ Plug 'luochen1990/rainbow'
 Plug 'Yggdroot/indentLine'
 " Python语法折叠, 可增强折叠import&docstring
 Plug 'tmhedberg/SimpylFold', {'for': ['python']}
+" background color preview
+Plug 'gko/vim-coloresque', { 'for': ['css', 'html', 'javascript', 'jinja', 'python', 'vim', 'xdefaults'] }
+" Plug 'chrisbra/Colorizer', { 'for': ['css', 'html', 'javascript', 'jinja', 'python'] }
+" Vim diff display enhanced
+Plug 'chrisbra/vim-diff-enhanced'
 
 """""""""""""""""""""""""""""""" 输入辅助 """"""""""""""""""""""""""""""""
 " 语法快速输入提示
@@ -145,8 +150,6 @@ Plug 'Shougo/neomru.vim'
 
 " Plug 'Shougo/neocomplete.vim'
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'rizzatti/funcoo.vim'
-Plug 'rizzatti/dash.vim', { 'for': ['c', 'cpp', 'python', 'php'] }
 Plug 'jmcantrell/vim-virtualenv', { 'for': ['python'] }
 " Plug 'rkulla/pydiction', { 'for': ['python'] }
 " Plug 'python-rope/ropevim', { 'for': ['python'] }
@@ -156,8 +159,6 @@ Plug 'fs111/pydoc.vim', {'for': ['python'] }
 " Plug 'gotcha/vimpdb'
 Plug 'othree/xml.vim', { 'for': ['xml', 'html', 'xhtml', 'jinja']}
 " Plug 'hemerey/vim-project'
-" Plug 'chrisbra/Colorizer', { 'for': ['css', 'html', 'javascript', 'jinja', 'python'] }
-Plug 'gko/vim-coloresque', { 'for': ['css', 'html', 'javascript', 'jinja', 'python', 'vim', 'xdefaults'] }
 Plug 'hdima/python-syntax', { 'for': ['python'] }
 Plug 'icersong/vim-python', { 'for': ['python'] }
 Plug 'Glench/Vim-Jinja2-Syntax', { 'for': ['jinja', 'jinja2'] }
@@ -167,6 +168,11 @@ Plug 'mattn/emmet-vim', { 'for': ['xml', 'htm', 'html', 'xhtml'] }
 Plug 'othree/html5.vim', { 'for': ['htm', 'html', 'xhtml'] }
 Plug 'leshill/vim-json', { 'for': ['json'] }
 
+" Preview markdown in Google Chrome
+Plug 'iamcco/markdown-preview.vim'
+" Plug 'tpope/vim-markdown'
+" Plug 'plasticboy/vim-markdown'
+" Plug 'suan/vim-instant-markdown'
 
 " Configurable, flexible, intuitive text aligning
 Plug 'godlygeek/tabular'
@@ -200,6 +206,7 @@ Plug 'vim-scripts/AuthorInfo'
 " Plug 'vim-scripts/taglist.vim'
 Plug 'majutsushi/tagbar'
 Plug 'jeetsukumaran/vim-buffergator'
+Plug 'icersong/timestamp.vim'
 
 """""""""""""""""""""""""""""""" vcs """"""""""""""""""""""""""""""""
 " VCS command
@@ -211,27 +218,16 @@ Plug 'tpope/vim-fugitive'
 " VCS state signs display [GIT, SVN, HG, ...] (gn, gp)
 Plug 'airblade/vim-gitgutter'
 
-Plug 'joonty/vdebug', {'for': ['python', 'php']}
-" Plug 'tpope/vim-vinegar'
-" Plug 'eiginn/netrw'
-Plug 'vim-scripts/CmdlineComplete'
-Plug 'skywind3000/asyncrun.vim'
-" Plug 'itchyny/calendar.vim'
-Plug 'mattn/calendar-vim'
-Plug 'icersong/vimwiki'
-Plug 'tpope/vim-markdown'
-Plug 'iamcco/markdown-preview.vim'
-" Plug 'plasticboy/vim-markdown'
-" Plug 'suan/vim-instant-markdown'
-" Plug 'isnowfy/python-vim-instant-markdown'
-" Plug 'gabrielelana/vim-markdown'
-Plug 'vim-scripts/ZoomWin'
-Plug 'chrisbra/vim-diff-enhanced'
-Plug 'vim-scripts/LargeFile'
-Plug 'icersong/timestamp.vim'
-" Plug 'git://git.wincent.com/command-t.git'
 
-"""""""""""""""""""""""""""""""" Shell """"""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""" Env & Misc """"""""""""""""""""""""""""""""
+Plug 'vim-scripts/ZoomWin'
+Plug 'vim-scripts/LargeFile'
+Plug 'vim-scripts/CmdlineComplete'
+Plug 'joonty/vdebug', {'for': ['python', 'php']}
+" Plug 'eiginn/netrw'
+" Plug 'tpope/vim-vinegar'
+
+"""""""""""""""""""""""""""""""" Shell & Tools """"""""""""""""""""""""""""""""
 if has('nvim')
   Plug 'Shougo/vimshell.vim', {'for': ['None']}
   command! -nargs=0 VimShell :e term://zsh
@@ -243,7 +239,18 @@ endif
 Plug 'benmills/vimux'
 " Navigate seamlessly between vim and tmux splits using a consistent set of hotkeys
 " Plug 'christoomey/vim-tmux-navigator'
+" 异步运行命令
+Plug 'skywind3000/asyncrun.vim'
 
+" Libarary for dash.vim & greper.vim
+Plug 'rizzatti/funcoo.vim'
+if has('mac')
+  " Off line dash starter, Dash <keyword-for-search>
+  Plug 'rizzatti/dash.vim', { 'for': ['c', 'cpp', 'python', 'php'] }
+endif
+" Plug 'itchyny/calendar.vim'
+Plug 'mattn/calendar-vim'
+Plug 'icersong/vimwiki'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#end()
@@ -896,7 +903,7 @@ let g:vdebug_options = {"timeout": 99}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plug 'chrisbra/Colorizer'
-" 注：此插件可能极度影响光标及输入的速度
+" 注：此插件可能极度影响光标及输入的速度, 但是功能强于'gko/vim-coloresque'
 " let g:colorizer_auto_color = 0
 " let g:colorizer_auto_filetype='css,html,javascript,jinia,python,xdefaults'
 
@@ -1283,6 +1290,7 @@ autocmd BufNewFile $VIMWIKI/** set fileencoding=utf8
 " vim-markdown  {{{1
 " Plugin 'tpope/vim-markdown'
 let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'shell=sh']
+let g:markdown_minlines = 100
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1290,7 +1298,8 @@ let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'shell=sh']
 " :MarkdownPreview
 " :MarkdownPreviewStop
 if g:ismacos
-  let g:mkdp_path_to_chrome = "open -a Google\\ Chrome"
+  " let g:mkdp_path_to_chrome = "open -a Google\\ Chrome"
+  let g:mkdp_path_to_chrome = "/Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome"
 else
   let g:mkdp_path_to_chrome = "chromium-browser"
 endif
@@ -1327,8 +1336,18 @@ endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" xml.vim  {{{1
 " Plug 'othree/xml.vim'
 " auto close tag
+":help xml-plugin
+"<para>|   ==>  <para>|</para>
+"<para>>|  ==>  <para>\n..|\n</para>
+"LocalLeader is '\'
+"<LocalLeader> d or D del tags or with contant
+"<LocalLeader> % jump to the matching tag
+" let xml_tag_completion_map = "<C-l>"
+let g:xml_warn_on_duplicate_mapping = 1
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin 'gabrielelana/vim-markdown'
