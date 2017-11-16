@@ -667,6 +667,8 @@ let g:syntastic_javascript_jsl_quiet_messages={"regex": [
     \ 'missing break statement for last case in switch',
     \ 'anonymous function does not always return a value',
     \ 'function {\\w}\+ does not always return a value',
+    \ 'extra comma is not recommended in array initializers',
+    \ 'trailing comma is not legal in ECMA-262 object initializers',
     \ 'increment (++) and decrement (--) operators used as part of greater statement',
     \ 'unexpected end of line; it is ambiguous whether these lines are part of the same statement']}
 let g:syntastic_css_csslint_quiet_messages={
