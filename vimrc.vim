@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2017-11-17 [937]
+" Modified: 2017-11-17 [950]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -34,6 +34,93 @@ let $UNDODIR = simplify(expand($VIMCACHE.'/undo/'))
 if !(isdirectory($UNDODIR))
   call mkdir($UNDODIR, 'p', 0700)
 endif
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" multi-encodingi & file format setting
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if has("multi_byte")
+  set fileformats=unix,dos,mac      " 文件格式支持
+  set ambiwidth=double              " 当encoding=<unicode>编码时有效,使用ASCII字符两倍的宽度处理东亚字符类
+  "set bomb
+  " set formatoptions+=jmB            " centos vim7.2 not 'j' option
+  set formatoptions+=mB             " formatoptions
+  set fileencoding=utf-8
+  " set fileencodings=ucs-bom,utf-8,cp936,big5,gb18030,euc-jp,euc-kr,latin1
+  set fileencodings=ucs-bom,utf-8,cp936,gb18030,gb2312,gbk,big5,euc-jp,euc-kr
+  set encoding=utf8
+  " CJK environment detection and corresponding setting
+  if v:lang =~ "^zh_CN"
+    " Use cp936 to support GBK, euc-cn == gb2312
+    set encoding=cp936
+    set termencoding=cp936
+    set fileencoding=cp936
+  elseif v:lang =~ "^zh_TW"
+    " cp950, big5 or euc-tw
+    " Are they equal to each other?
+    set encoding=big5
+    set termencoding=big5
+    set fileencoding=big5
+  elseif v:lang =~ "^ko"
+    " Copied from someone's dotfile, untested
+    set encoding=euc-kr
+    set termencoding=euc-kr
+    set fileencoding=euc-kr
+  elseif v:lang =~ "^ja_JP"
+    " Copied from someone's dotfile, untested
+    set encoding=euc-jp
+    set termencoding=euc-jp
+    set fileencoding=euc-jp
+  endif
+  " Detect UTF-8 locale, and replace CJK setting if needed
+  if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
+    set encoding=utf-8
+    set termencoding=utf-8
+    set fileencoding=utf-8
+  endif
+else
+  echoerr "Sorry, this version of (g)vim was not compiled with multi_byte"
+endif
+
+if !has('gui_running')
+  " 解决consle输出乱码
+  language messages zh_CN.utf-8
+endif
+
+" if has('gui_running')
+"   set termencoding=Chinese        " 指定终端使用的编码,在+multi_byte特性下有效,也可用utf-8
+"   set fileencoding=Chinese
+" else
+"   set termencoding=utf-8          " 指定终端使用的编码,在+multi_byte特性下有效,也可用utf-8
+"   set fileencoding=utf-8
+" endif
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Font
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if g:iswin
+  " set guifont=Inconsolata:h10:cDEFAULT
+  " set guifontwide=YtYaHei:h8:cDEFAULT
+  " set guifont=Menlo:h9:cDEFAULT
+  " set guifontwide=Menlo:h9:cDEFAULT
+  set guifont=Courier\ New:h9:cDEFAULT
+  set guifontwide=Courier\ New:h9:cDEFAULT
+endif
+
+if g:ismacos
+  set guifontwide=Menlo:h12
+  set guifont=Menlo:h12
+endif
+
+if g:islinux
+  set guifont=Courier\ New:h9:cDEFAULT
+  set guifontwide=Courier\ New:h9:cDEFAULT
+  " set guifontwide=WenQuanYi\ Micro\ Hei:h9:cDEFAULT
+endif
+
+" 解决菜单乱码
+" source $VIMRUNTIME/delmenu.vim
+" source $VIMRUNTIME/menu.vim
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -105,56 +192,6 @@ set undodir=$UNDODIR
 " set shortmess+=I                " 启动时不显示介绍信息
 " set cmdwinheight=2              " 命令行窗口的屏幕行数
 " set clipboard+=unnamed          " 默认寄存器和系统剪贴板共享
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"File format and encoding
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" set formatoptions+=jmB            " centos vim7.2 not 'j' option
-set formatoptions+=mB             " formatoptions
-set fileformats=unix,dos,mac      " 文件格式支持
-set encoding=utf-8                " 文件默认编码
-set fileencodings=ucs-bom,utf-8,cp936,big5,gb18030,euc-jp,euc-kr,latin1
-set ambiwidth=double              " 当encoding=<unicode>编码时有效,使用ASCII字符两倍的宽度处理东亚字符类
-if has('gui_running')
-  set termencoding=Chinese        " 指定终端使用的编码,在+multi_byte特性下有效,也可用utf-8
-  set fileencoding=Chinese
-else
-  set termencoding=utf-8          " 指定终端使用的编码,在+multi_byte特性下有效,也可用utf-8
-  set fileencoding=utf-8
-endif
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Font & encoding
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if g:iswin
-  " set guifont=Inconsolata:h10:cDEFAULT
-  " set guifontwide=YtYaHei:h8:cDEFAULT
-  " set guifont=Menlo:h9:cDEFAULT
-  " set guifontwide=Menlo:h9:cDEFAULT
-  set guifont=Courier\ New:h9:cDEFAULT
-  set guifontwide=Courier\ New:h9:cDEFAULT
-endif
-
-if g:ismacos
-  set guifontwide=Menlo:h12
-  set guifont=Menlo:h12
-endif
-
-if g:islinux
-  set guifont=Courier\ New:h9:cDEFAULT
-  set guifontwide=Courier\ New:h9:cDEFAULT
-  " set guifontwide=WenQuanYi\ Micro\ Hei:h9:cDEFAULT
-endif
-
-if !has('gui_running')
-  language messages zh_CN.utf-8   " 解决consle输出乱码
-endif
-
-" 解决菜单乱码
-" source $VIMRUNTIME/delmenu.vim
-" source $VIMRUNTIME/menu.vim
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Indent
