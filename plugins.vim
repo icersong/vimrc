@@ -145,7 +145,7 @@ else
   Plug 'davidhalter/jedi-vim', { 'for': ['None'] }
 endif
 Plug 'Shougo/unite.vim'
-Plug 'Shougo/vimproc.vim'
+Plug 'Shougo/vimproc.vim', { 'build' : { 'unix' : 'make -f make_unix.mak', }, }
 Plug 'Shougo/neomru.vim'
 
 " Plug 'Shougo/neocomplete.vim'
