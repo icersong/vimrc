@@ -135,6 +135,8 @@ Plug 'chrisbra/vim-diff-enhanced'
 Plug 'honza/vim-snippets'
 Plug 'SirVer/ultisnips', {'for': ['c', 'cpp', 'javascript', 'python']}
 Plug 'scrooloose/syntastic'
+" 异步运行的语法着色，性能完爆syntastic
+" Plug 'w0rp/ale'
 if has('nvim')
   Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer',
         \ 'for': ['c', 'cpp', 'css', 'html'] }
@@ -691,6 +693,7 @@ let g:syntastic_xhtml_tidy_quiet_messages={"regex":
     \ ['unescaped & which should be written as &amp;']}
 let g:syntastic_po_msgfmt_quiet_messages={"regex":
     \ ['header field ''Last-Translator'' still has the initial default value']}
+
 if g:iswin
   let $PATH=$VIM.'\\Utilities;'.$PATH
   let $PATH=$VIM.'\\Utilities\\GNU;'.$PATH
@@ -702,8 +705,6 @@ if g:iswin
 endif
 
 if g:ismacos
-  " autocmd BufWritePost * :SyntasticCheck
-  let g:syntastic_python_pep8_exec = "/usr/local/bin/pep8"
   let g:syntastic_mode_map = { 'mode': 'active',
       \ 'active_filetypes': ['javascript', 'html', 'xhtml', 'css', 'python', 'xml'],
       \ 'passive_filetypes': [] }
