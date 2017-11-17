@@ -45,6 +45,16 @@ vimrc
 （或者在您的 vimrc 最前面加上 `set vbs=9`）XD
 
 
+* 编辑时开启记录调试信息
+
+    :profile start profile.log
+    :profile func *
+    :profile file *
+    " At this point do slow actions
+    :profile pause
+    :noautocmd qall! [ Translation service is temporarily unavailable]
+
+
 * 开启调试信息，记录那些插件影响速度
 
 You can use built-in profiling support: after launching vim do

@@ -1315,7 +1315,8 @@ if g:ismacos
   " let g:mkdp_path_to_chrome = "open -a Google\\ Chrome"
   let g:mkdp_path_to_chrome = "/Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome"
 else
-  let g:mkdp_path_to_chrome = "chromium-browser"
+  let g:mkdp_path_to_chrome = "google-chrome"
+  " let g:mkdp_path_to_chrome = "chromium-browser"
 endif
 
 
