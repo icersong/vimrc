@@ -1217,9 +1217,17 @@ autocmd BufRead * silent call Gitgutter_Disabled_in_Largefile()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vimux  {{{1
 " Plug 'benmills/vimux'
-nmap <silent><leader>r :VimuxPromptCommand<CR>
-nmap <silent><leader>R :VimuxRunLastCommand<CR>
-let g:VimuxHeight = "9"
+
+map <Leader>rb :call VimuxRunCommand("clear; rspec " . bufname("%"))<CR>
+map <Leader>rr :call VimuxRunCommand("clear; sudo apachectl restart;")<CR>:call VimuxSendKeys('Space')<CR>:call VimuxSendKeys('Enter')<CR>
+map <Leader>vp :VimuxPromptCommand<CR>
+map <Leader>vl :VimuxRunLastCommand<CR>
+map <Leader>vi :VimuxInspectRunner<CR>
+map <Leader>vq :VimuxCloseRunner<CR>
+map <Leader>vx :VimuxInterruptRunner<CR>
+map <Leader>vz :call VimuxZoomRunner()<CR>
+
+let g:VimuxHeight = "16"
 let g:VimuxOrientation = "v"
 let g:VimuxPromptString = "(tmux)$ "
 
