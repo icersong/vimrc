@@ -167,7 +167,8 @@ Plug 'pangloss/vim-javascript', { 'for': ['javascript'] }
 Plug 'mattn/emmet-vim', { 'for': ['xml', 'htm', 'html', 'xhtml'] }
 Plug 'othree/html5.vim', { 'for': ['htm', 'html', 'xhtml'] }
 Plug 'leshill/vim-json', { 'for': ['json'] }
-
+" CSV file editor
+" Plug 'chrisbra/csv.vim'
 " Preview markdown in Google Chrome
 Plug 'iamcco/markdown-preview.vim'
 " Plug 'tpope/vim-markdown'
@@ -224,6 +225,8 @@ Plug 'vim-scripts/ZoomWin'
 Plug 'vim-scripts/LargeFile'
 Plug 'vim-scripts/CmdlineComplete'
 Plug 'joonty/vdebug', {'for': ['python', 'php']}
+" Resize vim pannel width & heigth
+Plug 'junegunn/goyo.vim'
 " Plug 'eiginn/netrw'
 " Plug 'tpope/vim-vinegar'
 
@@ -238,7 +241,7 @@ endif
 " Run command to tmux, <leader>r
 Plug 'benmills/vimux'
 " Navigate seamlessly between vim and tmux splits using a consistent set of hotkeys
-" Plug 'christoomey/vim-tmux-navigator'
+Plug 'christoomey/vim-tmux-navigator'
 " 异步运行命令
 Plug 'skywind3000/asyncrun.vim'
 
@@ -308,8 +311,8 @@ nmap <leader>9 <Plug>AirlineSelectTab9
 nmap <leader>0 <Plug>AirlineSelectTab10
 nmap <leader>- <Plug>AirlineSelectPrevTab
 nmap <leader>+ <Plug>AirlineSelectNextTab
-nmap <silent><c-h> <Plug>AirlineSelectPrevTab
-nmap <silent><c-l> <Plug>AirlineSelectNextTab
+" nmap <silent><c-h> <Plug>AirlineSelectPrevTab
+" nmap <silent><c-l> <Plug>AirlineSelectNextTab
 " autocmd BufEnter <buffer> AirlineRefresh
 
 
