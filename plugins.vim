@@ -88,21 +88,24 @@ Plug 'altercation/vim-colors-solarized'
 "
 """""""""""""""""""""""""""""""" 文件搜索 """"""""""""""""""""""""""""""""
 " 文件浏览器
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 " 自定义目录数工具
-Plug 'vim-voom/VOoM'
+Plug 'vim-voom/VOoM', { 'on': ['Voom', '<plug>(Voom)'] }
 " Ctrl-P波峰式文件搜索利器
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim' ", {'on': ['CtrlP', '<plug>(CtrlP)']}
 " Ctrl-P匹配加速器，利用python匹配提升速度
 Plug 'FelikZ/ctrlp-py-matcher'
 " Grepper当前目录文件内容搜索
-Plug 'mhinz/vim-grepper'
+Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
 " 搜索当前工程内文件或内容, Ag & AgFile
-Plug 'rking/ag.vim'
+Plug 'rking/ag.vim', { 'on': ['Ag', 'AgFile', 'AgBuffer'] }
 " 用Ag搜索选中内容或光标下单词, gag|gagi|gagiw
 Plug 'Chun-Yang/vim-action-ag'
 " 搜索选中内容或光标下单词, <leader>f
-Plug 'dyng/ctrlsf.vim'
+Plug 'dyng/ctrlsf.vim', { 'on': [
+    \ 'CtrlSF', 'CtrlSFToggle',
+    \ 'CtrlSFCwordPath', 'CtrlSFVwordExec'
+    \ ] }
 " 指定字母快速移动光标
 Plug 'Lokaltog/vim-easymotion'
 " 扩展%快速匹配跳转
@@ -470,20 +473,28 @@ autocmd VimEnter * call s:init_unite()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Grepper   {{{1
-" Search file content
-" eg: ,ag<cr>
-"    ...> mhinz
-"    ...> mhinz\\|bling
 " Plug 'mhinz/vim-grepper'
+" Search file content
 let g:grepper           = {}
 let g:grepper.tools     = ['ag', 'git', 'grep']
+let g:grepper.repo      = ['.git', '.hg', '.svn']
 let g:grepper.open      = 1
 let g:grepper.jump      = 0
-let g:grepper.next_tool = '<leader>g'
+let g:grepper.stop      = 99
+let g:grepper.highlight = 1
+let g:grepper.next_tool = '<tab>'   " <TAB>键切换搜索工具
 " let g:grepper.ag = { 'grepprg': 'ag --vimgrep --' }
-nnoremap <leader>g :Grepper -tool git<cr>
-nnoremap <leader>G :Grepper -tool ag<cr>
-nnoremap <leader>* :Grepper -tool ag -cword -noprompt<cr>
+
+" 用git grep搜索当前工程
+nnoremap <leader>gg :Grepper -tool git -dir repo,file<cr>
+" 用ag搜索当前工程
+nnoremap <leader>ga :Grepper -tool ag -dir repo,file<cr>
+" 用ag搜索当前目录
+nnoremap <leader>g. :Grepper -tool ag<cr>
+" 用ag在当前工程下搜索光标下的单词
+nnoremap <leader>g* :Grepper -tool ag -cword -noprompt -dir repo,file<cr>
+" 用ag在当前目录下搜索光标下的单词
+nnoremap <leader>*  :Grepper -tool ag -cword -noprompt<cr>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -609,7 +620,6 @@ let g:EasyMotion_leader_key = ";"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " matchit  {{{1
 " Plug 'vim-scripts/matchit.zip'
-let loaded_matchit = 1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
