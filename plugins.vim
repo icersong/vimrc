@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2017-11-17
+" Modified: 2017-11-18
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:enable_youcompleteme = 0
 let g:enable_neocomplete = 0
@@ -72,21 +72,33 @@ Plug 'junegunn/vim-plug'
 " Plug 'hyiltiz/vim-plugins-profile'
 " 屏幕保护matrix
 " Plug 'uguu-org/vim-matrix-screensaver'
-" 打开文件检查.swp冲突并提示操作
-Plug 'chrisbra/Recover.vim'
-" 启动页面
-Plug 'mhinz/vim-startify'
 " Buffer标签页&状态栏
 Plug 'bling/vim-airline'
-" 配色方案
-Plug 'altercation/vim-colors-solarized'
-" 特殊字体符号
-" Plug 'ryanoasis/vim-devicons'
 " 缩略图显示显示代码及光标位置
 " Plug 'severin-lemaignan/vim-minimap'
 " Plug 'koron/minimap-vim'
-"
+" 打开文件检查.swp冲突并提示操作
+Plug 'chrisbra/Recover.vim'
+
+"""""""""""""""""""""""""""""""" Env & Misc """"""""""""""""""""""""""""""""
+" 打开大文件加速, 自动禁用性能插件
+Plug 'vim-scripts/LargeFile'
+" 命令窗口<c-n> or <c-p>自动补全
+Plug 'vim-scripts/CmdlineComplete'
+" 窗口最大最小化工具
+" if has('gui_running')
+"   Plug 'vim-scripts/ZoomWin'
+" endif
+" 关灯编辑，Distraction edit on special width & heigth pannel
+Plug 'junegunn/goyo.vim'
+" Plug 'eiginn/netrw'
+" Plug 'tpope/vim-vinegar'
+" python&php调试工具, 比较难配置，需要外部程序(pygdbp)支持
+Plug 'joonty/vdebug', {'for': ['python', 'php']}
+
 """""""""""""""""""""""""""""""" 文件搜索 """"""""""""""""""""""""""""""""
+" 启动页面
+Plug 'mhinz/vim-startify'
 " 文件浏览器
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 " 自定义目录数工具
@@ -111,10 +123,11 @@ Plug 'Lokaltog/vim-easymotion'
 " 扩展%快速匹配跳转
 Plug 'vim-scripts/matchit.zip'
 
-"""""""""""""""""""""""""""""""" 辅助提示 """"""""""""""""""""""""""""""""
-" 编辑器左侧相对行数显示
-" Plug 'myusuf3/numbers.vim'
-" Plug 'jeffkreeftmeijer/vim-numbertoggle'
+"""""""""""""""""""""""""""""""" 配色提示 """"""""""""""""""""""""""""""""
+" 特殊字体符号
+" Plug 'ryanoasis/vim-devicons'
+" 配色方案
+Plug 'altercation/vim-colors-solarized'
 " place, toggle and display marks
 Plug 'kshenoy/vim-signature'
 " hilight search result runtime
@@ -123,23 +136,51 @@ Plug 'haya14busa/incsearch.vim'
 " Plug 'kien/rainbow_parentheses.vim'
 " 括号或配对标签颜色
 Plug 'luochen1990/rainbow'
-" 缩进显示
-Plug 'Yggdroot/indentLine'
-" Python语法折叠, 可增强折叠import&docstring
-Plug 'tmhedberg/SimpylFold', {'for': ['python']}
 " background color preview
 Plug 'gko/vim-coloresque', { 'for': ['css', 'html', 'javascript', 'jinja', 'python', 'vim', 'xdefaults'] }
 " Plug 'chrisbra/Colorizer', { 'for': ['css', 'html', 'javascript', 'jinja', 'python'] }
 " Vim diff display enhanced
 Plug 'chrisbra/vim-diff-enhanced'
 
-"""""""""""""""""""""""""""""""" 输入辅助 """"""""""""""""""""""""""""""""
+" 缩进显示
+Plug 'Yggdroot/indentLine'
+" Python语法折叠, 可增强折叠import&docstring
+Plug 'tmhedberg/SimpylFold', {'for': ['python']}
+
+"""""""""""""""""""""""""""""""" 编辑增强 """"""""""""""""""""""""""""""""
+" Undo tree
+Plug 'sjl/gundo.vim'
+" Muti select and edit, <c-n>, <c-p>
+Plug 'terryma/vim-multiple-cursors'
+" Remove tail space when save
+Plug 'ntpeters/vim-better-whitespace'
+" Repeat pre action by key '.'
+Plug 'tpope/vim-repeat'
+" Add or del parentheses symbols for word or selected
+Plug 'tpope/vim-surround'
+" Fast select by key "+" & "-"
+Plug 'terryma/vim-expand-region'
+" text object ...
+Plug 'michaeljsmith/vim-indent-object'
+" Range select for edit, :NR
+Plug 'chrisbra/NrrwRgn'
+
+Plug 'Raimondi/delimitMate'
+Plug 'scrooloose/nerdcommenter'
+Plug 'vim-scripts/AuthorInfo'
+" Plug 'vim-scripts/taglist.vim'
+Plug 'majutsushi/tagbar'
+Plug 'jeetsukumaran/vim-buffergator'
+Plug 'icersong/timestamp.vim'
+
+"""""""""""""""""""""""""""""""" 语法辅助 """"""""""""""""""""""""""""""""
 " 语法快速输入提示
 Plug 'honza/vim-snippets'
 Plug 'SirVer/ultisnips', {'for': ['c', 'cpp', 'javascript', 'python']}
-Plug 'scrooloose/syntastic'
-" 异步运行的语法着色，性能完爆syntastic
-" Plug 'w0rp/ale'
+" 语法分析工具
+" Plug 'scrooloose/syntastic'
+" 语法分析工具, 异步运行(Vim8/NeoVim)，性能完爆syntastic
+Plug 'w0rp/ale'
 if has('nvim')
   Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer',
         \ 'for': ['c', 'cpp', 'css', 'html'] }
@@ -188,33 +229,7 @@ Plug 'vim-scripts/SQLUtilities'
 Plug 'vim-scripts/SQLComplete.vim'
 Plug 'vim-scripts/TaskList.vim'
 
-"""""""""""""""""""""""""""""""" edit """"""""""""""""""""""""""""""""
-" Undo tree
-Plug 'sjl/gundo.vim'
-" Muti select and edit, <c-n>, <c-p>
-Plug 'terryma/vim-multiple-cursors'
-" Remove tail space when save
-Plug 'ntpeters/vim-better-whitespace'
-" Repeat pre action by key '.'
-Plug 'tpope/vim-repeat'
-" Add or del parentheses symbols for word or selected
-Plug 'tpope/vim-surround'
-" Fast select by key "+" & "-"
-Plug 'terryma/vim-expand-region'
-" text object ...
-Plug 'michaeljsmith/vim-indent-object'
-" Range select for edit, :NR
-Plug 'chrisbra/NrrwRgn'
-
-Plug 'Raimondi/delimitMate'
-Plug 'scrooloose/nerdcommenter'
-Plug 'vim-scripts/AuthorInfo'
-" Plug 'vim-scripts/taglist.vim'
-Plug 'majutsushi/tagbar'
-Plug 'jeetsukumaran/vim-buffergator'
-Plug 'icersong/timestamp.vim'
-
-"""""""""""""""""""""""""""""""" vcs """"""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""" 版本管理 """"""""""""""""""""""""""""""""
 " VCS command
 Plug 'vim-scripts/vcscommand.vim'
 " Git wrapper
@@ -224,16 +239,6 @@ Plug 'tpope/vim-fugitive'
 " VCS state signs display [GIT, SVN, HG, ...] (gn, gp)
 Plug 'airblade/vim-gitgutter'
 
-
-"""""""""""""""""""""""""""""""" Env & Misc """"""""""""""""""""""""""""""""
-Plug 'vim-scripts/ZoomWin'
-Plug 'vim-scripts/LargeFile'
-Plug 'vim-scripts/CmdlineComplete'
-Plug 'joonty/vdebug', {'for': ['python', 'php']}
-" Resize vim pannel width & heigth
-Plug 'junegunn/goyo.vim'
-" Plug 'eiginn/netrw'
-" Plug 'tpope/vim-vinegar'
 
 """""""""""""""""""""""""""""""" Shell & Tools """"""""""""""""""""""""""""""""
 if has('nvim')
@@ -285,7 +290,7 @@ let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 let g:airline_section_z = '%B %P %l/%L %v'
 let g:airline_extensions = ['branch',
-    \ 'tabline', 'syntastic', 'whitespace',
+    \ 'tabline', 'whitespace', 'ale',
     \ 'tagbar', 'virtualenv', 'unite']
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#tab_nr_type = 1
@@ -294,13 +299,14 @@ let g:airline#extensions#tabline#left_sep = ''
 let g:airline#extensions#tabline#left_alt_sep = ''
 let g:airline#extensions#tabline#buffer_nr_show = 0
 let g:airline#extensions#tabline#buffer_nr_format = '%s:'
-let g:airline#extensions#syntastic#enabled = 1
+let g:airline#extensions#syntastic#enabled = 0
 let g:airline#extensions#whitespace#enabled = 1
 let g:airline#extensions#tagbar#enabled = 1
 let g:airline#extensions#virtualenv#enabled = 1
-let airline#extensions#tabline#ignore_bufadd_pat =
+let g:airline#extensions#tabline#ignore_bufadd_pat =
       \ '\c\vgundo|undotree|vimfiler|tagbar|nerd_tree|vim-minimap|DebuggerWatch|gitcommit|[No Name]'
 let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:airline#extensions#ale#enabled = 1
 " let g:airline#extensions#tabline#buffer_idx_format = {
 "       \ '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴',
 "       \ '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹'}
@@ -618,11 +624,6 @@ let g:EasyMotion_leader_key = ";"
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" matchit  {{{1
-" Plug 'vim-scripts/matchit.zip'
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Indent line {{{1
 " Plug 'Yggdroot/indentLine'
 let g:indentLine_maxLines = 64
@@ -631,7 +632,7 @@ let g:indentLine_faster = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plug 'tmhedberg/SimpylFold' {{{1
-let g:SimpylFold_docstring_preview=0
+let g:SimpylFold_docstring_preview=1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -649,6 +650,25 @@ let g:UltiSnipsJumpForwardTrigger="<C-J>"
 let g:UltiSnipsJumpBackwardTrigger="<C-K>"
 let g:UltiSnipsSnippetsDir=simplify(expand($VIMFILES.'/vimrc/snippets/UltiSnips'))
 let g:UltiSnipsSnippetDirectories=[simplify(expand($VIM_BUNDLE_PATH.'/vim-snippets/UltiSnips'))]
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ale     {{{1
+" check syntax for all language while write file.
+
+nmap <silent> <leader>jp <Plug>(ale_previous_wrap)
+nmap <silent> <leader>jn <Plug>(ale_next_wrap)
+
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_text_changed = 'normal'
+let g:ale_lint_on_insert_leave = 1
+let g:ale_sign_error = "✘"
+let g:ale_sign_warning = "⚠"
+let g:ale_sign_style_error = "✗"
+let g:ale_sign_style_warning = "◬"
+let g:ale_echo_msg_format = '[%severity%] [%linter%] %code: %%s'
+
+let g:ale_python_flake8_options = '--max-line-length=120'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
