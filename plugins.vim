@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2017-11-18
+" Modified: 2017-11-19
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:enable_youcompleteme = 0
 let g:enable_neocomplete = 0
@@ -100,28 +100,26 @@ Plug 'joonty/vdebug', {'for': ['python', 'php']}
 " 启动页面
 Plug 'mhinz/vim-startify'
 " 文件浏览器
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'scrooloose/nerdtree', {'on':  'NERDTreeToggle'}
 " 自定义目录数工具
-Plug 'vim-voom/VOoM', { 'on': ['Voom', '<plug>(Voom)'] }
+Plug 'vim-voom/VOoM', {'on': ['Voom', '<plug>(Voom)']}
 " Ctrl-P波峰式文件搜索利器
 Plug 'ctrlpvim/ctrlp.vim' ", {'on': ['CtrlP', '<plug>(CtrlP)']}
 " Ctrl-P匹配加速器，利用python匹配提升速度
 Plug 'FelikZ/ctrlp-py-matcher'
 " Grepper当前目录文件内容搜索
-Plug 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
+Plug 'mhinz/vim-grepper', {'on': ['Grepper', '<plug>(GrepperOperator)']}
 " 搜索当前工程内文件或内容, Ag & AgFile
-Plug 'rking/ag.vim', { 'on': ['Ag', 'AgFile', 'AgBuffer'] }
+Plug 'rking/ag.vim', {'on': ['Ag', 'AgFile', 'AgBuffer']}
 " 用Ag搜索选中内容或光标下单词, gag|gagi|gagiw
 Plug 'Chun-Yang/vim-action-ag'
 " 搜索选中内容或光标下单词, <leader>f
-Plug 'dyng/ctrlsf.vim', { 'on': [
-    \ 'CtrlSF', 'CtrlSFToggle',
-    \ 'CtrlSFCwordPath', 'CtrlSFVwordExec'
-    \ ] }
+Plug 'dyng/ctrlsf.vim', {'on': ['CtrlSF', 'CtrlSFCwordPath', 'CtrlSFVwordExec']}
 " 指定字母快速移动光标
 Plug 'Lokaltog/vim-easymotion'
 " 扩展%快速匹配跳转
-Plug 'vim-scripts/matchit.zip'
+Plug 'vim-scripts/matchit.zip', {'for': ['c', 'h', 'cpp', 'php', 'css', 'xml',
+    \ 'vim', 'java', 'html', 'jinja', 'python', 'javascript']}
 
 """""""""""""""""""""""""""""""" 配色提示 """"""""""""""""""""""""""""""""
 " 特殊字体符号
@@ -135,10 +133,12 @@ Plug 'haya14busa/incsearch.vim'
 " 括号匹配颜色(用下一个插件替代)
 " Plug 'kien/rainbow_parentheses.vim'
 " 括号或配对标签颜色
-Plug 'luochen1990/rainbow'
+Plug 'luochen1990/rainbow', {'for': ['c', 'h', 'cpp', 'php', 'css', 'xml', 'vim',
+      \ 'java', 'html', 'jinja', 'python', 'javascript']}
 " background color preview
-Plug 'gko/vim-coloresque', { 'for': ['css', 'html', 'javascript', 'jinja', 'python', 'vim', 'xdefaults'] }
-" Plug 'chrisbra/Colorizer', { 'for': ['css', 'html', 'javascript', 'jinja', 'python'] }
+Plug 'gko/vim-coloresque', {'for': ['php', 'css', 'xml', 'vim', 'html', 'java',
+      \ 'jinja', 'python', 'javascript', 'xdefaults']}
+" Plug 'chrisbra/Colorizer', {'for': ['css', 'html', 'javascript', 'jinja', 'python']}
 " Vim diff display enhanced
 Plug 'chrisbra/vim-diff-enhanced'
 
@@ -200,18 +200,26 @@ Plug 'jmcantrell/vim-virtualenv', { 'for': ['python'] }
 " Plug 'rkulla/pydiction', { 'for': ['python'] }
 " Plug 'python-rope/ropevim', { 'for': ['python'] }
 Plug 'hynek/vim-python-pep8-indent', { 'for': ['python'] }
-Plug 'tell-k/vim-autopep8', { 'for': ['python'] }
+" Autopep8 fixer
+" Plug 'tell-k/vim-autopep8', { 'for': ['python'] }
 Plug 'fs111/pydoc.vim', {'for': ['python'] }
 " Plug 'gotcha/vimpdb'
-Plug 'othree/xml.vim', { 'for': ['xml', 'html', 'xhtml', 'jinja']}
 " Plug 'hemerey/vim-project'
+" Syntax for python2 and python3
 Plug 'hdima/python-syntax', { 'for': ['python'] }
-Plug 'icersong/vim-python', { 'for': ['python'] }
+" Syntax for jinja and html
 Plug 'Glench/Vim-Jinja2-Syntax', { 'for': ['jinja', 'jinja2'] }
+" It covers syntax, indenting, compiling, and more
 Plug 'kchmck/vim-coffee-script', { 'for': ['coffee'] }
+" syntax highlighting and improved indentation for javascript in vim
 Plug 'pangloss/vim-javascript', { 'for': ['javascript'] }
-Plug 'mattn/emmet-vim', { 'for': ['xml', 'htm', 'html', 'xhtml'] }
+" match tags by %, and auto complete close tag
+Plug 'othree/xml.vim', { 'for': ['xml', 'html']}
+" provides support for expanding abbreviations similar to emmet
+Plug 'mattn/emmet-vim', { 'for': ['php', 'css', 'xml', 'htm', 'html', 'xhtml', 'jinja'] }
+" indent and syntax for html in vim
 Plug 'othree/html5.vim', { 'for': ['htm', 'html', 'xhtml'] }
+" Syntax highlighting for JSON in Vim
 Plug 'leshill/vim-json', { 'for': ['json'] }
 " CSV file editor
 " Plug 'chrisbra/csv.vim'
@@ -670,6 +678,17 @@ let g:ale_echo_msg_format = '[%severity%] [%linter%] %code: %%s'
 
 let g:ale_python_flake8_options = '--max-line-length=120'
 
+let g:ale_fixers = {
+      \ 'python': [
+      \   'remove_trailing_lines',
+      \   'trim_whitespace',
+      \   'autopep8',
+      \ ],
+      \ 'javascript': [
+      \   'eslint',
+      \   {buffer, lines -> filter(lines, 'v:val !=~ ''^\s*//''')},
+      \ ],
+      \}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " syntastic   {{{1
@@ -919,13 +938,14 @@ function! ProxyEmmetInstall()
     execute('EmmetInstall')
   endif
 endfunction
-autocmd FileType css,xml,html,xhtml,tpl call ProxyEmmetInstall()
+autocmd FileType php,css,xml,tpl,htm,html,xhtml,jinja call ProxyEmmetInstall()
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " python-syntax  {{{1
 " Plug 'hdima/python-syntax'
-let python_highlight_all = 1
+let g:python_highlight_all = 1
+let g:python_slow_sync = 0
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
