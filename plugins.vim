@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2017-11-19
+" Modified: 2017-11-20
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:enable_youcompleteme = 0
 let g:enable_neocomplete = 0
@@ -37,25 +37,6 @@ let s:no_ruby_support = "Warning! Vim is compiled without ruby support."
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" function for test command is exists
-function! HasCmdValid(cmd)
-  if g:iswin
-    return executable(a:cmd)
-  endif
-  if g:islinux
-    return executable(a:cmd)
-  endif
-  if g:ismacos
-    let cc = execute('command ' . a:cmd)
-    if len(matchstr(cc, ' '.a:cmd.' '))
-      return 1
-    endif
-  endif
-  return 0
-endfunction
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugs {{{1
 
 " initalize vundle
@@ -73,7 +54,7 @@ Plug 'junegunn/vim-plug'
 " 屏幕保护matrix
 " Plug 'uguu-org/vim-matrix-screensaver'
 " Buffer标签页&状态栏
-Plug 'bling/vim-airline'
+Plug 'bling/vim-airline', {'configure': 'plug-airline.vim'}
 " 缩略图显示显示代码及光标位置
 " Plug 'severin-lemaignan/vim-minimap'
 " Plug 'koron/minimap-vim'
@@ -283,56 +264,15 @@ call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" start page {{{1
-" Plug 'mhinz/vim-startify'
-let g:startify_session_dir = $VIMCACHE.'/session'
+" load functions
+
+source $VIMFILES/vimrc/functions.vim
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" airline   {{{1
-" g ctrl-g 可显示选中字符数量信息
-" Plug 'bling/vim-airline'
-set laststatus=2
-let g:airline_theme = "dark"
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
-let g:airline_section_z = '%B %P %l/%L %v'
-let g:airline_extensions = ['branch',
-    \ 'tabline', 'whitespace', 'ale',
-    \ 'tagbar', 'virtualenv', 'unite']
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#tab_nr_type = 1
-let g:airline#extensions#tabline#fnamemod = ':p:t'
-let g:airline#extensions#tabline#left_sep = ''
-let g:airline#extensions#tabline#left_alt_sep = ''
-let g:airline#extensions#tabline#buffer_nr_show = 0
-let g:airline#extensions#tabline#buffer_nr_format = '%s:'
-let g:airline#extensions#syntastic#enabled = 0
-let g:airline#extensions#whitespace#enabled = 1
-let g:airline#extensions#tagbar#enabled = 1
-let g:airline#extensions#virtualenv#enabled = 1
-let g:airline#extensions#tabline#ignore_bufadd_pat =
-      \ '\c\vgundo|undotree|vimfiler|tagbar|nerd_tree|vim-minimap|DebuggerWatch|gitcommit|[No Name]'
-let g:airline#extensions#tabline#buffer_idx_mode = 1
-let g:airline#extensions#ale#enabled = 1
-" let g:airline#extensions#tabline#buffer_idx_format = {
-"       \ '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴',
-"       \ '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹'}
-nmap <leader>1 <Plug>AirlineSelectTab1
-nmap <leader>2 <Plug>AirlineSelectTab2
-nmap <leader>3 <Plug>AirlineSelectTab3
-nmap <leader>4 <Plug>AirlineSelectTab4
-nmap <leader>5 <Plug>AirlineSelectTab5
-nmap <leader>6 <Plug>AirlineSelectTab6
-nmap <leader>7 <Plug>AirlineSelectTab7
-nmap <leader>8 <Plug>AirlineSelectTab8
-nmap <leader>9 <Plug>AirlineSelectTab9
-nmap <leader>0 <Plug>AirlineSelectTab10
-nmap <leader>- <Plug>AirlineSelectPrevTab
-nmap <leader>+ <Plug>AirlineSelectNextTab
-" nmap <silent><c-h> <Plug>AirlineSelectPrevTab
-" nmap <silent><c-l> <Plug>AirlineSelectNextTab
-" autocmd BufEnter <buffer> AirlineRefresh
+" start page {{{1
+" Plug 'mhinz/vim-startify'
+let g:startify_session_dir = $VIMCACHE.'/session'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -419,71 +359,6 @@ if has('python')
   let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 endif
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Numbers {{{1
-" Plug 'myusuf3/numbers.vim'
-
-" let g:numbers_exclude = ['nerdtree', 'unite', 'tagbar', 'startify', 'gundo', 'vimshell', 'w3m']
-" autocmd VimEnter * NumbersDisable
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" unite     {{{1
-" powerful than CtrlP|ACK ...
-" search project
-"   :UniteWithProjectDir -toggle -auto-resize -buffer-name=project file
-"   >> **/????  !xx
-" Plug 'Shougo/unite.vim'
-" Plug 'Shougo/vimproc.vim'
-" Plug 'Shougo/neomru.vim'
-let g:unite_data_directory = $VIMCACHE.'/unite'
-let g:unite_enable_start_insert = 1
-let g:unite_no_default_keymapping = 1
-let g:unite_source_history_yank_enable = 1
-let g:unite_source_rec_max_cache_files = 5000
-let g:unite_prompt = '» '
-let g:unite_split_rule = 'botright'
-let g:unite_ignore_source_files = ['function.vim', 'command.vim']
-if HasCmdValid('ag')
-  let g:unite_source_grep_command='ag'
-  let g:unite_source_grep_default_opts='--nocolor --nogroup -S -C4'
-  let g:unite_source_grep_recursive_opt=''
-elseif HasCmdValid('ack')
-  let g:unite_source_grep_command='ack'
-  let g:unite_source_grep_default_opts='--no-heading --no-color -C4'
-  let g:unite_source_grep_recursive_opt=''
-endif
-function! s:unite_settings()
-  nmap <buffer> Q <plug>(unite_exit)
-  nmap <buffer> <esc> <plug>(unite_exit)
-  " imap <buffer> <esc> <plug>(unite_exit)
-  imap <buffer> <C-j>   <Plug>(unite_select_next_line)
-  imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
-endfunction
-function! s:init_unite()
-  if HasCmdValid('Unite') && !hasmapto('Unite')
-    " call unite#filters#matcher_default#use(['matcher_fuzzy'])
-    call unite#filters#sorter_default#use(['sorter_rank'])
-    call unite#set_profile('files', 'context.smartcase', 1)
-    autocmd FileType unite call s:unite_settings()
-    nnoremap <silent><leader>s :UniteWithProjectDir -toggle -auto-resize -buffer-name=project file<cr>**/<space>
-    " nnoremap <silent><c-s> :Unite -toggle -auto-resize -buffer-name=mixed
-    "       \ file_mru file_rec/async buffer bookmark<cr>
-    nnoremap <silent><leader>ul :Unite -auto-resize -buffer-name=line line<cr>
-    nnoremap <silent><leader>u/ :Unite -no-quit -buffer-name=search grep:.<cr>
-  endif
-endfunction
-autocmd VimEnter * call s:init_unite()
-" nnoremap <silent> [unite]<space> :<C-u>Unite -toggle -auto-resize
-"       \ -buffer-name=mixed file_mru file_rec/async buffer bookmark<cr><c-u>
-" nnoremap <silent> [unite]f :<C-u>Unite -toggle -auto-resize -buffer-name=files file_rec/async<cr><c-u>
-" nnoremap <silent> [unite]y :<C-u>Unite -buffer-name=yanks history/yank<cr>
-" nnoremap <silent> [unite]l :<C-u>Unite -auto-resize -buffer-name=line line<cr>
-" nnoremap <silent> [unite]b :<C-u>Unite -auto-resize -buffer-name=buffers buffer<cr>
-" nnoremap <silent> [unite]/ :<C-u>Unite -no-quit -buffer-name=search grep:.<cr>
-" nnoremap <silent> [unite]m :<C-u>Unite -auto-resize -buffer-name=mappings mapping<cr>
-" nnoremap <silent> [unite]s :<C-u>Unite -quick-match buffer<cr>
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Grepper   {{{1
@@ -561,12 +436,12 @@ vmap <leader>f <Plug>CtrlSFVwordExec
 " Plug 'haya14busa/incsearch.vim'
 set hlsearch
 let g:incsearch#auto_nohlsearch = 1
-map n  <Plug>(incsearch-nohl-n)
-map N  <Plug>(incsearch-nohl-N)
-map *  <Plug>(incsearch-nohl-*)
-map #  <Plug>(incsearch-nohl-#)
-map g* <Plug>(incsearch-nohl-g*)
-map g# <Plug>(incsearch-nohl-g#)
+nmap n  <Plug>(incsearch-nohl-n)
+nmap N  <Plug>(incsearch-nohl-N)
+nmap *  <Plug>(incsearch-nohl-*)
+nmap #  <Plug>(incsearch-nohl-#)
+nmap g* <Plug>(incsearch-nohl-g*)
+nmap g# <Plug>(incsearch-nohl-g#)
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -590,38 +465,6 @@ let g:voom_tab_key = "<C-Tab>"
 " autocmd Syntax * RainbowParenthesesLoadSquare
 " autocmd Syntax * RainbowParenthesesLoadBraces
 " " autocmd Syntax * RainbowParenthesesLoadChevrons
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" rainbow  {{{1
-" Plug 'luochen1990/rainbow'
-" :RainbowToggle  --you can use it to toggle this plugin.
-let g:rainbow_active = 1
-let g:rainbow_conf = {
-  \  'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
-  \  'ctermfgs': ['darkblue', 'darkgreen', 'darkmagenta', 'darkred'],
-  \  'operators': '_,_',
-  \  'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
-  \  'separately': {
-  \    '*': {},
-  \    'tex': {
-  \      'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
-  \    },
-  \    'lisp': {
-  \      'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
-  \    },
-  \    'vim': {
-  \      'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
-  \    },
-  \    'html': {
-  \      'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
-  \    },
-  \    'jinja': {
-  \      'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
-  \    },
-  \    'css': 0,
-  \  }
-  \}
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -658,106 +501,6 @@ let g:UltiSnipsJumpForwardTrigger="<C-J>"
 let g:UltiSnipsJumpBackwardTrigger="<C-K>"
 let g:UltiSnipsSnippetsDir=simplify(expand($VIMFILES.'/vimrc/snippets/UltiSnips'))
 let g:UltiSnipsSnippetDirectories=[simplify(expand($VIM_BUNDLE_PATH.'/vim-snippets/UltiSnips'))]
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" ale     {{{1
-" check syntax for all language while write file.
-
-nmap <silent> <leader>jp <Plug>(ale_previous_wrap)
-nmap <silent> <leader>jn <Plug>(ale_next_wrap)
-
-let g:ale_lint_on_enter = 0
-let g:ale_lint_on_text_changed = 'normal'
-let g:ale_lint_on_insert_leave = 1
-let g:ale_sign_error = "✘"
-let g:ale_sign_warning = "⚠"
-let g:ale_sign_style_error = "✗"
-let g:ale_sign_style_warning = "◬"
-let g:ale_echo_msg_format = '[%severity%] [%linter%] %code: %%s'
-
-let g:ale_python_flake8_options = '--max-line-length=120'
-
-let g:ale_fixers = {
-      \ 'python': [
-      \   'remove_trailing_lines',
-      \   'trim_whitespace',
-      \   'autopep8',
-      \ ],
-      \ 'javascript': [
-      \   'eslint',
-      \   {buffer, lines -> filter(lines, 'v:val !=~ ''^\s*//''')},
-      \ ],
-      \}
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" syntastic   {{{1
-" check syntax for all language while write file.
-" Plug 'scrooloose/syntastic'
-" examine debug messages with :mes
-" let g:syntastic_debug               = 1
-let g:syntastic_error_symbol        = "✘"
-let g:syntastic_warning_symbol      = "⚠"
-let g:syntastic_style_error_symbol  = "✗"
-let g:syntastic_style_warning_symbol= "◬"
-let g:syntastic_aggregate_errors    = 1
-let g:syntastic_auto_loc_list       = 1
-let g:syntastic_auto_jump           = 0
-let g:syntastic_loc_list_height     = 3
-let g:syntastic_ignore_files        = ['.*\.log$']
-let g:syntastic_html_checkers       = ['tidy']  " 'jshint', 'jslint'
-let g:syntastic_xhtml_checkers      = ['tidy']
-let g:syntastic_javascript_checkers = ['jsl']
-let g:syntastic_xml_checkers        = ['xmllint']
-let g:syntastic_python_checkers     = ['pep8', 'pyflakes']
-let g:syntastic_python_pep8_args='--ignore=C901 --max-line-length=120'
-if !executable('pep8')
-  if executable('/usr/local/bin/pep8')
-    let g:syntastic_python_pep8_exec='/usr/local/bin/pep8'
-  endif
-endif
-" let g:syntastic_python_pep8_options='-std=c++11 -I$ROOTSYS/include/'
-let g:syntastic_python_pyflakes_quiet_messages={"regex": [
-    \ 'unable to detect undefined names$']}
-let g:syntastic_python_pep8_quiet_messages={"regex": [
-    \ '^E111', '^E127', '^E128', '^E401', '^E402', '^E501', '^E701', '^E731', '^E721']}
-let g:syntastic_javascript_jsl_quiet_messages={"regex": [
-    \ 'redeclaration of var',
-    \ 'variable rid hides argument',
-    \ 'missing default case in switch statement',
-    \ 'missing break statement for last case in switch',
-    \ 'anonymous function does not always return a value',
-    \ 'function {\\w}\+ does not always return a value',
-    \ 'extra comma is not recommended in array initializers',
-    \ 'trailing comma is not legal in ECMA-262 object initializers',
-    \ 'increment (++) and decrement (--) operators used as part of greater statement',
-    \ 'unexpected end of line; it is ambiguous whether these lines are part of the same statement']}
-let g:syntastic_css_csslint_quiet_messages={
-    \ "regex": ["^Duplicate property",
-    \ 'Using width with border can sometimes make elements larger than you expect. (box-model)',
-    \ 'Using height with border can sometimes make elements larger than you expect. (box-model)']}
-let g:syntastic_html_tidy_quiet_messages={"regex":
-    \ ['unescaped & which should be written as &amp;']}
-let g:syntastic_xhtml_tidy_quiet_messages={"regex":
-    \ ['unescaped & which should be written as &amp;']}
-let g:syntastic_po_msgfmt_quiet_messages={"regex":
-    \ ['header field ''Last-Translator'' still has the initial default value']}
-
-if g:iswin
-  let $PATH=$VIM.'\\Utilities;'.$PATH
-  let $PATH=$VIM.'\\Utilities\\GNU;'.$PATH
-  let $PATH=$VIM.'\\Utilities\\jsl;'.$PATH
-  let $PATH='C:\\Python27\\Scripts;'.$PATH
-  let g:syntastic_mode_map = { 'mode': 'active',
-      \ 'active_filetypes': ['javascript', 'html', 'xhtml', 'css', 'python', 'xml'],
-      \ 'passive_filetypes': [] }
-endif
-
-if g:ismacos
-  let g:syntastic_mode_map = { 'mode': 'active',
-      \ 'active_filetypes': ['javascript', 'html', 'xhtml', 'css', 'python', 'xml'],
-      \ 'passive_filetypes': [] }
-endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -798,66 +541,6 @@ if g:ismacos && !has('nvim')
 else
   command -nargs=+ -complete=custom,ReturnVirtualEnvs Venv :VirtualEnvActivate <args>
 endif
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" YouCompleteMe   {{{1
-" YCM windows install guides needed.
-" Plug 'Valloric/YouCompleteMe'
-" set completeopt=longest,menu    " 让Vim的补全菜单行为与一般IDE一致(参考VimTip1228)
-" highlight Pmenu ctermfg=2 ctermbg=3 guifg=#005f87 guibg=#EEE8D5
-" highlight PmenuSel ctermfg=2 ctermbg=3 guifg=#AFD700 guibg=#106900
-
-" let g:ycm_path_to_python_interpreter='/usr/local/bin/python'
-" nmap <leader>jj :YcmCompleter GoTo<CR>
-" nmap <leader>jr :YcmCompleter GoToReferences<CR>
-" nmap <leader>jd :YcmCompleter GoToDefinition<CR>
-" nmap <leader>ji :YcmCompleter GoToDeclaration<CR>
-" nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
-" nnoremap <leader>lo :lopen<CR>	"open locationlist
-" nnoremap <leader>lc :lclose<CR>	"close locationlist
-" inoremap <leader><leader> <C-x><C-o>
-
-" 配置文件
-let g:ycm_global_ycm_extra_conf = simplify(expand(
-    \ $VIM_BUNDLE_PATH.'/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'))
-" 关闭加载.ycm_extra_conf.py提示
-let g:ycm_confirm_extra_conf=0
-" 禁止缓存匹配项,每次都重新生成匹配项
-let g:ycm_cache_omnifunc=0
-" 开启 YCM 基于标签引擎
-let g:ycm_collect_identifiers_from_tags_files=1
-" 从第2个键入字符就开始罗列匹配项
-let g:ycm_min_num_of_chars_for_completion = 2
-" 语法关键字补全
-let g:ycm_seed_identifiers_with_syntax = 1
-" 在local-list中显示错误
-let g:syntastic_always_populate_loc_list = 1
-" 在注释输入中也能补全
-let g:ycm_complete_in_comments = 1
-" 在字符串输入中也能补全
-let g:ycm_complete_in_strings = 1
-" 注释和字符串中的文字也会被收入补全
-let g:ycm_collect_identifiers_from_comments_and_strings = 0
-" 离开插入模式后自动关闭预览窗口
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-" 回车即选中当前项
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
-
-function! MappingForYcm()
-  " if HasCmdValid('YcmCompleter')
-    nmap <buffer> <leader>jj :YcmCompleter GoTo<CR>
-    nmap <buffer> <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
-    inoremap <buffer> <leader><leader> <C-x><C-o>
-  " endif
-endfunction
-autocmd BufReadPost * call  MappingForYcm()
-
-" 上下左右键的行为 会显示其他信息
-" inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
-" inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
-" inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
-" inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1301,65 +984,6 @@ let g:VimuxPromptString = "(tmux)$ "
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vimwiki  {{{1
-" Plug 'icersong/vimwiki'
-" Plug 'vimwiki/vimwiki'
-
-let g:vimwiki_list = [{
-  \ 'path': simplify(expand($VIMWIKI.'/projects/technology')),
-  \ 'path_html': simplify(expand($VIMWIKI.'/static/technology')),
-  \ 'css_name': '/style.css',
-  \ 'template_path': simplify(expand($VIMWIKI.'/templetes')),
-  \ 'template_default': 'default',
-  \ 'template_ext': '.tpl',
-  \ 'syntax': 'markdown',
-  \ 'ext': '.md',
-  \ 'auto_export': 1,
-  \ 'auto_toc': 0,
-  \ 'nested_syntaxes': {'python': 'python', 'c++': 'cpp', 'html': 'html',},
-  \ 'custom_wiki2html': simplify(expand($VIM_TOOL_PATH.'/misaka_md2html/misaka_md2html.py')),
-  \ 'diary_link_count': 5
-  \ }, {
-  \ 'path': simplify(expand($VIMWIKI.'/projects/soc')),
-  \ 'path_html': simplify(expand($VIMWIKI.'/static/soc')),
-  \ 'css_name': 'css/style.css',
-  \ 'template_path': simplify(expand($VIMWIKI.'/templetes')),
-  \ 'template_default': 'default',
-  \ 'template_ext': '.tpl',
-  \ 'auto_export': 1,
-  \ 'auto_toc': 1,
-  \ 'nested_syntaxes': {'python': 'python', 'c++': 'cpp','html': 'html',},
-  \ 'diary_link_count': 5
-  \ }]
-let g:vimwiki_global_ext = 0
-let g:vimwiki_listsyms = '✗○◐●✓'
-let g:vimwiki_use_mouse = 1
-let g:vimwiki_list_ignore_newline = 0
-let g:vimwiki_user_htmls = '404.html,search.html'
-let g:vimwiki_toc_header = 'Catalogue'
-" 对中文用户来说，我们并不怎么需要驼峰英文成为维基词条
-let g:vimwiki_camel_case = 0
-" 标记为完成的 checklist 项目会有特别的颜色
-let g:vimwiki_hl_cb_checked = 2
-" 禁止添加vimwiki菜单到GUIVim菜单
-let g:vimwiki_menu = ''
-" 是否在计算字串长度时用特别考虑中文字符
-let g:vimwiki_CJK_length = 1
-" 详见下文...
-let g:vimwiki_valid_html_tags='b,i,s,u,sub,sup,kbd,del,br,hr,div,code,h1,nav'
-" 是否开启按语法折叠  会让文件比较慢
-" let g:vimwiki_folding = 'syntax'
-autocmd BufNewFile $VIMWIKI/** set fileencoding=utf8
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim-markdown  {{{1
-" Plugin 'tpope/vim-markdown'
-let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'shell=sh']
-let g:markdown_minlines = 100
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plug 'iamcco/markdown-preview.vim'
 " :MarkdownPreview
 " :MarkdownPreviewStop
@@ -1434,6 +1058,12 @@ let g:timestamp_regexp .= '(\d{4}[-/]\d{2}[-/]\d{2}|\d{4}[-/]\d{2}[-/]\d{2} \d{2
 let g:timestamp_regexp .= '\s*(\[(\d+)\])?$'
 let g:timestamp_rep = '\=strftime("%Y-%m-%d").(submatch(2)==submatch(9) ? "" : " [".(submatch(3)+1)."]")'
 let g:timestamp_modelines = 9
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Auto load plugin's config while plug valid
+
+call LoadConfigures($VIMFILES.'/vimrc/', g:plugs_order)
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
