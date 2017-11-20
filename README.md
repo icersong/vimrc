@@ -145,3 +145,19 @@ Configue .tmux.conf file
     bind -r C-k run "tmux select-pane -U"
     bind -r C-l run "tmux select-pane -R"
     bind -r C-\ run "tmux select-pane -l"
+
+
+## Copy & Paste clipboard
+
+* 查看是否支持系统剪切板
+
+    $ vim --version | grep clipboard
+
+* Linux (install vim-gtk or vim-gnome)
+
+    $ sudo apt install vim-gtk
+    $ sudo apt-get install vim-gnome
+
+* xclip command
+
+    $ sudo apt-get install xclip

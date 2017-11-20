@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2017-11-20 [958]
+" Modified: 2017-11-20 [966]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -80,19 +80,6 @@ if has("multi_byte")
 else
   echoerr "Sorry, this version of (g)vim was not compiled with multi_byte"
 endif
-
-if !has('gui_running')
-  " 解决consle输出乱码
-  language messages zh_CN.utf-8
-endif
-
-" if has('gui_running')
-"   set termencoding=Chinese        " 指定终端使用的编码,在+multi_byte特性下有效,也可用utf-8
-"   set fileencoding=Chinese
-" else
-"   set termencoding=utf-8          " 指定终端使用的编码,在+multi_byte特性下有效,也可用utf-8
-"   set fileencoding=utf-8
-" endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -286,11 +273,6 @@ vmap p pgvy
 abbreviate CDATE <esc>"=strftime("%F")<CR>gP
 abbreviate CDATETIME <esc>"=strftime("%F %T")<CR>gP
 
-" if has('gui_running')
-"   map <S-Left> :tabp<CR>
-"   map <S-Right> :tabn<CR>
-" endif
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " load functions
@@ -382,28 +364,11 @@ endif
 set cursorline                  " 设置光标十字坐标，高亮当前行
 highlight CursorLine cterm=underline ctermbg=NONE ctermfg=NONE gui=underline guibg=NONE guifg=NONE
 
-" pop menu setting
-" highlight Pmenu ctermfg=DarkMagenta ctermbg=Blue guifg=#005f87 guibg=#EEE8D5
-" highlight PmenuSel ctermfg=2 ctermbg=3 guifg=#AFD700 guibg=#106900
-" highlight Pmenu guifg=#005f87 guibg=#EEE8D5
-" highlight PmenuSel guifg=#AFD700 guibg=#106900
-
 call SetCursorStyle()
 autocmd ColorScheme * silent call SetCursorStyle()
 " autocmd Syntax * silent call SetCursorStyle()
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Copy & Paste clipboard
-" 查看是否支持系统剪切板
-"   $ vim --version | grep clipboard
-"
-" Linux (install vim-gtk or vim-gnome)
-"   $ sudo apt install vim-gtk
-"   $ sudo apt-get install vim-gnome
-"
-" xclip command
-"   $ sudo apt-get install xclip
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if executable('xclip')
   command! -nargs=0 XCopy :!xclip -f -sel clip<CR>

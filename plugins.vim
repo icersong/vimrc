@@ -274,13 +274,10 @@ let g:startify_session_dir = $VIMCACHE.'/session'
 " Plug 'altercation/vim-colors-solarized'
 let g:solarized_hitrail          = 1
 let g:solarized_menu             = 0
-if has('gui_running')
-  let g:solarized_contrast   = "normal"
-  let g:solarized_visibility = "normal"
-else
+let g:solarized_contrast   = "normal"
+let g:solarized_visibility = "normal"
+if !has('gui_running')
   let g:solarized_termcolors = 256
-  let g:solarized_contrast   = "normal"
-  let g:solarized_visibility = "normal"
   let g:solarized_termtrans  = 1
   let g:solarized_degrade    = 1
 endif
@@ -324,7 +321,7 @@ map <F1> <c-p>
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlPMRU'
 let g:ctrlp_show_hidden = 1
-let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }  " 使用ctrl-py-matcher加速
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/](\.(git|hg|svn)|cache)$',
   \ 'file': '\v\.(exe|so|dll|png|jpg|gif|zip|7z|gz|tgz|swp|bin)$',
@@ -334,23 +331,9 @@ if HasCmdValid('ag')
   " Use Ag over Grep
   set grepprg=ag\ --nogroup\ --nocolor
   " Use ag in CtrlP for listing files.
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --ignore ''.git'' --ignore ''.DS_Store'' --ignore ''node_modules'' --hidden -g ""'
   " Ag is fast enough that CtrlP doesn't need to cache
   let g:ctrlp_use_caching = 0
-endif
-" if g:ismacos || g:islinux
-"   set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.png,*.jpg,*.jpeg,*.gif " MacOSX/Linux
-"   let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
-" endif
-" if g:iswin
-"   set wildignore+=*\\.git\\*,*\\.hg\\*,*\\.svn\\*     " Windows ('noshellslash')
-"   set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe         " Windows
-"   let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
-" endif
-
-" 使用ctrl-py-matcher加速
-if has('python')
-  let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 endif
 
 
@@ -495,46 +478,6 @@ let g:UltiSnipsJumpForwardTrigger="<C-J>"
 let g:UltiSnipsJumpBackwardTrigger="<C-K>"
 let g:UltiSnipsSnippetsDir=simplify(expand($VIMFILES.'/vimrc/snippets/UltiSnips'))
 let g:UltiSnipsSnippetDirectories=[simplify(expand($VIM_BUNDLE_PATH.'/vim-snippets/UltiSnips'))]
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim-virtualenv    {{{1
-" Plug 'jmcantrell/vim-virtualenv'
-
-" ----------------------------------------
-" function to list virtualenvs
-" change the directory path to point to your virtualenvs
-" default load virtualenv VIRTUAL_ENV
-" .bash_profile or .zshrc
-" export VIRTUAL_ENV=$WORKON_HOME/<virtual_env_name>
-
-" function _VirtualEnvActivate()
-" py << EOF
-" import os
-" import sys
-" import vim
-" if 'VIRTUAL_ENV' in os.environ:
-"   project_base_dir = os.environ['VIRTUAL_ENV']
-"   activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-"   execfile(activate_this, dict(__file__=activate_this))
-"   print 'Activate', os.environ['VIRTUAL_ENV']
-" else:
-"   print 'VIRTUAL_ENV not found.'
-" EOF
-" endfunction
-" ----------------------------------------
-
-" changing virtualenv should restart ycmserver
-" Venv <Virtualenv-name>
-let g:virtualenv_directory = simplify(expand('~/.virtualenvs'))
-fun ReturnVirtualEnvs(A,L,P)
-  return system("ls -d ~/.virtualenvs/*/ \| cut -d'/' -f5")
-endfun
-if g:ismacos && !has('nvim')
-  command -nargs=+ -complete=custom,ReturnVirtualEnvs Venv :VirtualEnvActivate <args> | YcmRestartServer
-else
-  command -nargs=+ -complete=custom,ReturnVirtualEnvs Venv :VirtualEnvActivate <args>
-endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -696,22 +639,6 @@ map <leader>tl <Plug>TaskList
 " highlight ExtraWhitespace ctermbg=Red
 " unmap <silent><space>
 " nmap <silent><space> :nohls<CR>za
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" gundo (visualize undo tree) {{{1
-" Plug 'sjl/gundo.vim'
-if !has('python')
-  if exists('janus#disable_plugin')
-    call janus#disable_plugin('gundo', s:no_python_support)
-  endif
-else
-  let g:gundo_close_on_revert = 1
-  let g:gundo_tree_statusline = 'Gundo'
-  let g:gundo_width = 45
-  let g:gundo_preview_height = 11
-  let g:gundo_right = 1
-endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
