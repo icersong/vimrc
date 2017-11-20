@@ -264,12 +264,6 @@ call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" load functions
-
-source $VIMFILES/vimrc/functions.vim
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " start page {{{1
 " Plug 'mhinz/vim-startify'
 let g:startify_session_dir = $VIMCACHE.'/session'
