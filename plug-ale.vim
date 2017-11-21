@@ -15,6 +15,7 @@ let g:ale_sign_style_warning = "◬"
 let g:ale_echo_msg_format = '[%severity%] [%linter%] %code: %%s'
 
 let g:ale_python_flake8_options = '--max-line-length=120'
+let g:ale_python_pylint_options = '-d line-too-long -d invalid-name'
 
 let g:ale_fixers = {
       \ 'xml': [

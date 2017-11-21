@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2017-11-20
+" Modified: 2017-11-21
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:enable_youcompleteme = 0
 let g:enable_neocomplete = 0
@@ -95,7 +95,7 @@ Plug 'rking/ag.vim', {'on': ['Ag', 'AgFile', 'AgBuffer']}
 " 用Ag搜索选中内容或光标下单词, gag|gagi|gagiw
 Plug 'Chun-Yang/vim-action-ag'
 " 搜索选中内容或光标下单词, <leader>f
-Plug 'dyng/ctrlsf.vim', {'on': ['CtrlSF', 'CtrlSFCwordPath', 'CtrlSFVwordExec']}
+Plug 'dyng/ctrlsf.vim', {'on': ['CtrlSF', '<plug>CtrlSFCwordPath', '<plug>CtrlSFVwordExec']}
 " 指定字母快速移动光标
 Plug 'Lokaltog/vim-easymotion'
 " 扩展%快速匹配跳转
