@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2017-11-21
+" Modified: 2017-11-22
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:enable_youcompleteme = 0
 let g:enable_neocomplete = 0
@@ -376,6 +376,7 @@ let g:ag_working_path_mode="r"
 let g:ag_format="%f:%l:%c:%m"
 let g:ag_hightlight=1
 " let g:ag_qhandler="copen"
+nnoremap <leader>gf  :AgFile<space>
 
 
 " vim-action-ag   {{{1
