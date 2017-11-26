@@ -581,6 +581,13 @@ let g:vdebug_options= {
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" DBGPavim  {{{1
+" Plug 'brookhong/DBGPavim'
+let g:dbgPavimBreakAtEntry = 0
+let g:dbgPavimOnce = 1
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plug 'chrisbra/Colorizer'
 " 注：此插件可能极度影响光标及输入的速度, 但是功能强于'gko/vim-coloresque'
 " let g:colorizer_auto_color = 0
