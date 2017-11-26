@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2017-11-22
+" Modified: 2017-11-26
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:enable_youcompleteme = 0
 let g:enable_neocomplete = 0
@@ -75,7 +75,9 @@ Plug 'junegunn/goyo.vim'
 " Plug 'eiginn/netrw'
 " Plug 'tpope/vim-vinegar'
 " python&php调试工具, 比较难配置，需要外部程序(pygdbp)支持
-Plug 'joonty/vdebug', {'for': ['python', 'php']}
+" Plug 'joonty/vdebug', {'do': 'VdebugStart'}
+" python&php调试工具（异步）, 需要Komodo dbgp工具
+Plug 'brookhong/DBGPavim'
 
 """""""""""""""""""""""""""""""" 文件搜索 """"""""""""""""""""""""""""""""
 " 启动页面
@@ -216,7 +218,7 @@ Plug 'vim-scripts/Align'
 Plug 'vim-scripts/dbext.vim'
 Plug 'vim-scripts/SQLUtilities'
 Plug 'vim-scripts/SQLComplete.vim'
-Plug 'vim-scripts/TaskList.vim'
+Plug 'vim-scripts/TaskList.vim', {'on': ['TaskList', '<Plug>TaskList']}
 
 """""""""""""""""""""""""""""""" 版本管理 """"""""""""""""""""""""""""""""
 " VCS command
@@ -573,7 +575,9 @@ let g:python_slow_sync = 0
 " vdebug {{{1
 " Plug 'joonty/vdebug'
 
-let g:vdebug_options = {"timeout": 99}
+let g:vdebug_options= {
+\    "port" : 9000,
+\}
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
