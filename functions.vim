@@ -178,3 +178,17 @@ endfunc
 function! CleanCache()
   exe '!find "'.$VIMCACHE.'/undo" -mtime +7 -exec rm -f {} \;'
 endfunction
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" YouCompleteMe build function
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! BuildYCM(info)
+  " info is a dictionary with 3 fields
+  " - name:   name of the plugin
+  " - status: 'installed', 'updated', or 'unchanged'
+  " - force:  set on PlugInstall! or PlugUpdate!
+  if a:info.status == 'installed' || a:info.force
+    !./install.py --clang-completer
+  endif
+endfunction

@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2017-11-26
+" Modified: 2017-11-30
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:enable_youcompleteme = 0
 let g:enable_neocomplete = 0
@@ -87,7 +87,7 @@ Plug 'scrooloose/nerdtree', {'on':  'NERDTreeToggle'}
 " 自定义目录数工具
 Plug 'vim-voom/VOoM', {'on': ['Voom', '<plug>(Voom)']}
 " Ctrl-P波峰式文件搜索利器
-Plug 'ctrlpvim/ctrlp.vim' ", {'on': ['CtrlP', '<plug>(CtrlP)']}
+Plug 'ctrlpvim/ctrlp.vim' , {'on': ['CtrlP', '<plug>(ctrlp)']}
 " Ctrl-P匹配加速器，利用python匹配提升速度
 Plug 'FelikZ/ctrlp-py-matcher'
 " Grepper当前目录文件内容搜索
@@ -164,13 +164,14 @@ Plug 'SirVer/ultisnips', {'for': ['c', 'cpp', 'javascript', 'python']}
 " Plug 'scrooloose/syntastic'
 " 语法分析工具, 异步运行(Vim8/NeoVim)，性能完爆syntastic
 Plug 'w0rp/ale'
+" 语法补全工具
 if has('nvim')
-  Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer',
-        \ 'for': ['c', 'cpp', 'css', 'html'] }
+  Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM'),
+        \ 'for': ['c', 'cpp', 'css', 'html'], 'frozen': 'true' }
   Plug 'davidhalter/jedi-vim', { 'for': ['python'] }
 else
-  Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer',
-        \ 'for': ['c', 'cpp', 'css', 'html', 'python'] }
+  Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM'),
+        \ 'for': ['c', 'cpp', 'css', 'html', 'python'], 'frozen': 'true' }
   Plug 'davidhalter/jedi-vim', { 'for': ['None'] }
 endif
 Plug 'Shougo/unite.vim'
@@ -319,7 +320,7 @@ autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 " Plug 'tacahiroy/ctrlp-funky'
 " Plug 'FelikZ/ctrlp-py-matcher'
 
-map <F1> <c-p>
+nmap <c-p> <plug>(ctrlp)
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlPMRU'
 let g:ctrlp_show_hidden = 1
@@ -584,7 +585,7 @@ let g:vdebug_options= {
 " DBGPavim  {{{1
 " Plug 'brookhong/DBGPavim'
 let g:dbgPavimBreakAtEntry = 0
-let g:dbgPavimOnce = 1
+let g:dbgPavimOnce = 0
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
