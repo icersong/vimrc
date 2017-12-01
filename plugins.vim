@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2017-11-30
+" Modified: 2017-12-01
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:enable_youcompleteme = 0
 let g:enable_neocomplete = 0
@@ -345,7 +345,7 @@ endif
 " Plug 'mhinz/vim-grepper'
 " Search file content
 let g:grepper           = {}
-let g:grepper.tools     = ['ag', 'git', 'grep']
+let g:grepper.tools     = ['ag', 'git', 'grep', 'file']
 let g:grepper.repo      = ['.git', '.hg', '.svn']
 let g:grepper.open      = 1
 let g:grepper.jump      = 0
@@ -353,6 +353,7 @@ let g:grepper.stop      = 99
 let g:grepper.highlight = 1
 let g:grepper.next_tool = '<tab>'   " <TAB>键切换搜索工具
 " let g:grepper.ag = { 'grepprg': 'ag --vimgrep --' }
+let g:grepper.file= { 'grepprg': 'ag -g' }
 
 " 用git grep搜索当前工程
 nnoremap <leader>gg :Grepper -tool git -dir repo,file<cr>
@@ -364,6 +365,8 @@ nnoremap <leader>g. :Grepper -tool ag<cr>
 nnoremap <leader>g* :Grepper -tool ag -cword -noprompt -dir repo,file<cr>
 " 用ag在当前目录下搜索光标下的单词
 nnoremap <leader>*  :Grepper -tool ag -cword -noprompt<cr>
+" 用ag在当前工程下搜索光标下的文件
+nnoremap <leader>gf :Grepper -tool file -cword -noprompt
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -379,7 +382,7 @@ let g:ag_working_path_mode="r"
 let g:ag_format="%f:%l:%c:%m"
 let g:ag_hightlight=1
 " let g:ag_qhandler="copen"
-nnoremap <leader>gf  :AgFile<space>
+" nnoremap <leader>gf  :AgFile<space>
 
 
 " vim-action-ag   {{{1
