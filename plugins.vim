@@ -366,7 +366,7 @@ nnoremap <leader>g* :Grepper -tool ag -cword -noprompt -dir repo,file<cr>
 " 用ag在当前目录下搜索光标下的单词
 nnoremap <leader>*  :Grepper -tool ag -cword -noprompt<cr>
 " 用ag在当前工程下搜索光标下的文件
-nnoremap <leader>gf :Grepper -tool file -cword -noprompt -dir repo,file
+nnoremap <leader>gf :Grepper -tool file -cword -noprompt -dir repo,file<cr>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
