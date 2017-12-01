@@ -361,12 +361,21 @@ nnoremap <leader>gg :Grepper -tool git -dir repo,file<cr>
 nnoremap <leader>ga :Grepper -tool ag -dir repo,file<cr>
 " 用ag搜索当前目录
 nnoremap <leader>g. :Grepper -tool ag<cr>
-" 用ag在当前工程下搜索光标下的单词
-nnoremap <leader>g* :Grepper -tool ag -cword -noprompt -dir repo,file<cr>
 " 用ag在当前目录下搜索光标下的单词
 nnoremap <leader>*  :Grepper -tool ag -cword -noprompt<cr>
+" 用ag在当前工程下搜索光标下的单词
+nnoremap <leader>g* :Grepper -tool ag -cword -noprompt -dir repo,file<cr>
+" 用ag在当前目录下搜索选中的内容
+vnoremap <leader>* ""y:Grepper -noprompt -grepprg ag
+    \ "<C-R>=escape(escape(@", '\'), '"/\ \|\(\))')<CR>"<CR>
+" 用ag在当前工程下搜索选中的内容
+vnoremap <leader>g* ""y:Grepper -noprompt -dir repo,file -grepprg ag
+    \ "<C-R>=escape(escape(@", '\'), '"/\ \|\(\))')<CR>"<CR>
 " 用ag在当前工程下搜索光标下的文件
-nnoremap <leader>gf :Grepper -tool file -cword -noprompt -dir repo,file<cr>
+nnoremap <leader>gf :Grepper -tool file -cword -noprompt -dir repo,file<CR>
+" 用ag在当前工程下搜索选中文本的文件
+vnoremap <leader>gf ""y:Grepper -tool file -noprompt -dir repo,file -grepprg ag -g
+    \ "<C-R>=escape(escape(@", '\'), '"/\ \|\(\))')<CR>"<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
