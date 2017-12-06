@@ -2,23 +2,31 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2017-11-20 [966]
+" Modified: 2017-12-07 [1000]
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" General ENV
+" Environment
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:ismacos = has('mac')
-let g:islinux = (has('linux') || has('unix') )&& !g:ismacos
+" platform
+let g:ismacos = has('mac') || has('macunix')
+let g:islinux = (has('linux') || has('unix') ) && !g:ismacos
 let g:iswin = has("win64") || has("win32") || has("win16") || has("win95")
 
+" basic
+set nocompatible        " Must be first line
+
 if g:iswin
+  Windows Compatible
   let $VIMFILES = simplify(expand($VIM.'/vimfiles'))
   let $VIMCACHE = simplify(expand($VIM.'/cache'))
+  set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
 else
   let $VIMFILES = simplify(expand($HOME.'/.vim'))
   let $VIMCACHE = simplify(expand($HOME.'/.cache'))
+  set nossl
+  let g:skip_loading_mswin = 1  " do not load mswin.vim
 endif
 
 if !(isdirectory($VIMCACHE))
@@ -34,6 +42,84 @@ let $UNDODIR = simplify(expand($VIMCACHE.'/undo/'))
 if !(isdirectory($UNDODIR))
   call mkdir($UNDODIR, 'p', 0700)
 endif
+
+
+" Arrow Key Fix
+" https://github.com/spf13/spf13-vim/issues/780
+if &term[:4] == "xterm" || &term[:5] == 'screen' || &term[:3] == 'rxvt'
+    inoremap <silent> <C-[>OC <RIGHT>
+endif
+
+" leader
+let mapleader = ","
+let g:mapleader = ","
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Use before config if available
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if filereadable(expand("~/.vimrc.before"))
+    source ~/.vimrc.before
+endif
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" load functions
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+source $VIMFILES/vimrc/functions.vim
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vundle plugins
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"source <sfile>:p:h/vundle.vim
+" $VIMFILES/vimrc/plugins.vim
+if filereadable(simplify(expand($VIMFILES.'/vimrc/plugins.vim')))
+      \ && filereadable(simplify(expand($VIMFILES.'/plugins/vim-plug/autoload/plug.vim')))
+  source $VIMFILES/vimrc/plugins.vim
+else
+  colorscheme desert
+endif
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" General
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set background=dark         " Assume a dark background
+
+filetype plugin indent on   " Automatically detect file types.
+syntax on                   " Syntax highlighting
+scriptencoding utf-8
+
+if has('clipboard')
+    if has('unnamedplus')  " When possible use + register for copy-paste
+        set clipboard=unnamed,unnamedplus
+    else         " On mac and Windows, use * register for copy-paste
+        set clipboard=unnamed
+    endif
+endif
+
+if has('mouse')
+  set mouse=a " enable mouse (a, r, v)
+  set mousehide               " Hide the mouse cursor while typing
+  set selectmode=mouse,key
+endif
+
+" 自动转换当前工作路径，替代autochdir，防止插件冲突
+" autocmd BufEnter,BufRead * if isdirectory(expand('%:p:h')) | lcd %:p:h | endif
+autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim ui
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if has('gui_running')
+  set guioptions=
+  set showtabline=2
+  set lines=48 columns=128
+  " set switchbuf=usetab
+  " au GUIEnter * simalt ~x
+endif
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " multi-encodingi & file format setting
@@ -111,29 +197,6 @@ endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" General Setting
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set nocompatible
-if has('mouse')
-  set mouse=r " enable mouse (a, r, v)
-  set selectmode=mouse,key
-endif
-
-if !g:iswin
-  set nossl
-  let g:skip_loading_mswin = 1  " do not load mswin.vim
-endif
-
-if has('gui_running')
-  set guioptions=
-  set showtabline=2
-  set lines=48 columns=128
-  " set switchbuf=usetab
-  " au GUIEnter * simalt ~x
-endif
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim userinterface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set history=32                  " 历史记录最高数目
@@ -143,7 +206,6 @@ set ruler                       " 显示行号和列号
 set number                      " 显示行号，切换行号显隐 set nu!
 set number relativenumber       " 显示相对行号
 set showcmd                     " 显示输入的字符
-set mousehide                   " 默认不显示鼠标
 set wildmenu                    " 加强自动补全
 set numberwidth=1               " 显示光标位置的，行号列号和百分比，简写 set nuw
 set backspace=indent,eol,start  " 置光标在行首时按退格键，光标会回到上一行行尾
@@ -225,9 +287,6 @@ autocmd FileType xml,html,xhtml setlocal foldmethod=syntax tabstop=2 shiftwidth=
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Shortcuts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let mapleader = ","
-let g:mapleader = ","
-
 " buffer切换
 nmap <silent><Left> :bp<CR>
 nmap <silent><Right> :bn<CR>
@@ -275,12 +334,6 @@ abbreviate CDATETIME <esc>"=strftime("%F %T")<CR>gP
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" load functions
-
-source $VIMFILES/vimrc/functions.vim
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " file undo redo history auto save & load
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " set undofile
@@ -296,7 +349,7 @@ au VimLeave * silent call CleanCache()
 " set nofoldenable        " 关闭折叠
 set foldenable          " 开启折叠
 set foldmethod=indent   " 设置语法折叠 syntax | indent
-set foldlevel=99        " 默认折叠开始层数
+set foldlevel=9         " 默认折叠开始层数
 " set foldcolumn=0        " 设置折叠区域的宽度
 " set foldclose=all       " 设置为默认折叠所有
 " set foldnestmax=9
@@ -310,8 +363,6 @@ set foldlevel=99        " 默认折叠开始层数
 " 恢复退出时viminfo保存的光标位置
 " au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-" 自动转换当前工作路径，替代autochdir，防止插件冲突
-autocmd BufEnter,BufRead * if isdirectory(expand('%:p:h')) | lcd %:p:h | endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -335,26 +386,6 @@ if !exists(":DiffOrig")
         \ | wincmd p | diffthis
 endif
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" pylint for make command
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" autocmd FileType python set makeprg=pylint\ --reports=n\ /
-"     --msg-template=\"{path}:{line}:\ {msg_id}\ {symbol},\ {obj}\ {msg}\"\ %:p
-" autocmd FileType python set errorformat=%f:%l:\ %m
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vundle plugins
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"source <sfile>:p:h/vundle.vim
-" $VIMFILES/vimrc/plugins.vim
-if filereadable(simplify(expand($VIMFILES.'/vimrc/plugins.vim')))
-      \ && filereadable(simplify(expand($VIMFILES.'/plugins/vim-plug/autoload/plug.vim')))
-  source $VIMFILES/vimrc/plugins.vim
-else
-  colorscheme desert
-endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Cursor
