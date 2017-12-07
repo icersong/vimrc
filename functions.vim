@@ -195,32 +195,6 @@ endfunction
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" file undo redo history auto save & load
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" set undofile
-" execute('set undodir=' . $UNDODIR)
-" au BufReadPost * silent call ReadUndo()
-" au BufWritePost * silent call WriteUndo()
-" au VimLeave * silent call CleanCache()
-function! ReadUndo()
-  " let fname = undofile(expand('%'))
-  let fname = join(split(join(split(undofile(expand('%')), '%'), '&'), '\s'), '_')
-  if filereadable(fname)
-    execute('silent rundo ' . fname)
-  endif
-endfunc
-function! WriteUndo()
-  let fname = join(split(join(split(undofile(expand('%')), '%'), '&'), '\s'), '_')
-  if isdirectory($UNDODIR)
-    execute('wundo ' . fname)
-  endif
-endfunc
-function! CleanCache()
-  exe '!find "'.$VIMCACHE.'/undo" -mtime +7 -exec rm -f {} \;'
-endfunction
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " YouCompleteMe build function
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! BuildYCM(info)

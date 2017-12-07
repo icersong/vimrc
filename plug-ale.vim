@@ -48,7 +48,12 @@ let g:ale_fixers = {
       \   'autopep8',
       \ ],
       \ 'javascript': [
-      \   'eslint',
-      \   {buffer, lines -> filter(lines, 'v:val !=~ ''^\s*//''')},
+      \   'remove_trailing_lines',
+      \   'trim_whitespace',
       \ ],
       \}
+
+      " \ 'javascript': [
+      " \   'eslint',
+      " \   {buffer, lines -> filter(lines, 'v:val !=~ ''^\s*//''')},
+      " \ ],

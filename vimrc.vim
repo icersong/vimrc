@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2017-12-07 [1000]
+" Modified: 2017-12-07
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -105,9 +105,30 @@ if has('mouse')
   set selectmode=mouse,key
 endif
 
+set directory=$VIMCACHE         " 设置交换文件路径
+set backupdir=$BACKUPDIR        " 设置自动备份路径
+set undodir=$UNDODIR            " 设置undo备份路径
+" Clean undo cache 7 days ago
+au VimLeave * silent exe '!find "'.$VIMCACHE.'/undo" -mtime +7 -exec rm -f {} \;'
+
 " 自动转换当前工作路径，替代autochdir，防止插件冲突
 " autocmd BufEnter,BufRead * if isdirectory(expand('%:p:h')) | lcd %:p:h | endif
 autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
+
+" set shortmess+=I                " 启动时不显示介绍信息
+set shortmess+=filmnrxoOtT      " Abbrev. of messages (avoids 'hit enter')
+set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
+" set virtualedit=onemore       " Allow for cursor beyond last character
+set virtualedit=all,onemore     " 虚环境编辑空间
+set history=32                  " Store a ton of history (default is 20)
+set spell                       " Spell checking on
+set hidden                      " Allow buffer switching without saving, 放弃缓冲区时隐藏而不卸载
+set iskeyword-=.                " '.' is an end of word designator
+set iskeyword-=#                " '#' is an end of word designator
+set iskeyword-=-                " '-' is an end of word designator
+set undofile                    " So is persistent undo ...
+set undolevels=32               " Maximum number of changes that can be undone
+set undoreload=999              " Maximum number lines to save for undo on a buffer reload
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim ui
@@ -199,7 +220,6 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim userinterface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set history=32                  " 历史记录最高数目
 set scrolloff=6                 " 光标所在行上下两侧最少保留的屏幕可见行数, 简写 set so=6
 set cmdheight=1                 " 命令行占1行
 set ruler                       " 显示行号和列号
@@ -220,7 +240,6 @@ set matchpairs=(:),{:},[:],<:>  " 匹配括号的规则，增加针对html的<>
 set mat=2                       " 配对符号高亮
 set magic                       " 使用转义字符识别
 set nosol                       " 普通模式下光标行间移动时不到行首的第一个非空白，而是尽量在同一列
-set virtualedit=all,onemore     " 虚环境编辑空间
 set display=lastline            " 解决自动换行格式下, 如折行之后高在超过窗口高度看不到最后一行的问题
 set report=0                    " 报告哪些行被修改过
 set go+=a                       " 选择后自动进入系统剪切板
@@ -231,14 +250,9 @@ set t_vb=0                      " 关闭输出铃声
 set selection=inclusive         " 设定选择区是否包含最后一个光标所在字符
 set lazyredraw                  " 减少重绘
 set nowrapscan                  " 搜索到文件末尾时，不再回绕到文件首
-set hidden                      " 放弃缓冲区时隐藏而不卸载
-set directory=$VIMCACHE         " 设置交换文件路径
-set backupdir=$BACKUPDIR
-set undodir=$UNDODIR
 " set autochdir                   " 自动切换路径
 " set noswapfile                  " 禁止交换文件
 " set linespace=4                 " 设置行间距，单位是像素
-" set shortmess+=I                " 启动时不显示介绍信息
 " set cmdwinheight=2              " 命令行窗口的屏幕行数
 " set clipboard+=unnamed          " 默认寄存器和系统剪贴板共享
 
@@ -331,16 +345,6 @@ vmap p pgvy
 " abbreviations
 abbreviate CDATE <esc>"=strftime("%F")<CR>gP
 abbreviate CDATETIME <esc>"=strftime("%F %T")<CR>gP
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" file undo redo history auto save & load
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" set undofile
-" execute('set undodir=' . $UNDODIR)
-au BufReadPost * silent call ReadUndo()
-au BufWritePost * silent call WriteUndo()
-au VimLeave * silent call CleanCache()
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
