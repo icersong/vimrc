@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2017-12-07
+" Modified: 2017-12-08
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -92,6 +92,7 @@ syntax on                   " Syntax highlighting
 scriptencoding utf-8
 
 if has('clipboard')
+    " set clipboard+=unnamed          " 默认寄存器和系统剪贴板共享
     if has('unnamedplus')  " When possible use + register for copy-paste
         set clipboard=unnamed,unnamedplus
     else         " On mac and Windows, use * register for copy-paste
@@ -111,6 +112,11 @@ set undodir=$UNDODIR            " 设置undo备份路径
 " Clean undo cache 7 days ago
 au VimLeave * silent exe '!find "'.$VIMCACHE.'/undo" -mtime +7 -exec rm -f {} \;'
 
+" 恢复退出时viminfo保存的光标位置
+" au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
+autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+" set autochdir                   " 自动切换路径
 " 自动转换当前工作路径，替代autochdir，防止插件冲突
 " autocmd BufEnter,BufRead * if isdirectory(expand('%:p:h')) | lcd %:p:h | endif
 autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
@@ -130,6 +136,13 @@ set undofile                    " So is persistent undo ...
 set undolevels=32               " Maximum number of changes that can be undone
 set undoreload=999              " Maximum number lines to save for undo on a buffer reload
 
+set autoread                    " 文件变化自动载入
+set t_vb=0                      " 关闭输出铃声
+set lazyredraw                  " 减少重绘
+" set noswapfile                  " 禁止交换文件
+" set cmdwinheight=2              " 命令行窗口的屏幕行数
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim ui
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -139,7 +152,110 @@ if has('gui_running')
   set lines=48 columns=128
   " set switchbuf=usetab
   " au GUIEnter * simalt ~x
+  set showmode
+ set tabpagemax=15
 endif
+
+" 高亮当前行当前列(十字光标)
+" set cursorcolumn                " 设置光标十字坐标，高亮当前列
+set cursorline                  " 设置光标十字坐标，高亮当前行
+highlight clear SignColumn      " SignColumn should match background
+highlight clear LineNr          " Current line number row will have same background color in relative mode
+" highlight clear CursorLineNr    " Remove highlight color from current line number
+highlight CursorLine cterm=underline ctermbg=NONE ctermfg=NONE gui=underline guibg=NONE guifg=NONE
+call SetCursorStyle()
+" autocmd ColorScheme * silent call SetCursorStyle()
+" autocmd Syntax * silent call SetCursorStyle()
+
+set ruler                       " 显示行号和列号
+set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " A ruler on steroids
+set numberwidth=1               " 显示光标位置的，行号列号和百分比，简写 set nuw
+set showcmd                     " 显示输入的字符
+set cmdheight=1                 " 命令行占1行
+
+" if has('statusline')
+"   set laststatus=2
+"
+"   " Broken down into easily includeable segments
+"   set statusline=%<%f\                     " Filename
+"   set statusline+=%w%h%m%r                 " Options
+"   if !exists('g:override_spf13_bundles')
+"       set statusline+=%{fugitive#statusline()} " Git Hotness
+"   endif
+"   set statusline+=\ [%{&ff}/%Y]            " Filetype
+"   set statusline+=\ [%{getcwd()}]          " Current dir
+"   set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
+" endif
+
+set backspace=indent,eol,start  " Backspace for dummies
+set linespace=0                 " No extra spaces between rows
+set number                      " Line numbers on
+set relativenumber              " 显示相对行号
+set showmatch                   " Show matching brackets/parenthesis
+set matchtime=3                 " 单位是十分之一秒
+set matchpairs=(:),{:},[:],<:>  " 匹配括号的规则，增加针对html的<>
+set incsearch                   " Find as you type search
+set hlsearch                    " Highlight search terms
+set winminheight=0              " Windows can be 0 line high
+set ignorecase                  " Case insensitive search
+set smartcase                   " Case sensitive when uc present
+set wildmenu                    " Show list instead of just completing
+set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
+set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
+set scrolljump=5                " Lines to scroll when cursor leaves screen
+set scrolloff=6                 " Minimum lines to keep above and below cursor
+set foldenable                  " Auto fold code
+set foldmethod=indent           " 设置语法折叠 syntax | indent
+set foldlevel=9                 " 默认折叠开始层数
+" set foldcolumn=0                " 设置折叠区域的宽度
+" set foldclose=all               " 设置为默认折叠所有
+" set foldnestmax=9
+
+set list                        " trail:拖尾空白显示字符; extends/precedes是wrap关闭时,所在行在右左指示字符
+" listchars tab用..显示，尾部空格用-显示，eol不显示 ˫ ￩ ￪ ￫ ￬ ˖ · ˽ ⊹ ∙ ⋅⋆⋇ ༓ » ‣
+if &term == 'xterm' || &term == 'xterm-256color'
+  set listchars=tab:›»,trail:·,extends:>,precedes:<
+else
+  set listchars=tab:￫￫,trail:·,extends:>,precedes:<
+endif
+let g:xml_syntax_folding = 1
+
+set nostartofline               " 普通模式下光标行间移动时不到行首的第一个非空白，而是尽量在同一列
+set display=lastline            " 解决自动换行格式下, 如折行之后高在超过窗口高度看不到最后一行的问题
+set report=0                    " 报告哪些行被修改过
+set go+=a                       " 选择后自动进入系统剪切板
+set pumheight=9                 " 设置智能补全菜单长度
+set completeopt=menuone         " 去掉智能补全预览，只显示菜单并自动插入
+set selection=inclusive         " 设定选择区是否包含最后一个光标所在字符
+set nowrapscan                  " 搜索到文件末尾时，不再回绕到文件首
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Font
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if g:iswin
+  " set guifont=Inconsolata:h10:cDEFAULT
+  " set guifontwide=YtYaHei:h8:cDEFAULT
+  " set guifont=Menlo:h9:cDEFAULT
+  " set guifontwide=Menlo:h9:cDEFAULT
+  set guifont=Courier\ New:h9:cDEFAULT
+  set guifontwide=Courier\ New:h9:cDEFAULT
+endif
+
+if g:ismacos
+  set guifontwide=Menlo:h12
+  set guifont=Menlo:h12
+endif
+
+if g:islinux
+  set guifont=Courier\ New:h9:cDEFAULT
+  set guifontwide=Courier\ New:h9:cDEFAULT
+  " set guifontwide=WenQuanYi\ Micro\ Hei:h9:cDEFAULT
+endif
+
+" 解决菜单乱码
+" source $VIMRUNTIME/delmenu.vim
+" source $VIMRUNTIME/menu.vim
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -190,74 +306,7 @@ endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Font
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if g:iswin
-  " set guifont=Inconsolata:h10:cDEFAULT
-  " set guifontwide=YtYaHei:h8:cDEFAULT
-  " set guifont=Menlo:h9:cDEFAULT
-  " set guifontwide=Menlo:h9:cDEFAULT
-  set guifont=Courier\ New:h9:cDEFAULT
-  set guifontwide=Courier\ New:h9:cDEFAULT
-endif
-
-if g:ismacos
-  set guifontwide=Menlo:h12
-  set guifont=Menlo:h12
-endif
-
-if g:islinux
-  set guifont=Courier\ New:h9:cDEFAULT
-  set guifontwide=Courier\ New:h9:cDEFAULT
-  " set guifontwide=WenQuanYi\ Micro\ Hei:h9:cDEFAULT
-endif
-
-" 解决菜单乱码
-" source $VIMRUNTIME/delmenu.vim
-" source $VIMRUNTIME/menu.vim
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim userinterface
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set scrolloff=6                 " 光标所在行上下两侧最少保留的屏幕可见行数, 简写 set so=6
-set cmdheight=1                 " 命令行占1行
-set ruler                       " 显示行号和列号
-set number                      " 显示行号，切换行号显隐 set nu!
-set number relativenumber       " 显示相对行号
-set showcmd                     " 显示输入的字符
-set wildmenu                    " 加强自动补全
-set numberwidth=1               " 显示光标位置的，行号列号和百分比，简写 set nuw
-set backspace=indent,eol,start  " 置光标在行首时按退格键，光标会回到上一行行尾
-set incsearch                   " 搜索时动态调到第一个匹配的位置
-set ignorecase                  " 搜索时忽略大小写
-set smartcase                   " 如果搜索模式包含大写字母，忽略ignorecase
-set nohls                       " 快速查找，直接定位到文本
-set hlsearch                    " 高亮显示搜索结果
-set showmatch                   " 插入括号时，短暂的跳转到匹配的对应括号，显示匹配的时间由matchtime决定
-set matchtime=1                 " 单位是十分之一秒
-set matchpairs=(:),{:},[:],<:>  " 匹配括号的规则，增加针对html的<>
-set mat=2                       " 配对符号高亮
-set magic                       " 使用转义字符识别
-set nosol                       " 普通模式下光标行间移动时不到行首的第一个非空白，而是尽量在同一列
-set display=lastline            " 解决自动换行格式下, 如折行之后高在超过窗口高度看不到最后一行的问题
-set report=0                    " 报告哪些行被修改过
-set go+=a                       " 选择后自动进入系统剪切板
-set pumheight=9                 " 设置智能补全菜单长度
-set completeopt=menuone         " 去掉智能补全预览，只显示菜单并自动插入
-set autoread                    " 文件变化自动载入
-set t_vb=0                      " 关闭输出铃声
-set selection=inclusive         " 设定选择区是否包含最后一个光标所在字符
-set lazyredraw                  " 减少重绘
-set nowrapscan                  " 搜索到文件末尾时，不再回绕到文件首
-" set autochdir                   " 自动切换路径
-" set noswapfile                  " 禁止交换文件
-" set linespace=4                 " 设置行间距，单位是像素
-" set cmdwinheight=2              " 命令行窗口的屏幕行数
-" set clipboard+=unnamed          " 默认寄存器和系统剪贴板共享
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Indent
+" Formatting & Indent
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 filetype off            " 文件类型检测开
 filetype indent on      " 自动缩进开
@@ -269,27 +318,18 @@ set smarttab            " 行首的tab用合适的空格代替
 set tabstop=4 et        " 文件里tab代表的空格数
 set softtabstop=4       " 输入tab后就跳了4格, set sts=4
 set linebreak           " 打开linebreak
-set list                " trail:拖尾空白显示字符; extends/precedes是wrap关闭时,所在行在右左指示字符
 set autoindent          " 按语法自动缩进 ai
 set smartindent         " 智能缩进
 set cindent             " 按C的语法缩进
 set wrap                " 到屏幕边会回绕
 set iskeyword+=_,$,@,%,#,-,*    " 将这些字符作为关键字，带有这些符号的单词不换行
-set whichwrap=b,s,<,>,[,]
 set colorcolumn=80      " 设置第列高亮
+set nojoinspaces        " Prevents inserting two spaces after punctuation on a join (J)
+set splitright          " Puts new vsplit windows to the right of the current
+set splitbelow          " Puts new split windows to the bottom of the current
+" set matchpairs+=<:>     " Match, to be used with %
 " set textwidth=512       " textwidth, 一行的最大宽度
-" listchars tabe用..显示，尾部空格用-显示，eol不显示 ˫ ￩ ￪ ￫ ￬ ˖ · ˽ ⊹ ∙ ⋅⋆⋇ ༓ » ‣
-if &term == 'xterm' || &term == 'xterm-256color'
-  set listchars=tab:»»,trail:·,extends:>,precedes:<
-else
-  set listchars=tab:￫￫,trail:·,extends:>,precedes:<
-endif
-let g:xml_syntax_folding = 1
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" File type
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 autocmd BufRead,BufNewFile *.wsgi setlocal filetype=python syntax=python foldmethod=indent
 autocmd BufRead,BufNewFile jquery.*.js setlocal filetype=javascript syntax=jquery
 autocmd BufRead,BufNewFile *.json setlocal filetype=json
@@ -297,6 +337,7 @@ autocmd BufRead,BufNewFile *vimrc setlocal filetype=vim syntax=vim
 autocmd FileType vim,css setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 autocmd BufRead,BufNewFile *.tpl setlocal filetype=jinja syntax=jinja
 autocmd FileType xml,html,xhtml setlocal foldmethod=syntax tabstop=2 shiftwidth=2 softtabstop=2 smartindent smarttab expandtab
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Shortcuts
@@ -348,28 +389,6 @@ abbreviate CDATETIME <esc>"=strftime("%F %T")<CR>gP
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 代码折叠
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" set nofoldenable        " 关闭折叠
-set foldenable          " 开启折叠
-set foldmethod=indent   " 设置语法折叠 syntax | indent
-set foldlevel=9         " 默认折叠开始层数
-" set foldcolumn=0        " 设置折叠区域的宽度
-" set foldclose=all       " 设置为默认折叠所有
-" set foldnestmax=9
-" 用空格键来开关折叠
-" nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 打开文件时
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 恢复退出时viminfo保存的光标位置
-" au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
-autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " cscope & ctags
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " dir /b /s /w *.py | grep -v z.py > cscope.files
@@ -389,19 +408,6 @@ if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
         \ | wincmd p | diffthis
 endif
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Cursor
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"高亮当前行当前列(十字光标)
-" set cursorcolumn                " 设置光标十字坐标，高亮当前列
-set cursorline                  " 设置光标十字坐标，高亮当前行
-highlight CursorLine cterm=underline ctermbg=NONE ctermfg=NONE gui=underline guibg=NONE guifg=NONE
-
-call SetCursorStyle()
-autocmd ColorScheme * silent call SetCursorStyle()
-" autocmd Syntax * silent call SetCursorStyle()
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
