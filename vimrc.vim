@@ -326,7 +326,7 @@ set iskeyword+=_,$,@,%,#,-,*    " 将这些字符作为关键字，带有这些�
 set colorcolumn=80      " 设置第列高亮
 set nojoinspaces        " Prevents inserting two spaces after punctuation on a join (J)
 set splitright          " Puts new vsplit windows to the right of the current
-set splitbelow          " Puts new split windows to the bottom of the current
+" set splitbelow          " Puts new split windows to the bottom of the current
 " set matchpairs+=<:>     " Match, to be used with %
 " set textwidth=512       " textwidth, 一行的最大宽度
 
@@ -340,48 +340,58 @@ autocmd FileType xml,html,xhtml setlocal foldmethod=syntax tabstop=2 shiftwidth=
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Shortcuts
+" Key Mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Wrapped lines goes down/up to next row, rather than next line in file.
+noremap j gj
+noremap k gk
+
 " buffer切换
-nmap <silent><Left> :bp<CR>
-nmap <silent><Right> :bn<CR>
+noremap <silent><Left> :bp<CR>
+noremap <silent><Right> :bn<CR>
 
 " 定义空格键暂时取消高亮匹配
-nmap <silent><space> :nohls<CR>za
-nmap <silent>z0 :set foldlevel=0<CR>
-nmap <silent>z9 :set foldlevel=9<CR>
+noremap <silent><space> :nohls<CR>za
+noremap <silent>z0 :set foldlevel=0<CR>
+noremap <silent>z9 :set foldlevel=9<CR>
 
 " 删除尾部空格
-nmap <S-Space> :%s/\s\+$//g<CR>
+noremap <S-Space> :%s/\s\+$//g<CR>
 
 " 重做，用于撤销后返撤销
-nmap <S-U> :redo<CR>
+noremap <S-U> :redo<CR>
 
 " 文件操作
 " command! -nargs=0 Q :q!
-nmap <silent><leader>q :bd<CR>
-nmap <silent><leader><S-Q> :bd!<CR>
-nmap <silent><leader>w :w<CR>
-nmap <silent><leader><S-W> :w!<CR>
+noremap <silent><leader>q :bd<CR>
+noremap <silent><leader><S-Q> :bd!<CR>
+noremap <silent><leader>w :w<CR>
+noremap <silent><leader><S-W> :w!<CR>
 " 文件格式设置成dos :set ff=dos<CR>
 " 文件格式设置成unix :set ff=unix<CR>
 
 "缩进快捷键
-nmap <silent>> V><esc>
-nmap <silent>< V<<esc>
-vmap <silent>> :><cr>gv
-vmap <silent>< :<<cr>gv
+vnoremap < <gv
+vnoremap > >gv
+noremap <silent>> V><esc>
+noremap <silent>< V<<esc>
 
 " 上下移动一行文字
-nmap <C-J> :m+<cr>
-nmap <C-K> :m-2<cr>
-vmap <S-K> :m'<-2<cr>gv
-vmap <S-J> :m'>+1<cr>gv
-" vmap <C-j> :m'>+<cr>`<my`>mzgv`yo`z
-" vmap <C-k> :m'<-2<cr>`>my`<mzgv`yo`z
+noremap <C-J> :m+<cr>
+noremap <C-K> :m-2<cr>
+vnoremap <S-K> :m'<-2<cr>gv
+vnoremap <S-J> :m'>+1<cr>gv
+" vnoremap <C-j> :m'>+<cr>`<my`>mzgv`yo`z
+" vnoremap <C-k> :m'<-2<cr>`>my`<mzgv`yo`z
 
 " visual mode: only paste but not replace cut table
-vmap p pgvy
+vnoremap p pgvy
+
+" For when you forget to sudo.. Really Write the file.
+cnoremap w!! w !sudo tee % >/dev/null
+" command line %% get current path
+cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<CR>
+map <leader>ew :e %%
 
 " abbreviations
 abbreviate CDATE <esc>"=strftime("%F")<CR>gP
@@ -414,6 +424,6 @@ endif
 if executable('xclip')
   command! -nargs=0 XCopy :!xclip -f -sel clip<CR>
   command! -nargs=0 XPaste :r !xclip -o -sel clip<CR>
-  vmap <leader>y !xclip -f -sel clip<CR>u
-  nmap <leader>p :r !xclip -o -sel clip<CR>
+  vnoremap <leader>y !xclip -f -sel clip<CR>u
+  noremap <leader>p :r !xclip -o -sel clip<CR>
 endif

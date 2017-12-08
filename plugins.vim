@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2017-12-01
+" Modified: 2017-12-09
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:enable_youcompleteme = 0
 let g:enable_neocomplete = 0
@@ -419,8 +419,8 @@ let g:ctrlsf_regex_pattern = 1
 let g:ctrlsf_winsize = '30%'
 let g:ctrlsf_position = 'bottom'
 let g:ctrlsf_context = '-B 0 -A 0'
-nmap <leader>f <Plug>CtrlSFCwordPath
-vmap <leader>f <Plug>CtrlSFVwordExec
+nmap <leader>f* <Plug>CtrlSFCwordPath
+vmap <leader>f* <Plug>CtrlSFVwordExec
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
