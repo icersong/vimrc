@@ -807,8 +807,9 @@ endif
 " Plug 'tpope/vim-fugitive'
 autocmd QuickFixCmdPost *grep* cwindow
 " nnoremap ,gl :silent! Glog -1<CR>:copen 33<CR><C-W>p:silent! Glog<CR><C-W>
-nnoremap ,gl :Glog --graph --pretty=format:%h\ %ai\ %an\ %s<CR>
-nnoremap ,gL :!git --no-pager log --oneline --decorate --graph -40<CR>
+" nnoremap ,gl :Glog --graph --pretty=format:%h\ %ai\ %an\ %s<CR>
+nnoremap ,gl :Git --no-pager log --oneline --decorate --graph -40 --pretty=format:\%h\ \%ai\ \%an\ \%s<CR>
+command Glogg :Git --no-pager log --oneline --decorate --graph -40 --pretty=format:\%h\ \%ai\ \%an\ \%s<CR>
 " nnoremap <space>ga :Git add %:p<CR><CR>
 " nnoremap <space>gs :Gstatus<CR>
 " nnoremap <space>gc :Gcommit -v -q<CR>
