@@ -824,8 +824,8 @@ nnoremap <space>gt :Gcommit -v -q %:p<CR>
 " nnoremap <space>gm :Gmove<Space>
 " nnoremap <space>gb :Git branch<Space>
 " nnoremap <space>go :Git checkout<Space>
-" nnoremap <space>gps :Dispatch! git push<CR>
-" nnoremap <space>gpl :Dispatch! git pull<CR>
+nnoremap <space>gps :AsyncRun -post=copen git push<CR>
+nnoremap <space>gpl :AsyncRun -post=copen git pull<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-signify   {{{1
