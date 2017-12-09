@@ -811,10 +811,10 @@ autocmd QuickFixCmdPost *grep* cwindow
 nnoremap ,gl :Git --no-pager log --oneline --decorate --graph -40 --pretty=format:\%h\ \%ai\ \%an\ \%s<CR>
 command Glogg :Git --no-pager log --oneline --decorate --graph -40 --pretty=format:\%h\ \%ai\ \%an\ \%s<CR>
 command GpushSVN :Git svn dcommit<CR>
-" nnoremap <space>ga :Git add %:p<CR><CR>
-" nnoremap <space>gs :Gstatus<CR>
-" nnoremap <space>gc :Gcommit -v -q<CR>
-" nnoremap <space>gt :Gcommit -v -q %:p<CR>
+nnoremap <space>ga :Git add %:p<CR><CR>
+nnoremap <space>gs :Gstatus<CR>
+nnoremap <space>gc :Gcommit -v -q<CR>
+nnoremap <space>gt :Gcommit -v -q %:p<CR>
 " nnoremap <space>gd :Gdiff<CR>
 " nnoremap <space>ge :Gedit<CR>
 " nnoremap <space>gr :Gread<CR>
