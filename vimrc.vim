@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2017-12-08
+" Modified: 2017-12-09
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -261,13 +261,13 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " multi-encodingi & file format setting
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set fileformats=unix,dos,mac        " 文件格式支持
+" set formatoptions+=jmB            " centos vim7.2 not 'j' option
+set formatoptions+=mB             " formatoptions
+set fileencoding=utf-8
 if has("multi_byte")
-  set fileformats=unix,dos,mac      " 文件格式支持
   set ambiwidth=double              " 当encoding=<unicode>编码时有效,使用ASCII字符两倍的宽度处理东亚字符类
   "set bomb
-  " set formatoptions+=jmB            " centos vim7.2 not 'j' option
-  set formatoptions+=mB             " formatoptions
-  set fileencoding=utf-8
   " set fileencodings=ucs-bom,utf-8,cp936,big5,gb18030,euc-jp,euc-kr,latin1
   set fileencodings=ucs-bom,utf-8,cp936,gb18030,gb2312,gbk,big5,euc-jp,euc-kr
   set encoding=utf8
@@ -371,10 +371,10 @@ noremap <silent><leader><S-W> :w!<CR>
 " 文件格式设置成unix :set ff=unix<CR>
 
 "缩进快捷键
-vnoremap < <gv
-vnoremap > >gv
-noremap <silent>> V><esc>
-noremap <silent>< V<<esc>
+vmap < <gv
+vmap > >gv
+nmap <silent>> V><esc>
+nmap <silent>< V<<esc>
 
 " 上下移动一行文字
 noremap <C-J> :m+<cr>
@@ -393,10 +393,12 @@ cnoremap w!! w !sudo tee % >/dev/null
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<CR>
 map <leader>ew :e %%
 
+" Remove the Windows ^M - when the encodings gets messed up
+noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
+
 " abbreviations
 abbreviate CDATE <esc>"=strftime("%F")<CR>gP
 abbreviate CDATETIME <esc>"=strftime("%F %T")<CR>gP
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " cscope & ctags
