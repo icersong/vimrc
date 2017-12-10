@@ -161,3 +161,8 @@ Configue .tmux.conf file
 * xclip command
 
     $ sudo apt-get install xclip
+
+
+## Insert serial no for selected lines
+
+    :'<,'>s/^/\=printf("%-4d. ", line(".")-line("'<")+1)
