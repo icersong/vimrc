@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2017-12-09
+" Modified: 2017-12-10
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -127,7 +127,7 @@ set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatib
 " set virtualedit=onemore       " Allow for cursor beyond last character
 set virtualedit=all,onemore     " 虚环境编辑空间
 set history=32                  " Store a ton of history (default is 20)
-set spell                       " Spell checking on
+" set spell                       " Spell checking on
 set hidden                      " Allow buffer switching without saving, 放弃缓冲区时隐藏而不卸载
 set iskeyword-=.                " '.' is an end of word designator
 set iskeyword-=#                " '#' is an end of word designator
