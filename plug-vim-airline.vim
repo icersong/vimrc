@@ -11,12 +11,13 @@ let g:airline_extensions = ['branch',
     \ 'tabline', 'whitespace', 'ale',
     \ 'tagbar', 'virtualenv', 'unite']
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#tab_nr_type = 1
+let g:airline#extensions#tabline#tab_nr_type = 2
 let g:airline#extensions#tabline#fnamemod = ':p:t'
 let g:airline#extensions#tabline#left_sep = ''
 let g:airline#extensions#tabline#left_alt_sep = ''
 let g:airline#extensions#tabline#buffer_nr_show = 0
 let g:airline#extensions#tabline#buffer_nr_format = '%s:'
+let g:airline_highlighting_cache = 1
 let g:airline#extensions#syntastic#enabled = 0
 let g:airline#extensions#whitespace#enabled = 1
 let g:airline#extensions#tagbar#enabled = 1
@@ -28,6 +29,9 @@ let g:airline#extensions#ale#enabled = 1
 " let g:airline#extensions#tabline#buffer_idx_format = {
 "       \ '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴',
 "       \ '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹'}
+let g:airline#extensions#tabline#buffer_idx_format = {
+      \ '0': '0∙', '1': '1∙', '2': '2∙', '3': '3∙', '4': '4∙',
+      \ '5': '5∙', '6': '6∙', '7': '7∙', '8': '8∙', '9': '9∙'}
 nmap <leader>1 <Plug>AirlineSelectTab1
 nmap <leader>2 <Plug>AirlineSelectTab2
 nmap <leader>3 <Plug>AirlineSelectTab3
