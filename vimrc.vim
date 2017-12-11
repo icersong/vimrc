@@ -263,11 +263,10 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set fileformats=unix,dos,mac        " 文件格式支持
 " set formatoptions+=jmB            " centos vim7.2 not 'j' option
-set ambiwidth=double                " utf8编码下，将不明宽度字符按双倍宽度显示
+set ambiwidth=single                " utf8编码下，将不明宽度字符按双倍宽度显示, double|single
 set formatoptions+=mB             " formatoptions
 set fileencoding=utf-8
 if has("multi_byte")
-  set ambiwidth=double              " 当encoding=<unicode>编码时有效,使用ASCII字符两倍的宽度处理东亚字符类
   "set bomb
   " set fileencodings=ucs-bom,utf-8,cp936,big5,gb18030,euc-jp,euc-kr,latin1
   set fileencodings=ucs-bom,utf-8,cp936,gb18030,gb2312,gbk,big5,euc-jp,euc-kr
