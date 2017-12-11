@@ -29,9 +29,9 @@ let g:airline#extensions#ale#enabled = 1
 " let g:airline#extensions#tabline#buffer_idx_format = {
 "       \ '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴',
 "       \ '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹'}
-let g:airline#extensions#tabline#buffer_idx_format = {
-      \ '0': '0∙', '1': '1∙', '2': '2∙', '3': '3∙', '4': '4∙',
-      \ '5': '5∙', '6': '6∙', '7': '7∙', '8': '8∙', '9': '9∙'}
+" let g:airline#extensions#tabline#buffer_idx_format = {
+"       \ '0': '0∙', '1': '1∙', '2': '2∙', '3': '3∙', '4': '4∙',
+"       \ '5': '5∙', '6': '6∙', '7': '7∙', '8': '8∙', '9': '9∙'}
 nmap <leader>1 <Plug>AirlineSelectTab1
 nmap <leader>2 <Plug>AirlineSelectTab2
 nmap <leader>3 <Plug>AirlineSelectTab3

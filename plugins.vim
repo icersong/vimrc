@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2017-12-09
+" Modified: 2017-12-12
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:enable_youcompleteme = 0
 let g:enable_neocomplete = 0
@@ -45,6 +45,9 @@ set rtp+=$PLUGPATH
 call plug#begin($VIM_PLUGING_PATH)
 
 if g:ismacos
+  " $ brew install fcitx-remote-for-osx --with-input-method=<method>
+  " <method>: osx-pinyin baidu-wubi osx-wubi general squirrel-rime
+  "     squirrel-rime-upstream qingg qq-wubi baidu-pinyin sogou-pinyin
   Plug 'CodeFalling/fcitx-vim-osx'
 endif
 " 插件加载工具
@@ -98,6 +101,11 @@ Plug 'rking/ag.vim', {'on': ['Ag', 'AgFile', 'AgBuffer']}
 Plug 'Chun-Yang/vim-action-ag'
 " 搜索选中内容或光标下单词, <leader>f
 Plug 'dyng/ctrlsf.vim', {'on': ['CtrlSF', '<plug>CtrlSFCwordPath', '<plug>CtrlSFVwordExec']}
+" fzf搜索工具
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+Plug 'junegunn/fzf.vim'
+" 搜索工具，比ctrl-p匹配准确，python异步完成, 可以搜索MRU Function etc.
+" Plug 'Yggdroot/LeaderF'
 " 指定字母快速移动光标
 Plug 'Lokaltog/vim-easymotion'
 " 扩展%快速匹配跳转
@@ -157,6 +165,8 @@ Plug 'jeetsukumaran/vim-buffergator'
 Plug 'icersong/timestamp.vim'
 
 """""""""""""""""""""""""""""""" 语法辅助 """"""""""""""""""""""""""""""""
+" 静态语法配色包
+Plug 'sheerun/vim-polyglot'
 " 语法快速输入提示
 Plug 'honza/vim-snippets'
 Plug 'SirVer/ultisnips', {'for': ['c', 'cpp', 'javascript', 'python']}
@@ -230,6 +240,8 @@ Plug 'tpope/vim-fugitive'
 " Plug 'mhinz/vim-signify'
 " VCS state signs display [GIT, SVN, HG, ...] (gn, gp)
 Plug 'airblade/vim-gitgutter'
+" Git log graph display
+Plug 'gregsexton/gitv', {'on': ['Gitv']}
 
 
 """""""""""""""""""""""""""""""" Shell & Tools """"""""""""""""""""""""""""""""
@@ -352,8 +364,8 @@ let g:grepper.jump      = 0
 let g:grepper.stop      = 99
 let g:grepper.highlight = 1
 let g:grepper.next_tool = '<tab>'   " <TAB>键切换搜索工具
-" let g:grepper.ag = { 'grepprg': 'ag --vimgrep --' }
-let g:grepper.file= { 'grepprg': 'ag -g' }
+let g:grepper.ag = { 'grepprg': 'ag --vimgrep --smart-case' }
+let g:grepper.file= { 'grepprg': 'ag --vimgrep --smart-case -g' }
 
 " 用git grep搜索当前工程
 nnoremap <leader>gg :Grepper -tool git -dir repo,file<cr>
@@ -372,10 +384,10 @@ vnoremap <leader>* ""y:Grepper -noprompt -grepprg ag
 vnoremap <leader>g* ""y:Grepper -noprompt -dir repo,file -grepprg ag
     \ "<C-R>=escape(escape(@", '\'), '"/\ \|\(\))')<CR>"<CR>
 " 用ag在当前工程下搜索光标下的文件
-nnoremap <leader>gf :Grepper -tool file -cword -noprompt -dir repo,file<CR>
+" nnoremap <leader>gf :Grepper -tool file -cword -noprompt -dir repo,file<CR>
 " 用ag在当前工程下搜索选中文本的文件
-vnoremap <leader>gf ""y:Grepper -tool file -noprompt -dir repo,file -grepprg ag -g
-    \ "<C-R>=escape(escape(@", '\'), '"/\ \|\(\))')<CR>"<CR>
+" vnoremap <leader>gf ""y:Grepper -tool file -noprompt -dir repo,file -grepprg ag -g
+"     \ "<C-R>=escape(escape(@", '\'), '"/\ \|\(\))')<CR>"<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -392,6 +404,10 @@ let g:ag_format="%f:%l:%c:%m"
 let g:ag_hightlight=1
 " let g:ag_qhandler="copen"
 " nnoremap <leader>gf  :AgFile<space>
+" 用ag在当前工程下搜索光标下的文件
+nnoremap <leader>gf yiw:AgFile! "<C-R>=escape(escape(@", '\'), '"/\ \|\(\))')<CR>"<CR>
+" 用ag在当前工程下搜索选中文本的文件
+vnoremap <leader>gf ""y:AgFile! "<C-R>=escape(escape(@", '\'), '"/\ \|\(\))')<CR>"<CR>
 
 
 " vim-action-ag   {{{1
@@ -733,7 +749,18 @@ let g:multi_cursor_insert_maps={'I':1, 'i':1, 'a':1, 'A':1}
 " expand-region   {{{1
 " select region by key "+" & "-"
 " Plug 'terryma/vim-expand-region'
-
+let g:expand_region_text_objects = {
+      \ 'iw'  :0,
+      \ 'iW'  :0,
+      \ 'i"'  :0,
+      \ 'i''' :0,
+      \ 'i]'  :1,
+      \ 'ib'  :1,
+      \ 'iB'  :1,
+      \ 'il'  :1,
+      \ 'ip'  :0,
+      \ 'ie'  :0,
+      \ }
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NrrwRgn   {{{1
