@@ -326,13 +326,19 @@ autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" FZF   {{{1
+
+nmap <silent> <c-p> :History<CR>
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CtrlP {{{1
 " Plug 'kien/ctrlp.vim'
 " Plug 'ctrlpvim/ctrlp.vim'
 " Plug 'tacahiroy/ctrlp-funky'
 " Plug 'FelikZ/ctrlp-py-matcher'
 
-nmap <c-p> <plug>(ctrlp)
+" nmap <c-p> <plug>(ctrlp)
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlPMRU'
 let g:ctrlp_show_hidden = 1
