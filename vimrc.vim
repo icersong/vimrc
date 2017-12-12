@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2017-12-11
+" Modified: 2017-12-12
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -85,24 +85,24 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set background=dark         " Assume a dark background
+set background=dark             " Assume a dark background
 
-filetype plugin indent on   " Automatically detect file types.
-syntax on                   " Syntax highlighting
+filetype plugin indent on       " Automatically detect file types.
+syntax on                       " Syntax highlighting
 scriptencoding utf-8
 
 if has('clipboard')
-    " set clipboard+=unnamed          " 默认寄存器和系统剪贴板共享
-    if has('unnamedplus')  " When possible use + register for copy-paste
+    " set clipboard+=unnamed      " 默认寄存器和系统剪贴板共享
+    if has('unnamedplus')       " When possible use + register for copy-paste
         set clipboard=unnamed,unnamedplus
-    else         " On mac and Windows, use * register for copy-paste
+    else                        " On mac and Windows, use * register for copy-paste
         set clipboard=unnamed
     endif
 endif
 
 if has('mouse')
-  set mouse=a " enable mouse (a, r, v)
-  set mousehide               " Hide the mouse cursor while typing
+  set mouse=a                   " enable mouse (a, r, v)
+  set mousehide                 " Hide the mouse cursor while typing
   set selectmode=mouse,key
 endif
 
@@ -121,11 +121,11 @@ autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "norm
 " autocmd BufEnter,BufRead * if isdirectory(expand('%:p:h')) | lcd %:p:h | endif
 autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
 
+set viminfo='999,f1,<999
 " set shortmess+=I                " 启动时不显示介绍信息
 set shortmess+=filmnrxoOtT      " Abbrev. of messages (avoids 'hit enter')
 set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
-" set virtualedit=onemore       " Allow for cursor beyond last character
-set virtualedit=all,onemore     " 虚环境编辑空间
+set virtualedit=all,onemore     " 虚环境编辑空间, Allow for cursor beyond last character
 set history=32                  " Store a ton of history (default is 20)
 " set spell                       " Spell checking on
 set hidden                      " Allow buffer switching without saving, 放弃缓冲区时隐藏而不卸载
@@ -172,21 +172,6 @@ set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " A ruler on steroids
 set numberwidth=1               " 显示光标位置的，行号列号和百分比，简写 set nuw
 set showcmd                     " 显示输入的字符
 set cmdheight=1                 " 命令行占1行
-
-" if has('statusline')
-"   set laststatus=2
-"
-"   " Broken down into easily includeable segments
-"   set statusline=%<%f\                     " Filename
-"   set statusline+=%w%h%m%r                 " Options
-"   if !exists('g:override_spf13_bundles')
-"       set statusline+=%{fugitive#statusline()} " Git Hotness
-"   endif
-"   set statusline+=\ [%{&ff}/%Y]            " Filetype
-"   set statusline+=\ [%{getcwd()}]          " Current dir
-"   set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
-" endif
-
 set backspace=indent,eol,start  " Backspace for dummies
 set linespace=0                 " No extra spaces between rows
 set number                      " Line numbers on
@@ -229,6 +214,20 @@ set completeopt=menuone         " 去掉智能补全预览，只显示菜单并�
 set selection=inclusive         " 设定选择区是否包含最后一个光标所在字符
 set nowrapscan                  " 搜索到文件末尾时，不再回绕到文件首
 
+" if has('statusline')
+"   set laststatus=2
+"
+"   " Broken down into easily includeable segments
+"   set statusline=%<%f\                     " Filename
+"   set statusline+=%w%h%m%r                 " Options
+"   if !exists('g:override_spf13_bundles')
+"       set statusline+=%{fugitive#statusline()} " Git Hotness
+"   endif
+"   set statusline+=\ [%{&ff}/%Y]            " Filetype
+"   set statusline+=\ [%{getcwd()}]          " Current dir
+"   set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
+" endif
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Font
@@ -264,7 +263,7 @@ endif
 set fileformats=unix,dos,mac        " 文件格式支持
 " set formatoptions+=jmB            " centos vim7.2 not 'j' option
 set ambiwidth=single                " utf8编码下，将不明宽度字符按双倍宽度显示, double|single
-set formatoptions+=mB             " formatoptions
+set formatoptions+=mB               " formatoptions
 set fileencoding=utf-8
 if has("multi_byte")
   "set bomb
@@ -334,9 +333,9 @@ autocmd BufRead,BufNewFile *.wsgi setlocal filetype=python syntax=python foldmet
 autocmd BufRead,BufNewFile jquery.*.js setlocal filetype=javascript syntax=jquery
 autocmd BufRead,BufNewFile *.json setlocal filetype=json
 autocmd BufRead,BufNewFile *vimrc setlocal filetype=vim syntax=vim
-autocmd FileType vim,css setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 autocmd BufRead,BufNewFile *.tpl setlocal filetype=jinja syntax=jinja
-autocmd FileType xml,html,xhtml setlocal foldmethod=syntax tabstop=2 shiftwidth=2 softtabstop=2 smartindent smarttab expandtab
+autocmd FileType vim,css setlocal tabstop=2 softtabstop=2 shiftwidth=2
+autocmd FileType xml,html,xhtml setlocal foldmethod=syntax tabstop=2 shiftwidth=2 softtabstop=2
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
