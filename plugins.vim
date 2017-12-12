@@ -328,7 +328,15 @@ autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " FZF   {{{1
 
+" MRU搜索
 nmap <silent> <c-p> :History<CR>
+nmap <silent> <c-p>h :History<CR>
+" Git工程搜索
+nmap <silent> <c-p>g :GFiles<CR>
+" 用户文件搜索
+nmap <silent> <c-p>f :Files<CR>
+" Buffers搜索
+nmap <silent> <c-p>b :Buffers<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
