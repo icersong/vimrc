@@ -12,10 +12,29 @@ let g:ale_sign_error = "✘"
 let g:ale_sign_warning = "⚠"
 let g:ale_sign_style_error = "✗"
 let g:ale_sign_style_warning = "◬"
+let g:ale_completion_delay = 999
+let g:ale_completion_enabled = 1
+let g:ale_max_signs = 99
+" let g:ale_maximum_file_size = 999999
+
+" let g:ale_python_flake8_executable = '/foo/bar/flake8'
+let g:ale_completion_max_suggestions = 33
 let g:ale_echo_msg_format = '[%severity%] [%linter%] %code: %%s'
 
 let g:ale_python_flake8_options = '--max-line-length=120'
 let g:ale_python_pylint_options = '-d line-too-long -d invalid-name'
+
+" let g:ale_linters_explicit = 1
+" let g:ale_linters = {
+"   \   'csh': ['shell'],
+"   \   'go': ['gofmt', 'golint', 'go vet'],
+"   \   'help': [],
+"   \   'python': ['flake8', 'mypy', 'pylint'],
+"   \   'rust': ['cargo'],
+"   \   'spec': [],
+"   \   'text': [],
+"   \   'zsh': ['shell'],
+"   \}
 
 let g:ale_fixers = {
       \ 'xml': [
