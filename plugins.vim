@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2017-12-12
+" Modified: 2017-12-14
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:enable_youcompleteme = 0
 let g:enable_neocomplete = 0
@@ -75,7 +75,7 @@ Plug 'vim-scripts/CmdlineComplete'
 " endif
 " 关灯编辑，Distraction edit on special width & heigth pannel
 Plug 'junegunn/goyo.vim'
-" Plug 'eiginn/netrw'
+" Plug 'eiginn/netrw'   " vim8已经内置
 " Plug 'tpope/vim-vinegar'
 " python&php调试工具, 比较难配置，需要外部程序(pygdbp)支持
 " Plug 'joonty/vdebug', {'do': 'VdebugStart'}
@@ -112,7 +112,7 @@ Plug 'Lokaltog/vim-easymotion'
 Plug 'vim-scripts/matchit.zip', {'for': ['c', 'h', 'cpp', 'php', 'css', 'xml',
     \ 'vim', 'java', 'html', 'jinja', 'python', 'javascript']}
 
-"""""""""""""""""""""""""""""""" 配色提示 """"""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""" 配色显示 """"""""""""""""""""""""""""""""
 " 特殊字体符号
 " Plug 'ryanoasis/vim-devicons'
 " 配色方案
@@ -132,7 +132,8 @@ Plug 'gko/vim-coloresque', {'for': ['php', 'css', 'xml', 'vim', 'html', 'java',
 " Plug 'chrisbra/Colorizer', {'for': ['css', 'html', 'javascript', 'jinja', 'python']}
 " Vim diff display enhanced
 Plug 'chrisbra/vim-diff-enhanced'
-
+" 静态语法配色包
+Plug 'sheerun/vim-polyglot'
 " 缩进显示
 Plug 'Yggdroot/indentLine'
 " Python语法折叠, 可增强折叠import&docstring
@@ -159,14 +160,13 @@ Plug 'chrisbra/NrrwRgn'
 Plug 'Raimondi/delimitMate'
 Plug 'scrooloose/nerdcommenter'
 Plug 'vim-scripts/AuthorInfo'
+Plug 'icersong/timestamp.vim'
+
 " Plug 'vim-scripts/taglist.vim'
 Plug 'majutsushi/tagbar'
 Plug 'jeetsukumaran/vim-buffergator'
-Plug 'icersong/timestamp.vim'
 
 """""""""""""""""""""""""""""""" 语法辅助 """"""""""""""""""""""""""""""""
-" 静态语法配色包
-Plug 'sheerun/vim-polyglot'
 " 语法快速输入提示
 Plug 'honza/vim-snippets'
 Plug 'SirVer/ultisnips', {'for': ['c', 'cpp', 'javascript', 'python']}
@@ -186,7 +186,7 @@ else
 endif
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/vimproc.vim', { 'build' : { 'unix' : 'make -f make_unix.mak', }, }
-Plug 'Shougo/neomru.vim'
+" Plug 'Shougo/neomru.vim'
 
 " Plug 'Shougo/neocomplete.vim'
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -327,6 +327,8 @@ autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " FZF   {{{1
+
+let g:fzf_history_dir = $VIMCACHE.'/fzf-history'
 
 " MRU搜索
 nmap <silent> <c-p> :History<CR>
@@ -913,17 +915,6 @@ autocmd BufRead * silent call Gitgutter_Disabled_in_Largefile()
 " m.        If no mark on line, place the next available mark. Otherwise, remove (first) existing mark.
 " m<space>  Delete all marks from te current buffer
 " [` or ]`  Jump to prev or next mark
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim-vinegar  {{{1
-" vinegar.vim enhances netrw
-" Plug 'tpope/vim-vinegar'
-" let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" netrw   {{{1
-" Plug 'eiginn/netrw'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
