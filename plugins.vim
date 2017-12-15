@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2017-12-15
+" Modified: 2017-12-16
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:enable_youcompleteme = 0
 let g:enable_neocomplete = 0
@@ -90,9 +90,13 @@ Plug 'scrooloose/nerdtree', {'on':  'NERDTreeToggle'}
 " 自定义目录数工具
 Plug 'vim-voom/VOoM', {'on': ['Voom', '<plug>(Voom)']}
 " Ctrl-P波峰式文件搜索利器
-Plug 'ctrlpvim/ctrlp.vim' , {'on': ['CtrlP', '<plug>(ctrlp)']}
+Plug 'ctrlpvim/ctrlp.vim' , {'on': ['CtrlP', 'CtrlPMRU', '<plug>(ctrlp)']}
 " Ctrl-P匹配加速器，利用python匹配提升速度
 Plug 'FelikZ/ctrlp-py-matcher'
+" Function搜索插件
+Plug 'tacahiroy/ctrlp-funky'
+" Ctrl-P匹配结果优化输出
+" Plug 'nixprime/cpsm', { 'do': 'env PY3=OFF ./install.sh' }
 " Grepper当前目录文件内容搜索
 Plug 'mhinz/vim-grepper', {'on': ['Grepper', '<plug>(GrepperOperator)']}
 " 搜索当前工程内文件或内容, Ag & AgFile
@@ -103,7 +107,7 @@ Plug 'Chun-Yang/vim-action-ag'
 Plug 'dyng/ctrlsf.vim', {'on': ['CtrlSF', '<plug>CtrlSFCwordPath', '<plug>CtrlSFVwordExec']}
 " fzf搜索工具
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
-Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf.vim', { 'on': ['History', 'Files', 'GFiles', 'Buffers'] }
 " 搜索工具，比ctrl-p匹配准确，python异步完成, 可以搜索MRU Function etc.
 " Plug 'Yggdroot/LeaderF'
 " 指定字母快速移动光标
@@ -330,15 +334,15 @@ autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 
 let g:fzf_history_dir = $VIMCACHE.'/fzf-history'
 
-" MRU搜索
-nmap <silent> <c-p> :History<CR>
-nmap <silent> <c-p>h :History<CR>
-" Git工程搜索
-nmap <silent> <c-p>g :GFiles<CR>
-" 用户文件搜索
-nmap <silent> <c-p>f :Files<CR>
-" Buffers搜索
-nmap <silent> <c-p>b :Buffers<CR>
+" " MRU搜索
+" nmap <silent> <c-p> :History<CR>
+" nmap <silent> <c-p>h :History<CR>
+" " Git工程搜索
+" nmap <silent> <c-p>g :GFiles<CR>
+" " 用户文件搜索
+" nmap <silent> <c-p>f :Files<CR>
+" " Buffers搜索
+" nmap <silent> <c-p>b :Buffers<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -347,24 +351,49 @@ nmap <silent> <c-p>b :Buffers<CR>
 " Plug 'ctrlpvim/ctrlp.vim'
 " Plug 'tacahiroy/ctrlp-funky'
 " Plug 'FelikZ/ctrlp-py-matcher'
+" ----------------------------------------------------------------
+" ripgrep is fastest search tools then ag, grep, ...
+" $ brew install ripgrep
+" $ sudo apt install cmake python-dev libboost-all-dev
+" ----------------------------------------------------------------
 
 " nmap <c-p> <plug>(ctrlp)
+nmap <silent> <c-p> :CtrlPMRU<CR>
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlPMRU'
 let g:ctrlp_show_hidden = 1
-let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }  " 使用ctrl-py-matcher加速
+let g:ctrlp_max_files = 100000
+" let g:ctrlp_working_path_mode = 'rc'
+let g:ctrlp_root_markers = ['.git', '.svn', '.hg', '.bzr', '_darcs']
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/](\.(git|hg|svn)|cache)$',
-  \ 'file': '\v\.(exe|so|dll|png|jpg|gif|zip|7z|gz|tgz|swp|bin)$',
+  \ 'file': '\v\.(exe|so|dll|png|jpg|gif|zip|7z|gz|tgz|swp|bin|pyc|pyo)$',
   \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
   \ }
-if HasCmdValid('ag')
+let g:ctrlp_funky_syntax_highlight = 1
+if executable('rg')
+  let g:ctrlp_use_caching = 0
+  let g:ctrlp_user_command = {
+        \ 'types': {
+        \   1: ['.git', 'rg %s --files --color=never --glob ""'],
+        \   2: ['.svn', 'rg %s --files --color=never --glob ""'],
+        \ },
+        \ 'fallback': 'rg %s --files --color=never --glob ""'
+        \ }
+  let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
+  let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+  " let g:ctrlp_match_func = { 'match': 'cpsm#CtrlPMatch' }
+elseif executable('ag')
+  " Ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+  " 使用ctrl-py-matcher加速
+  let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
   " Use Ag over Grep
   set grepprg=ag\ --nogroup\ --nocolor
   " Use ag in CtrlP for listing files.
-  let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --ignore ''.git'' --ignore ''.DS_Store'' --ignore ''node_modules'' --hidden -g ""'
-  " Ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
+  let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden'
+        \ . ' --ignore ''.git'' --ignore ''.DS_Store'' --ignore ''node_modules'''
+        \ . ' -g "."'
 endif
 
 
@@ -816,7 +845,7 @@ let g:expand_region_text_objects = {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Tagbar {{{1
 " Plug 'majutsushi/tagbar'
-if !HasCmdValid("ctags")
+if !executable("ctags")
   if exists('janus#disable_plugin')
     call janus#disable_plugin("tagbar", "The ctags program is not installed")
   endif
