@@ -15,11 +15,11 @@ let g:unite_source_rec_max_cache_files = 5000
 let g:unite_prompt = '» '
 let g:unite_split_rule = 'botright'
 let g:unite_ignore_source_files = ['function.vim', 'command.vim']
-if HasCmdValid('ag')
+if executable('ag')
   let g:unite_source_grep_command='ag'
   let g:unite_source_grep_default_opts='--nocolor --nogroup -S -C4'
   let g:unite_source_grep_recursive_opt=''
-elseif HasCmdValid('ack')
+elseif executable('ack')
   let g:unite_source_grep_command='ack'
   let g:unite_source_grep_default_opts='--no-heading --no-color -C4'
   let g:unite_source_grep_recursive_opt=''

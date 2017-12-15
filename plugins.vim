@@ -480,6 +480,8 @@ let g:ctrlsf_regex_pattern = 1
 let g:ctrlsf_winsize = '30%'
 let g:ctrlsf_position = 'bottom'
 let g:ctrlsf_context = '-B 0 -A 0'
+let g:ctrlsf_case_sensitive = 'smart'
+
 nmap <leader>f* <Plug>CtrlSFCwordPath
 vmap <leader>f* <Plug>CtrlSFVwordExec
 
