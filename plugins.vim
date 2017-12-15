@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2017-12-14
+" Modified: 2017-12-15
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:enable_youcompleteme = 0
 let g:enable_neocomplete = 0
@@ -122,10 +122,10 @@ Plug 'kshenoy/vim-signature'
 " hilight search result runtime
 Plug 'haya14busa/incsearch.vim'
 " 括号匹配颜色(用下一个插件替代)
-" Plug 'kien/rainbow_parentheses.vim'
+" Plug 'kien/rainbow_parentheses.vim', {'for': ['javascript']}
 " 括号或配对标签颜色
 Plug 'luochen1990/rainbow', {'for': ['c', 'h', 'cpp', 'php', 'css', 'xml', 'vim',
-      \ 'java', 'html', 'jinja', 'python', 'javascript']}
+      \ 'java', 'html', 'jinja', 'python']}
 " background color preview
 Plug 'gko/vim-coloresque', {'for': ['php', 'css', 'xml', 'vim', 'html', 'java',
       \ 'jinja', 'python', 'javascript', 'xdefaults']}
@@ -643,7 +643,13 @@ let g:dbgPavimOnce = 0
 " javascript indentation and syntax     {{{1
 " Vastly improved Javascript indentation and syntax support in Vim
 " Plug 'pangloss/vim-javascript'
-let javascript_enable_domhtmlcss = 1
+let g:javascript_enable_domhtmlcss = 1
+let g:javascript_plugin_flow = 1
+let g:javascript_plugin_jsdoc = 1
+augroup javascript_folding
+    au!
+    au FileType javascript setlocal foldmethod=syntax
+augroup END
 " let g:javascript_conceal_function   = "ƒ"
 " let g:javascript_conceal_null       = "ø"
 " let g:javascript_conceal_this       = "@"
