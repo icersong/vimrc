@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2017-12-16
+" Modified: 2017-12-17
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:enable_youcompleteme = 0
 let g:enable_neocomplete = 0
@@ -892,10 +892,10 @@ nnoremap ,gl :Git --no-pager log --oneline --decorate --graph -40 --pretty=forma
 command Glogg :Git --no-pager log --oneline --decorate --graph -40 --pretty=format:\%h\ \%ai\ \%an\ \%s<CR>
 command GpushSVN exe 'Git svn dcommit'
 command GpullSVN exe 'Git svn rebase'
-nnoremap <space>ga :Git add %:p<CR><CR>
-nnoremap <space>gs :Gstatus<CR>
-nnoremap <space>gc :Gcommit -v -q<CR>
-nnoremap <space>gt :Gcommit -v -q %:p<CR>
+" nnoremap <leader>ga :Git add %:p<CR><CR>
+nnoremap <leader>gs :Gstatus<CR>
+" nnoremap <space>gc :Gcommit -v -q<CR>
+nnoremap <leader>gt :Gcommit -v -q %:p<CR>
 " nnoremap <space>gd :Gdiff<CR>
 " nnoremap <space>ge :Gedit<CR>
 " nnoremap <space>gr :Gread<CR>
@@ -905,8 +905,8 @@ nnoremap <space>gt :Gcommit -v -q %:p<CR>
 " nnoremap <space>gm :Gmove<Space>
 " nnoremap <space>gb :Git branch<Space>
 " nnoremap <space>go :Git checkout<Space>
-nnoremap <space>gps :AsyncRun -post=copen git push<CR>
-nnoremap <space>gpl :AsyncRun -post=copen git pull<CR>
+nnoremap <leader>gps :AsyncRun -post=copen git push<CR>
+nnoremap <leader>gpl :AsyncRun -post=copen git pull<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-signify   {{{1
