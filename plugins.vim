@@ -96,6 +96,8 @@ Plug 'fholgado/minibufexpl.vim', {'on': ['MBEOpen', 'MBEToggle']}
 Plug 'majutsushi/tagbar', {'on':  ['Tagbar', 'TagbarOpen', 'TagbarToggle', 'TagbarShowTags']}
 " 自定义目录数工具
 Plug 'vim-voom/VOoM', {'on': ['Voom', '<plug>(Voom)']}
+" List for TODO and XXX ...
+Plug 'vim-scripts/TaskList.vim', {'on': ['TaskList', '<Plug>TaskList']}
 " Ctrl-P波峰式文件搜索利器
 Plug 'ctrlpvim/ctrlp.vim', {'on': ['CtrlP', 'CtrlPMRU', 'CtrlPBuffer', 'CtrlPFunky', '<plug>(ctrlp)']}
 " Ctrl-P匹配加速器，利用python匹配提升速度
@@ -172,16 +174,17 @@ Plug 'terryma/vim-expand-region'
 Plug 'michaeljsmith/vim-indent-object'
 " Range select for edit, :NR
 Plug 'chrisbra/NrrwRgn', { 'on': ['NR', 'NRL', 'NRM', 'NRP', 'NRV', 'NLast', 'NRMulti'] }
-
+" Provides automatic closing of quotes, parenthesis, brackets,
 Plug 'Raimondi/delimitMate'
+" Code comment
 Plug 'scrooloose/nerdcommenter'
-Plug 'vim-scripts/AuthorInfo'
+" my plugin
 Plug 'icersong/timestamp.vim'
 
-" Configurable, flexible, intuitive text aligning
-Plug 'godlygeek/tabular', {'on': ['Tabularize']}
+" text aligning, Dependenceied by SQLUtilities
 Plug 'vim-scripts/Align'
-Plug 'vim-scripts/TaskList.vim', {'on': ['TaskList', '<Plug>TaskList']}
+" Configurable, flexible, intuitive text aligning, :Tabularize /,/l1r1c1 ....
+Plug 'godlygeek/tabular', {'on': ['Tabularize']}
 
 
 """""""""""""""""""""""""""""""" 语法辅助 """"""""""""""""""""""""""""""""
@@ -727,6 +730,8 @@ let g:sqlutil_align_keyword_right = 0
 let g:sqlutil_keyword_case = '\U'
 let g:sqlutil_wrap_expressions = 1
 let g:sqlutil_default_menu_mode = 0
+let g:dbext_default_profile_MySQL = 'type=MYSQL:user=root:passwd=123456:dbname=wf2_colorprint3'
+let g:dbext_default_profile = 'MySQL'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -806,13 +811,6 @@ nmap <BS> <plug>NERDCommenterToggle
 nmap <leader>cc <plug>NERDCommenterToggle
 vmap <leader>cc <plug>NERDCommenterAlignBoth:nohls<CR>gv
 nmap <leader>cu <plug>NERDCommenterUncomment:nohls<CR>gv
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" author info   {{{1
-" Plug 'vim-scripts/AuthorInfo'
-let g:vimrc_author='icersong'
-let g:vimrc_email='icersong@gmail.com'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
