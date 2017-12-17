@@ -908,6 +908,8 @@ nnoremap ,gl :Git --no-pager log --oneline --decorate --graph -40 --pretty=forma
 command Glogg :Git --no-pager log --oneline --decorate --graph -40 --pretty=format:\%h\ \%ai\ \%an\ \%s<CR>
 command GpushSVN exe 'Git svn dcommit'
 command GpullSVN exe 'Git svn rebase'
+command GSpush :AsyncRun -post=copen git svn dcommit
+command GSpull :AsyncRun -post=copen git svn rebase
 " nnoremap <leader>ga :Git add %:p<CR><CR>
 nnoremap <leader>gs :Gstatus<CR>
 " nnoremap <space>gc :Gcommit -v -q<CR>
