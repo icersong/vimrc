@@ -582,6 +582,10 @@ let g:UltiSnipsJumpBackwardTrigger="<C-K>"
 let g:UltiSnipsSnippetsDir=simplify(expand($VIMFILES.'/vimrc/snippets/UltiSnips'))
 let g:UltiSnipsSnippetDirectories=[simplify(expand($VIM_BUNDLE_PATH.'/vim-snippets/UltiSnips'))]
 
+let g:snips_author = 'icersong'
+let g:snips_email = 'icersong@gmail.com'
+let g:snips_github = 'https://github.com/icersong'
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " neocomplete   {{{1
