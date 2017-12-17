@@ -7,9 +7,7 @@ let g:airline_theme = "dark"
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 let g:airline_section_z = '%B %P %l/%L %v'
-let g:airline_extensions = ['branch',
-    \ 'tabline', 'whitespace', 'ale',
-    \ 'tagbar', 'virtualenv', 'unite']
+let g:airline_extensions = ['branch', 'tabline', 'whitespace', 'ale', 'tagbar', 'virtualenv']
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#tab_nr_type = 2
 let g:airline#extensions#tabline#fnamemod = ':p:t'

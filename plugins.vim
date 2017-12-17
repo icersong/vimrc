@@ -74,47 +74,55 @@ Plug 'vim-scripts/CmdlineComplete'
 "   Plug 'vim-scripts/ZoomWin'
 " endif
 " 关灯编辑，Distraction edit on special width & heigth pannel
-Plug 'junegunn/goyo.vim'
+Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 " Plug 'eiginn/netrw'   " vim8已经内置
 " Plug 'tpope/vim-vinegar'
 " python&php调试工具, 比较难配置，需要外部程序(pygdbp)支持
 " Plug 'joonty/vdebug', {'do': 'VdebugStart'}
 " python&php调试工具（异步）, 需要Komodo dbgp工具
-Plug 'brookhong/DBGPavim'
+Plug 'brookhong/DBGPavim', {'for': []}
 
 """""""""""""""""""""""""""""""" 文件搜索 """"""""""""""""""""""""""""""""
 " 启动页面
 Plug 'mhinz/vim-startify'
 " 文件浏览器
 Plug 'scrooloose/nerdtree', {'on':  'NERDTreeToggle'}
+" Buffer列表显示
+Plug 'fholgado/minibufexpl.vim', {'on': ['MBEOpen', 'MBEToggle']}
+" Tag列表显示
+Plug 'majutsushi/tagbar', {'on':  ['Tagbar', 'TagbarOpen', 'TagbarToggle', 'TagbarShowTags']}
 " 自定义目录数工具
 Plug 'vim-voom/VOoM', {'on': ['Voom', '<plug>(Voom)']}
 " Ctrl-P波峰式文件搜索利器
-Plug 'ctrlpvim/ctrlp.vim' , {'on': ['CtrlP', 'CtrlPMRU', '<plug>(ctrlp)']}
+Plug 'ctrlpvim/ctrlp.vim', {'on': ['CtrlP', 'CtrlPMRU', 'CtrlPBuffer', 'CtrlPFunky', '<plug>(ctrlp)']}
 " Ctrl-P匹配加速器，利用python匹配提升速度
-Plug 'FelikZ/ctrlp-py-matcher'
+Plug 'FelikZ/ctrlp-py-matcher', {'on': ['CtrlP', 'CtrlPMRU', 'CtrlPBuffer', 'CtrlPFunky', '<plug>(ctrlp)']}
 " Function搜索插件
-Plug 'tacahiroy/ctrlp-funky'
+Plug 'tacahiroy/ctrlp-funky', {'on': ['CtrlPFunky']}
 " Ctrl-P匹配结果优化输出
 " Plug 'nixprime/cpsm', { 'do': 'env PY3=OFF ./install.sh' }
 " Grepper当前目录文件内容搜索
 Plug 'mhinz/vim-grepper', {'on': ['Grepper', '<plug>(GrepperOperator)']}
 " 搜索当前工程内文件或内容, Ag & AgFile
 Plug 'rking/ag.vim', {'on': ['Ag', 'AgFile', 'AgBuffer']}
-" 用Ag搜索选中内容或光标下单词, gag|gagi|gagiw
+" 用Ag搜索选中内容或光标下单词, gag|gagi'|gagiw
 Plug 'Chun-Yang/vim-action-ag'
 " 搜索选中内容或光标下单词, <leader>f
 Plug 'dyng/ctrlsf.vim', {'on': ['CtrlSF', '<plug>CtrlSFCwordPath', '<plug>CtrlSFVwordExec']}
 " fzf搜索工具
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+Plug 'junegunn/fzf', { 'on': [], 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim', { 'on': ['History', 'Files', 'GFiles', 'Buffers'] }
 " 搜索工具，比ctrl-p匹配准确，python异步完成, 可以搜索MRU Function etc.
 " Plug 'Yggdroot/LeaderF'
+" 功能比较强悍的搜索工具
+Plug 'Shougo/denite.nvim', { 'on': [] }
+
 " 指定字母快速移动光标
 Plug 'Lokaltog/vim-easymotion'
 " 扩展%快速匹配跳转
 Plug 'vim-scripts/matchit.zip', {'for': ['c', 'h', 'cpp', 'php', 'css', 'xml',
     \ 'vim', 'java', 'html', 'jinja', 'python', 'javascript']}
+
 
 """""""""""""""""""""""""""""""" 配色显示 """"""""""""""""""""""""""""""""
 " 特殊字体符号
@@ -143,6 +151,7 @@ Plug 'Yggdroot/indentLine'
 " Python语法折叠, 可增强折叠import&docstring
 Plug 'tmhedberg/SimpylFold', {'for': ['python']}
 
+
 """""""""""""""""""""""""""""""" 编辑增强 """"""""""""""""""""""""""""""""
 " Undo tree
 Plug 'sjl/gundo.vim'
@@ -159,16 +168,18 @@ Plug 'terryma/vim-expand-region'
 " text object ...
 Plug 'michaeljsmith/vim-indent-object'
 " Range select for edit, :NR
-Plug 'chrisbra/NrrwRgn'
+Plug 'chrisbra/NrrwRgn', { 'on': ['NR', 'NRL', 'NRM', 'NRP', 'NRV', 'NLast', 'NRMulti'] }
 
 Plug 'Raimondi/delimitMate'
 Plug 'scrooloose/nerdcommenter'
 Plug 'vim-scripts/AuthorInfo'
 Plug 'icersong/timestamp.vim'
 
-" Plug 'vim-scripts/taglist.vim'
-Plug 'majutsushi/tagbar'
-Plug 'jeetsukumaran/vim-buffergator'
+" Configurable, flexible, intuitive text aligning
+Plug 'godlygeek/tabular', {'on': ['Tabularize']}
+Plug 'vim-scripts/Align'
+Plug 'vim-scripts/TaskList.vim', {'on': ['TaskList', '<Plug>TaskList']}
+
 
 """""""""""""""""""""""""""""""" 语法辅助 """"""""""""""""""""""""""""""""
 " 语法快速输入提示
@@ -188,10 +199,6 @@ else
         \ 'for': ['c', 'cpp', 'css', 'html', 'python'], 'frozen': 'true' }
   Plug 'davidhalter/jedi-vim', { 'for': ['None'] }
 endif
-Plug 'Shougo/unite.vim'
-Plug 'Shougo/vimproc.vim', { 'build' : { 'unix' : 'make -f make_unix.mak', }, }
-" Plug 'Shougo/neomru.vim'
-
 " Plug 'Shougo/neocomplete.vim'
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'jmcantrell/vim-virtualenv', { 'for': ['python'] }
@@ -222,22 +229,24 @@ Plug 'leshill/vim-json', { 'for': ['json'] }
 " CSV file editor
 " Plug 'chrisbra/csv.vim'
 " Preview markdown in Google Chrome
-Plug 'iamcco/markdown-preview.vim'
+Plug 'iamcco/markdown-preview.vim', { 'on': 'MarkdonwPreview' }
 " Plug 'tpope/vim-markdown'
 " Plug 'plasticboy/vim-markdown'
 " Plug 'suan/vim-instant-markdown'
 
-" Configurable, flexible, intuitive text aligning
-Plug 'godlygeek/tabular'
-Plug 'vim-scripts/Align'
+" SQL Utilites
 Plug 'vim-scripts/dbext.vim'
 Plug 'vim-scripts/SQLUtilities'
 Plug 'vim-scripts/SQLComplete.vim'
-Plug 'vim-scripts/TaskList.vim', {'on': ['TaskList', '<Plug>TaskList']}
+
 
 """""""""""""""""""""""""""""""" 版本管理 """"""""""""""""""""""""""""""""
 " VCS command
-Plug 'vim-scripts/vcscommand.vim'
+Plug 'vim-scripts/vcscommand.vim', { 'on': [
+      \ 'VCSAdd', 'VCSAnnotate', 'VCSBlame', 'VCSCommit', 'VCSDelete', 'VCSDiff',
+      \ 'VCSGotoOriginal', 'VCSLog', 'VCSRemove', 'VCSRevert', 'VCSReview',
+      \ 'VCSStatus', 'VCSUpdate', 'VCSVimDiff',
+      \]}
 " Git wrapper
 Plug 'tpope/vim-fugitive'
 " VCS state signs display [GIT, SVN, HG, ...] (sn, sp)
@@ -249,29 +258,39 @@ Plug 'gregsexton/gitv', {'on': ['Gitv']}
 
 
 """""""""""""""""""""""""""""""" Shell & Tools """"""""""""""""""""""""""""""""
+Plug 'Shougo/vimproc.vim', {
+      \ 'on': ['VimShell', 'VimShellExecute', 'VimCurrentDir', 'VimShellPop'],
+      \ 'build' : {
+      \   'windows' : 'tools\\update-dll-mingw',
+      \   'cygwin' : 'make -f make_cygwin.mak',
+      \   'mac' : 'make -f make_mac.mak',
+      \   'linux' : 'make -f make_unix.mak',
+      \   'unix' : 'gmake -f make_unix.mak',
+      \ }}
+Plug 'Shougo/vimshell.vim', {
+      \ 'on': ['VimShell', 'VimShellExecute', 'VimCurrentDir', 'VimShellPop']
+      \ }
 if has('nvim')
-  Plug 'Shougo/vimshell.vim', {'for': ['None']}
   command! -nargs=0 VimShell :e term://zsh
   tnoremap <Esc> <C-\><C-n>
-else
-  Plug 'Shougo/vimshell.vim'
 endif
-" Run command to tmux, <leader>r
+" Run command to tmux, <leader>vp, <leader>vq
 Plug 'benmills/vimux'
 " Navigate seamlessly between vim and tmux splits using a consistent set of hotkeys
 Plug 'christoomey/vim-tmux-navigator'
 " 异步运行命令
 Plug 'skywind3000/asyncrun.vim'
 
-" Libarary for dash.vim & greper.vim
-Plug 'rizzatti/funcoo.vim'
 if has('mac')
+  " Libarary for dash.vim & greper.vim
+  Plug 'rizzatti/funcoo.vim', { 'for': ['c', 'cpp', 'python', 'php'] }
   " Off line dash starter, Dash <keyword-for-search>
   Plug 'rizzatti/dash.vim', { 'for': ['c', 'cpp', 'python', 'php'] }
 endif
 " Plug 'itchyny/calendar.vim'
-Plug 'mattn/calendar-vim'
+Plug 'mattn/calendar-vim', {'on': ['Calendar', 'CalendarH', 'CalendarT', 'CalendarVR']}
 Plug 'icersong/vimwiki'
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#end()
@@ -286,6 +305,7 @@ call plug#end()
 " start page {{{1
 " Plug 'mhinz/vim-startify'
 let g:startify_session_dir = $VIMCACHE.'/session'
+" let g:startify_list_order = ['files', 'dir', 'bookmarks', 'sessions', 'commands']
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -359,6 +379,7 @@ let g:fzf_history_dir = $VIMCACHE.'/fzf-history'
 
 " nmap <c-p> <plug>(ctrlp)
 nmap <silent> <c-p> :CtrlPMRU<CR>
+nmap <silent> <leader>b :CtrlPBuffer<CR>
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlPMRU'
 let g:ctrlp_show_hidden = 1
@@ -449,11 +470,10 @@ let g:ag_format="%f:%l:%c:%m"
 let g:ag_hightlight=1
 " let g:ag_qhandler="copen"
 " nnoremap <leader>gf  :AgFile<space>
-" 用ag在当前工程下搜索光标下的文件
-nnoremap <leader>gf yiw:AgFile! "<C-R>=escape(escape(@", '\'), '"/\ \|\(\))')<CR>"<CR>
-" 用ag在当前工程下搜索选中文本的文件
-vnoremap <leader>gf ""y:AgFile! "<C-R>=escape(escape(@", '\'), '"/\ \|\(\))')<CR>"<CR>
-
+" 用ag在当前工程下搜索光标下的文件, gagiw, gagi', gagi"
+" nnoremap <leader>gf yiw:AgFile! "<C-R>=escape(escape(@", '\'), '"/\ \|\(\))')<CR>"<CR>
+" 用ag在当前工程下搜索选中文本的文件 gag
+" vnoremap <leader>gf ""y:AgFile! "<C-R>=escape(escape(@", '\'), '"/\ \|\(\))')<CR>"<CR>
 
 " vim-action-ag   {{{1
 " Plug 'Chun-Yang/vim-action-ag'
@@ -481,6 +501,8 @@ let g:ctrlsf_winsize = '30%'
 let g:ctrlsf_position = 'bottom'
 let g:ctrlsf_context = '-B 0 -A 0'
 let g:ctrlsf_case_sensitive = 'smart'
+let g:ctrlsf_default_view_mode = 'compact'
+let g:ctrlsf_ignore_dir = ['bin', 'dist', 'build']
 
 nmap <leader>f* <Plug>CtrlSFCwordPath
 vmap <leader>f* <Plug>CtrlSFVwordExec
@@ -711,7 +733,7 @@ let g:sqlutil_default_menu_mode = 0
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Tabular  {{{1
 " Plug 'godlygeek/tabular'
-let g:tabular_loaded = 1
+" let g:tabular_loaded = 1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -864,15 +886,6 @@ endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Buffergator {{{1
-" <leader>b to open buffer list
-" Plug 'jeetsukumaran/vim-buffergator'
-let g:buffergator_split_size = 0
-let g:buffergator_vsplit_size = 80
-let g:buffergator_show_full_directory_path = 0
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " VCS   {{{1
 " Plug 'vim-scripts/vcscommand.vim'
 if g:iswin
@@ -974,14 +987,15 @@ autocmd BufRead * silent call Gitgutter_Disabled_in_Largefile()
 " vimux  {{{1
 " Plug 'benmills/vimux'
 
-map <Leader>rb :call VimuxRunCommand("clear; rspec " . bufname("%"))<CR>
-map <Leader>rr :call VimuxRunCommand("clear; sudo apachectl restart;")<CR>:call VimuxSendKeys('Space')<CR>:call VimuxSendKeys('Enter')<CR>
 map <Leader>vp :VimuxPromptCommand<CR>
 map <Leader>vl :VimuxRunLastCommand<CR>
 map <Leader>vi :VimuxInspectRunner<CR>
 map <Leader>vq :VimuxCloseRunner<CR>
 map <Leader>vx :VimuxInterruptRunner<CR>
 map <Leader>vz :call VimuxZoomRunner()<CR>
+" Restart Apache
+map <Leader>rr :call VimuxRunCommand("sudo apachectl restart;")<CR>:call VimuxSendKeys('Space')<CR>:call VimuxSendKeys('Enter')<CR>
+" map <Leader>rb :call VimuxRunCommand("clear; ls " . bufname("%"))<CR>
 
 let g:VimuxHeight = "16"
 let g:VimuxOrientation = "v"
