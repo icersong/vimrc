@@ -113,7 +113,7 @@ Plug 'Chun-Yang/vim-action-ag'
 " 搜索选中内容或光标下单词, <leader>f
 Plug 'dyng/ctrlsf.vim', {'on': ['CtrlSF', '<plug>CtrlSFCwordPath', '<plug>CtrlSFVwordExec']}
 " fzf搜索工具
-Plug 'junegunn/fzf', { 'on': [], 'dir': '~/.fzf', 'do': './install --bin' }
+Plug 'junegunn/fzf', { 'on': ['History', 'Files', 'GFiles', 'Buffers'], 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim', { 'on': ['History', 'Files', 'GFiles', 'Buffers'] }
 " 搜索工具，比ctrl-p匹配准确，python异步完成, 可以搜索MRU Function etc.
 " Plug 'Yggdroot/LeaderF'
@@ -357,15 +357,10 @@ autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 
 let g:fzf_history_dir = $VIMCACHE.'/fzf-history'
 
-" " MRU搜索
-" nmap <silent> <c-p> :History<CR>
-" nmap <silent> <c-p>h :History<CR>
-" " Git工程搜索
-" nmap <silent> <c-p>g :GFiles<CR>
-" " 用户文件搜索
-" nmap <silent> <c-p>f :Files<CR>
-" " Buffers搜索
-" nmap <silent> <c-p>b :Buffers<CR>
+nmap <leader>fb :Buffers<CR>
+nmap <leader>ff :Files<CR>
+nmap <leader>fg :GFiles<CR>
+nmap <leader>fh :History<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -436,26 +431,27 @@ let g:grepper.next_tool = '<tab>'   " <TAB>键切换搜索工具
 let g:grepper.ag = { 'grepprg': 'ag --vimgrep --smart-case' }
 let g:grepper.file= { 'grepprg': 'ag --vimgrep --smart-case -g' }
 
-" 用git grep搜索当前工程
-nnoremap <leader>gg :Grepper -tool git -dir repo,file<cr>
-" 用ag搜索当前工程
-nnoremap <leader>ga :Grepper -tool ag -dir repo,file<cr>
+" ---- 内容搜索 ----
 " 用ag搜索当前目录
-nnoremap <leader>g. :Grepper -tool ag<cr>
+" nnoremap <leader>f. :Grepper -tool ag<cr>
 " 用ag在当前目录下搜索光标下的单词
-nnoremap <leader>*  :Grepper -tool ag -cword -noprompt<cr>
-" 用ag在当前工程下搜索光标下的单词
-nnoremap <leader>g* :Grepper -tool ag -cword -noprompt -dir repo,file<cr>
+nnoremap <leader>*  :Grepper -tool ag -noprompt -cword<cr>
 " 用ag在当前目录下搜索选中的内容
 vnoremap <leader>* ""y:Grepper -noprompt -grepprg ag
     \ "<C-R>=escape(escape(@", '\'), '"/\ \|\(\))')<CR>"<CR>
+" 用ag在当前工程下搜索, 等待输入
+" nnoremap <leader>fr :Grepper -tool ag -dir repo,file<cr>
+" 用ag在当前工程下搜索光标下的单词
+" nnoremap <leader>fr :Grepper -tool ag -cword -noprompt -dir repo,file<cr>
 " 用ag在当前工程下搜索选中的内容
-vnoremap <leader>g* ""y:Grepper -noprompt -dir repo,file -grepprg ag
-    \ "<C-R>=escape(escape(@", '\'), '"/\ \|\(\))')<CR>"<CR>
-" 用ag在当前工程下搜索光标下的文件
-" nnoremap <leader>gf :Grepper -tool file -cword -noprompt -dir repo,file<CR>
-" 用ag在当前工程下搜索选中文本的文件
-" vnoremap <leader>gf ""y:Grepper -tool file -noprompt -dir repo,file -grepprg ag -g
+" vnoremap <leader>fr ""y:Grepper -noprompt -dir repo,file -grepprg ag
+"     \ "<C-R>=escape(escape(@", '\'), '"/\ \|\(\))')<CR>"<CR>
+
+" ---- 文件搜索 ----
+" 用ag在当前工程下搜索光标下的文件名
+" nnoremap <leader>ff :Grepper -tool file -cword -noprompt -dir repo,file<CR>
+" 用ag在当前工程下搜索选中的文件名
+" vnoremap <leader>ff ""y:Grepper -tool file -noprompt -dir repo,file -grepprg ag -g
 "     \ "<C-R>=escape(escape(@", '\'), '"/\ \|\(\))')<CR>"<CR>
 
 
@@ -902,27 +898,25 @@ endif
 " git wapper
 " Plug 'tpope/vim-fugitive'
 autocmd QuickFixCmdPost *grep* cwindow
-" nnoremap ,gl :silent! Glog -1<CR>:copen 33<CR><C-W>p:silent! Glog<CR><C-W>
-" nnoremap ,gl :Glog --graph --pretty=format:%h\ %ai\ %an\ %s<CR>
-nnoremap ,gl :Git --no-pager log --oneline --decorate --graph -40 --pretty=format:\%h\ \%ai\ \%an\ \%s<CR>
-command Glogg :Git --no-pager log --oneline --decorate --graph -40 --pretty=format:\%h\ \%ai\ \%an\ \%s<CR>
-command GpushSVN exe 'Git svn dcommit'
-command GpullSVN exe 'Git svn rebase'
 command GSpush :AsyncRun -post=copen git svn dcommit
 command GSpull :AsyncRun -post=copen git svn rebase
-" nnoremap <leader>ga :Git add %:p<CR><CR>
+" nnoremap <leader>gl :silent! Glog -1<CR>:copen 33<CR><C-W>p:silent! Glog<CR><C-W>
+" nnoremap <leader>gl :Glog --graph --pretty=format:%h\ %ai\ %an\ %s<CR>
+nnoremap <leader>gv :Gitv!<CR>
+nnoremap <leader>gl :Git --no-pager log --oneline --decorate --graph -40 --pretty=format:\%h\ \%ai\ \%an\ \%s<CR>
+nnoremap <leader>ga :Git add %:p<CR><CR>
 nnoremap <leader>gs :Gstatus<CR>
-" nnoremap <space>gc :Gcommit -v -q<CR>
+nnoremap <leader>gc :Gcommit -v -q<CR>
 nnoremap <leader>gt :Gcommit -v -q %:p<CR>
-" nnoremap <space>gd :Gdiff<CR>
-" nnoremap <space>ge :Gedit<CR>
-" nnoremap <space>gr :Gread<CR>
-" nnoremap <space>gw :Gwrite<CR><CR>
-" nnoremap <space>gl :silent! Glog<CR>:bot copen<CR>
-" nnoremap <space>gp :Ggrep<Space>
-" nnoremap <space>gm :Gmove<Space>
-" nnoremap <space>gb :Git branch<Space>
-" nnoremap <space>go :Git checkout<Space>
+nnoremap <leader>gd :Gvdiff<CR>
+" nnoremap <leader>ge :Gedit<CR>
+" nnoremap <leader>gr :Gread<CR>
+" nnoremap <leader>gw :Gwrite<CR><CR>
+" nnoremap <leader>gl :silent! Glog<CR>:bot copen<CR>
+" nnoremap <leader>gp :Ggrep<Space>
+nnoremap <leader>gm :Gmove<Space>
+nnoremap <leader>gb :Git branch<Space>
+nnoremap <leader>go :Git checkout<Space>
 nnoremap <leader>gps :AsyncRun -post=copen git push<CR>
 nnoremap <leader>gpl :AsyncRun -post=copen git pull<CR>
 
