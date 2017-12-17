@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2017-12-12
+" Modified: 2017-12-17
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -352,6 +352,14 @@ noremap <silent><Right> :bn<CR>
 " 定义空格键暂时取消高亮匹配
 noremap <silent><space> :nohls<CR>za
 noremap <silent>z0 :set foldlevel=0<CR>
+noremap <silent>z1 :set foldlevel=0<CR>
+noremap <silent>z2 :set foldlevel=0<CR>
+noremap <silent>z3 :set foldlevel=0<CR>
+noremap <silent>z4 :set foldlevel=0<CR>
+noremap <silent>z5 :set foldlevel=0<CR>
+noremap <silent>z6 :set foldlevel=0<CR>
+noremap <silent>z7 :set foldlevel=0<CR>
+noremap <silent>z8 :set foldlevel=0<CR>
 noremap <silent>z9 :set foldlevel=9<CR>
 
 " 删除尾部空格
