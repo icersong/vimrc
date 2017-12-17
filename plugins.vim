@@ -82,6 +82,9 @@ Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 " python&php调试工具（异步）, 需要Komodo dbgp工具
 Plug 'brookhong/DBGPavim', {'for': []}
 
+" 有道词典翻译
+Plug 'iamcco/dict.vim'
+
 """""""""""""""""""""""""""""""" 文件搜索 """"""""""""""""""""""""""""""""
 " 启动页面
 Plug 'mhinz/vim-startify'
