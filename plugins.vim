@@ -150,7 +150,7 @@ Plug 'gko/vim-coloresque', {'for': ['php', 'css', 'xml', 'vim', 'html', 'java',
 " Vim diff display enhanced
 Plug 'chrisbra/vim-diff-enhanced'
 " 静态语法配色包
-Plug 'sheerun/vim-polyglot'
+" Plug 'sheerun/vim-polyglot'
 " 缩进显示
 Plug 'Yggdroot/indentLine'
 " Python语法折叠, 可增强折叠import&docstring
@@ -734,6 +734,9 @@ let g:sqlutil_align_keyword_right = 0
 let g:sqlutil_keyword_case = '\U'
 let g:sqlutil_wrap_expressions = 1
 let g:sqlutil_default_menu_mode = 0
+let g:dbext_default_history_size = 50
+let g:dbext_default_history_max_entry = 4096
+let g:dbext_default_history_file = $VIMCACHE . '/dbext_sql_history.txt'
 let g:dbext_default_profile_MySQL = 'type=MYSQL:user=root:passwd=123456:dbname=wf2_colorprint3'
 let g:dbext_default_profile = 'MySQL'
 
