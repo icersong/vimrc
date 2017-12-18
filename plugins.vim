@@ -129,7 +129,7 @@ Plug 'vim-scripts/matchit.zip', {'for': ['c', 'h', 'cpp', 'php', 'css', 'xml',
     \ 'vim', 'java', 'html', 'jinja', 'python', 'javascript']}
 
 
-"""""""""""""""""""""""""""""""" 配色显示 """"""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""" 配色缩进 """"""""""""""""""""""""""""""""
 " 特殊字体符号
 " Plug 'ryanoasis/vim-devicons'
 " 配色方案
@@ -150,11 +150,25 @@ Plug 'gko/vim-coloresque', {'for': ['php', 'css', 'xml', 'vim', 'html', 'java',
 " Vim diff display enhanced
 Plug 'chrisbra/vim-diff-enhanced'
 " 静态语法配色包
-" Plug 'sheerun/vim-polyglot'
+Plug 'sheerun/vim-polyglot', {'for': []}
 " 缩进显示
 Plug 'Yggdroot/indentLine'
+
 " Python语法折叠, 可增强折叠import&docstring
 Plug 'tmhedberg/SimpylFold', {'for': ['python']}
+" Python缩进
+Plug 'hynek/vim-python-pep8-indent', { 'for': ['python'] }
+
+" syntax highlighting and indentation for javascript, fold perfect
+Plug 'pangloss/vim-javascript', { 'for': ['javascript'] }
+" syntax highlighting for javascript, fold bad
+" Plug 'othree/yajs.vim'
+" syntax for jquery etc. libs
+Plug 'othree/javascript-libraries-syntax.vim'
+" indent and syntax for html in vim
+Plug 'othree/html5.vim', { 'for': ['htm', 'html', 'xhtml'] }
+" Syntax highlighting for JSON in Vim
+Plug 'leshill/vim-json', { 'for': ['json'] }
 
 
 """""""""""""""""""""""""""""""" 编辑增强 """"""""""""""""""""""""""""""""
@@ -187,7 +201,7 @@ Plug 'vim-scripts/Align'
 Plug 'godlygeek/tabular', {'on': ['Tabularize']}
 
 
-"""""""""""""""""""""""""""""""" 语法辅助 """"""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""" 语法输入 """"""""""""""""""""""""""""""""
 " 语法快速输入提示
 Plug 'honza/vim-snippets'
 Plug 'SirVer/ultisnips', {'for': ['c', 'cpp', 'javascript', 'python']}
@@ -210,7 +224,6 @@ endif
 Plug 'jmcantrell/vim-virtualenv', { 'for': ['python'] }
 " Plug 'rkulla/pydiction', { 'for': ['python'] }
 " Plug 'python-rope/ropevim', { 'for': ['python'] }
-Plug 'hynek/vim-python-pep8-indent', { 'for': ['python'] }
 " Autopep8 fixer
 " Plug 'tell-k/vim-autopep8', { 'for': ['python'] }
 Plug 'fs111/pydoc.vim', {'for': ['python'] }
@@ -222,16 +235,10 @@ Plug 'hdima/python-syntax', { 'for': ['python'] }
 Plug 'Glench/Vim-Jinja2-Syntax', { 'for': ['jinja', 'jinja2'] }
 " It covers syntax, indenting, compiling, and more
 Plug 'kchmck/vim-coffee-script', { 'for': ['coffee'] }
-" syntax highlighting and improved indentation for javascript in vim
-Plug 'pangloss/vim-javascript', { 'for': ['javascript'] }
-" match tags by %, and auto complete close tag
-Plug 'othree/xml.vim', { 'for': ['xml', 'html']}
 " provides support for expanding abbreviations similar to emmet
 Plug 'mattn/emmet-vim', { 'for': ['php', 'css', 'xml', 'htm', 'html', 'xhtml', 'jinja'] }
-" indent and syntax for html in vim
-Plug 'othree/html5.vim', { 'for': ['htm', 'html', 'xhtml'] }
-" Syntax highlighting for JSON in Vim
-Plug 'leshill/vim-json', { 'for': ['json'] }
+" match tags by %, and auto complete close tag
+Plug 'othree/xml.vim', { 'for': ['xml', 'html']}
 " CSV file editor
 " Plug 'chrisbra/csv.vim'
 " Preview markdown in Google Chrome
