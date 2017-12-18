@@ -41,19 +41,35 @@ let $WEBROOT = '/Users/apple/Sites'
 let $PLUGPATH = simplify(expand($VIMFILES.'/plugins/vim-plug'))
 set rtp+=$PLUGPATH
 call plug#begin($VIM_PLUGING_PATH)
+" 插件加载工具
+Plug 'junegunn/vim-plug'
 
+
+"""""""""""""""""""""""""""""""" Env & Misc """"""""""""""""""""""""""""""""
 if g:ismacos
   " $ brew install fcitx-remote-for-osx --with-input-method=<method>
   " <method>: osx-pinyin baidu-wubi osx-wubi general squirrel-rime
   "     squirrel-rime-upstream qingg qq-wubi baidu-pinyin sogou-pinyin
   Plug 'CodeFalling/fcitx-vim-osx'
 endif
-" 插件加载工具
-Plug 'junegunn/vim-plug'
 " 性能分析插件
 " Plug 'hyiltiz/vim-plugins-profile'
+
+" 打开大文件加速, 自动禁用性能插件
+Plug 'vim-scripts/LargeFile'
+" 窗口最大最小化工具
+" if has('gui_running')
+"   Plug 'vim-scripts/ZoomWin'
+" endif
+
+" Plug 'eiginn/netrw'   " vim8已经内置
+" vinegar.vim enhances netrw
+" Plug 'tpope/vim-vinegar'
+
 " 屏幕保护matrix
 " Plug 'uguu-org/vim-matrix-screensaver'
+" 启动页面
+Plug 'mhinz/vim-startify'
 " Buffer标签页&状态栏
 Plug 'bling/vim-airline', {'configure': 'plug-airline.vim'}
 " 缩略图显示显示代码及光标位置
@@ -61,26 +77,13 @@ Plug 'bling/vim-airline', {'configure': 'plug-airline.vim'}
 " Plug 'koron/minimap-vim'
 " 打开文件检查.swp冲突并提示操作
 Plug 'chrisbra/Recover.vim'
-
-"""""""""""""""""""""""""""""""" Env & Misc """"""""""""""""""""""""""""""""
-" 打开大文件加速, 自动禁用性能插件
-Plug 'vim-scripts/LargeFile'
-" 窗口最大最小化工具
-" if has('gui_running')
-"   Plug 'vim-scripts/ZoomWin'
-" endif
 " 关灯编辑，Distraction edit on special width & heigth pannel
 Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
-" Plug 'eiginn/netrw'   " vim8已经内置
-" vinegar.vim enhances netrw
-" Plug 'tpope/vim-vinegar'
 " 命令窗口<c-n> or <c-p>自动补全
 Plug 'vim-scripts/CmdlineComplete'
 
 
 """""""""""""""""""""""""""""""" 文件搜索 """"""""""""""""""""""""""""""""
-" 启动页面
-Plug 'mhinz/vim-startify'
 " 文件浏览器
 Plug 'scrooloose/nerdtree', {'on':  'NERDTreeToggle'}
 " Buffer列表显示
@@ -261,7 +264,7 @@ Plug 'gregsexton/gitv', {'on': ['Gitv']}
 " Preview markdown in Google Chrome
 Plug 'iamcco/markdown-preview.vim', { 'on': 'MarkdonwPreview' }
 " 显示Python内建方法的文档，eg: Pydoc os.path
-Plug 'fs111/pydoc.vim', {'for': ['python'], 'on': ['Pydoc', 'PydocSearch'] }
+Plug 'fs111/pydoc.vim', {'on': ['Pydoc', 'PydocSearch']}
 
 " python&php调试工具, 比较难配置，需要外部程序(pygdbp)支持
 " Plug 'joonty/vdebug', {'do': 'VdebugStart'}
