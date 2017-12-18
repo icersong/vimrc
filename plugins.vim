@@ -23,8 +23,6 @@ let $GIT_LOCAL_URL = simplify(expand($VIMFILES.'/repostory'))
 let $VIM_TOOL_PATH = simplify(expand($VIMFILES.'/tools'))
 let $VIMWIKI = simplify(expand($VIMFILES.'/wiki'))
 let $WEBROOT = '/Users/apple/Sites'
-let s:no_python_support = "Warning! Vim is compiled without python support."
-let s:no_ruby_support = "Warning! Vim is compiled without ruby support."
 
 " if has('nvim') && g:ismacos
 "   set shell=/bin/bash
@@ -67,8 +65,6 @@ Plug 'chrisbra/Recover.vim'
 """""""""""""""""""""""""""""""" Env & Misc """"""""""""""""""""""""""""""""
 " 打开大文件加速, 自动禁用性能插件
 Plug 'vim-scripts/LargeFile'
-" 命令窗口<c-n> or <c-p>自动补全
-Plug 'vim-scripts/CmdlineComplete'
 " 窗口最大最小化工具
 " if has('gui_running')
 "   Plug 'vim-scripts/ZoomWin'
@@ -76,14 +72,11 @@ Plug 'vim-scripts/CmdlineComplete'
 " 关灯编辑，Distraction edit on special width & heigth pannel
 Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 " Plug 'eiginn/netrw'   " vim8已经内置
+" vinegar.vim enhances netrw
 " Plug 'tpope/vim-vinegar'
-" python&php调试工具, 比较难配置，需要外部程序(pygdbp)支持
-" Plug 'joonty/vdebug', {'do': 'VdebugStart'}
-" python&php调试工具（异步）, 需要Komodo dbgp工具
-Plug 'brookhong/DBGPavim', {'for': []}
+" 命令窗口<c-n> or <c-p>自动补全
+Plug 'vim-scripts/CmdlineComplete'
 
-" 有道词典翻译
-Plug 'iamcco/dict.vim'
 
 """""""""""""""""""""""""""""""" 文件搜索 """"""""""""""""""""""""""""""""
 " 启动页面
@@ -127,6 +120,8 @@ Plug 'Lokaltog/vim-easymotion'
 " 扩展%快速匹配跳转
 Plug 'vim-scripts/matchit.zip', {'for': ['c', 'h', 'cpp', 'php', 'css', 'xml',
     \ 'vim', 'java', 'html', 'jinja', 'python', 'javascript']}
+" match tags by %, and auto complete close tag
+Plug 'othree/xml.vim', {'for': ['xml', 'html']}
 
 
 """""""""""""""""""""""""""""""" 配色缩进 """"""""""""""""""""""""""""""""
@@ -142,33 +137,37 @@ Plug 'haya14busa/incsearch.vim'
 " Plug 'kien/rainbow_parentheses.vim', {'for': ['javascript']}
 " 括号或配对标签颜色
 Plug 'luochen1990/rainbow', {'for': ['c', 'h', 'cpp', 'php', 'css', 'xml', 'vim',
-      \ 'java', 'html', 'jinja', 'python']}
+      \ 'java', 'html', 'jinja', 'python', 'javascript']}
 " background color preview
 Plug 'gko/vim-coloresque', {'for': ['php', 'css', 'xml', 'vim', 'html', 'java',
       \ 'jinja', 'python', 'javascript', 'xdefaults']}
 " Plug 'chrisbra/Colorizer', {'for': ['css', 'html', 'javascript', 'jinja', 'python']}
 " Vim diff display enhanced
 Plug 'chrisbra/vim-diff-enhanced'
+" 显示缩进引导符号
+Plug 'Yggdroot/indentLine'
+
 " 静态语法配色包
 Plug 'sheerun/vim-polyglot', {'for': []}
-" 缩进显示
-Plug 'Yggdroot/indentLine'
+" Syntax for python2 and python3
+" Plug 'hdima/python-syntax', { 'for': ['python'] }
+" Syntax for jinja and html
+Plug 'Glench/Vim-Jinja2-Syntax', { 'for': ['jinja', 'jinja2'] }
+" syntax highlighting for javascript
+Plug 'othree/yajs.vim'
+" syntax for jquery etc. libs
+Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript'] }
+" indent and syntax for html in vim
+Plug 'othree/html5.vim', { 'for': ['htm', 'html', 'xhtml'] }
+" Syntax highlighting for JSON in Vim
+Plug 'leshill/vim-json', { 'for': ['json'] }
+" It covers syntax, indenting, compiling, and more
+Plug 'kchmck/vim-coffee-script', { 'for': ['coffee'] }
 
 " Python语法折叠, 可增强折叠import&docstring
 Plug 'tmhedberg/SimpylFold', {'for': ['python']}
 " Python缩进
 Plug 'hynek/vim-python-pep8-indent', { 'for': ['python'] }
-
-" syntax highlighting and indentation for javascript, fold perfect
-Plug 'pangloss/vim-javascript', { 'for': ['javascript'] }
-" syntax highlighting for javascript, fold bad
-" Plug 'othree/yajs.vim'
-" syntax for jquery etc. libs
-Plug 'othree/javascript-libraries-syntax.vim'
-" indent and syntax for html in vim
-Plug 'othree/html5.vim', { 'for': ['htm', 'html', 'xhtml'] }
-" Syntax highlighting for JSON in Vim
-Plug 'leshill/vim-json', { 'for': ['json'] }
 
 
 """""""""""""""""""""""""""""""" 编辑增强 """"""""""""""""""""""""""""""""
@@ -217,7 +216,7 @@ if has('nvim')
 else
   Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM'),
         \ 'for': ['c', 'cpp', 'css', 'html', 'python'], 'frozen': 'true' }
-  Plug 'davidhalter/jedi-vim', { 'for': ['None'] }
+  Plug 'davidhalter/jedi-vim', { 'for': [] }
 endif
 " Plug 'Shougo/neocomplete.vim'
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -226,23 +225,11 @@ Plug 'jmcantrell/vim-virtualenv', { 'for': ['python'] }
 " Plug 'python-rope/ropevim', { 'for': ['python'] }
 " Autopep8 fixer
 " Plug 'tell-k/vim-autopep8', { 'for': ['python'] }
-Plug 'fs111/pydoc.vim', {'for': ['python'] }
-" Plug 'gotcha/vimpdb'
 " Plug 'hemerey/vim-project'
-" Syntax for python2 and python3
-Plug 'hdima/python-syntax', { 'for': ['python'] }
-" Syntax for jinja and html
-Plug 'Glench/Vim-Jinja2-Syntax', { 'for': ['jinja', 'jinja2'] }
-" It covers syntax, indenting, compiling, and more
-Plug 'kchmck/vim-coffee-script', { 'for': ['coffee'] }
 " provides support for expanding abbreviations similar to emmet
 Plug 'mattn/emmet-vim', { 'for': ['php', 'css', 'xml', 'htm', 'html', 'xhtml', 'jinja'] }
-" match tags by %, and auto complete close tag
-Plug 'othree/xml.vim', { 'for': ['xml', 'html']}
 " CSV file editor
 " Plug 'chrisbra/csv.vim'
-" Preview markdown in Google Chrome
-Plug 'iamcco/markdown-preview.vim', { 'on': 'MarkdonwPreview' }
 " Plug 'tpope/vim-markdown'
 " Plug 'plasticboy/vim-markdown'
 " Plug 'suan/vim-instant-markdown'
@@ -268,6 +255,19 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 " Git log graph display
 Plug 'gregsexton/gitv', {'on': ['Gitv']}
+
+
+"""""""""""""""""""""""""""""""" 辅助工具 """"""""""""""""""""""""""""""""
+" Preview markdown in Google Chrome
+Plug 'iamcco/markdown-preview.vim', { 'on': 'MarkdonwPreview' }
+" 显示Python内建方法的文档，eg: Pydoc os.path
+Plug 'fs111/pydoc.vim', {'for': ['python'], 'on': ['Pydoc', 'PydocSearch'] }
+
+" python&php调试工具, 比较难配置，需要外部程序(pygdbp)支持
+" Plug 'joonty/vdebug', {'do': 'VdebugStart'}
+" Plug 'gotcha/vimpdb'
+" python&php调试工具（异步）, 需要Komodo dbgp工具
+Plug 'brookhong/DBGPavim', {'for': []}
 
 
 """""""""""""""""""""""""""""""" Shell & Tools """"""""""""""""""""""""""""""""
@@ -303,6 +303,8 @@ endif
 " Plug 'itchyny/calendar.vim'
 Plug 'mattn/calendar-vim', {'on': ['Calendar', 'CalendarH', 'CalendarT', 'CalendarVR']}
 Plug 'icersong/vimwiki'
+" 有道词典翻译, <leader>w
+Plug 'iamcco/dict.vim'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -679,7 +681,7 @@ autocmd FileType php,css,xml,tpl,htm,html,xhtml,jinja call ProxyEmmetInstall()
 " python-syntax  {{{1
 " Plug 'hdima/python-syntax'
 let g:python_highlight_all = 1
-let g:python_slow_sync = 0
+let g:python_slow_sync = 1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -696,6 +698,13 @@ let g:vdebug_options= {
 " Plug 'brookhong/DBGPavim'
 let g:dbgPavimBreakAtEntry = 0
 let g:dbgPavimOnce = 0
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" PyDoc     {{{1
+" Plug 'fs111/pydoc.vim'
+" let g:pydoc_cmd = 'python -m pydoc'
+let g:pydoc_window_lines=0.5
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
