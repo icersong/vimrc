@@ -930,6 +930,8 @@ command GSpush :AsyncRun -post=copen git svn dcommit
 command GSpull :AsyncRun -post=copen git svn rebase
 " nnoremap <leader>gl :silent! Glog -1<CR>:copen 33<CR><C-W>p:silent! Glog<CR><C-W>
 " nnoremap <leader>gl :Glog --graph --pretty=format:%h\ %ai\ %an\ %s<CR>
+command Gput :Git stash
+command Gpop :Git stash pop
 nnoremap <leader>gv :Gitv!<CR>
 nnoremap <leader>gl :Git --no-pager log --oneline --decorate --graph -40 --pretty=format:\%h\ \%ai\ \%an\ \%s<CR>
 nnoremap <leader>ga :Git add %:p<CR><CR>
