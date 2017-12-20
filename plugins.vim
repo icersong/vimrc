@@ -934,15 +934,15 @@ command Gput :Git stash
 command Gpop :Git stash pop
 nnoremap <leader>gv :Gitv!<CR>
 nnoremap <leader>gl :Git --no-pager log --oneline --decorate --graph -40 --pretty=format:\%h\ \%ai\ \%an\ \%s<CR>
+" nnoremap <leader>gl :silent! Glog<CR>:bot copen<CR>
 nnoremap <leader>ga :Git add %:p<CR><CR>
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gc :Gcommit -v -q<CR>
 nnoremap <leader>gt :Gcommit -v -q %:p<CR>
 nnoremap <leader>gd :Gvdiff<CR>
-" nnoremap <leader>ge :Gedit<CR>
-" nnoremap <leader>gr :Gread<CR>
-" nnoremap <leader>gw :Gwrite<CR><CR>
-" nnoremap <leader>gl :silent! Glog<CR>:bot copen<CR>
+nnoremap <leader>ge :Gedit<CR>
+nnoremap <leader>gr :Gread<CR>
+nnoremap <leader>gw :Gwrite<CR><CR>
 " nnoremap <leader>gp :Ggrep<Space>
 nnoremap <leader>gm :Gmove<Space>
 nnoremap <leader>gb :Git branch<Space>
