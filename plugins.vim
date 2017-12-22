@@ -933,7 +933,7 @@ command GSpull :AsyncRun -post=copen git svn rebase
 command Gput :Git stash
 command Gpop :Git stash pop
 nnoremap <leader>gv :Gitv!<CR>
-nnoremap <leader>gl :Git --no-pager log --oneline --decorate --graph -40 --pretty=format:\%h\ \%ai\ \%an\ \%s<CR><CR>:copen<CR>
+nnoremap <leader>gl :AsyncRun -post=copen git --no-pager log --oneline --decorate --graph -40 --pretty=format:\%h\ \%ai\ \%an\ \%s<CR><CR>
 " nnoremap <leader>gl :silent! Glog<CR>:bot copen<CR>
 nnoremap <leader>ga :Git add %:p<CR><CR>
 nnoremap <leader>gs :Gstatus<CR>
