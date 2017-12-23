@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2017-12-23
+" Modified: 2017-12-24
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -137,9 +137,7 @@ set virtualedit=all,onemore     " 虚环境编辑空间, Allow for cursor beyond
 set history=32                  " Store a ton of history (default is 20)
 " set spell                       " Spell checking on
 set hidden                      " Allow buffer switching without saving, 放弃缓冲区时隐藏而不卸载
-set iskeyword-=.                " '.' is an end of word designator
-set iskeyword-=#                " '#' is an end of word designator
-set iskeyword-=-                " '-' is an end of word designator
+set iskeyword=a-z,A-Z,48-57,_   " word designator
 set undofile                    " So is persistent undo ...
 set undolevels=32               " Maximum number of changes that can be undone
 set undoreload=999              " Maximum number lines to save for undo on a buffer reload
