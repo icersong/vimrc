@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2017-12-22
+" Modified: 2017-12-23
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:enable_youcompleteme = 0
 let g:enable_neocomplete = 0
@@ -19,10 +19,9 @@ endif
 
 " Variables
 let $VIM_PLUGING_PATH = simplify(expand($VIMFILES.'/plugins'))
-let $GIT_LOCAL_URL = simplify(expand($VIMFILES.'/repostory'))
 let $VIM_TOOL_PATH = simplify(expand($VIMFILES.'/tools'))
 let $VIMWIKI = simplify(expand($VIMFILES.'/wiki'))
-let $WEBROOT = '/Users/apple/Sites'
+let $WEBROOT = simplify(expand('~/Sites'))
 
 " if has('nvim') && g:ismacos
 "   set shell=/bin/bash
@@ -151,7 +150,7 @@ Plug 'chrisbra/vim-diff-enhanced'
 Plug 'Yggdroot/indentLine'
 
 " 静态语法配色包
-Plug 'sheerun/vim-polyglot', {'for': []}
+" Plug 'sheerun/vim-polyglot', {'for': []}
 " Syntax for python2 and python3
 " Plug 'hdima/python-syntax', { 'for': ['python'] }
 " Syntax for jinja and html
@@ -1128,9 +1127,5 @@ call LoadConfigures($VIMFILES.'/vimrc/', g:plugs_order)
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" syntax on
+" Plugin config end
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-filetype plugin indent on
-syntax enable
-set background=dark
-colorscheme solarized

@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2017-12-21
+" Modified: 2017-12-23
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -83,6 +83,7 @@ source $VIMFILES/vimrc/functions.vim
 if filereadable(simplify(expand($VIMFILES.'/vimrc/plugins.vim')))
       \ && filereadable(simplify(expand($VIMFILES.'/plugins/vim-plug/autoload/plug.vim')))
   source $VIMFILES/vimrc/plugins.vim
+  colorscheme solarized
 else
   colorscheme desert
 endif
@@ -95,6 +96,7 @@ set background=dark             " Assume a dark background
 
 filetype plugin indent on       " Automatically detect file types.
 syntax on                       " Syntax highlighting
+syntax enable
 scriptencoding utf-8
 
 if has('clipboard')
@@ -144,7 +146,7 @@ set undoreload=999              " Maximum number lines to save for undo on a buf
 
 set autoread                    " 文件变化自动载入
 set t_vb=0                      " 关闭输出铃声
-" set lazyredraw                  " 减少重绘
+set lazyredraw                  " 减少重绘
 " set noswapfile                  " 禁止交换文件
 " set cmdwinheight=2              " 命令行窗口的屏幕行数
 
