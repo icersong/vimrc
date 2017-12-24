@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2017-12-23
+" Modified: 2017-12-24
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:enable_youcompleteme = 0
 let g:enable_neocomplete = 0
@@ -157,6 +157,8 @@ Plug 'Yggdroot/indentLine'
 Plug 'Glench/Vim-Jinja2-Syntax', { 'for': ['jinja', 'jinja2'] }
 " syntax highlighting for javascript, too slow ...
 " Plug 'othree/yajs.vim'
+" 可以试下这个js语法高亮，，，
+" Plug ‘pangloss/vim-javascript'
 " syntax for jquery etc. libs
 Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript'] }
 " indent and syntax for html in vim
