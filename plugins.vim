@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2017-12-24
+" Modified: 2017-12-25
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:enable_youcompleteme = 0
 let g:enable_neocomplete = 0
@@ -564,7 +564,7 @@ let g:EasyMotion_leader_key = ";"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Indent line {{{1
 " Plug 'Yggdroot/indentLine'
-let g:indentLine_maxLines = 64
+let g:indentLine_maxLines = 999
 let g:indentLine_faster = 1
 
 
