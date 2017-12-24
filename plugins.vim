@@ -105,8 +105,6 @@ Plug 'tacahiroy/ctrlp-funky', {'on': ['CtrlPFunky']}
 Plug 'mhinz/vim-grepper', {'on': ['Grepper', '<plug>(GrepperOperator)']}
 " 搜索当前工程内文件或内容, Ag & AgFile
 Plug 'rking/ag.vim', {'on': ['Ag', 'AgFile', 'AgBuffer']}
-" 用Ag搜索选中内容或光标下单词, gag|gagi'|gagiw
-Plug 'Chun-Yang/vim-action-ag'
 " 搜索选中内容或光标下单词, <leader>f
 Plug 'dyng/ctrlsf.vim', {'on': ['CtrlSF', '<plug>CtrlSFCwordPath', '<plug>CtrlSFVwordExec']}
 " fzf搜索工具
@@ -115,7 +113,7 @@ Plug 'junegunn/fzf.vim', { 'on': ['History', 'Files', 'GFiles', 'Buffers'] }
 " 搜索工具，比ctrl-p匹配准确，python异步完成, 可以搜索MRU Function etc.
 " Plug 'Yggdroot/LeaderF'
 " 功能比较强悍的搜索工具
-Plug 'Shougo/denite.nvim', { 'on': [] }
+Plug 'Shougo/denite.nvim', { 'on': ['Denite'] }
 
 " 指定字母快速移动光标
 Plug 'Lokaltog/vim-easymotion'
@@ -168,6 +166,8 @@ Plug 'leshill/vim-json', { 'for': ['json'] }
 " It covers syntax, indenting, compiling, and more
 Plug 'kchmck/vim-coffee-script', { 'for': ['coffee'] }
 
+" Speed up Vim by updating folds only when called-for.
+Plug 'Konfekt/FastFold'
 " Python语法折叠, 可增强折叠import&docstring
 Plug 'tmhedberg/SimpylFold', {'for': ['python']}
 " Python缩进
@@ -214,9 +214,13 @@ Plug 'SirVer/ultisnips', {'for': ['c', 'cpp', 'javascript', 'python']}
 Plug 'w0rp/ale'
 " 语法补全工具
 if has('nvim')
-  Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM'),
-        \ 'for': ['c', 'cpp', 'css', 'html'], 'frozen': 'true' }
-  Plug 'davidhalter/jedi-vim', { 'for': ['python'] }
+  if has('python3')
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  else
+    Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM'),
+          \ 'for': ['c', 'cpp', 'css', 'html'], 'frozen': 'true' }
+    Plug 'davidhalter/jedi-vim', { 'for': ['python'] }
+  endif
 else
   Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM'),
         \ 'for': ['c', 'cpp', 'css', 'html', 'python'], 'frozen': 'true' }
@@ -370,6 +374,7 @@ autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " FZF   {{{1
+" Plug 'junegunn/fzf.vim'
 
 let g:fzf_history_dir = $VIMCACHE.'/fzf-history'
 
@@ -454,7 +459,7 @@ let g:grepper.file= { 'grepprg': 'ag --vimgrep --smart-case -g' }
 nnoremap <leader>*  :Grepper -tool ag -noprompt -cword<cr>
 " 用ag在当前目录下搜索选中的内容
 vnoremap <leader>* ""y:Grepper -noprompt -grepprg ag
-    \ "<C-R>=escape(escape(@", '\'), '"/\ \|\(\))')<CR>"<CR>
+    \ "<C-R>=escape(escape(@", '\'), '"/\*\ \|\(\))')<CR>"<CR>
 " 用ag在当前工程下搜索, 等待输入
 " nnoremap <leader>fr :Grepper -tool ag -dir repo,file<cr>
 " 用ag在当前工程下搜索光标下的单词
@@ -468,7 +473,7 @@ vnoremap <leader>* ""y:Grepper -noprompt -grepprg ag
 " nnoremap <leader>ff :Grepper -tool file -cword -noprompt -dir repo,file<CR>
 " 用ag在当前工程下搜索选中的文件名
 " vnoremap <leader>ff ""y:Grepper -tool file -noprompt -dir repo,file -grepprg ag -g
-"     \ "<C-R>=escape(escape(@", '\'), '"/\ \|\(\))')<CR>"<CR>
+    " \ "<C-R>=escape(escape(@", '\'), '"/\*\ \|\(\))')<CR>"<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -485,21 +490,10 @@ let g:ag_format="%f:%l:%c:%m"
 let g:ag_hightlight=1
 " let g:ag_qhandler="copen"
 " nnoremap <leader>gf  :AgFile<space>
-" 用ag在当前工程下搜索光标下的文件, gagiw, gagi', gagi"
-" nnoremap <leader>gf yiw:AgFile! "<C-R>=escape(escape(@", '\'), '"/\ \|\(\))')<CR>"<CR>
+" 用ag在当前工程下搜索光标下的文件
+" nnoremap <leader>gf yiw:AgFile! "<C-R>=escape(escape(@", '\'), '"/\*\ \|\(\))')<CR>"<CR>
 " 用ag在当前工程下搜索选中文本的文件 gag
-" vnoremap <leader>gf ""y:AgFile! "<C-R>=escape(escape(@", '\'), '"/\ \|\(\))')<CR>"<CR>
-
-" vim-action-ag   {{{1
-" Plug 'Chun-Yang/vim-action-ag'
-" Dependency 'rking/ag.vim'
-" Normal Mode
-"   gagiw to search the word
-"   gagi' to search the words inside single quotes.
-" Visual Mode
-"   gag to search the selected text
-
-let g:vim_action_ag_escape_chars = '#%.^$*+?()[{\\|'
+" vnoremap <leader>gf ""y:AgFile! "<C-R>=escape(escape(@", '\'), '"/\*\ \|\(\))')<CR>"<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -572,6 +566,25 @@ let g:EasyMotion_leader_key = ";"
 " Plug 'Yggdroot/indentLine'
 let g:indentLine_maxLines = 64
 let g:indentLine_faster = 1
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" FastFold    {{{1
+" Plug 'Konfekt/FastFold'
+
+nmap zuz <Plug>(FastFoldUpdate)
+xnoremap iz :<c-u>FastFoldUpdate<cr><esc>:<c-u>normal! ]zv[z<cr>
+xnoremap az :<c-u>FastFoldUpdate<cr><esc>:<c-u>normal! ]zV[z<cr>
+
+let g:fastfold_savehook = 1
+let g:fastfold_fold_command_suffixes = ['x','X','a','A','o','O','c','C','r','R','m','M','i','n','N']
+let g:fastfold_fold_movement_commands = [']z', '[z', 'zj', 'zk']
+
+" let g:tex_fold_enabled=1
+" let g:vimsyn_folding='af'
+" let g:xml_syntax_folding = 1
+" let g:php_folding = 1
+" let g:perl_fold = 1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
