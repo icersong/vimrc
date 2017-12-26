@@ -51,7 +51,7 @@ let g:syntastic_xhtml_tidy_quiet_messages={"regex":
 let g:syntastic_po_msgfmt_quiet_messages={"regex":
     \ ['header field ''Last-Translator'' still has the initial default value']}
 
-if g:iswin
+if $WINDOWS
   let $PATH=$VIM.'\\Utilities;'.$PATH
   let $PATH=$VIM.'\\Utilities\\GNU;'.$PATH
   let $PATH=$VIM.'\\Utilities\\jsl;'.$PATH
@@ -61,7 +61,7 @@ if g:iswin
       \ 'passive_filetypes': [] }
 endif
 
-if g:ismacos
+if $MACOS
   let g:syntastic_mode_map = { 'mode': 'active',
       \ 'active_filetypes': ['javascript', 'html', 'xhtml', 'css', 'python', 'xml'],
       \ 'passive_filetypes': [] }

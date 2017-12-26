@@ -2,46 +2,39 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2017-12-24
+" Modified: 2017-12-26
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Environment
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set nocompatible
+
 " platform
-let g:ismacos = has('mac') || has('macunix')
-let g:islinux = (has('linux') || has('unix') ) && !g:ismacos
-let g:iswin = has("win64") || has("win32") || has("win16") || has("win95")
+let $MACOS = has('mac') || has('macunix')
+let $LINUX = (has('linux') || has('unix') ) && !$MACOS
+let $WINDOWS = has("win64") || has("win32") || has("win16") || has("win95")
 
-" basic
-set nocompatible        " Must be first line
-
-if g:iswin
+if $WINDOWS
   Windows Compatible
+  let $SEP = '\'
   let $VIMFILES = simplify(expand($VIM.'/vimfiles'))
-  let $VIMCACHE = simplify(expand($VIM.'/cache'))
-  set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
+  set runtimepath=$HOME/.vim,$VIMFILES,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
 else
-  let $VIMFILES = simplify(expand($HOME.'/.vim'))
-  let $VIMCACHE = simplify(expand($HOME.'/.cache'))
-  set nossl
   let g:skip_loading_mswin = 1  " do not load mswin.vim
+  let $SEP = '/'
+  let $VIMFILES = simplify(expand($HOME.'/.vim'))
+  set nossl
 endif
 
-if !(isdirectory($VIMCACHE))
-  call mkdir($VIMCACHE, 'p', 0700)
-endif
-
-let $BACKUPDIR = simplify(expand($VIMCACHE.'/backup/'))
-if !(isdirectory($BACKUPDIR))
-  call mkdir($BACKUPDIR, 'p', 0700)
-endif
-
+let $VIMCACHE = simplify(expand($HOME.'/.cache'))
 let $UNDODIR = simplify(expand($VIMCACHE.'/undo/'))
-if !(isdirectory($UNDODIR))
-  call mkdir($UNDODIR, 'p', 0700)
-endif
+let $BACKUPDIR = simplify(expand($VIMCACHE.'/backup/'))
+let $VIMPLUGINS = simplify(expand($VIMFILES.'/plugins'))
+let $VIMTOOL = simplify(expand($VIMFILES.'/tools'))
+let $VIMWIKI = simplify(expand($VIMFILES.'/wikis'))
+let $WEBROOT = simplify(expand('~/Sites'))
 
 if !has('python')
   echo "Warning! Vim is compiled without python support."
@@ -50,13 +43,20 @@ if !has('ruby')
   echo "Warning! Vim is compiled without ruby support."
 endif
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Patch
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Arrow Key Fix
 " https://github.com/spf13/spf13-vim/issues/780
 if &term[:4] == "xterm" || &term[:5] == 'screen' || &term[:3] == 'rxvt'
     inoremap <silent> <C-[>OC <RIGHT>
 endif
 
-" leader
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Leader key
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let mapleader = ","
 let g:mapleader = ","
 
@@ -70,19 +70,31 @@ endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Working Path
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+for path in [$VIMCACHE, $BACKUPDIR, $UNDODIR, $VIMTOOL, $VIMWIKI]
+  if !(isdirectory(path))
+    call mkdir(path, 'p', 0700)
+  endif
+endfor
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " load functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-source $VIMFILES/vimrc/functions.vim
+source $VIMFILES/functions.vim
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vundle plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "source <sfile>:p:h/vundle.vim
-" $VIMFILES/vimrc/plugins.vim
-if filereadable(simplify(expand($VIMFILES.'/vimrc/plugins.vim')))
-      \ && filereadable(simplify(expand($VIMFILES.'/plugins/vim-plug/autoload/plug.vim')))
-  source $VIMFILES/vimrc/plugins.vim
+execute 'source ' . simplify(expand($VIMFILES.'/plugins.vim'))
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Color Scheme
+if isdirectory(simplify(expand($VIMPLUGINS.'/vim-colors-solarized')))
   colorscheme solarized
 else
   colorscheme desert
@@ -238,7 +250,7 @@ set nowrapscan                  " 搜索到文件末尾时，不再回绕到文�
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Font
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if g:iswin
+if $WINDOWS
   " set guifont=Inconsolata:h10:cDEFAULT
   " set guifontwide=YtYaHei:h8:cDEFAULT
   " set guifont=Menlo:h9:cDEFAULT
@@ -247,12 +259,12 @@ if g:iswin
   set guifontwide=Courier\ New:h9:cDEFAULT
 endif
 
-if g:ismacos
+if $MACOS
   set guifontwide=Menlo:h12
   set guifont=Menlo:h12
 endif
 
-if g:islinux
+if $LINUX
   set guifont=Courier\ New:h9:cDEFAULT
   set guifontwide=Courier\ New:h9:cDEFAULT
   " set guifontwide=WenQuanYi\ Micro\ Hei:h9:cDEFAULT

@@ -1,13 +1,13 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " function for test command is exists
 function! HasCmdValid(cmd)
-  if g:iswin
+  if $WINDOWS
     return executable(a:cmd)
   endif
-  if g:islinux
+  if $LINUX
     return executable(a:cmd)
   endif
-  if g:ismacos
+  if $MACOS
     let cc = execute('command ' . a:cmd)
     if len(matchstr(cc, ' '.a:cmd.' '))
       return 1
@@ -117,23 +117,22 @@ function! s:glob(from, pattern)
   return s:lines(globpath(a:from, a:pattern))
 endfunction
 
-function! s:filedict(path, ext, pre)
-  let lenp = strlen(a:path . a:pre)
+function! s:filedict(path, pre, ext)
   let lene = strlen(a:ext)
+  let lenp = strlen(a:pre)
   let kws = {}
   for name in s:glob(a:path, a:pre.'*'.a:ext)
-    let kws[strpart(name, lenp, len(name) - lenp - lene)] = name
-    " echo strpart(name, lenp, len(name) - lenp - lene) name
+    let fname = split(name, $SEP)[-1]
+    let kws[strpart(fname, lenp, len(fname) - lenp - lene)] = name
   endfor
   return kws
 endfunction
 
 function! LoadConfigures(path, names)
-  let vimkvs = s:filedict(a:path, '.vim', 'plug-')
+  let vimkvs = s:filedict(a:path, 'plug-', '.vim')
   for name in a:names
     if has_key(vimkvs, name)
-      execute 'source' s:esc(vimkvs[name])
-      " echo 'load' vimkvs[name]
+      execute 'source ' . s:esc(vimkvs[name])
     endif
   endfor
 endfunction

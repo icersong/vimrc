@@ -31,7 +31,7 @@ let g:virtualenv_directory = simplify(expand('~/.virtualenvs'))
 fun ReturnVirtualEnvs(A,L,P)
   return system("ls -d ~/.virtualenvs/*/ \| cut -d'/' -f5")
 endfun
-if g:ismacos && !has('nvim')
+if $MACOS && !has('nvim')
   command -nargs=+ -complete=custom,ReturnVirtualEnvs Venv :VirtualEnvActivate <args> | YcmRestartServer
 else
   command -nargs=+ -complete=custom,ReturnVirtualEnvs Venv :VirtualEnvActivate <args>
