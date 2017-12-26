@@ -2,15 +2,12 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2016-12-03
-" Modified: 2017-12-26
+" Modified: 2017-12-27
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " nvim runtime setting
-let $VIM = '/usr/local/share/nvim'
-let $VIMRUNTIME = '/usr/local/share/nvim/runtime'
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
-set runtimepath+=$VIMRUNTIME
 
 " if has('nvim') && $MACOS
 "   set shell=/bin/bash
@@ -23,8 +20,8 @@ set runtimepath+=$VIMRUNTIME
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" load vimrc
-source $VIMFILES/main.vim
+" load main.vim
+execute 'source' fnamemodify(expand('<sfile>'), ':h').'/main.vim'
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

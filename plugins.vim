@@ -1,27 +1,29 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2017-12-26
+" Modified: 2017-12-27
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-plug {{{1
 
-if !filereadable(simplify(expand($VIMPLUGINS.'/vim-plug/autoload/plug.vim')))
+let $PLUGINS = simplify(expand($VIMFILES.'/vim-plug'))
+if !filereadable($PLUGINS.'/autoload/plug.vim')
   if !executable('git')
     echoerr 'Command git not found, please instal git first.'
     finish
   endif
-  execute '!git clone https://github.com/junegunn/vim-plug '
-        \ . $VIMPLUGINS . '/vim-plug'
+  execute '!git clone https://github.com/junegunn/vim-plug ' . s:vim_plug_path
+  if !filereadable($PLUGINS.'/autoload/plug.vim')
+    finish
+  endif
 endif
 
-let $PLUGLOADER = simplify(expand($VIMPLUGINS.'/vim-plug'))
-set rtp+=$PLUGLOADER
-call plug#begin($VIMPLUGINS)
 
-if !filereadable(simplify(expand($VIMPLUGINS.'/vim-plug/autoload/plug.vim')))
-  finish
-endif
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Load plugins begin
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set rtp+=$PLUGINS
+call plug#begin($VIMFILES)
 
 
 """""""""""""""""""""""""""""""" Env & Misc """"""""""""""""""""""""""""""""
@@ -300,15 +302,17 @@ Plug 'iamcco/dict.vim'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-call plug#end()
+" Load plugins end
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+call plug#end()
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Load plugins config
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-execute 'source ' . simplify(expand($VIMFILES.'/plugins.config'))
+execute 'source ' . simplify(expand($CONFROOT.'/plugins.config'))
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" End
+" The End
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

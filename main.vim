@@ -17,16 +17,14 @@ let $MACOS = has('mac') || has('macunix')
 let $LINUX = (has('linux') || has('unix') ) && !$MACOS
 let $WINDOWS = has("win64") || has("win32") || has("win16") || has("win95")
 " paths
-let $VIMFILES = fnamemodify(expand('<sfile>'), ':h')
+let $CONFROOT = fnamemodify(expand('<sfile>'), ':h')
+let $VIMTOOL = simplify(expand($HOME.'/.tools'))
+let $VIMWIKI = simplify(expand($HOME.'/.wikis'))
+let $WEBROOT = simplify(expand($HOME.'/.sites'))
 let $VIMCACHE = simplify(expand($HOME.'/.cache'))
 let $UNDODIR = simplify(expand($VIMCACHE.'/undo/'))
 let $BACKUPDIR = simplify(expand($VIMCACHE.'/backup/'))
-let $VIMPLUGINS = simplify(expand($VIMFILES.'/plugins'))
-let $VIMTOOL = simplify(expand($VIMFILES.'/tools'))
-let $VIMWIKI = simplify(expand($VIMFILES.'/wikis'))
-let $WEBROOT = simplify(expand('~/Sites'))
-" runtime path
-set runtimepath=$VIMFILES,$VIMRUNTIME,$VIMFILES/after
+let $VIMFILES = simplify(expand($VIMCACHE.'/vimfiles/plugins'))
 
 if $WINDOWS
   let $SEP = '\'
@@ -81,19 +79,18 @@ endfor
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " load functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-source $VIMFILES/functions.vim
+execute 'source ' . simplify(expand($CONFROOT.'/functions.vim'))
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vundle plugins
+" load plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"source <sfile>:p:h/vundle.vim
-execute 'source ' . simplify(expand($VIMFILES.'/plugins.vim'))
+execute 'source ' . simplify(expand($CONFROOT.'/plugins.vim'))
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Color Scheme
-if isdirectory(simplify(expand($VIMPLUGINS.'/vim-colors-solarized')))
+if isdirectory(simplify(expand($VIMFILES.'/vim-colors-solarized')))
   colorscheme solarized
 else
   colorscheme desert
