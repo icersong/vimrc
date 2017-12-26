@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2017-12-26
+" Modified: 2017-12-27
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -10,24 +10,14 @@
 " Environment
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible
+set nossl
 
 " platform
 let $MACOS = has('mac') || has('macunix')
 let $LINUX = (has('linux') || has('unix') ) && !$MACOS
 let $WINDOWS = has("win64") || has("win32") || has("win16") || has("win95")
-
-if $WINDOWS
-  Windows Compatible
-  let $SEP = '\'
-  let $VIMFILES = simplify(expand($VIM.'/vimfiles'))
-  set runtimepath=$HOME/.vim,$VIMFILES,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
-else
-  let g:skip_loading_mswin = 1  " do not load mswin.vim
-  let $SEP = '/'
-  let $VIMFILES = simplify(expand($HOME.'/.vim'))
-  set nossl
-endif
-
+" paths
+let $VIMFILES = fnamemodify(expand('<sfile>'), ':h')
 let $VIMCACHE = simplify(expand($HOME.'/.cache'))
 let $UNDODIR = simplify(expand($VIMCACHE.'/undo/'))
 let $BACKUPDIR = simplify(expand($VIMCACHE.'/backup/'))
@@ -35,6 +25,15 @@ let $VIMPLUGINS = simplify(expand($VIMFILES.'/plugins'))
 let $VIMTOOL = simplify(expand($VIMFILES.'/tools'))
 let $VIMWIKI = simplify(expand($VIMFILES.'/wikis'))
 let $WEBROOT = simplify(expand('~/Sites'))
+" runtime path
+set runtimepath=$VIMFILES,$VIMRUNTIME,$VIMFILES/after
+
+if $WINDOWS
+  let $SEP = '\'
+else
+  let g:skip_loading_mswin = 1  " do not load mswin.vim
+  let $SEP = '/'
+endif
 
 if !has('python')
   echo "Warning! Vim is compiled without python support."
