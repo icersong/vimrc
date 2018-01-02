@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2017-12-27
+" Modified: 2017-12-28
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -24,7 +24,11 @@ let $WEBROOT = simplify(expand($HOME.'/.sites'))
 let $VIMCACHE = simplify(expand($HOME.'/.cache'))
 let $UNDODIR = simplify(expand($VIMCACHE.'/undo/'))
 let $BACKUPDIR = simplify(expand($VIMCACHE.'/backup/'))
-let $VIMFILES = simplify(expand($VIMCACHE.'/vimfiles/plugins'))
+if has('nvim')
+  let $VIMFILES = simplify(expand($VIMCACHE.'/nvimfiles/plugins'))
+else
+  let $VIMFILES = simplify(expand($VIMCACHE.'/vimfiles/plugins'))
+endif
 
 if $WINDOWS
   let $SEP = '\'
@@ -33,10 +37,10 @@ else
   let $SEP = '/'
 endif
 
-if !has('python')
+if !has('nvim') && !has('python')
   echo "Warning! Vim is compiled without python support."
 endif
-if !has('ruby')
+if !has('nvim') && !has('ruby')
   echo "Warning! Vim is compiled without ruby support."
 endif
 
@@ -100,11 +104,12 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+syntax on               " Syntax highlighting
+syntax enable
+filetype indent on      " 自动缩进开
+filetype plugin on
 set background=dark             " Assume a dark background
 
-filetype plugin indent on       " Automatically detect file types.
-syntax on                       " Syntax highlighting
-syntax enable
 scriptencoding utf-8
 
 if has('clipboard')
@@ -167,7 +172,27 @@ if has('gui_running')
   " set switchbuf=usetab
   " au GUIEnter * simalt ~x
   set showmode
- set tabpagemax=15
+  set tabpagemax=15
+  " 解决菜单乱码
+  source $VIMRUNTIME/delmenu.vim
+  source $VIMRUNTIME/menu.vim
+endif
+
+" Font
+if $LINUX
+  " set guifontwide=WenQuanYi\ Micro\ Hei:h9:cDEFAULT
+  set guifont=Courier\ New:h9:cDEFAULT
+  set guifontwide=Courier\ New:h9:cDEFAULT
+elseif $MACOS
+  set guifontwide=Menlo:h12
+  set guifont=Menlo:h12
+elseif $WINDOWS
+  " set guifont=Inconsolata:h10:cDEFAULT
+  " set guifontwide=YtYaHei:h8:cDEFAULT
+  " set guifont=Menlo:h9:cDEFAULT
+  " set guifontwide=Menlo:h9:cDEFAULT
+  set guifont=Courier\ New:h9:cDEFAULT
+  set guifontwide=Courier\ New:h9:cDEFAULT
 endif
 
 " 高亮当前行当前列(十字光标)
@@ -175,11 +200,9 @@ endif
 set cursorline                  " 设置光标十字坐标，高亮当前行
 highlight clear SignColumn      " SignColumn should match background
 highlight clear LineNr          " Current line number row will have same background color in relative mode
-" highlight clear CursorLineNr    " Remove highlight color from current line number
-highlight CursorLine cterm=underline ctermbg=NONE ctermfg=NONE gui=underline guibg=NONE guifg=NONE
+highlight clear CursorLineNr    " Remove highlight color from current line number
+" mast call after setting 'syntax on'
 call SetCursorStyle()
-" autocmd ColorScheme * silent call SetCursorStyle()
-" autocmd Syntax * silent call SetCursorStyle()
 
 set ruler                       " 显示行号和列号
 set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " A ruler on steroids
@@ -228,48 +251,6 @@ set completeopt=menuone         " 去掉智能补全预览，只显示菜单并�
 set selection=inclusive         " 设定选择区是否包含最后一个光标所在字符
 set nowrapscan                  " 搜索到文件末尾时，不再回绕到文件首
 
-" if has('statusline')
-"   set laststatus=2
-"
-"   " Broken down into easily includeable segments
-"   set statusline=%<%f\                     " Filename
-"   set statusline+=%w%h%m%r                 " Options
-"   if !exists('g:override_spf13_bundles')
-"       set statusline+=%{fugitive#statusline()} " Git Hotness
-"   endif
-"   set statusline+=\ [%{&ff}/%Y]            " Filetype
-"   set statusline+=\ [%{getcwd()}]          " Current dir
-"   set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
-" endif
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Font
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if $WINDOWS
-  " set guifont=Inconsolata:h10:cDEFAULT
-  " set guifontwide=YtYaHei:h8:cDEFAULT
-  " set guifont=Menlo:h9:cDEFAULT
-  " set guifontwide=Menlo:h9:cDEFAULT
-  set guifont=Courier\ New:h9:cDEFAULT
-  set guifontwide=Courier\ New:h9:cDEFAULT
-endif
-
-if $MACOS
-  set guifontwide=Menlo:h12
-  set guifont=Menlo:h12
-endif
-
-if $LINUX
-  set guifont=Courier\ New:h9:cDEFAULT
-  set guifontwide=Courier\ New:h9:cDEFAULT
-  " set guifontwide=WenQuanYi\ Micro\ Hei:h9:cDEFAULT
-endif
-
-" 解决菜单乱码
-" source $VIMRUNTIME/delmenu.vim
-" source $VIMRUNTIME/menu.vim
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " multi-encodingi & file format setting
@@ -285,7 +266,12 @@ if has("multi_byte")
   set fileencodings=ucs-bom,utf-8,cp936,gb18030,gb2312,gbk,big5,euc-jp,euc-kr
   set encoding=utf8
   " CJK environment detection and corresponding setting
-  if v:lang =~ "^zh_CN"
+  if has('nvim')
+    " Neovim only support utf8
+    set encoding=utf-8
+    set termencoding=utf-8
+    set fileencoding=utf-8
+  elseif v:lang =~ "^zh_CN"
     " Use cp936 to support GBK, euc-cn == gb2312
     set encoding=cp936
     set termencoding=cp936
@@ -321,10 +307,6 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Formatting & Indent
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-filetype off            " 文件类型检测开
-filetype indent on      " 自动缩进开
-filetype plugin on
-filetype plugin indent on
 set expandtab           " 插入tab时换成合适数量的空格
 set shiftwidth=4        " 缩进一步使用的空格数目
 set smarttab            " 行首的tab用合适的空格代替

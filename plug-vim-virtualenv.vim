@@ -28,11 +28,16 @@
 " changing virtualenv should restart ycmserver
 " Venv <Virtualenv-name>
 let g:virtualenv_directory = simplify(expand('~/.virtualenvs'))
-fun ReturnVirtualEnvs(A,L,P)
+fun! ReturnVirtualEnvs(A,L,P)
   return system("ls -d ~/.virtualenvs/*/ \| cut -d'/' -f5")
 endfun
-if $MACOS && !has('nvim')
-  command -nargs=+ -complete=custom,ReturnVirtualEnvs Venv :VirtualEnvActivate <args> | YcmRestartServer
-else
-  command -nargs=+ -complete=custom,ReturnVirtualEnvs Venv :VirtualEnvActivate <args>
-endif
+
+command -nargs=+ -complete=custom,ReturnVirtualEnvs VEnv :VirtualEnvActivate <args>
+command -nargs=+ -complete=custom,ReturnVirtualEnvs VEA :VirtualEnvActivate <args>
+command VED :VirtualEnvDeactivate
+command VEL :VirtualEnvList
+" if $MACOS && !has('nvim')
+"   command -nargs=+ -complete=custom,ReturnVirtualEnvs Venv :VirtualEnvActivate <args> | YcmRestartServer
+" else
+"   command -nargs=+ -complete=custom,ReturnVirtualEnvs Venv :VirtualEnvActivate <args>
+" endif

@@ -1,20 +1,33 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2017-12-27
+" Modified: 2018-01-02
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-plug {{{1
 
-let $PLUGINS = simplify(expand($VIMFILES.'/vim-plug'))
-if !filereadable($PLUGINS.'/autoload/plug.vim')
+let $VIMPLUG = simplify(expand($VIMFILES.'/vim-plug'))
+if !filereadable($VIMPLUG.'/autoload/plug.vim')
+  " Git command
   if !executable('git')
     echoerr 'Command git not found, please instal git first.'
     finish
   endif
-  execute '!git clone https://github.com/junegunn/vim-plug ' . s:vim_plug_path
-  if !filereadable($PLUGINS.'/autoload/plug.vim')
-    finish
+  " Clone vim-plug
+  if !filereadable($VIMPLUG.'/plug.vim')
+    execute '!git clone https://github.com/junegunn/vim-plug '.$VIMPLUG
+  endif
+  " Check plug.vim
+  if !filereadable($VIMPLUG.'/autoload/plug.vim')
+    if !filereadable($VIMPLUG.'/plug.vim')
+      echomsg "Warning! Plugin vim-plug not found, plugins is not load."
+      finish
+    endif
+    " make link to autoload for plug.vim
+    execute '!echo "autoload" > '.$VIMPLUG.'/.gitignore'
+    execute '!echo ".gitignore" >> '.$VIMPLUG.'/.gitignore'
+    execute '!mkdir '.$VIMPLUG.'/autoload'
+    execute '!ln -s '.$VIMPLUG.'/plug.vim '.$VIMPLUG.'/autoload/plug.vim'
   endif
 endif
 
@@ -22,7 +35,7 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Load plugins begin
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set rtp+=$PLUGINS
+set rtp+=$VIMPLUG
 call plug#begin($VIMFILES)
 
 
@@ -214,7 +227,7 @@ else
 endif
 " Plug 'Shougo/neocomplete.vim'
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'jmcantrell/vim-virtualenv', { 'for': ['python'] }
+Plug 'jmcantrell/vim-virtualenv', { 'on': ['VirtualEnvActivate', 'VirtualEnvList'] }
 " Plug 'rkulla/pydiction', { 'for': ['python'] }
 " Plug 'python-rope/ropevim', { 'for': ['python'] }
 " Autopep8 fixer
