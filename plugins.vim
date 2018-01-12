@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2018-01-02
+" Modified: 2018-01-12
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-plug {{{1
@@ -155,7 +155,7 @@ Plug 'Glench/Vim-Jinja2-Syntax', { 'for': ['jinja', 'jinja2'] }
 " syntax highlighting for javascript, too slow ...
 " Plug 'othree/yajs.vim'
 " 可以试下这个js语法高亮，，，
-" Plug ‘pangloss/vim-javascript'
+" Plug 'pangloss/vim-javascript'
 " syntax for jquery etc. libs
 Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript'] }
 " indent and syntax for html in vim
@@ -323,7 +323,7 @@ call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Load plugins config
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-execute 'source ' . simplify(expand($CONFROOT.'/plugins.config'))
+execute 'source ' . simplify(expand($CONFROOT.'/plugins.config.vim'))
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
