@@ -22,10 +22,13 @@ let g:ale_completion_max_suggestions = 33
 let g:ale_echo_msg_format = '[%severity%] [%linter%] %code: %%s'
 
 let g:ale_python_flake8_options = '--max-line-length=120'
-
 " let g:ale_python_pylint_executable = '/Users/apple/.virtualenvs/soc-py2.7/bin/python'
 " let g:ale_python_pylint_options = '-d line-too-long -d invalid-name --rcfile=~/pylintrc'
 let g:ale_python_pylint_options = '-d line-too-long -d invalid-name'
+
+let g:ale_css_stylelint_use_global = 1
+let g:ale_css_stylelint_options = '--ignore=ids,box-sizing'
+let g:ale_css_csslint_options = '--ignore=ids,box-sizing'
 
 " let g:ale_linters_explicit = 1
 " let g:ale_linters = {}
