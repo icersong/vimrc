@@ -15,6 +15,7 @@ let g:ale_sign_style_warning = "◬"
 let g:ale_completion_delay = 999
 let g:ale_completion_enabled = 1
 let g:ale_max_signs = 99
+let g:ale_lint_delay = 999
 " let g:ale_maximum_file_size = 999999
 
 " let g:ale_python_flake8_executable = '/foo/bar/flake8'
@@ -27,8 +28,8 @@ let g:ale_python_flake8_options = '--max-line-length=120'
 let g:ale_python_pylint_options = '-d line-too-long -d invalid-name'
 
 let g:ale_css_stylelint_use_global = 1
-let g:ale_css_stylelint_options = '--ignore=ids,box-sizing'
-let g:ale_css_csslint_options = '--ignore=ids,box-sizing'
+let g:ale_css_stylelint_options = ['--ignore=ids,box-sizing']
+let g:ale_css_csslint_options = ['--ignore=ids,box-sizing',]
 
 " let g:ale_linters_explicit = 1
 " let g:ale_linters = {}
