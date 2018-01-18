@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2018-01-12
+" Modified: 2018-01-18
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-plug {{{1
@@ -170,7 +170,8 @@ Plug 'Konfekt/FastFold'
 " Python语法折叠, 可增强折叠import&docstring
 Plug 'tmhedberg/SimpylFold', {'for': ['python']}
 " Python缩进
-Plug 'hynek/vim-python-pep8-indent', { 'for': ['python'] }
+" Plug 'hynek/vim-python-pep8-indent', { 'for': ['python'] }
+" Plug 'vim-scripts/indentpython.vim', { 'for': ['python'] }
 
 
 """""""""""""""""""""""""""""""" 编辑增强 """"""""""""""""""""""""""""""""

@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2017-12-28
+" Modified: 2018-01-18
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -332,6 +332,7 @@ autocmd BufRead,BufNewFile *vimrc setlocal filetype=vim syntax=vim
 autocmd BufRead,BufNewFile *.tpl setlocal filetype=jinja syntax=jinja
 autocmd FileType vim,css setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd FileType xml,html,xhtml setlocal foldmethod=syntax tabstop=2 shiftwidth=2 softtabstop=2
+autocmd FileType python setlocal indentexpr=
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -403,6 +404,11 @@ noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 abbreviate CDATE <esc>"=strftime("%F")<CR>gP
 abbreviate CDATETIME <esc>"=strftime("%F %T")<CR>gP
 
+command ProfileStartLog profile start ~/profile.log
+      \ | profile func *
+      \ | profile file *
+command ProfileStopLog profile pause
+      \ | noautocmd qall!
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " cscope & ctags
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
