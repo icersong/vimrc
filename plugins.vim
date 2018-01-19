@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2018-01-18
+" Modified: 2018-01-19
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-plug {{{1
@@ -170,8 +170,13 @@ Plug 'Konfekt/FastFold'
 " Python语法折叠, 可增强折叠import&docstring
 Plug 'tmhedberg/SimpylFold', {'for': ['python']}
 " Python缩进
-" Plug 'hynek/vim-python-pep8-indent', { 'for': ['python'] }
-" Plug 'vim-scripts/indentpython.vim', { 'for': ['python'] }
+if has('mac')
+  " Mac book is very slow on insert new line
+  autocmd FileType python setlocal indentexpr=
+else
+  Plug 'hynek/vim-python-pep8-indent', { 'for': ['python'] }
+  " Plug 'vim-scripts/indentpython.vim', { 'for': ['python'] }
+endif
 
 
 """""""""""""""""""""""""""""""" 编辑增强 """"""""""""""""""""""""""""""""

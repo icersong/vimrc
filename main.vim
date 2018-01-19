@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2018-01-18
+" Modified: 2018-01-19
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -332,7 +332,6 @@ autocmd BufRead,BufNewFile *vimrc setlocal filetype=vim syntax=vim
 autocmd BufRead,BufNewFile *.tpl setlocal filetype=jinja syntax=jinja
 autocmd FileType vim,css setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd FileType xml,html,xhtml setlocal foldmethod=syntax tabstop=2 shiftwidth=2 softtabstop=2
-autocmd FileType python setlocal indentexpr=
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
