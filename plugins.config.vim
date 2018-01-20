@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2018-01-11
+" Modified: 2018-01-21
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -527,7 +527,7 @@ nmap g/ <Plug>(incsearch-stay)
 " Plug 'Raimondi/delimitMate'
 " for python docstring "
 let delimitMate_matchpairs = "(:),[:],{:}"
-au FileType python let b:delimitMate_nesting_quotes = ['"', "'"]
+au FileType python let b:delimitMate_nesting_quotes = ['"', "'", '`']
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
