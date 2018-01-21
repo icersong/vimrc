@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2018-01-19
+" Modified: 2018-01-21
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -37,7 +37,7 @@ else
   let $SEP = '/'
 endif
 
-if !has('nvim') && !has('python')
+if !has('nvim') && !has('python') && !has('python3')
   echo "Warning! Vim is compiled without python support."
 endif
 if !has('nvim') && !has('ruby')

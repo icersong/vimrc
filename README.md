@@ -1,6 +1,11 @@
 vimrc
 =====
 
+# MacOS安装VIM
+
+ $ brew upgrade vim --with-python3  --with-features=huge  --enable-cscope  --with-override-system-vim   --with-lua
+
+
 # 消息系统
 
 * 历史消息
