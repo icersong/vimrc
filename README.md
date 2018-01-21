@@ -3,8 +3,7 @@ vimrc
 
 # MacOS安装VIM
 
- $ brew upgrade vim --with-python3  --with-features=huge  --enable-cscope  --with-override-system-vim   --with-lua
-
+ $ brew install vim --with-python3 --with-features=huge --with-lua --enable-multibyte
 
 # 消息系统
 
