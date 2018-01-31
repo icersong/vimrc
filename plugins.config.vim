@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2018-01-21
+" Modified: 2018-01-31
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -661,7 +661,7 @@ nnoremap <leader>gw :Gwrite<CR><CR>
 nnoremap <leader>gm :Gmove<Space>
 nnoremap <leader>gb :Git branch<Space>
 nnoremap <leader>go :Git checkout<Space>
-nnoremap <leader>gps :AsyncRun -post=copen git push<CR>
+nnoremap <leader>gps :AsyncRun -post=copen git push --tags<CR>
 nnoremap <leader>gpl :AsyncRun -post=copen git pull<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
