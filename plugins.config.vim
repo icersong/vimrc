@@ -655,6 +655,7 @@ nnoremap <leader>gc :Gcommit -v -q<CR>
 nnoremap <leader>gC :Gcommit -v -q --amend<CR>
 nnoremap <leader>gt :Gcommit -v -q %:p<CR>
 nnoremap <leader>gd :Gvdiff<CR>
+nnoremap <leader>gD :Git diff --stat origin<CR>
 nnoremap <leader>ge :Gedit<CR>
 nnoremap <leader>gr :Gread<CR>
 nnoremap <leader>gw :Gwrite<CR><CR>
