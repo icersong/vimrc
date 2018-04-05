@@ -153,11 +153,11 @@ let g:grepper.file= { 'grepprg': 'ag --vimgrep --smart-case -g' }
 " 用ag搜索当前目录
 " nnoremap <leader>f. :Grepper -tool ag<cr>
 " 用ag在当前目录下搜索光标下的单词
-nnoremap <leader>*  :Grepper -tool ag -noprompt -cword<CR>
-nnoremap <leader>f. yiw:Grepper -noprompt -grepprg ag
-    \ "<C-R>=escape(escape(@", '\'), '"/\*\ \|\(\))')<CR>"
+nmap <leader>*  :Grepper -tool ag -noprompt -cword<CR>
+" nmap <leader>f. yiw:Grepper -noprompt -grepprg ag
+"     \ "<C-R>=escape(escape(@", '\'), '"/\*\ \|\(\))')<CR>"
 " 用ag在当前目录下搜索选中的内容
-vnoremap <leader>* ""y:Grepper -noprompt -grepprg ag
+vmap <leader>* ""y:Grepper -noprompt -grepprg ag
     \ "<C-R>=escape(escape(@", '\'), '"/\*\ \|\(\))')<CR>"<CR>
 " 用ag在当前工程下搜索, 等待输入
 " nnoremap <leader>fr :Grepper -tool ag -dir repo,file<cr>
