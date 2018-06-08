@@ -58,7 +58,10 @@ let g:ale_fixers = {
       \ 'python': [
       \   'remove_trailing_lines',
       \   'trim_whitespace',
+      \   'isort',
+      \   'add_blank_lines_for_python_control_statements',
       \   'autopep8',
+      \   'yapf',
       \ ],
       \ 'javascript': [
       \   'remove_trailing_lines',
