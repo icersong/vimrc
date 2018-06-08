@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2018-03-01
+" Modified: 2018-04-05
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -189,10 +189,10 @@ let g:ag_format="%f:%l:%c:%m"
 let g:ag_hightlight=1
 " let g:ag_qhandler="copen"
 " nnoremap <leader>gf  :AgFile<space>
-" 用ag在当前工程下搜索光标下的文件
-nmap <leader>ff yiw:AgFile! "<C-R>=escape(escape(@", '\'), '"/\*\ \|\(\))')<CR>"<CR>
-" 用ag在当前工程下搜索选中文本的文件 gag
-vmap <leader>ff ""y:AgFile! "<C-R>=escape(escape(@", '\'), '"/\*\ \|\(\))')<CR>"<CR>
+" 用ag在当前工程下搜索光标下的文件名
+nnoremap <leader>ff yiw:AgFile! "<C-R>=escape(escape(@", '\'), '"/\*\ \|\(\))')<CR>"
+" 用ag在当前工程下搜索选中文本的文件名 gag
+vnoremap <leader>ff ""y:AgFile! "<C-R>=escape(escape(@", '\'), '"/\*\ \|\(\))')<CR>"
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
