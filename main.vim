@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2018-01-21
+" Modified: 2018-06-22
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -403,11 +403,17 @@ noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 abbreviate CDATE <esc>"=strftime("%F")<CR>gP
 abbreviate CDATETIME <esc>"=strftime("%F %T")<CR>gP
 
+" command Removing duplicate liens
+" http://vim.wikia.com/wiki/Uniq_-_Removing_duplicate_lines
+command RDL %s/^\(.*\)\(\n\1\)\+$/\1/
+
+" command profile log
 command ProfileStartLog profile start ~/profile.log
       \ | profile func *
       \ | profile file *
 command ProfileStopLog profile pause
       \ | noautocmd qall!
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " cscope & ctags
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
