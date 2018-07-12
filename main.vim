@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2018-07-04
+" Modified: 2018-07-13
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -52,6 +52,14 @@ endif
 " https://github.com/spf13/spf13-vim/issues/780
 if &term[:4] == "xterm" || &term[:5] == 'screen' || &term[:3] == 'rxvt'
     inoremap <silent> <C-[>OC <RIGHT>
+endif
+
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" xterm
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if &term == 'xterm'
+  autocmd! VimEnter * set t_Co=256
 endif
 
 
