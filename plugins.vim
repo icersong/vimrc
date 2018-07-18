@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2018-01-19
+" Modified: 2018-07-19
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-plug {{{1
@@ -238,7 +238,6 @@ Plug 'jmcantrell/vim-virtualenv', { 'on': ['VirtualEnvActivate', 'VirtualEnvList
 " Plug 'rkulla/pydiction', { 'for': ['python'] }
 " Plug 'python-rope/ropevim', { 'for': ['python'] }
 " Autopep8 fixer
-" Plug 'tell-k/vim-autopep8', { 'for': ['python'] }
 " Plug 'hemerey/vim-project'
 " provides support for expanding abbreviations similar to emmet
 Plug 'mattn/emmet-vim', { 'for': ['php', 'css', 'xml', 'htm', 'html', 'xhtml', 'jinja'] }
