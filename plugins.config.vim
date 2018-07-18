@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2018-04-05
+" Modified: 2018-07-19
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -77,7 +77,7 @@ autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 let g:fzf_history_dir = $VIMCACHE.'/fzf-history'
 
 nmap <leader>fb :Buffers<CR>
-nmap <leader>ff :Files<CR>
+nmap <leader>fz :Files<CR>
 nmap <leader>fg :GFiles<CR>
 nmap <leader>fh :History<CR>
 
@@ -135,6 +135,26 @@ endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Ag    {{{1
+" Plug 'rking/ag.vim'
+" Search by file name
+" :AgFile [options] {pattern} [{directory}]
+" Search file content
+" :Ag [options] {pattern} [{directory}]
+" :Ag '\\\#define foo' to search for #define foo
+let g:ag_prg="ag --vimgrep --nocolor --nogroup --smart-case --ignore .git --ignore .svn --ignore .DS_Store"
+let g:ag_working_path_mode="r"
+let g:ag_format="%f:%l:%c:%m"
+let g:ag_hightlight=1
+" let g:ag_qhandler="copen"
+" nnoremap <leader>gf  :AgFile<space>
+" 用ag在当前工程下搜索光标下的文件名
+nnoremap <leader>ff yiw:AgFile! "<C-R>=escape(escape(@", '\'), '"/\*\ \|\(\))')<CR>"
+" 用ag在当前工程下搜索选中文本的文件名 gag
+vnoremap <leader>ff ""y:AgFile! "<C-R>=escape(escape(@", '\'), '"/\*\ \|\(\))')<CR>"
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Grepper   {{{1
 " Plug 'mhinz/vim-grepper'
 " Search file content
@@ -176,33 +196,13 @@ vmap <leader>* ""y:Grepper -noprompt -grepprg ag
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Ag    {{{1
-" Plug 'rking/ag.vim'
-" Search by file name
-" :AgFile [options] {pattern} [{directory}]
-" Search file content
-" :Ag [options] {pattern} [{directory}]
-" :Ag '\\\#define foo' to search for #define foo
-let g:ag_prg="ag --vimgrep --nocolor --nogroup --smart-case --ignore .git --ignore .svn --ignore .DS_Store"
-let g:ag_working_path_mode="r"
-let g:ag_format="%f:%l:%c:%m"
-let g:ag_hightlight=1
-" let g:ag_qhandler="copen"
-" nnoremap <leader>gf  :AgFile<space>
-" 用ag在当前工程下搜索光标下的文件名
-nnoremap <leader>ff yiw:AgFile! "<C-R>=escape(escape(@", '\'), '"/\*\ \|\(\))')<CR>"
-" 用ag在当前工程下搜索选中文本的文件名 gag
-vnoremap <leader>ff ""y:AgFile! "<C-R>=escape(escape(@", '\'), '"/\*\ \|\(\))')<CR>"
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CtrlSF    {{{1
 " Plug 'dyng/ctrlsf.vim'
 " like ag.vim but show context with matches line
 " CtrlSF [options] <patten> [path]
 
 let g:ctrlsf_auto_close = 1
-let g:ctrlsf_default_root = 'project+ww'
+let g:ctrlsf_default_root = 'project+ff'
 let g:ctrlsf_populate_qflist = 1
 let g:ctrlsf_regex_pattern = 1
 let g:ctrlsf_winsize = '30%'
@@ -210,10 +210,10 @@ let g:ctrlsf_position = 'bottom'
 let g:ctrlsf_context = '-B 0 -A 0'
 let g:ctrlsf_case_sensitive = 'smart'
 let g:ctrlsf_default_view_mode = 'compact'
-let g:ctrlsf_ignore_dir = ['bin', 'dist', 'build']
+let g:ctrlsf_ignore_dir = ['bin', 'dist', 'build', 'lib', 'libs']
 
 nmap <leader>fr <Plug>CtrlSFCwordPath
-vmap <leader>fr <Plug>CtrlSFVwordExec
+vmap <leader>fr <Plug>CtrlSFVwordPath
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -239,6 +239,20 @@ let g:voom_tab_key = "<C-Tab>"
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" easymotion  {{{1
+" fast jump to after current, \\f<char>
+" Plug 'Lokaltog/vim-easymotion'
+let g:EasyMotion_leader_key = ";"
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Indent line {{{1
+" Plug 'Yggdroot/indentLine'
+let g:indentLine_maxLines = 999
+let g:indentLine_faster = 1
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " rainbow_parentheses   {{{1
 " high light parentheses with different color
 " Plug 'kien/rainbow_parentheses.vim'
@@ -254,17 +268,12 @@ let g:voom_tab_key = "<C-Tab>"
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" easymotion  {{{1
-" fast jump to after current, \\f<char>
-" Plug 'Lokaltog/vim-easymotion'
-let g:EasyMotion_leader_key = ";"
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Indent line {{{1
-" Plug 'Yggdroot/indentLine'
-let g:indentLine_maxLines = 999
-let g:indentLine_faster = 1
+" Raimondi/delimitMate {{{1
+" automatic closing of quotes, parenthesis, brackets, etc.
+" Plug 'Raimondi/delimitMate'
+" for python docstring "
+let delimitMate_matchpairs = "(:),[:],{:}"
+au FileType python let b:delimitMate_nesting_quotes = ['"', "'", '`']
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -366,20 +375,6 @@ let g:pymode_indent = 0
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" autopep8    {{{1
-" : Autopep8 [--range 1 5]
-" : call Autopep8(" --range 1 5")
-" Plug 'tell-k/vim-autopep8'
-" let g:autopep8_indent_size=4
-" let g:autopep8_ignore="E501,E701,W293"
-" let g:autopep8_select="E501,E701,W293"
-let g:autopep8_pep8_passes=99
-let g:autopep8_max_line_length=127
-let g:autopep8_aggressive=0
-let g:autopep8_disable_show_diff=1
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " html/css tools  {{{1
 " fast create xml css html
 " eg: root>elememnt#property*3>default<ctrl-y>,
@@ -421,6 +416,9 @@ let g:dbgPavimOnce = 0
 " Plug 'fs111/pydoc.vim'
 " let g:pydoc_cmd = 'python -m pydoc'
 let g:pydoc_window_lines=0.5
+nnoremap <leader>? yiw:Pydoc <C-R>=escape(escape(@", '\'), '"/\*\ \|\(\))')<CR>
+" 用ag在当前工程下搜索选中文本的文件名 gag
+vnoremap <leader>? ""y:Pydoc! <C-R>=escape(escape(@", '\'), '"/\*\ \|\(\))')<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -519,15 +517,6 @@ nmap g/ <Plug>(incsearch-stay)
 " normal-delete-tag: dst
 " visual-add: S<symbol>
 " Plug 'tpope/vim-surround'
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Raimondi/delimitMate {{{1
-" automatic closing of quotes, parenthesis, brackets, etc.
-" Plug 'Raimondi/delimitMate'
-" for python docstring "
-let delimitMate_matchpairs = "(:),[:],{:}"
-au FileType python let b:delimitMate_nesting_quotes = ['"', "'", '`']
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
