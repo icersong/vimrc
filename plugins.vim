@@ -173,6 +173,8 @@ Plug 'othree/html5.vim', { 'for': ['htm', 'html', 'xhtml'] }
 Plug 'elzr/vim-json', { 'for': ['json'] }
 " It covers syntax, indenting, compiling, and more
 Plug 'kchmck/vim-coffee-script', { 'for': ['coffee'] }
+" for CSS3
+Plug 'hail2u/vim-css3-syntax'
 
 " Speed up Vim by updating folds only when called-for.
 Plug 'Konfekt/FastFold'
