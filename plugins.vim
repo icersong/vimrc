@@ -170,7 +170,7 @@ Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript'] }
 " indent and syntax for html in vim
 Plug 'othree/html5.vim', { 'for': ['htm', 'html', 'xhtml'] }
 " Syntax highlighting for JSON in Vim
-Plug 'leshill/vim-json', { 'for': ['json'] }
+Plug 'elzr/vim-json', { 'for': ['json'] }
 " It covers syntax, indenting, compiling, and more
 Plug 'kchmck/vim-coffee-script', { 'for': ['coffee'] }
 
