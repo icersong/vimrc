@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2018-07-19
+" Modified: 2018-07-28
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -158,27 +158,27 @@ vnoremap <leader>ff ""y:AgFile! "<C-R>=escape(escape(@", '\'), '"/\*\ \|\(\))')<
 " Grepper   {{{1
 " Plug 'mhinz/vim-grepper'
 " Search file content
-let g:grepper           = {}
-let g:grepper.tools     = ['ag', 'git', 'grep', 'file']
-let g:grepper.repo      = ['.git', '.hg', '.svn']
-let g:grepper.open      = 1
-let g:grepper.jump      = 0
-let g:grepper.stop      = 99
-let g:grepper.highlight = 1
-let g:grepper.next_tool = '<tab>'   " <TAB>键切换搜索工具
-let g:grepper.ag = { 'grepprg': 'ag --vimgrep --smart-case' }
-let g:grepper.file= { 'grepprg': 'ag --vimgrep --smart-case -g' }
+" let g:grepper           = {}
+" let g:grepper.tools     = ['ag', 'git', 'grep', 'file']
+" let g:grepper.repo      = ['.git', '.hg', '.svn']
+" let g:grepper.open      = 1
+" let g:grepper.jump      = 0
+" let g:grepper.stop      = 99
+" let g:grepper.highlight = 1
+" let g:grepper.next_tool = '<tab>'   " <TAB>键切换搜索工具
+" let g:grepper.ag = { 'grepprg': 'ag --vimgrep --smart-case' }
+" let g:grepper.file= { 'grepprg': 'ag --vimgrep --smart-case -g' }
 
 " ---- 内容搜索 ----
-" 用ag搜索当前目录
+" 用ag搜索当前目录,
 " nnoremap <leader>f. :Grepper -tool ag<cr>
-" 用ag在当前目录下搜索光标下的单词
-nmap <leader>*  :Grepper -tool ag -noprompt -cword<CR>
+" 用ag在当前目录下搜索光标下的单词, "CtrlSF xxx ." 替代
+" nmap <leader>*  :Grepper -tool ag -noprompt -cword<CR>
 " nmap <leader>f. yiw:Grepper -noprompt -grepprg ag
 "     \ "<C-R>=escape(escape(@", '\'), '"/\*\ \|\(\))')<CR>"
-" 用ag在当前目录下搜索选中的内容
-vmap <leader>* ""y:Grepper -noprompt -grepprg ag
-    \ "<C-R>=escape(escape(@", '\'), '"/\*\ \|\(\))')<CR>"<CR>
+" 用ag在当前目录下搜索选中的内容, "CtrlSF xxx ." 替代
+" vmap <leader>* ""y:Grepper -noprompt -grepprg ag
+"     \ "<C-R>=escape(escape(@", '\'), '"/\*\ \|\(\))')<CR>"<CR>
 " 用ag在当前工程下搜索, 等待输入
 " nnoremap <leader>fr :Grepper -tool ag -dir repo,file<cr>
 " 用ag在当前工程下搜索光标下的单词
