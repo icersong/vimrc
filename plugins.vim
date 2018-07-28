@@ -79,6 +79,8 @@ Plug 'chrisbra/Recover.vim'
 Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 " 命令窗口<c-n> or <c-p>自动补全
 Plug 'vim-scripts/CmdlineComplete'
+" 平滑滚动
+Plug 'terryma/vim-smooth-scroll'
 
 
 """""""""""""""""""""""""""""""" 文件搜索 """"""""""""""""""""""""""""""""
