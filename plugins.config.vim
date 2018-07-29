@@ -288,6 +288,10 @@ let g:indentLine_faster = 1
 " Plug 'Raimondi/delimitMate'
 " for python docstring "
 let delimitMate_matchpairs = "(:),[:],{:}"
+let delimitMate_expand_cr = 2
+let delimitMate_expand_space = 1
+let delimitMate_jump_expansion = 1
+let delimitMate_balance_matchpairs = 1
 au FileType python let b:delimitMate_nesting_quotes = ['"', "'", '`']
 
 
