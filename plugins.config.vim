@@ -229,14 +229,20 @@ vmap <leader>fr <Plug>CtrlSFVwordPath
 " incsearch {{{1
 " highlighting search results
 " Plug 'haya14busa/incsearch.vim'
-set hlsearch
-let g:incsearch#auto_nohlsearch = 1
-nmap n  <Plug>(incsearch-nohl-n)
-nmap N  <Plug>(incsearch-nohl-N)
-nmap *  <Plug>(incsearch-nohl-*)
-nmap #  <Plug>(incsearch-nohl-#)
-nmap g* <Plug>(incsearch-nohl-g*)
-nmap g# <Plug>(incsearch-nohl-g#)
+" set hlsearch
+" let g:incsearch#auto_nohlsearch = 1
+" nmap n  <Plug>(incsearch-nohl-n)
+" nmap N  <Plug>(incsearch-nohl-N)
+" nmap *  <Plug>(incsearch-nohl-*)
+" nmap #  <Plug>(incsearch-nohl-#)
+" nmap g* <Plug>(incsearch-nohl-g*)
+" nmap g# <Plug>(incsearch-nohl-g#)
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" quickhl {{{1
+" Plug 't9md/vim-quickhl'
+autocmd BufWinEnter * call quickhl#cword#enable()
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

@@ -139,8 +139,10 @@ Plug 'othree/xml.vim', {'for': ['xml', 'html']}
 Plug 'altercation/vim-colors-solarized'
 " place, toggle and display marks
 Plug 'kshenoy/vim-signature'
-" hilight search result runtime
-Plug 'haya14busa/incsearch.vim'
+" highlight search result runtime
+" Plug 'haya14busa/incsearch.vim'
+" quickly highlight <cword> or visually selected word
+Plug 't9md/vim-quickhl'
 " 括号匹配颜色(用下一个插件替代)
 " Plug 'kien/rainbow_parentheses.vim', {'for': ['javascript']}
 " 括号或配对标签颜色
@@ -206,7 +208,7 @@ Plug 'terryma/vim-expand-region'
 " text object ...
 Plug 'michaeljsmith/vim-indent-object'
 " Range select for edit, :NR
-Plug 'chrisbra/NrrwRgn', { 'on': ['NR', 'NRL', 'NRM', 'NRP', 'NRV', 'NLast', 'NRMulti'] }
+Plug 'chrisbra/NrrwRgn', " { 'on': ['NR', 'NRL', 'NRM', 'NRP', 'NRV', 'NLast', 'NRMulti'] }
 " Provides automatic closing of quotes, parenthesis, brackets,
 Plug 'Raimondi/delimitMate'
 " Code comment
