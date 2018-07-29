@@ -206,11 +206,12 @@ Plug 'terryma/vim-expand-region'
 " text object ...
 Plug 'michaeljsmith/vim-indent-object'
 " Range select for edit, :NR
-Plug 'chrisbra/NrrwRgn' ", { 'on': ['NR', 'NRL', 'NRM', 'NRP', 'NRV', 'NLast', 'NRMulti'] }
+Plug 'chrisbra/NrrwRgn', { 'on': ['NR', 'NRL', 'NRM', 'NRP', 'NRV', 'NLast', 'NRMulti'] }
 " Provides automatic closing of quotes, parenthesis, brackets,
 Plug 'Raimondi/delimitMate'
 " Code comment
-Plug 'scrooloose/nerdcommenter'
+" Plug 'scrooloose/nerdcommenter'
+Plug 'tpope/vim-commentary', {'on': ['Commentary', '<plug>Commentary']}
 " my plugin
 Plug 'icersong/timestamp.vim'
 
