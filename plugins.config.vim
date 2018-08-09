@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2018-04-05
+" Modified: 2018-07-29
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -27,6 +27,15 @@ endif
 " Plug 'mhinz/vim-startify'
 let g:startify_session_dir = $VIMCACHE.'/session'
 " let g:startify_list_order = ['files', 'dir', 'bookmarks', 'sessions', 'commands']
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Smooth scroll {{{1
+" Plug 'terryma/vim-smooth-scroll'
+noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 9)<CR>
+noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 9)<CR>
+" noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 9)<CR>
+" noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 9)<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -77,7 +86,7 @@ autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 let g:fzf_history_dir = $VIMCACHE.'/fzf-history'
 
 nmap <leader>fb :Buffers<CR>
-nmap <leader>ff :Files<CR>
+nmap <leader>fz :Files<CR>
 nmap <leader>fg :GFiles<CR>
 nmap <leader>fh :History<CR>
 
@@ -135,47 +144,6 @@ endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Grepper   {{{1
-" Plug 'mhinz/vim-grepper'
-" Search file content
-let g:grepper           = {}
-let g:grepper.tools     = ['ag', 'git', 'grep', 'file']
-let g:grepper.repo      = ['.git', '.hg', '.svn']
-let g:grepper.open      = 1
-let g:grepper.jump      = 0
-let g:grepper.stop      = 99
-let g:grepper.highlight = 1
-let g:grepper.next_tool = '<tab>'   " <TAB>键切换搜索工具
-let g:grepper.ag = { 'grepprg': 'ag --vimgrep --smart-case' }
-let g:grepper.file= { 'grepprg': 'ag --vimgrep --smart-case -g' }
-
-" ---- 内容搜索 ----
-" 用ag搜索当前目录
-" nnoremap <leader>f. :Grepper -tool ag<cr>
-" 用ag在当前目录下搜索光标下的单词
-nmap <leader>*  :Grepper -tool ag -noprompt -cword<CR>
-" nmap <leader>f. yiw:Grepper -noprompt -grepprg ag
-"     \ "<C-R>=escape(escape(@", '\'), '"/\*\ \|\(\))')<CR>"
-" 用ag在当前目录下搜索选中的内容
-vmap <leader>* ""y:Grepper -noprompt -grepprg ag
-    \ "<C-R>=escape(escape(@", '\'), '"/\*\ \|\(\))')<CR>"<CR>
-" 用ag在当前工程下搜索, 等待输入
-" nnoremap <leader>fr :Grepper -tool ag -dir repo,file<cr>
-" 用ag在当前工程下搜索光标下的单词
-" nnoremap <leader>fr :Grepper -tool ag -cword -noprompt -dir repo,file<cr>
-" 用ag在当前工程下搜索选中的内容
-" vnoremap <leader>fr ""y:Grepper -noprompt -dir repo,file -grepprg ag
-"     \ "<C-R>=escape(escape(@", '\'), '"/\ \|\(\))')<CR>"<CR>
-
-" ---- 文件搜索 ----
-" 用ag在当前工程下搜索光标下的文件名
-" nnoremap <leader>ff :Grepper -tool file -cword -noprompt -dir repo,file<CR>
-" 用ag在当前工程下搜索选中的文件名
-" vnoremap <leader>ff ""y:Grepper -tool file -noprompt -dir repo,file -grepprg ag -g
-    " \ "<C-R>=escape(escape(@", '\'), '"/\*\ \|\(\))')<CR>"<CR>
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Ag    {{{1
 " Plug 'rking/ag.vim'
 " Search by file name
@@ -196,13 +164,54 @@ vnoremap <leader>ff ""y:AgFile! "<C-R>=escape(escape(@", '\'), '"/\*\ \|\(\))')<
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Grepper   {{{1
+" Plug 'mhinz/vim-grepper'
+" Search file content
+" let g:grepper           = {}
+" let g:grepper.tools     = ['ag', 'git', 'grep', 'file']
+" let g:grepper.repo      = ['.git', '.hg', '.svn']
+" let g:grepper.open      = 1
+" let g:grepper.jump      = 0
+" let g:grepper.stop      = 99
+" let g:grepper.highlight = 1
+" let g:grepper.next_tool = '<tab>'   " <TAB>键切换搜索工具
+" let g:grepper.ag = { 'grepprg': 'ag --vimgrep --smart-case' }
+" let g:grepper.file= { 'grepprg': 'ag --vimgrep --smart-case -g' }
+
+" ---- 内容搜索 ----
+" 用ag搜索当前目录,
+" nnoremap <leader>f. :Grepper -tool ag<cr>
+" 用ag在当前目录下搜索光标下的单词, "CtrlSF xxx ." 替代
+" nmap <leader>*  :Grepper -tool ag -noprompt -cword<CR>
+" nmap <leader>f. yiw:Grepper -noprompt -grepprg ag
+"     \ "<C-R>=escape(escape(@", '\'), '"/\*\ \|\(\))')<CR>"
+" 用ag在当前目录下搜索选中的内容, "CtrlSF xxx ." 替代
+" vmap <leader>* ""y:Grepper -noprompt -grepprg ag
+"     \ "<C-R>=escape(escape(@", '\'), '"/\*\ \|\(\))')<CR>"<CR>
+" 用ag在当前工程下搜索, 等待输入
+" nnoremap <leader>fr :Grepper -tool ag -dir repo,file<cr>
+" 用ag在当前工程下搜索光标下的单词
+" nnoremap <leader>fr :Grepper -tool ag -cword -noprompt -dir repo,file<cr>
+" 用ag在当前工程下搜索选中的内容
+" vnoremap <leader>fr ""y:Grepper -noprompt -dir repo,file -grepprg ag
+"     \ "<C-R>=escape(escape(@", '\'), '"/\ \|\(\))')<CR>"<CR>
+
+" ---- 文件搜索 ----
+" 用ag在当前工程下搜索光标下的文件名
+" nnoremap <leader>ff :Grepper -tool file -cword -noprompt -dir repo,file<CR>
+" 用ag在当前工程下搜索选中的文件名
+" vnoremap <leader>ff ""y:Grepper -tool file -noprompt -dir repo,file -grepprg ag -g
+    " \ "<C-R>=escape(escape(@", '\'), '"/\*\ \|\(\))')<CR>"<CR>
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CtrlSF    {{{1
 " Plug 'dyng/ctrlsf.vim'
 " like ag.vim but show context with matches line
 " CtrlSF [options] <patten> [path]
 
 let g:ctrlsf_auto_close = 1
-let g:ctrlsf_default_root = 'project+ww'
+let g:ctrlsf_default_root = 'project+ff'
 let g:ctrlsf_populate_qflist = 1
 let g:ctrlsf_regex_pattern = 1
 let g:ctrlsf_winsize = '30%'
@@ -210,24 +219,30 @@ let g:ctrlsf_position = 'bottom'
 let g:ctrlsf_context = '-B 0 -A 0'
 let g:ctrlsf_case_sensitive = 'smart'
 let g:ctrlsf_default_view_mode = 'compact'
-let g:ctrlsf_ignore_dir = ['bin', 'dist', 'build']
+let g:ctrlsf_ignore_dir = ['bin', 'dist', 'build', 'lib', 'libs', 'img', 'fonts', 'cache']
 
 nmap <leader>fr <Plug>CtrlSFCwordPath
-vmap <leader>fr <Plug>CtrlSFVwordExec
+vmap <leader>fr <Plug>CtrlSFVwordPath
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " incsearch {{{1
 " highlighting search results
 " Plug 'haya14busa/incsearch.vim'
-set hlsearch
-let g:incsearch#auto_nohlsearch = 1
-nmap n  <Plug>(incsearch-nohl-n)
-nmap N  <Plug>(incsearch-nohl-N)
-nmap *  <Plug>(incsearch-nohl-*)
-nmap #  <Plug>(incsearch-nohl-#)
-nmap g* <Plug>(incsearch-nohl-g*)
-nmap g# <Plug>(incsearch-nohl-g#)
+" set hlsearch
+" let g:incsearch#auto_nohlsearch = 1
+" nmap n  <Plug>(incsearch-nohl-n)
+" nmap N  <Plug>(incsearch-nohl-N)
+" nmap *  <Plug>(incsearch-nohl-*)
+" nmap #  <Plug>(incsearch-nohl-#)
+" nmap g* <Plug>(incsearch-nohl-g*)
+" nmap g# <Plug>(incsearch-nohl-g#)
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" quickhl {{{1
+" Plug 't9md/vim-quickhl'
+autocmd BufWinEnter * call quickhl#cword#enable()
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -236,6 +251,20 @@ nmap g# <Plug>(incsearch-nohl-g#)
 let g:voom_tree_placement = "right"
 let g:voom_tree_width = 40
 let g:voom_tab_key = "<C-Tab>"
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" easymotion  {{{1
+" fast jump to after current, \\f<char>
+" Plug 'Lokaltog/vim-easymotion'
+let g:EasyMotion_leader_key = ";"
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Indent line {{{1
+" Plug 'Yggdroot/indentLine'
+let g:indentLine_maxLines = 999
+let g:indentLine_faster = 1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -254,17 +283,16 @@ let g:voom_tab_key = "<C-Tab>"
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" easymotion  {{{1
-" fast jump to after current, \\f<char>
-" Plug 'Lokaltog/vim-easymotion'
-let g:EasyMotion_leader_key = ";"
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Indent line {{{1
-" Plug 'Yggdroot/indentLine'
-let g:indentLine_maxLines = 999
-let g:indentLine_faster = 1
+" Raimondi/delimitMate {{{1
+" automatic closing of quotes, parenthesis, brackets, etc.
+" Plug 'Raimondi/delimitMate'
+" for python docstring "
+let delimitMate_matchpairs = "(:),[:],{:}"
+let delimitMate_expand_cr = 2
+let delimitMate_expand_space = 1
+let delimitMate_jump_expansion = 1
+let delimitMate_balance_matchpairs = 1
+au FileType python let b:delimitMate_nesting_quotes = ['"', "'", '`']
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -366,20 +394,6 @@ let g:pymode_indent = 0
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" autopep8    {{{1
-" : Autopep8 [--range 1 5]
-" : call Autopep8(" --range 1 5")
-" Plug 'tell-k/vim-autopep8'
-" let g:autopep8_indent_size=4
-" let g:autopep8_ignore="E501,E701,W293"
-" let g:autopep8_select="E501,E701,W293"
-let g:autopep8_pep8_passes=99
-let g:autopep8_max_line_length=127
-let g:autopep8_aggressive=0
-let g:autopep8_disable_show_diff=1
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " html/css tools  {{{1
 " fast create xml css html
 " eg: root>elememnt#property*3>default<ctrl-y>,
@@ -421,6 +435,9 @@ let g:dbgPavimOnce = 0
 " Plug 'fs111/pydoc.vim'
 " let g:pydoc_cmd = 'python -m pydoc'
 let g:pydoc_window_lines=0.5
+nnoremap <leader>? yiw:Pydoc <C-R>=escape(escape(@", '\'), '"/\*\ \|\(\))')<CR>
+" 用ag在当前工程下搜索选中文本的文件名 gag
+vnoremap <leader>? ""y:Pydoc! <C-R>=escape(escape(@", '\'), '"/\*\ \|\(\))')<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -522,34 +539,32 @@ nmap g/ <Plug>(incsearch-stay)
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Raimondi/delimitMate {{{1
-" automatic closing of quotes, parenthesis, brackets, etc.
-" Plug 'Raimondi/delimitMate'
-" for python docstring "
-let delimitMate_matchpairs = "(:),[:],{:}"
-au FileType python let b:delimitMate_nesting_quotes = ['"', "'", '`']
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " nerdcommenter   {{{1
 " Plug 'scrooloose/nerdcommenter'
 " <leader>cc add comment
 " <leader>cu remove comment
-let NERDCreateDefaultMappings = 0
-let NERDSpaceDelims           = 1
-let NERDAllowAnyVisualDelims  = 1
-let NERDCommentEmptyLines     = 1
-let NERDCompactSexyComs       = 1
-let NERDDefaultAlign          = 'left'
-let NERDTrimTrailingWhitespace = 1
-let g:NERDCustomDelimiters = {
-    \ 'python': { 'left': '#', 'leftAlt': '#' },
-\ }
-vmap <BS> <plug>NERDCommenterToggle:nohls<CR>gv
-nmap <BS> <plug>NERDCommenterToggle
-nmap <leader>cc <plug>NERDCommenterToggle
-vmap <leader>cc <plug>NERDCommenterAlignBoth:nohls<CR>gv
-nmap <leader>cu <plug>NERDCommenterUncomment:nohls<CR>gv
+" let NERDCreateDefaultMappings = 0
+" let NERDSpaceDelims           = 1
+" let NERDAllowAnyVisualDelims  = 1
+" let NERDCommentEmptyLines     = 1
+" let NERDCompactSexyComs       = 1
+" let NERDDefaultAlign          = 'left'
+" let NERDTrimTrailingWhitespace = 1
+" let g:NERDCustomDelimiters = {
+"     \ 'python': { 'left': '#', 'leftAlt': '#' },
+" \ }
+" vmap <BS> <plug>NERDCommenterToggle:nohls<CR>gv
+" nmap <BS> <plug>NERDCommenterToggle
+" nmap <leader>cc <plug>NERDCommenterToggle
+" vmap <leader>cc <plug>NERDCommenterAlignBoth:nohls<CR>gv
+" nmap <leader>cu <plug>NERDCommenterUncomment:nohls<CR>gv
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Commentary {{{1
+" Plug 'scrooloose/nerdcommenter'
+vmap <BS> <plug>Commentary:nohls<CR>gv
+nmap <BS> <plug>Commentary
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

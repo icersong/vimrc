@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2018-01-19
+" Modified: 2018-07-29
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-plug {{{1
@@ -79,9 +79,12 @@ Plug 'chrisbra/Recover.vim'
 Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 " 命令窗口<c-n> or <c-p>自动补全
 Plug 'vim-scripts/CmdlineComplete'
+" 平滑滚动
+Plug 'terryma/vim-smooth-scroll'
 
 
 """""""""""""""""""""""""""""""" 文件搜索 """"""""""""""""""""""""""""""""
+" -------- 文件标记浏览 ---------
 " 文件浏览器
 Plug 'scrooloose/nerdtree', {'on':  'NERDTreeToggle'}
 " Buffer列表显示
@@ -92,29 +95,34 @@ Plug 'majutsushi/tagbar', {'on':  ['Tagbar', 'TagbarOpen', 'TagbarToggle', 'Tagb
 Plug 'vim-voom/VOoM', {'on': ['Voom', '<plug>(Voom)']}
 " List for TODO and XXX ...
 Plug 'vim-scripts/TaskList.vim', {'on': ['TaskList', '<Plug>TaskList']}
+
+" -------- 文件名称搜索 ---------
 " Ctrl-P波峰式文件搜索利器
 Plug 'ctrlpvim/ctrlp.vim', {'on': ['CtrlP', 'CtrlPMRU', 'CtrlPBuffer', 'CtrlPFunky', '<plug>(ctrlp)']}
 " Ctrl-P匹配加速器，利用python匹配提升速度
 Plug 'FelikZ/ctrlp-py-matcher', {'on': ['CtrlP', 'CtrlPMRU', 'CtrlPBuffer', 'CtrlPFunky', '<plug>(ctrlp)']}
 " Function搜索插件
 Plug 'tacahiroy/ctrlp-funky', {'on': ['CtrlPFunky']}
+" 搜索工具，比ctrl-p匹配准确，python异步完成, 可以搜索MRU Function etc.
+" Plug 'Yggdroot/LeaderF'
 " Ctrl-P匹配结果优化输出
 " Plug 'nixprime/cpsm', { 'do': 'env PY3=OFF ./install.sh' }
-" Grepper当前目录文件内容搜索
-Plug 'mhinz/vim-grepper', {'on': ['Grepper', '<plug>(GrepperOperator)']}
-" 搜索当前工程内文件或内容, Ag & AgFile
-Plug 'rking/ag.vim', {'on': ['Ag', 'AgFile', 'AgBuffer']}
-" 搜索选中内容或光标下单词, <leader>f
-Plug 'dyng/ctrlsf.vim', {'on': ['CtrlSF', '<plug>CtrlSFCwordPath', '<plug>CtrlSFVwordExec']}
-" fzf搜索工具
+" fzf搜索工具, 比Ctrl-P匹配更精准更快速, 可完全取代
 Plug 'junegunn/fzf', { 'on': ['History', 'Files', 'GFiles', 'Buffers'],
       \ 'dir': '~/.fzf', 'do': 'yes \| ./install --bin' }
 Plug 'junegunn/fzf.vim', { 'on': ['History', 'Files', 'GFiles', 'Buffers'] }
-" 搜索工具，比ctrl-p匹配准确，python异步完成, 可以搜索MRU Function etc.
-" Plug 'Yggdroot/LeaderF'
 " 功能比较强悍的搜索工具
 Plug 'Shougo/denite.nvim', { 'on': ['Denite'] }
 
+" -------- 文件内容搜索 ---------
+" 搜索当前工程内文件, Ag & AgFile
+Plug 'rking/ag.vim', {'on': ['Ag', 'AgFile', 'AgBuffer']}
+" Grepper当前目录文件内容搜索, CtrlSF替代
+" Plug 'mhinz/vim-grepper', {'on': ['Grepper', '<plug>(GrepperOperator)']}
+" 搜索选中内容或光标下单词, <leader>f
+Plug 'dyng/ctrlsf.vim', {'on': ['CtrlSF', '<plug>CtrlSFCwordPath', '<plug>CtrlSFVwordExec']}
+
+" -------- 文件内光标定位 ---------
 " 指定字母快速移动光标
 Plug 'Lokaltog/vim-easymotion'
 " 扩展%快速匹配跳转
@@ -131,8 +139,10 @@ Plug 'othree/xml.vim', {'for': ['xml', 'html']}
 Plug 'altercation/vim-colors-solarized'
 " place, toggle and display marks
 Plug 'kshenoy/vim-signature'
-" hilight search result runtime
-Plug 'haya14busa/incsearch.vim'
+" highlight search result runtime
+" Plug 'haya14busa/incsearch.vim'
+" quickly highlight <cword> or visually selected word
+Plug 't9md/vim-quickhl'
 " 括号匹配颜色(用下一个插件替代)
 " Plug 'kien/rainbow_parentheses.vim', {'for': ['javascript']}
 " 括号或配对标签颜色
@@ -162,9 +172,11 @@ Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript'] }
 " indent and syntax for html in vim
 Plug 'othree/html5.vim', { 'for': ['htm', 'html', 'xhtml'] }
 " Syntax highlighting for JSON in Vim
-Plug 'leshill/vim-json', { 'for': ['json'] }
+Plug 'elzr/vim-json', { 'for': ['json'] }
 " It covers syntax, indenting, compiling, and more
 Plug 'kchmck/vim-coffee-script', { 'for': ['coffee'] }
+" for CSS3
+Plug 'hail2u/vim-css3-syntax'
 
 " Speed up Vim by updating folds only when called-for.
 Plug 'Konfekt/FastFold'
@@ -196,11 +208,12 @@ Plug 'terryma/vim-expand-region'
 " text object ...
 Plug 'michaeljsmith/vim-indent-object'
 " Range select for edit, :NR
-Plug 'chrisbra/NrrwRgn' ", { 'on': ['NR', 'NRL', 'NRM', 'NRP', 'NRV', 'NLast', 'NRMulti'] }
+Plug 'chrisbra/NrrwRgn', " { 'on': ['NR', 'NRL', 'NRM', 'NRP', 'NRV', 'NLast', 'NRMulti'] }
 " Provides automatic closing of quotes, parenthesis, brackets,
 Plug 'Raimondi/delimitMate'
 " Code comment
-Plug 'scrooloose/nerdcommenter'
+" Plug 'scrooloose/nerdcommenter'
+Plug 'tpope/vim-commentary', {'on': ['Commentary', '<plug>Commentary']}
 " my plugin
 Plug 'icersong/timestamp.vim'
 
@@ -238,7 +251,6 @@ Plug 'jmcantrell/vim-virtualenv', { 'on': ['VirtualEnvActivate', 'VirtualEnvList
 " Plug 'rkulla/pydiction', { 'for': ['python'] }
 " Plug 'python-rope/ropevim', { 'for': ['python'] }
 " Autopep8 fixer
-" Plug 'tell-k/vim-autopep8', { 'for': ['python'] }
 " Plug 'hemerey/vim-project'
 " provides support for expanding abbreviations similar to emmet
 Plug 'mattn/emmet-vim', { 'for': ['php', 'css', 'xml', 'htm', 'html', 'xhtml', 'jinja'] }

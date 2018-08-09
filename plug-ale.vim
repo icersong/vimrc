@@ -31,9 +31,11 @@ let g:ale_python_pylint_options = '-d line-too-long -d invalid-name -d too-few-p
 " let g:ale_linters = {}
 
 let g:ale_fixers = {
+      \ '*': ['remove_trailing_lines', 'trim_whitespace'],
       \ 'xml': [
       \   'remove_trailing_lines',
       \   'trim_whitespace',
+      \   'eslint',
       \ ],
       \ 'css': [
       \   'remove_trailing_lines',
@@ -50,6 +52,7 @@ let g:ale_fixers = {
       \ 'json': [
       \   'remove_trailing_lines',
       \   'trim_whitespace',
+      \   'eslint',
       \ ],
       \ 'jinja': [
       \   'remove_trailing_lines',
@@ -66,6 +69,7 @@ let g:ale_fixers = {
       \ 'javascript': [
       \   'remove_trailing_lines',
       \   'trim_whitespace',
+      \   'eslint',
       \ ],
       \}
 
