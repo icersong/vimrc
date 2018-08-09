@@ -242,9 +242,7 @@ vmap <leader>fr <Plug>CtrlSFVwordPath
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " quickhl {{{1
 " Plug 't9md/vim-quickhl'
-if exists('quickhl#cword#enable')
-  autocmd BufWinEnter * call quickhl#cword#enable()
-endif
+autocmd BufWinEnter * execute "call quickhl#cword#enable()"
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
