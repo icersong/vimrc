@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2018-07-29
+" Modified: 2018-08-09
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -242,7 +242,9 @@ vmap <leader>fr <Plug>CtrlSFVwordPath
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " quickhl {{{1
 " Plug 't9md/vim-quickhl'
-autocmd BufWinEnter * call quickhl#cword#enable()
+if exists('quickhl#cword#enable')
+  autocmd BufWinEnter * call quickhl#cword#enable()
+endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
