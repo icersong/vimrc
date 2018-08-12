@@ -143,6 +143,17 @@ function! LoadConfigures(path, names)
 endfunction
 
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Format xml file
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function FormatXml()
+    set filetype=xml
+    :%s/></>\r</g
+    :normal gg=G<cr>
+endfunction
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " SQLPP 格式化选中的SQL内容，并更新到当前光标处
 " depends shell.vim, GetVisualRange

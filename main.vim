@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2018-08-09
+" Modified: 2018-08-12
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -420,6 +420,9 @@ command RDL g/\(^.*$\)\n\1$/d
 
 " Json format
 command JsonFormat :execute '%!python -m json.tool'
+
+" Xml format
+command XmlFormat :execute call FormatXml()
 
 " command profile log
 command ProfileStartLog profile start ~/profile.log
