@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2018-08-12
+" Modified: 2018-08-15
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -102,11 +102,12 @@ execute 'source ' . simplify(expand($CONFROOT.'/plugins.vim'))
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Color Scheme
-if isdirectory(simplify(expand($VIMFILES.'/vim-colors-solarized')))
-  colorscheme solarized
-else
-  colorscheme desert
-endif
+for scheme in ['solarized8', 'solarized', 'desert']
+  if strlen(globpath(&rtp, "colors/".scheme.".vim")) > 0
+    execute "colorscheme " . scheme
+    break
+  endif
+endfor
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -117,6 +118,8 @@ syntax enable
 filetype indent on      " 自动缩进开
 filetype plugin on
 set background=dark             " Assume a dark background
+" highlight Comment ctermfg=240
+" highlight Normal ctermfg=250 ctermbg=235
 
 scriptencoding utf-8
 
