@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2018-08-09
+" Modified: 2018-08-18
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -50,6 +50,14 @@ if !has('gui_running')
   let g:solarized_termtrans  = 1
   let g:solarized_degrade    = 1
 endif
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" solarized8 theme  {{{1
+" Plug 'lifepillar/vim-solarized8'
+let g:solarized_visibility = "high"
+let g:solarized_diffmode = "high"
+let g:solarized_termtrans = 1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
