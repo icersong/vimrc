@@ -53,6 +53,14 @@ endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" solarized8 theme  {{{1
+" Plug 'lifepillar/vim-solarized8'
+let g:solarized_visibility = "high"
+let g:solarized_diffmode = "high"
+let g:solarized_termtrans = 1
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " minimap   {{{1
 " Plug 'severin-lemaignan/vim-minimap'
 " let g:minimap_highlight='Visual'
