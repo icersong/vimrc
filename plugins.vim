@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2018-08-15
+" Modified: 2018-08-22
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-plug {{{1
@@ -136,8 +136,8 @@ Plug 'othree/xml.vim', {'for': ['xml', 'html']}
 " 特殊字体符号
 " Plug 'ryanoasis/vim-devicons'
 " 配色方案
-" Plug 'altercation/vim-colors-solarized'
-Plug 'lifepillar/vim-solarized8'
+Plug 'altercation/vim-colors-solarized'
+" Plug 'lifepillar/vim-solarized8'
 " place, toggle and display marks
 Plug 'kshenoy/vim-signature'
 " highlight search result runtime
