@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2018-08-18
+" Modified: 2018-08-23
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -242,6 +242,7 @@ set scrolloff=6                 " Minimum lines to keep above and below cursor
 set foldenable                  " Auto fold code
 set foldmethod=indent           " 设置语法折叠 syntax | indent
 set foldlevel=9                 " 默认折叠开始层数
+set updatetime=333              " 设置键盘闲置执行时间，默认4000
 " set foldcolumn=0                " 设置折叠区域的宽度
 " set foldclose=all               " 设置为默认折叠所有
 " set foldnestmax=9
