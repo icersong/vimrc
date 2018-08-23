@@ -254,7 +254,10 @@ Plug 'jmcantrell/vim-virtualenv', { 'on': ['VirtualEnvActivate', 'VirtualEnvList
 " Autopep8 fixer
 " Plug 'hemerey/vim-project'
 " provides support for expanding abbreviations similar to emmet
-Plug 'mattn/emmet-vim', { 'for': ['php', 'css', 'xml', 'htm', 'html', 'xhtml', 'jinja', 'jinja.html'] }
+Plug 'mattn/emmet-vim', {
+      \ 'for': ['php', 'css', 'xml', 'htm', 'html', 'xhtml', 'jinja', 'jinja.html'],
+      \ 'on': ['Emmet', 'EmmetInstall'],
+      \ }
 " CSV file editor
 " Plug 'chrisbra/csv.vim'
 " Plug 'tpope/vim-markdown'
