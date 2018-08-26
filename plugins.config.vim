@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2018-08-21
+" Modified: 2018-08-26
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -703,6 +703,8 @@ nnoremap <leader>go :Git checkout<Space>
 nnoremap <leader>gps :AsyncRun -post=copen git push<CR>
 nnoremap <leader>gpt :AsyncRun -post=copen git push --tags<CR>
 nnoremap <leader>gpl :AsyncRun -post=copen git pull<CR>
+" 修正本地查看远程分支列表
+nnoremap <leader>grpo :Git remote prune origin<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-signify   {{{1
