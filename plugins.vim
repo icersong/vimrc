@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2018-08-23
+" Modified: 2018-09-20
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-plug {{{1
@@ -80,7 +80,7 @@ Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 " 命令窗口<c-n> or <c-p>自动补全
 Plug 'vim-scripts/CmdlineComplete'
 " 平滑滚动
-Plug 'terryma/vim-smooth-scroll'
+" Plug 'terryma/vim-smooth-scroll'
 
 
 """""""""""""""""""""""""""""""" 文件搜索 """"""""""""""""""""""""""""""""

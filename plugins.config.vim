@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2018-08-21
+" Modified: 2018-09-20
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -32,8 +32,8 @@ let g:startify_session_dir = $VIMCACHE.'/session'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Smooth scroll {{{1
 " Plug 'terryma/vim-smooth-scroll'
-noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 9)<CR>
-noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 9)<CR>
+" noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 9)<CR>
+" noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 9)<CR>
 " noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 9)<CR>
 " noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 9)<CR>
 
