@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2018-09-20
+" Modified: 2018-09-29
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -735,6 +735,7 @@ nmap gn <Plug>GitGutterNextHunk
 nmap gp <Plug>GitGutterPrevHunk
 
 let g:gitgutter_map_keys = 0
+let g:gitgutter_terminal_reports_focus = 0
 function! Gitgutter_Disabled_in_Largefile()
   if line2byte(line("$")+1) > g:LargeFile*1024*1024
     call gitgutter#disable()
