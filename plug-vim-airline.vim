@@ -8,24 +8,26 @@ let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 let g:airline_section_z = '%B %P %l/%L %v'
 let g:airline_highlighting_cache = 1
+let g:airline_extensions = ['branch', 'tabline', 'whitespace', 'ale', 'tagbar', 'virtualenv']
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_buffers = 1
 let g:airline#extensions#tabline#tab_nr_type = 2
 let g:airline#extensions#tabline#fnamemod = ':p:t'
+let g:airline#extensions#tabline#alt_sep = 1
 let g:airline#extensions#tabline#left_sep = ''
 let g:airline#extensions#tabline#left_alt_sep = ''
 let g:airline#extensions#tabline#buffer_nr_show = 0
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline#extensions#tabline#buffer_nr_format = '%s:'
-" let g:airline_extensions = ['branch', 'tabline', 'whitespace', 'ale', 'tagbar', 'virtualenv']
+let g:airline#extensions#tabline#ignore_bufadd_pat =
+      \ 'gundo|undotree|vimfiler|tagbar|nerd_tree|vim-minimap'
+      \.'|DebuggerWatch|gitcommit|MiniBufExplorer'
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#tagbar#enabled = 1
 let g:airline#extensions#tmuxline#enabled = 1
 let g:airline#extensions#syntastic#enabled = 0
 let g:airline#extensions#whitespace#enabled = 1
 let g:airline#extensions#virtualenv#enabled = 1
-let g:airline#extensions#tabline#ignore_bufadd_pat =
-      \ '\c\vgundo|undotree|vimfiler|tagbar|nerd_tree|vim-minimap'
-      \.'|DebuggerWatch|gitcommit|MiniBufExplorer|[No Name]'
 " if $MACOS
 "   let g:airline#extensions#tabline#buffer_idx_format = {
 "         \ '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴',
