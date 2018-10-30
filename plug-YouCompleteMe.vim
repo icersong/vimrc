@@ -54,11 +54,15 @@ let g:ycm_semantic_triggers =  {
 " 限制分析的文件类型
 " let g:ycm_filetype_whitelist = {
 "   \ "c":1,
-"   \ "cpp":1, 
-"   \ "objc":1,
+"   \ "cpp":1,
 "   \ "sh":1,
+"   \ "go":1,
+"   \ "cs":1,
 "   \ "zsh":1,
+"   \ "lua":1,
 "   \ "php":1,
+"   \ "perl":1,
+"   \ "java":1,
 "   \ "python":1,
 "   \ "javascript":1,
 "   \ "css":1,
