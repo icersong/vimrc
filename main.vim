@@ -227,9 +227,8 @@ set backspace=indent,eol,start  " Backspace for dummies
 set linespace=0                 " No extra spaces between rows
 set number                      " Line numbers on
 set relativenumber              " 显示相对行号
-set showmatch                   " Show matching brackets/parenthesis
-set matchtime=3                 " 单位是十分之一秒
-set matchpairs=(:),{:},[:],<:>  " 匹配括号的规则，增加针对html的<>
+" set showmatch                   " Show matching brackets/parenthesis
+" set matchpairs+=<:>             " 匹配括号的规则，增加针对html的<>
 set incsearch                   " Find as you type search
 set hlsearch                    " Highlight search terms
 set winminheight=0              " Windows can be 0 line high
