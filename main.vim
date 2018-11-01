@@ -217,6 +217,7 @@ highlight clear CursorLineNr    " Remove highlight color from current line numbe
 " mast call after setting 'syntax on'
 call SetCursorStyle()
 
+set noshowmode                  " 禁止显示当前输入模式
 set ruler                       " 显示行号和列号
 set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " A ruler on steroids
 set numberwidth=1               " 显示光标位置的，行号列号和百分比，简写 set nuw
