@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2018-09-29
+" Modified: 2018-11-01
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -20,6 +20,7 @@ else
   let g:enable_pydiction = 1
   let g:enable_jedi = 1
 endif
+let g:enable_jedi = 1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -314,6 +315,9 @@ let delimitMate_expand_cr = 2
 let delimitMate_expand_space = 1
 let delimitMate_jump_expansion = 1
 let delimitMate_balance_matchpairs = 1
+" Fixed <tab> jump out
+autocmd VimEnter * imap <silent> <expr> <TAB> delimitMate#ShouldJump() ?
+      \ delimitMate#JumpAny() : "\<C-r>=UltiSnips#ExpandSnippetOrJump()\<CR>"
 au FileType python let b:delimitMate_nesting_quotes = ['"', "'", '`']
 
 
@@ -363,6 +367,12 @@ let g:snips_github = 'https://github.com/icersong'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" echodoc {{{1
+" Plug 'Shougo/echodoc.vim'
+let g:echodoc#enable_at_startup = 1
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " neocomplete   {{{1
 " Plug 'Shougo/neocomplete.vim'
 " if (isdirectory(simplify(expand($VIMFILES.'/neocomplete'))))
@@ -388,25 +398,22 @@ if has('nvim')
     " let g:jedi#force_py_version = 3
 endif
 let g:jedi#completions_enabled      = 0
-let g:jedi#auto_initialization      = 1
-let g:jedi#auto_vim_configuration   = 1
-" let g:jedi#use_tabs_not_buffers     = 1
+let g:jedi#auto_initialization      = 0
+let g:jedi#auto_vim_configuration   = 0
+let g:jedi#use_tabs_not_buffers     = 0
 let g:jedi#use_splits_not_buffers   = 1
 let g:jedi#popup_select_first       = 0
-let g:jedi#popup_on_dot             = 1
+let g:jedi#popup_on_dot             = 0
 let g:jedi#auto_close_doc           = 1
 let g:jedi#show_call_signatures     = 1
-let g:jedi#completions_command      = "<C-N>"
-function! MappingForJedi()
-  if HasCmdValid('PythonJedi') && !HasCmdValid('YcmCompleter')
-    inoremap <silent> <buffer> <C-N> <c-x><c-o>
-    nnoremap <silent> <buffer> <leader>jj :call jedi#goto()<cr>
-    nnoremap <silent> <buffer> <leader>jr :call jedi#rename()<cr>
-    nnoremap <silent> <buffer> <leader>ju :call jedi#usages()<cr>
-    nnoremap <silent> <buffer> <leader>jk :call jedi#documentation()<cr>
-  endif
-endfunction
-autocmd FileType python call  MappingForJedi()
+let g:jedi#completions_command      = ""
+" if HasCmdValid('PythonJedi') && !HasCmdValid('YcmCompleter')
+let g:jedi#goto_assignments_command = "<leader>jj"
+let g:jedi#goto_definitions_command = "<leader>jd"
+let g:jedi#documentation_command = "<leader>jk"
+let g:jedi#usages_command = "<leader>ju"
+let g:jedi#rename_command = "<leader>jr"
+" endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

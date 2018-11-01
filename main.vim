@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2018-08-23
+" Modified: 2018-11-01
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -423,6 +423,9 @@ abbreviate CDATETIME <esc>"=strftime("%F %T")<CR>gP
 " http://vim.wikia.com/wiki/Uniq_-_Removing_duplicate_lines
 " command RMDL %s/^\(.*\)\(\n\1\)\+$/\1/
 command RDL g/\(^.*$\)\n\1$/d
+
+" Trailing whitespace
+command TrailingWhitespace exec '%s/\s\+$//ge'
 
 " Json format
 command JsonFormat :execute '%!python -m json.tool'

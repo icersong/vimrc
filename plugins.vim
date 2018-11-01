@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2018-09-20
+" Modified: 2018-11-01
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-plug {{{1
@@ -228,6 +228,8 @@ Plug 'godlygeek/tabular', {'on': ['Tabularize']}
 " 语法快速输入提示
 Plug 'honza/vim-snippets'
 Plug 'SirVer/ultisnips', {'for': ['c', 'cpp', 'javascript', 'python']}
+Plug 'Shougo/echodoc.vim'
+" Plug 'tenfyzhong/CompleteParameter.vim'
 " 语法分析工具
 " Plug 'scrooloose/syntastic'
 " 语法分析工具, 异步运行(Vim8/NeoVim)，性能完爆syntastic
