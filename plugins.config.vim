@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2018-11-01
+" Modified: 2018-11-03
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -316,8 +316,11 @@ let delimitMate_expand_space = 1
 let delimitMate_jump_expansion = 1
 let delimitMate_balance_matchpairs = 1
 " Fixed <tab> jump out
-autocmd VimEnter * imap <silent> <expr> <TAB> delimitMate#ShouldJump() ?
-      \ delimitMate#JumpAny() : "\<C-r>=UltiSnips#ExpandSnippetOrJump()\<CR>"
+" autocmd VimEnter * imap <silent> <expr> <TAB> delimitMate#ShouldJump() ?
+"       \ delimitMate#JumpAny() : "\<C-r>=UltiSnips#ExpandSnippetOrJump()\<CR>"
+autocmd VimEnter * imap <silent> <expr> <TAB>
+      \ !pumvisible() && delimitMate#ShouldJump() ?
+      \ delimitMate#JumpAny() : "\<TAB>"
 au FileType python let b:delimitMate_nesting_quotes = ['"', "'", '`']
 
 
