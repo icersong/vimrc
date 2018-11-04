@@ -1,13 +1,13 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " function for test command is exists
 function! HasCmdValid(cmd)
-  let cc = execute('command ' . a:cmd)
-  if len(matchstr(cc, ' '.a:cmd.' '))
-    return 1
-  endif
-  return 0
+  return !!len(matchstr(execute('command ' . a:cmd), ' ' . a:cmd . ' '))
 endfunction
 
+" function for test function is exists
+function! HasFuncValid(cmd)
+  return len(execute('function /^' . a:cmd . '$'))
+endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 设置光标显示样式

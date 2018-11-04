@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2018-11-01
+" Modified: 2018-11-04
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-plug {{{1
@@ -184,13 +184,8 @@ Plug 'Konfekt/FastFold'
 " Python语法折叠, 可增强折叠import&docstring
 Plug 'tmhedberg/SimpylFold', {'for': ['python']}
 " Python缩进
-if has('mac')
-  " Mac book is very slow on insert new line
-  autocmd FileType python setlocal indentexpr=
-else
-  Plug 'hynek/vim-python-pep8-indent', { 'for': ['python'] }
-  " Plug 'vim-scripts/indentpython.vim', { 'for': ['python'] }
-endif
+Plug 'Vimjas/vim-python-pep8-indent', { 'for': ['python'] }
+" Plug 'vim-scripts/indentpython.vim', { 'for': ['python'] }
 
 
 """""""""""""""""""""""""""""""" 编辑增强 """"""""""""""""""""""""""""""""
@@ -222,6 +217,8 @@ Plug 'icersong/timestamp.vim'
 Plug 'vim-scripts/Align'
 " Configurable, flexible, intuitive text aligning, :Tabularize /,/l1r1c1 ....
 Plug 'godlygeek/tabular', {'on': ['Tabularize']}
+" clipboard with pbcopy & pbpaste for macos
+Plug 'kana/vim-fakeclip'
 
 
 """""""""""""""""""""""""""""""" 语法输入 """"""""""""""""""""""""""""""""

@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2018-11-03
+" Modified: 2018-11-04
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -313,14 +313,14 @@ let g:indentLine_faster = 1
 let delimitMate_matchpairs = "(:),[:],{:}"
 let delimitMate_expand_cr = 2
 let delimitMate_expand_space = 1
+let delimitMate_expand_inside_quotes = 0
 let delimitMate_jump_expansion = 1
 let delimitMate_balance_matchpairs = 1
+let delimitMate_excluded_regions = "Comment,String"
 " Fixed <tab> jump out
-" autocmd VimEnter * imap <silent> <expr> <TAB> delimitMate#ShouldJump() ?
-"       \ delimitMate#JumpAny() : "\<C-r>=UltiSnips#ExpandSnippetOrJump()\<CR>"
-autocmd VimEnter * imap <silent> <expr> <TAB>
-      \ !pumvisible() && delimitMate#ShouldJump() ?
-      \ delimitMate#JumpAny() : "\<TAB>"
+" autocmd VimEnter * imap <silent> <expr> <TAB>
+"       \ !pumvisible() && delimitMate#ShouldJump() ?
+"       \ delimitMate#JumpAny() : "\<TAB>"
 au FileType python let b:delimitMate_nesting_quotes = ['"', "'", '`']
 
 
@@ -466,6 +466,7 @@ let g:dbgPavimOnce = 0
 " PyDoc     {{{1
 " Plug 'fs111/pydoc.vim'
 " let g:pydoc_cmd = 'python -m pydoc'
+let g:pydoc_perform_mappings = 0
 let g:pydoc_window_lines=0.5
 nnoremap <leader>? yiw:Pydoc <C-R>=escape(escape(@", '\'), '"/\*\ \|\(\))')<CR>
 " 用ag在当前工程下搜索选中文本的文件名 gag
@@ -526,6 +527,15 @@ let g:dbext_default_profile = 'MySQL'
 " Tabular  {{{1
 " Plug 'godlygeek/tabular'
 " let g:tabular_loaded = 1
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" fakeclip  {{{1
+" Plug 'kana/vim-fakeclip'
+set clipboard+=exclude:.*
+let g:fakeclip_provide_clipboard_key_mappings =
+    \ (has('macunix') || has('gui_gtk2')) && !has('gui_running')
+let g:fakeclip_terminal_multiplexer_type = 'tmux'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

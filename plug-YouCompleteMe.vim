@@ -39,9 +39,12 @@ let g:ycm_complete_in_comments = 1
 let g:ycm_complete_in_strings = 1
 " 注释和字符串中的文字也会被收入补全
 let g:ycm_collect_identifiers_from_comments_and_strings = 0
-" 语义补全快捷键，默认<ctrl-space>
+" 语义补全快捷键
 let g:ycm_key_invoke_completion = '<c-z>'
+let g:ycm_key_list_stop_completion = ['<C-Y>', '<CR>']
 noremap <c-z> <NOP>
+" 列表选择，默认'<TAB>', '<Down>', 参见：delimitMate
+let g:ycm_key_list_select_completion = ['<Down>']
 " 禁止语义检查
 let g:ycm_show_diagnostics_ui = 0
 " python解释器路径
@@ -70,9 +73,7 @@ let g:ycm_filetype_whitelist = {
   \ "jinja":1,
   \ }
 " 离开插入模式后自动关闭预览窗口
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-" 回车即选中当前项
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
+" autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 " 跳转快捷键
 function! MappingForYcm()
   " if HasCmdValid('YcmCompleter')
@@ -81,7 +82,7 @@ function! MappingForYcm()
     inoremap <buffer> <leader><leader> <C-x><C-o>
   " endif
 endfunction
-autocmd BufReadPost * call  MappingForYcm()
+autocmd BufReadPost * call MappingForYcm()
 
 " 上下左右键的行为 会显示其他信息
 " inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"

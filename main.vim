@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2018-11-01
+" Modified: 2018-11-04
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -98,6 +98,24 @@ execute 'source ' . simplify(expand($CONFROOT.'/functions.vim'))
 " load plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 execute 'source ' . simplify(expand($CONFROOT.'/plugins.vim'))
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Super <TAB>
+function! Ulti_ExpandOrJump_and_getRes()
+  if !HasFuncValid('UltiSnips#ExpandSnippetOrJump')
+    return -1
+  endif
+  call UltiSnips#ExpandSnippetOrJump()
+  return g:ulti_expand_or_jump_res
+endfunction
+
+autocmd VimEnter * imap <silent> <expr> <TAB>
+  \ pumvisible() ?
+  \ "\<C-N>" :
+  \ HasFuncValid('delimitMate#ShouldJump') && delimitMate#ShouldJump() ?
+  \ delimitMate#JumpAny() :
+  \ "\<C-R>=(Ulti_ExpandOrJump_and_getRes() > 0) ? '' : '\<TAB>'\<CR>"
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -463,9 +481,13 @@ endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if executable('xclip')
-  command! -nargs=0 XCopy :!xclip -f -sel clip<CR>
-  command! -nargs=0 XPaste :r !xclip -o -sel clip<CR>
-  vnoremap <leader>y !xclip -f -sel clip<CR>u
-  noremap <leader>p :r !xclip -o -sel clip<CR>
+if has('mac')
+  vnoremap <silent> <leader>y :<CR>:let @a=@" \| execute "normal! vgvy" \| let res=system("pbcopy", @") \| let @"=@a<CR>
+else
+  if executable('xclip')
+    command! -nargs=0 XCopy :!xclip -f -sel clip<CR>
+    command! -nargs=0 XPaste :r !xclip -o -sel clip<CR>
+    vnoremap <leader>y !xclip -f -sel clip<CR>u
+    noremap <leader>p :r !xclip -o -sel clip<CR>
+  endif
 endif
