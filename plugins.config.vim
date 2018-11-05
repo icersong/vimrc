@@ -300,7 +300,6 @@ let g:indentLine_faster = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " polyglot {{{1
 " Plug 'sheerun/vim-polyglot'
-let g:indentLine_maxLines = 999
 let g:polyglot_disabled = ['css?']
 
 
