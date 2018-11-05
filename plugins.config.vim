@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2018-11-04
+" Modified: 2018-11-05
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -281,6 +281,13 @@ let g:voom_tab_key = "<C-Tab>"
 " fast jump to after current, \\f<char>
 " Plug 'Lokaltog/vim-easymotion'
 let g:EasyMotion_leader_key = ";"
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-sneak  {{{1
+" fast jump to after current, \\f<char>
+" Plug 'justinmk/vim-sneak'
+let g:sneak#label = 1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

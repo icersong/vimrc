@@ -125,6 +125,7 @@ Plug 'dyng/ctrlsf.vim', {'on': ['CtrlSF', '<plug>CtrlSFCwordPath', '<plug>CtrlSF
 " -------- 文件内光标定位 ---------
 " 指定字母快速移动光标
 Plug 'Lokaltog/vim-easymotion'
+Plug 'justinmk/vim-sneak'
 " 扩展%快速匹配跳转
 Plug 'vim-scripts/matchit.zip', {'for': ['c', 'h', 'cpp', 'php', 'css', 'xml',
     \ 'vim', 'java', 'html', 'jinja', 'python', 'javascript']}
@@ -159,7 +160,7 @@ Plug 'chrisbra/vim-diff-enhanced'
 Plug 'Yggdroot/indentLine'
 
 " 静态语法配色包
-Plug 'sheerun/vim-polyglot', {}
+" Plug 'sheerun/vim-polyglot', {}
 " Syntax for python2 and python3
 " Plug 'hdima/python-syntax', { 'for': ['python'] }
 " Syntax for jinja and html
@@ -217,6 +218,7 @@ Plug 'icersong/timestamp.vim'
 Plug 'vim-scripts/Align'
 " Configurable, flexible, intuitive text aligning, :Tabularize /,/l1r1c1 ....
 Plug 'godlygeek/tabular', {'on': ['Tabularize']}
+Plug 'junegunn/vim-easy-align', {'on': ['EasyAlign', '<Plug>EasyAlign']}
 " clipboard with pbcopy & pbpaste for macos
 Plug 'kana/vim-fakeclip'
 
