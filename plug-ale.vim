@@ -12,10 +12,10 @@ let g:ale_sign_error = "✘"
 let g:ale_sign_warning = "⚠"
 let g:ale_sign_style_error = "✗"
 let g:ale_sign_style_warning = "◬"
-let g:ale_completion_delay = 999
+let g:ale_completion_delay = 99
 let g:ale_completion_enabled = 1
 let g:ale_max_signs = 99
-let g:ale_lint_delay = 999
+let g:ale_lint_delay = 99
 " let g:ale_maximum_file_size = 999999
 
 " let g:ale_python_flake8_executable = '/foo/bar/flake8'
