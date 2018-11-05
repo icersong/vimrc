@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2018-11-04
+" Modified: 2018-11-05
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-plug {{{1
@@ -159,7 +159,7 @@ Plug 'chrisbra/vim-diff-enhanced'
 Plug 'Yggdroot/indentLine'
 
 " 静态语法配色包
-" Plug 'sheerun/vim-polyglot', {'for': []}
+Plug 'sheerun/vim-polyglot', {}
 " Syntax for python2 and python3
 " Plug 'hdima/python-syntax', { 'for': ['python'] }
 " Syntax for jinja and html
