@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2018-11-05
+" Modified: 2018-11-06
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -295,6 +295,13 @@ let g:sneak#label = 1
 " Plug 'Yggdroot/indentLine'
 let g:indentLine_maxLines = 999
 let g:indentLine_faster = 1
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" polyglot {{{1
+" Plug 'sheerun/vim-polyglot'
+let g:indentLine_maxLines = 999
+let g:polyglot_disabled = ['css?']
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
