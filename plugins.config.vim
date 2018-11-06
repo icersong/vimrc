@@ -281,6 +281,8 @@ let g:voom_tab_key = "<C-Tab>"
 " fast jump to after current, \\f<char>
 " Plug 'Lokaltog/vim-easymotion'
 let g:EasyMotion_leader_key = ";"
+  let g:EasyMotion_use_upper = 1
+  let g:EasyMotion_keys = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ;'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -288,6 +290,8 @@ let g:EasyMotion_leader_key = ";"
 " fast jump to after current, \\f<char>
 " Plug 'justinmk/vim-sneak'
 let g:sneak#label = 1
+let g:sneak#target_labels = ";abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
