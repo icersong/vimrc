@@ -226,7 +226,7 @@ Plug 'kana/vim-fakeclip'
 """""""""""""""""""""""""""""""" 语法输入 """"""""""""""""""""""""""""""""
 " 语法快速输入提示
 Plug 'honza/vim-snippets'
-Plug 'SirVer/ultisnips', {'for': ['c', 'cpp', 'javascript', 'python']}
+Plug 'SirVer/ultisnips'
 Plug 'Shougo/echodoc.vim'
 " Plug 'tenfyzhong/CompleteParameter.vim'
 " 语法分析工具
