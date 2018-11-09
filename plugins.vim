@@ -159,7 +159,7 @@ Plug 'chrisbra/vim-diff-enhanced'
 " 显示缩进引导符号
 Plug 'Yggdroot/indentLine'
 
-" 静态语法配色包
+" 静态语法配色包 slow load file
 Plug 'sheerun/vim-polyglot', {}
 " Syntax for python2 and python3
 " Plug 'hdima/python-syntax', { 'for': ['python'] }
@@ -167,7 +167,7 @@ Plug 'sheerun/vim-polyglot', {}
 Plug 'Glench/Vim-Jinja2-Syntax', { 'for': ['jinja', 'jinja2'] }
 " syntax highlighting for javascript, too slow ...
 " Plug 'othree/yajs.vim'
-" 可以试下这个js语法高亮，，，
+" syntax hilighting for javascript, conflict with rainbow plugin
 " Plug 'pangloss/vim-javascript'
 " syntax for jquery etc. libs
 Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript'] }
