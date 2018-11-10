@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2018-11-09
+" Modified: 2018-11-10
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -133,10 +133,11 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-syntax on               " Syntax highlighting
-syntax enable
 filetype indent on      " 自动缩进开
 filetype plugin on
+" syntax enable
+syntax on               " Syntax highlighting
+
 set background=dark             " Assume a dark background
 " highlight Comment ctermfg=240
 " highlight Normal ctermfg=250 ctermbg=235
