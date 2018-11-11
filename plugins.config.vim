@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2018-11-10
+" Modified: 2018-11-11
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -265,7 +265,7 @@ let g:quickhl_manual_colors = [
       \ "gui=bold ctermfg=white ctermbg=2  guibg=white guifg=#884422",
       \ "gui=bold ctermfg=white ctermbg=1  guibg=white guifg=#448822",
       \ ]
-nmap <leader>m <Plug>(quickhl-manual-this)
+nmap <leader>mm <Plug>(quickhl-manual-this)
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
