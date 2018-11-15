@@ -180,7 +180,7 @@ set viminfo='999,f1,<999
 set shortmess+=filmnrxoOtT      " Abbrev. of messages (avoids 'hit enter')
 set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
 set virtualedit=all,onemore     " 虚环境编辑空间, Allow for cursor beyond last character
-set history=32                  " Store a ton of history (default is 20)
+set history=99                  " Store a ton of history (default is 20)
 " set spell                       " Spell checking on
 set hidden                      " Allow buffer switching without saving, 放弃缓冲区时隐藏而不卸载
 set iskeyword=a-z,A-Z,48-57,_   " word designator
