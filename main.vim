@@ -143,7 +143,6 @@ set background=dark             " Assume a dark background
 " highlight Normal ctermfg=250 ctermbg=235
 
 scriptencoding utf-8
-set ambiwidth=double
 
 if has('clipboard')
     " set clipboard+=unnamed      " 默认寄存器和系统剪贴板共享
@@ -291,7 +290,8 @@ set nowrapscan                  " 搜索到文件末尾时，不再回绕到文�
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set fileformats=unix,dos,mac        " 文件格式支持
 " set formatoptions+=jmB            " centos vim7.2 not 'j' option
-set ambiwidth=single                " utf8编码下，将不明宽度字符按双倍宽度显示, double|single
+set ambiwidth=double
+" utf8编码下，将不明宽度字符按双倍宽度显示, double|single
 set formatoptions+=mB               " formatoptions
 set fileencoding=utf-8
 if has("multi_byte")
