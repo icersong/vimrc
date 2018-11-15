@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2018-11-10
+" Modified: 2018-11-15
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -143,6 +143,7 @@ set background=dark             " Assume a dark background
 " highlight Normal ctermfg=250 ctermbg=235
 
 scriptencoding utf-8
+set ambiwidth=double
 
 if has('clipboard')
     " set clipboard+=unnamed      " 默认寄存器和系统剪贴板共享
