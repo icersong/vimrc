@@ -807,7 +807,8 @@ autocmd BufRead * silent call Gitgutter_Disabled_in_Largefile()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " AsyncRun    {{{1
 " Plug 'skywind3000/asyncrun.vim'
-let g:asyncrun_open = 32
+" let g:asyncrun_open = 8
+let g:asyncrun_mode = 0
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
