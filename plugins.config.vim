@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2018-11-11
+" Modified: 2018-11-16
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -716,15 +716,17 @@ endif
 autocmd QuickFixCmdPost *grep* cwindow
 command GSpush :AsyncRun -post=copen git svn dcommit
 command GSpull :AsyncRun -post=copen git svn rebase
-" nnoremap <leader>gl :silent! Glog -1<CR>:copen 33<CR><C-W>p:silent! Glog<CR><C-W>
-" nnoremap <leader>gl :Glog --graph --pretty=format:%h\ %ai\ %an\ %s<CR>
-command Gput :Git stash
-command Gpop :Git stash pop
+command GStash :Git stash
+command GStashPop :Git stash pop
+" 修正本地查看远程分支列表
+command GitRemotePruneOrigin :Git remote prune origin<CR>
+
 nnoremap <leader>gv :Gitv!<CR>
 nnoremap <leader>gV :Gitv --all<CR>
-nnoremap <leader>gl :AsyncRun -post=copen git --no-pager log --oneline --decorate --graph -40 --pretty=format:\%h\ \%ai\ \%an\ \%s<CR><CR>
+nnoremap <leader>gl :AsyncRun -post=copen git --no-pager log --oneline --decorate --graph -40 --pretty="format:\%h \%ai \%an \%s" %<CR>
+nnoremap <leader>gL :AsyncRun -post=copen git --no-pager log --oneline --decorate --graph -40 --pretty="format:\%h \%ai \%an \%s"<CR>
 " nnoremap <leader>gl :silent! Glog<CR>:bot copen<CR>
-nnoremap <leader>ga :Git add %:p<CR><CR>
+" nnoremap <leader>ga :Git add %:p<CR><CR>
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gc :Gcommit -v -q<CR>
 nnoremap <leader>gC :Gcommit -v -q --amend<CR>
@@ -734,15 +736,10 @@ nnoremap <leader>gD :Git diff --stat origin<CR>
 nnoremap <leader>ge :Gedit<CR>
 nnoremap <leader>gr :Gread<CR>
 nnoremap <leader>gw :Gwrite<CR><CR>
-" nnoremap <leader>gp :Ggrep<Space>
-nnoremap <leader>gm :Gmove<Space>
-nnoremap <leader>gb :Git branch<Space>
 nnoremap <leader>go :Git checkout<Space>
 nnoremap <leader>gps :AsyncRun -post=copen git push<CR>
 nnoremap <leader>gpt :AsyncRun -post=copen git push --tags<CR>
 nnoremap <leader>gpl :AsyncRun -post=copen git pull<CR>
-" 修正本地查看远程分支列表
-nnoremap <leader>grpo :Git remote prune origin<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-signify   {{{1
@@ -805,6 +802,12 @@ autocmd BufRead * silent call Gitgutter_Disabled_in_Largefile()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-tmux-navigator  {{{1
 " Plug "christoomey/vim-tmux-navigator"
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" AsyncRun    {{{1
+" Plug 'skywind3000/asyncrun.vim'
+let g:asyncrun_open = 32
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
