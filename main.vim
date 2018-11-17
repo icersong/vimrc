@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2018-11-15
+" Modified: 2018-11-17
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -273,6 +273,7 @@ if &term == 'xterm' || &term == 'xterm-256color'
 else
   set listchars=tab:￫￫,trail:·,extends:>,precedes:<
 endif
+set fillchars=vert:ǀ
 let g:xml_syntax_folding = 1
 
 set nostartofline               " 普通模式下光标行间移动时不到行首的第一个非空白，而是尽量在同一列
