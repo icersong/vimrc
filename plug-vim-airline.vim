@@ -28,12 +28,18 @@ let g:airline#extensions#tmuxline#enabled = 1
 let g:airline#extensions#syntastic#enabled = 0
 let g:airline#extensions#whitespace#enabled = 1
 let g:airline#extensions#virtualenv#enabled = 1
-let g:airline#extensions#tabline#buffer_idx_format = {
-      \ '0': '⁰', '1': 'ⁱ', '2': 'ᶽ', '3': 'ᶟ', '4': 'ᶣ',
-      \ '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹'}
+" let g:airline#extensions#tabline#buffer_idx_format = {
+"       \ '0': '⁰', '1': 'ⁱ', '2': 'ᶽ', '3': 'ᶟ', '4': 'ᶣ',
+"       \ '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹'}
 "   let g:airline#extensions#tabline#buffer_idx_format = {
 "         \ '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴',
 "         \ '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹'}
+let g:airline#extensions#tabline#buffer_idx_format = {
+      \ '0': '⓿', '1': '⓵', '2': '⓶', '3': '⓷', '4': '⓸',
+      \ '5': '⓹', '6': '⓺', '7': '⓻', '8': '⓼', '9': '⓽',
+      \ '10': '⓾', '11': '⓫', '12': '⓬', '13': '⓭',
+      \ '14': '⓮', '15': '⓯', '16': '⓰', '17': '⓱',
+      \ '18': '⓲', '19': '⓳', '20': '⓴' }
 nmap <leader>1 <Plug>AirlineSelectTab1
 nmap <leader>2 <Plug>AirlineSelectTab2
 nmap <leader>3 <Plug>AirlineSelectTab3
