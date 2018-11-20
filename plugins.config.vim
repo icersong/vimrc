@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2018-11-16
+" Modified: 2018-11-20
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -713,9 +713,9 @@ endif
 " fugitive   {{{1
 " git wapper
 " Plug 'tpope/vim-fugitive'
-autocmd QuickFixCmdPost *grep* cwindow
-command GSpush :AsyncRun -post=copen git svn dcommit
-command GSpull :AsyncRun -post=copen git svn rebase
+" autocmd QuickFixCmdPost *grep* cwindow
+command GSpush :AsyncRun -raw=1 -post=copen git svn dcommit
+command GSpull :AsyncRun -raw=1 -post=copen git svn rebase
 command GStash :Git stash
 command GStashPop :Git stash pop
 " 修正本地查看远程分支列表
@@ -723,8 +723,8 @@ command GitRemotePruneOrigin :Git remote prune origin<CR>
 
 nnoremap <leader>gv :Gitv!<CR>
 nnoremap <leader>gV :Gitv --all<CR>
-nnoremap <leader>gl :AsyncRun -post=copen git --no-pager log --oneline --decorate --graph -40 --pretty="format:\%h \%ai \%an \%s" %<CR>
-nnoremap <leader>gL :AsyncRun -post=copen git --no-pager log --oneline --decorate --graph -40 --pretty="format:\%h \%ai \%an \%s"<CR>
+nnoremap <leader>gl :AsyncRun -raw=1 -post=copen git --no-pager log --oneline --decorate --graph -40 --pretty="format:\%h \%ai \%an \%s" %<CR>
+nnoremap <leader>gL :AsyncRun -raw=1 -post=copen git --no-pager log --oneline --decorate --graph -40 --pretty="format:\%h \%ai \%an \%s"<CR>
 " nnoremap <leader>gl :silent! Glog<CR>:bot copen<CR>
 " nnoremap <leader>ga :Git add %:p<CR><CR>
 nnoremap <leader>gs :Gstatus<CR>
@@ -737,9 +737,9 @@ nnoremap <leader>ge :Gedit<CR>
 nnoremap <leader>gr :Gread<CR>
 nnoremap <leader>gw :Gwrite<CR><CR>
 nnoremap <leader>go :Git checkout<Space>
-nnoremap <leader>gps :AsyncRun -post=copen git push<CR>
-nnoremap <leader>gpt :AsyncRun -post=copen git push --tags<CR>
-nnoremap <leader>gpl :AsyncRun -post=copen git pull<CR>
+nnoremap <leader>gps :AsyncRun -raw=1 -post=copen git push<CR>
+nnoremap <leader>gpt :AsyncRun -raw=1 -post=copen git push --tags<CR>
+nnoremap <leader>gpl :AsyncRun -raw=1 -post=copen git pull<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-signify   {{{1
@@ -807,8 +807,8 @@ autocmd BufRead * silent call Gitgutter_Disabled_in_Largefile()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " AsyncRun    {{{1
 " Plug 'skywind3000/asyncrun.vim'
-" let g:asyncrun_open = 8
-let g:asyncrun_mode = 0
+let g:asyncrun_open = 18
+
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -828,11 +828,6 @@ map <Leader>rr :call VimuxRunCommand("sudo apachectl restart;")<CR>:call VimuxSe
 let g:VimuxHeight = "16"
 let g:VimuxOrientation = "v"
 let g:VimuxPromptString = "(tmux)$ "
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" asyncrun shell  {{{1
-" Plug "skywind3000/asyncrun.vim"
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
