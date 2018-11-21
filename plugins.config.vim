@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2018-11-20
+" Modified: 2018-11-21
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -219,6 +219,7 @@ vnoremap <leader>ff ""y:AgFile! "<C-R>=escape(escape(@", '\'), '"/\*\ \|\(\))')<
 " like ag.vim but show context with matches line
 " CtrlSF [options] <patten> [path]
 
+let g:ctrlsf_auto_focus = {"at": "done", "duration_less_than": 1000}
 let g:ctrlsf_auto_close = 1
 let g:ctrlsf_default_root = 'project+ff'
 let g:ctrlsf_populate_qflist = 1
@@ -741,6 +742,7 @@ nnoremap <leader>gps :AsyncRun -raw=1 -post=copen git push<CR>
 nnoremap <leader>gpt :AsyncRun -raw=1 -post=copen git push --tags<CR>
 nnoremap <leader>gpl :AsyncRun -raw=1 -post=copen git pull<CR>
 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-signify   {{{1
 " Plug 'mhinz/vim-signify'
@@ -809,6 +811,10 @@ autocmd BufRead * silent call Gitgutter_Disabled_in_Largefile()
 " Plug 'skywind3000/asyncrun.vim'
 " let g:asyncrun_open = 18
 
+let g:asyncrun_timer = 1
+let g:asyncrun_status = ''
+let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status}'])
+autocmd User AsyncRunStop let g:asyncrun_status = ''
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
