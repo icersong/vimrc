@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2018-11-09
+" Modified: 2018-11-22
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-plug {{{1
@@ -268,16 +268,16 @@ Plug 'mattn/emmet-vim', {
 " SQL Utilites
 Plug 'vim-scripts/dbext.vim'
 Plug 'vim-scripts/SQLUtilities'
-Plug 'vim-scripts/SQLComplete.vim'
+Plug 'vim-scripts/SQLComplete.vim', {'for': ['sql']}
 
 
 """""""""""""""""""""""""""""""" 版本管理 """"""""""""""""""""""""""""""""
 " VCS command
-Plug 'vim-scripts/vcscommand.vim', { 'on': [
-      \ 'VCSAdd', 'VCSAnnotate', 'VCSBlame', 'VCSCommit', 'VCSDelete', 'VCSDiff',
-      \ 'VCSGotoOriginal', 'VCSLog', 'VCSRemove', 'VCSRevert', 'VCSReview',
-      \ 'VCSStatus', 'VCSUpdate', 'VCSVimDiff',
-      \]}
+" Plug 'vim-scripts/vcscommand.vim', { 'on': [
+"       \ 'VCSAdd', 'VCSAnnotate', 'VCSBlame', 'VCSCommit', 'VCSDelete', 'VCSDiff',
+"       \ 'VCSGotoOriginal', 'VCSLog', 'VCSRemove', 'VCSRevert', 'VCSReview',
+"       \ 'VCSStatus', 'VCSUpdate', 'VCSVimDiff',
+"       \]}
 " Git wrapper
 Plug 'tpope/vim-fugitive'
 " VCS state signs display [GIT, SVN, HG, ...] (sn, sp)
@@ -319,7 +319,7 @@ if has('nvim')
   tnoremap <Esc> <C-\><C-n>
 endif
 " Run command to tmux, <leader>vp, <leader>vq
-Plug 'benmills/vimux'
+Plug 'benmills/vimux', {'on': ['VimuxPromptCommand', 'VimuxRunLastCommand']}
 " Navigate seamlessly between vim and tmux splits using a consistent set of hotkeys
 Plug 'christoomey/vim-tmux-navigator'
 " 异步运行命令
