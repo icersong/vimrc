@@ -623,9 +623,9 @@ nmap g/ <Plug>(incsearch-stay)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Commentary {{{1
-" Plug 'scrooloose/nerdcommenter'
-vmap <BS> <plug>Commentary:nohls<CR>gv
-nmap <BS> <plug>Commentary<CR>
+" Plug 'tpope/vim-commentary'
+vmap <silent> <BS> <plug>Commentary:nohls<CR>gv
+nmap <silent> <BS> :Commentary<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
