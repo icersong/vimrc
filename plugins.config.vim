@@ -625,7 +625,7 @@ nmap g/ <Plug>(incsearch-stay)
 " Commentary {{{1
 " Plug 'scrooloose/nerdcommenter'
 vmap <BS> <plug>Commentary:nohls<CR>gv
-nmap <BS> <plug>Commentary
+nmap <BS> <plug>Commentary<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
