@@ -815,10 +815,7 @@ autocmd BufRead * silent call Gitgutter_Disabled_in_Largefile()
 " Plug 'skywind3000/asyncrun.vim'
 " let g:asyncrun_open = 18
 
-let g:asyncrun_timer = 1
-let g:asyncrun_status = ''
 let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status}'])
-" autocmd User AsyncRunStop let g:asyncrun_status = ''
 
 function! AsyncRunning(id)
   if !empty(matchstr(g:asyncrun_status, '\d\+'))
@@ -853,15 +850,12 @@ autocmd User AsyncRunStart let s:asyncrun_running_timer =
 " vimux  {{{1
 " Plug 'benmills/vimux'
 
-map <Leader>vp :VimuxPromptCommand<CR>
-map <Leader>vl :VimuxRunLastCommand<CR>
-map <Leader>vi :VimuxInspectRunner<CR>
-map <Leader>vq :VimuxCloseRunner<CR>
-map <Leader>vx :VimuxInterruptRunner<CR>
-map <Leader>vz :call VimuxZoomRunner()<CR>
-" Restart Apache
-map <Leader>rr :call VimuxRunCommand("sudo apachectl restart;")<CR>:call VimuxSendKeys('Space')<CR>:call VimuxSendKeys('Enter')<CR>
-" map <Leader>rb :call VimuxRunCommand("clear; ls " . bufname("%"))<CR>
+map <Leader>vxp normal! VimuxPromptCommand<CR>
+map <Leader>vxl :VimuxRunLastCommand<CR>
+map <Leader>vxi :VimuxInspectRunner<CR>
+map <Leader>vxq :VimuxCloseRunner<CR>
+map <Leader>vxk :VimuxInterruptRunner<CR>
+map <Leader>vxz :call VimuxZoomRunner()<CR>
 
 let g:VimuxHeight = "16"
 let g:VimuxOrientation = "v"

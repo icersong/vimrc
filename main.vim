@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2018-11-17
+" Modified: 2018-11-23
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -92,6 +92,12 @@ endfor
 " load functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 execute 'source ' . simplify(expand($CONFROOT.'/functions.vim'))
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" load extends
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+execute 'source ' . simplify(expand($CONFROOT.'/ext-vsearch.vim'))
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -370,6 +376,16 @@ autocmd FileType xml,html,xhtml setlocal tabstop=2 shiftwidth=2 softtabstop=2
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" cscope & ctags
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" dir /b /s /w *.py | grep -v z.py > cscope.files
+" c:\Python27\Scripts\pycscope.exe -i cscope.files
+" $ctags -R . 在当前目录下递归生成tags文件
+" 告诉vim在当前目录找不到tags文件时请到上层目录查找
+set tags=tags;/
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Key Mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Wrapped lines goes down/up to next row, rather than next line in file.
@@ -438,6 +454,11 @@ noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 abbreviate CDATE <esc>"=strftime("%F")<CR>gP
 abbreviate CDATETIME <esc>"=strftime("%F %T")<CR>gP
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Commands
+command! -range -nargs=1 SaveSelectedAs call WriteSelected(<f-args>)
+
 " command Removing duplicate liens
 " http://vim.wikia.com/wiki/Uniq_-_Removing_duplicate_lines
 " command RMDL %s/^\(.*\)\(\n\1\)\+$/\1/
@@ -458,16 +479,6 @@ command ProfileStartLog profile start ~/profile.log
       \ | profile file *
 command ProfileStopLog profile pause
       \ | noautocmd qall!
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" cscope & ctags
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" dir /b /s /w *.py | grep -v z.py > cscope.files
-" c:\Python27\Scripts\pycscope.exe -i cscope.files
-" $ctags -R . 在当前目录下递归生成tags文件
-" 告诉vim在当前目录找不到tags文件时请到上层目录查找
-set tags=tags;/
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Diff command
