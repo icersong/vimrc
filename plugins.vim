@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2018-11-22
+" Modified: 2018-11-25
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-plug {{{1
@@ -265,10 +265,11 @@ Plug 'mattn/emmet-vim', {
 " Plug 'plasticboy/vim-markdown'
 " Plug 'suan/vim-instant-markdown'
 
+" format file or selections
+Plug 'sbdchd/neoformat'
+
 " SQL Utilites
 Plug 'vim-scripts/dbext.vim'
-Plug 'vim-scripts/SQLUtilities'
-Plug 'vim-scripts/SQLComplete.vim', {'for': ['sql']}
 
 
 """""""""""""""""""""""""""""""" 版本管理 """"""""""""""""""""""""""""""""

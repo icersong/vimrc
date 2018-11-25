@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2018-11-23
+" Modified: 2018-11-25
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -522,26 +522,24 @@ augroup END
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" SQL   {{{ 1
-" Align {{{ 1
-" Plug 'vim-scripts/Align'
+" dbext         {{{ 1
+" SQLComplete   {{{ 1
 " Plug 'vim-scripts/dbext.vim'
-" Plug 'vim-scripts/SQLUtilities'
 " Plug 'vim-scripts/SQLComplete.vim'
-let g:sqlutil_align_where = 1
-let g:sqlutil_align_comma = 1
-let g:sqlutil_align_first_word = 1
-let g:sqlutil_align_keyword_right = 0
-let g:sqlutil_keyword_case = '\U'
-let g:sqlutil_wrap_expressions = 1
-let g:sqlutil_default_menu_mode = 0
-let g:dbext_default_history_size = 50
-let g:dbext_default_history_max_entry = 4096
+"
+let g:dbext_default_history_size = 1024
+let g:dbext_default_history_max_entry = 1024 * 1024
 let g:dbext_default_history_file = $VIMCACHE . '/dbext_sql_history.txt'
-let g:dbext_default_profile_MySQL = 'type=MYSQL:user=root:passwd=123456:dbname=wf2_colorprint3'
 let g:dbext_default_profile = 'MySQL'
+let g:dbext_default_type = 'MYSQL'
+let g:dbext_default_user = 'root'
+let g:dbext_default_passwd = '123456'
+let g:dbext_default_host = 'localhost'
+let g:dbext_default_port = '3306'
+let g:dbext_default_buffer_lines = '100'
+let g:dbext_default_menu_mode = 0
 
-
+export_sys_user
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Tabular  {{{1
 " Plug 'godlygeek/tabular'
