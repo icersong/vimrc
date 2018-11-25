@@ -535,11 +535,10 @@ let g:dbext_default_type = 'MYSQL'
 let g:dbext_default_user = 'root'
 let g:dbext_default_passwd = '123456'
 let g:dbext_default_host = 'localhost'
-let g:dbext_default_port = '3306'
 let g:dbext_default_buffer_lines = '100'
 let g:dbext_default_menu_mode = 0
 
-export_sys_user
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Tabular  {{{1
 " Plug 'godlygeek/tabular'
