@@ -16,3 +16,9 @@ let g:neoformat_enabled_sql = ['sqlformat']
 let g:neoformat_enabled_python = ['autopep8', 'yapf', 'docformatter']
 let g:neoformat_enabled_javascript = ['esformatter', 'prettier-eslint', 'eslint_d']
 let g:neoformat_enabled_xml = ['tidy', 'prettydiff']
+
+let g:neoformat_sql_sqlformat = {
+        \ 'exe': 'sqlformat',
+        \ 'args': ['--reindent' , '--keywords upper', '--comma_first true'],
+        \ 'stdin': 1,
+        \ }
