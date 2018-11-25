@@ -17,7 +17,7 @@ let g:neoformat_enabled_python = ['autopep8', 'yapf', 'docformatter']
 let g:neoformat_enabled_javascript = ['esformatter', 'prettier-eslint', 'eslint_d']
 let g:neoformat_enabled_xml = ['tidy', 'prettydiff']
 
-command FmtSQL :silent!NeoFormat sql
-command FmtPY :silent!NeoFormat python
-command FmtJS :silent!NeoFormat javascript
-command FmtXML :silent!NeoFormat xml
+command! FmtSQL Neoformat! sql
+command! FmtPY Neoformat! python
+command!FmtJS Neoformat! javascript
+command!FmtXML Neoformat! xml
