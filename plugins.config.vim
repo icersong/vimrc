@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2018-11-25
+" Modified: 2019-01-17
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -872,7 +872,6 @@ let g:VimuxPromptString = "(tmux)$ "
 " :MarkdownPreview
 " :MarkdownPreviewStop
 if $MACOS
-  " let g:mkdp_path_to_chrome = "open -a Google\\ Chrome"
   let g:mkdp_path_to_chrome = "/Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome"
 else
   let g:mkdp_path_to_chrome = "google-chrome"
