@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2018-12-22
+" Modified: 2018-12-25
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -151,12 +151,13 @@ set background=dark             " Assume a dark background
 scriptencoding utf-8
 
 if has('clipboard')
-    " set clipboard+=unnamed      " 默认寄存器和系统剪贴板共享
-    if has('unnamedplus')       " When possible use + register for copy-paste
-        set clipboard+=unnamed,unnamedplus
-    else                        " On mac and Windows, use * register for copy-paste
-        set clipboard+=unnamed
-    endif
+    " 默认寄存器unnamedplus,unnamed和系统剪贴板共享
+    set clipboard=unnamedplus,unnamed
+    " if has('unnamedplus')       " When possible use + register for copy-paste
+    "     set clipboard+=unnamed,unnamedplus
+    " else                        " On mac and Windows, use * register for copy-paste
+    "     set clipboard+=unnamed
+    " endif
 endif
 
 if has('mouse')
