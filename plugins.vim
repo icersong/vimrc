@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2018-11-25
+" Modified: 2019-01-17
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-plug {{{1
@@ -291,7 +291,8 @@ Plug 'gregsexton/gitv', {'on': ['Gitv']}
 
 """""""""""""""""""""""""""""""" 辅助工具 """"""""""""""""""""""""""""""""
 " Preview markdown in Google Chrome
-Plug 'iamcco/markdown-preview.vim', { 'on': 'MarkdonwPreview' }
+" Plug 'iamcco/markdown-preview.vim', { 'on': 'MarkdownPreview' }
+Plug 'iamcco/markdown-preview.vim'
 " 显示Python内建方法的文档，eg: Pydoc os.path
 Plug 'fs111/pydoc.vim', {'on': ['Pydoc', 'PydocSearch']}
 
