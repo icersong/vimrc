@@ -121,26 +121,11 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Format xml file
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function FormatXml()
+function FormatXML()
     set filetype=xml
     :%s/></>\r</g
     :normal gg=G<cr>
 endfunction
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" SQLPP 格式化选中的SQL内容，并更新到当前光标处
-" depends shell.vim, GetVisualRange
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"function! SQLPP()
-"    call writefile([GetVisualRange()], $TEMP."\\~.sql", "b")
-"    "exec 'r!D:\\Program\\SQL.P.P\\sqlpp_cmd.exe -mysql -stdout \
-"        -config=D:\\Program\\SQL.P.P\\default.ini -F "%"'
-"    exec 'r!D:\\Program\\SQL.P.P\\sqlpp_cmd.exe -mysql -stdout \
-"        -config=D:\\Program\\SQL.P.P\\default.ini -F "'.$TEMP.'\\~.sql"'
-"endfunction
-"
-"command! -nargs=0 SQL call SQLPP()
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -181,6 +166,24 @@ function! GetVisualRange()
 
     " Return the result
     return VisualRange
+endfunction
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" FormatSQL 格式化选中的SQL内容，并更新到当前光标处
+" depends shell.vim, GetVisualRange
+" command! -nargs=? -bar -range=% -bang FormatSQL call FormatSQL()
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! FormatSQL() range
+  let tempfile = tempname()
+  echomsg tempfile
+  call writefile([GetVisualRange()], tempfile, "b")
+  if executable('sqlformat')
+    silent execute '!sqlformat -r ' . tempfile . ' -o ' . tempfile
+    silent execute 'r!cat ' . tempfile
+  else
+    echomsg "Can not found sql formaters (sqlformat, ...)"
+  endif
 endfunction
 
 

@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2019-01-17
+" Modified: 2019-01-19
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -466,13 +466,16 @@ command! -range -nargs=1 SaveSelectedAs call WriteSelected(<f-args>)
 command RDL g/\(^.*$\)\n\1$/d
 
 " Trailing whitespace
-command TrailingWhitespace exec '%s/\s\+$//ge'
+command TrailingWhitespace execute '%s/\s\+$//ge'
 
 " Json format
-command JsonFormat :execute '%!python -m json.tool'
+command JsonFormat execute '%!python -m json.tool'
 
 " Xml format
-command XmlFormat :execute call FormatXml()
+command XmlFormat silent call FormatXml()
+
+" SQL format
+command! -nargs=? -bar -range=% -bang FormatSQL silent call FormatSQL()
 
 " command profile log
 command ProfileStartLog profile start ~/profile.log
