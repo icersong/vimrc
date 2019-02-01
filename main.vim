@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2019-01-23
+" Modified: 2019-02-01
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -478,7 +478,7 @@ command JsonFormat execute '%!python -m json.tool'
 command XmlFormat silent call FormatXml()
 
 " SQL format
-command! -nargs=? -bar -range=% -bang FormatSQL silent call FormatSQL()
+command! -nargs=? -bar -range=% -bang SQLFormat silent call FormatSQL()
 
 " command profile log
 command ProfileStartLog profile start ~/profile.log
