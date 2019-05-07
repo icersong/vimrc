@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2019-03-27
+" Modified: 2019-05-07
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -218,6 +218,7 @@ vnoremap <leader>ff ""y:AgFile! "<C-R>=escape(escape(@", '\'), '"/\*\ \|\(\))')<
 " Plug 'dyng/ctrlsf.vim'
 " like ag.vim but show context with matches line
 " CtrlSF [options] <patten> [path]
+" key 'M' for edit mode
 
 let g:ctrlsf_auto_focus = {"at": "done", "duration_less_than": 1000}
 let g:ctrlsf_auto_close = 1
@@ -656,6 +657,10 @@ let g:expand_region_text_objects = {
 " :NR      - Open the selected region in a new narrowed window
 " :NW      - Open the current visual window in a new narrowed window
 " Plug 'chrisbra/NrrwRgn'
+let g:nrrw_rgn_wdth = 50
+" let g:nrrw_rgn_resize_window = 'absolute'
+" let g:nrrw_rgn_rel_min = 30
+" let g:nrrw_rgn_rel_max = 80
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
