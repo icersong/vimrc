@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2016-12-03
-" Modified: 2017-12-27
+" Modified: 2019-05-15
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -18,6 +18,10 @@ let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
 "   let g:loaded_python3_provider = 1
 " endif
 
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" python3 support
+let g:python3_host_prog = '/usr/local/bin/python3.7'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " load main.vim

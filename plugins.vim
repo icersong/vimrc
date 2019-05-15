@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2019-01-17
+" Modified: 2019-05-15
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-plug {{{1
@@ -59,10 +59,6 @@ Plug 'vim-scripts/LargeFile'
 " if has('gui_running')
 "   Plug 'vim-scripts/ZoomWin'
 " endif
-
-" Plug 'eiginn/netrw'   " vim8已经内置
-" vinegar.vim enhances netrw
-" Plug 'tpope/vim-vinegar'
 
 " 屏幕保护matrix
 " Plug 'uguu-org/vim-matrix-screensaver'
@@ -185,7 +181,7 @@ Plug 'Konfekt/FastFold'
 " Python语法折叠, 可增强折叠import&docstring
 Plug 'tmhedberg/SimpylFold', {'for': ['python']}
 " Python缩进
-Plug 'Vimjas/vim-python-pep8-indent', { 'for': ['python'] }
+" Plug 'Vimjas/vim-python-pep8-indent', { 'for': ['python'] }
 " Plug 'vim-scripts/indentpython.vim', { 'for': ['python'] }
 
 
@@ -234,25 +230,19 @@ Plug 'Shougo/echodoc.vim'
 " 语法分析工具, 异步运行(Vim8/NeoVim)，性能完爆syntastic
 Plug 'w0rp/ale'
 " 语法补全工具
-if has('nvim')
-  if has('python3')
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
+if has('python3')
+  if has('nvim')
+    Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
   else
-    Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM'),
-          \ 'for': ['c', 'cpp', 'css', 'html'], 'frozen': 'true' }
-    Plug 'davidhalter/jedi-vim', { 'for': ['python'] }
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
+    let g:deoplete#enable_at_startup = 1
   endif
-else
-  Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM'),
-        \ 'for': ['c', 'cpp', 'css', 'html', 'python'], 'frozen': 'true' }
-  Plug 'davidhalter/jedi-vim', { 'for': [] }
 endif
-" Plug 'Shougo/neocomplete.vim'
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
 Plug 'jmcantrell/vim-virtualenv', { 'on': ['VirtualEnvActivate', 'VirtualEnvList'] }
-" Plug 'rkulla/pydiction', { 'for': ['python'] }
-" Plug 'python-rope/ropevim', { 'for': ['python'] }
-" Autopep8 fixer
 " Plug 'hemerey/vim-project'
 " provides support for expanding abbreviations similar to emmet
 Plug 'mattn/emmet-vim', {

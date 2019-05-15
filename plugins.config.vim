@@ -1,14 +1,13 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2019-05-07
+" Modified: 2019-05-15
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugins configure
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:enable_youcompleteme = 0
-let g:enable_neocomplete = 0
 let g:enable_pydiction = 0
 let g:enable_jedi = 0
 let g:enable_ropevim = 0
@@ -16,7 +15,6 @@ let g:enable_ropevim = 0
 if $MACOS
   let g:enable_youcompleteme = 1
 else
-  let g:enable_neocomplete = 1
   let g:enable_pydiction = 1
   let g:enable_jedi = 1
 endif
@@ -397,15 +395,6 @@ let g:echodoc#enable_at_startup = 1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" neocomplete   {{{1
-" Plug 'Shougo/neocomplete.vim'
-" if (isdirectory(simplify(expand($VIMFILES.'/neocomplete'))))
-"   inoremap <expr><C-N>  pumvisible() ?  "\<C-N>" : neocomplete#start_manual_complete()
-"   inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" endif
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " python-dict   {{{1
 " usage: os.p<tab>
 " Plug 'rkulla/pydiction'
@@ -418,26 +407,24 @@ let g:pydiction_menu_height = 9
 " jedi-vim is a is a VIM binding to the autocompletion library Jedi.
 " 此插件会导致键入时迟缓，严重时会卡住
 " Plug 'davidhalter/jedi-vim'
-if has('nvim')
-    " let g:jedi#force_py_version = 3
+if !has('nvim')
+  let g:jedi#completions_enabled      = 0
+  let g:jedi#auto_initialization      = 0
+  let g:jedi#auto_vim_configuration   = 0
+  let g:jedi#use_tabs_not_buffers     = 0
+  let g:jedi#use_splits_not_buffers   = 1
+  let g:jedi#popup_select_first       = 0
+  let g:jedi#popup_on_dot             = 0
+  let g:jedi#auto_close_doc           = 1
+  let g:jedi#show_call_signatures     = 1
+  let g:jedi#completions_command      = ""
+  " if HasCmdValid('PythonJedi') && !HasCmdValid('YcmCompleter')
+  let g:jedi#goto_assignments_command = "<leader>jj"
+  let g:jedi#goto_definitions_command = "<leader>jd"
+  let g:jedi#documentation_command = "<leader>jk"
+  let g:jedi#usages_command = "<leader>ju"
+  let g:jedi#rename_command = "<leader>jr"
 endif
-let g:jedi#completions_enabled      = 0
-let g:jedi#auto_initialization      = 0
-let g:jedi#auto_vim_configuration   = 0
-let g:jedi#use_tabs_not_buffers     = 0
-let g:jedi#use_splits_not_buffers   = 1
-let g:jedi#popup_select_first       = 0
-let g:jedi#popup_on_dot             = 0
-let g:jedi#auto_close_doc           = 1
-let g:jedi#show_call_signatures     = 1
-let g:jedi#completions_command      = ""
-" if HasCmdValid('PythonJedi') && !HasCmdValid('YcmCompleter')
-let g:jedi#goto_assignments_command = "<leader>jj"
-let g:jedi#goto_definitions_command = "<leader>jd"
-let g:jedi#documentation_command = "<leader>jk"
-let g:jedi#usages_command = "<leader>ju"
-let g:jedi#rename_command = "<leader>jr"
-" endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -550,7 +537,9 @@ let g:dbext_default_menu_mode = 0
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " fakeclip  {{{1
 " Plug 'kana/vim-fakeclip'
-set clipboard+=exclude:.*
+if !has('nvim')
+  set clipboard+=exclude:.*
+endif
 let g:fakeclip_provide_clipboard_key_mappings =
     \ (has('macunix') || has('gui_gtk2')) && !has('gui_running')
 let g:fakeclip_terminal_multiplexer_type = 'tmux'
