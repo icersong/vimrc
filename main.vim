@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2019-02-01
+" Modified: 2019-05-16
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -18,12 +18,12 @@ let $LINUX = (has('linux') || has('unix') ) && !$MACOS
 let $WINDOWS = has("win64") || has("win32") || has("win16") || has("win95")
 " paths
 let $CONFROOT = fnamemodify(expand('<sfile>'), ':h')
-let $VIMTOOL = simplify(expand($HOME.'/.tools'))
-let $VIMWIKI = simplify(expand($HOME.'/.wikis'))
-let $WEBROOT = simplify(expand($HOME.'/.sites'))
+let $WEBROOT = simplify(expand($HOME.'/sites'))
 let $VIMCACHE = simplify(expand($HOME.'/.cache'))
-let $UNDODIR = simplify(expand($VIMCACHE.'/undo/'))
-let $BACKUPDIR = simplify(expand($VIMCACHE.'/backup/'))
+let $VIMSWAP = simplify(expand($VIMCACHE.'/swap'))
+let $VIMWIKI = simplify(expand($VIMCACHE.'/wiki'))
+let $VIMUNDO = simplify(expand($VIMCACHE.'/undo/'))
+let $VIMBKUP = simplify(expand($VIMCACHE.'/backup/'))
 if has('nvim')
   let $VIMFILES = simplify(expand($VIMCACHE.'/nvimfiles/plugins'))
 else
@@ -43,6 +43,16 @@ endif
 if !has('nvim') && !has('ruby')
   echo "Warning! Vim is compiled without ruby support."
 endif
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Working Path
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+for path in [$VIMCACHE, $VIMSWAP, $VIMBKUP, $VIMUNDO, $VIMWIKI]
+  if !(isdirectory(path))
+    call mkdir(path, 'p', 0700)
+  endif
+endfor
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -79,13 +89,9 @@ endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Working Path
+" internal plug config
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-for path in [$VIMCACHE, $BACKUPDIR, $UNDODIR, $VIMTOOL, $VIMWIKI]
-  if !(isdirectory(path))
-    call mkdir(path, 'p', 0700)
-  endif
-endfor
+execute 'source ' . simplify(expand($CONFROOT.'/netrw.vim'))
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -139,16 +145,12 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-filetype indent on      " 自动缩进开
+filetype indent on              " 自动缩进开
 filetype plugin on
 " syntax enable
-syntax on               " Syntax highlighting
-
-set background=dark             " Assume a dark background
-" highlight Comment ctermfg=240
-" highlight Normal ctermfg=250 ctermbg=235
-
+syntax on                       " Syntax highlighting
 scriptencoding utf-8
+set background=dark             " Assume a dark background
 
 if has('clipboard')
   " 默认寄存器unnamedplus,unnamed和系统剪贴板共享
@@ -169,9 +171,9 @@ if has('mouse')
   set selectmode=mouse,key
 endif
 
-set directory=$VIMCACHE         " 设置交换文件路径
-set backupdir=$BACKUPDIR        " 设置自动备份路径
-set undodir=$UNDODIR            " 设置undo备份路径
+set undodir=$VIMUNDO            " 设置undo备份路径
+set directory=$VIMSWAP          " 设置交换文件路径
+set backupdir=$VIMBKUP          " 设置自动备份路径
 " Clean undo cache 7 days ago
 au VimLeave * silent exe '!find "'.$VIMCACHE.'/undo" -mtime +7 -exec rm -f {} \;'
 
@@ -251,7 +253,7 @@ set ruler                       " 显示行号和列号
 set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " A ruler on steroids
 set numberwidth=1               " 显示光标位置的，行号列号和百分比，简写 set nuw
 set showcmd                     " 显示输入的字符
-set cmdheight=1                 " 命令行占1行
+set cmdheight=2                 " 命令行占1行
 set backspace=indent,eol,start  " Backspace for dummies
 set linespace=0                 " No extra spaces between rows
 set number                      " Line numbers on
@@ -275,6 +277,7 @@ set updatetime=333              " 设置键盘闲置执行时间，默认4000
 " set foldcolumn=0                " 设置折叠区域的宽度
 " set foldclose=all               " 设置为默认折叠所有
 " set foldnestmax=9
+set signcolumn=yes
 
 set list                        " trail:拖尾空白显示字符; extends/precedes是wrap关闭时,所在行在右左指示字符
 " listchars tab用..显示，尾部空格用-显示，eol不显示 ˫ ￩ ￪ ￫ ￬ ˖ · ˽ ⊹ ∙ ⋅⋆⋇ ༓ » ‣
@@ -299,56 +302,21 @@ set nowrapscan                  " 搜索到文件末尾时，不再回绕到文�
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " multi-encodingi & file format setting
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if !has("multi_byte")
+  echoerr "Warning, this version of (g,n)vim was not compiled with multi_byte"
+endif
 set fileformats=unix,dos,mac        " 文件格式支持
 " set formatoptions+=jmB            " centos vim7.2 not 'j' option
 set ambiwidth=double
 " utf8编码下，将不明宽度字符按双倍宽度显示, double|single
 set formatoptions+=mB               " formatoptions
 set fileencoding=utf-8
-if has("multi_byte")
-  "set bomb
-  " set fileencodings=ucs-bom,utf-8,cp936,big5,gb18030,euc-jp,euc-kr,latin1
-  set fileencodings=ucs-bom,utf-8,cp936,gb18030,gb2312,gbk,big5,euc-jp,euc-kr
-  set encoding=utf-8
-  set termencoding=utf-8
-  set fileencoding=utf-8
-  " " CJK environment detection and corresponding setting
-  " if has('nvim')
-  "   " Neovim only support utf8
-  "   set encoding=utf-8
-  "   set termencoding=utf-8
-  "   set fileencoding=utf-8
-  " elseif v:lang =~ "^zh_CN"
-  "   " Use cp936 to support GBK, euc-cn == gb2312
-  "   set encoding=cp936
-  "   set termencoding=cp936
-  "   set fileencoding=cp936
-  " elseif v:lang =~ "^zh_TW"
-  "   " cp950, big5 or euc-tw
-  "   " Are they equal to each other?
-  "   set encoding=big5
-  "   set termencoding=big5
-  "   set fileencoding=big5
-  " elseif v:lang =~ "^ko"
-  "   " Copied from someone's dotfile, untested
-  "   set encoding=euc-kr
-  "   set termencoding=euc-kr
-  "   set fileencoding=euc-kr
-  " elseif v:lang =~ "^ja_JP"
-  "   " Copied from someone's dotfile, untested
-  "   set encoding=euc-jp
-  "   set termencoding=euc-jp
-  "   set fileencoding=euc-jp
-  " endif
-  " " Detect UTF-8 locale, and replace CJK setting if needed
-  " if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
-  "   set encoding=utf-8
-  "   set termencoding=utf-8
-  "   set fileencoding=utf-8
-  " endif
-else
-  echoerr "Sorry, this version of (g)vim was not compiled with multi_byte"
-endif
+" set nobomb
+" set fileencodings=ucs-bom,utf-8,cp936,big5,gb18030,euc-jp,euc-kr,latin1
+set fileencodings=ucs-bom,utf-8,cp936,gb18030,gb2312,gbk,big5,euc-jp,euc-kr
+set encoding=utf-8
+set termencoding=utf-8
+set fileencoding=utf-8
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -401,7 +369,7 @@ noremap <silent><Left> :bp<CR>
 noremap <silent><Right> :bn<CR>
 
 " 定义空格键暂时取消高亮匹配
-noremap <silent><space> :nohls<CR>za
+noremap <silent>zz :nohls<CR>za
 noremap <silent>z0 :set foldlevel=0<CR>
 noremap <silent>z1 :set foldlevel=1<CR>
 noremap <silent>z2 :set foldlevel=2<CR>
@@ -412,9 +380,6 @@ noremap <silent>z6 :set foldlevel=6<CR>
 noremap <silent>z7 :set foldlevel=7<CR>
 noremap <silent>z8 :set foldlevel=8<CR>
 noremap <silent>z9 :set foldlevel=9<CR>
-
-" 删除尾部空格
-noremap <S-Space> :%s/\s\+$//g<CR>
 
 " 重做，用于撤销后返撤销
 noremap <S-U> :redo<CR>
@@ -472,13 +437,13 @@ command RDL g/\(^.*$\)\n\1$/d
 command TrailingWhitespace execute '%s/\s\+$//ge'
 
 " Json format
-command JsonFormat execute '%!python -m json.tool'
+command FormatJSON execute '%!python -m json.tool'
 
 " Xml format
-command XmlFormat silent call FormatXml()
+command FormatXML silent call FormatXml()
 
 " SQL format
-command! -nargs=? -bar -range=% -bang SQLFormat silent call FormatSQL()
+command! -nargs=? -bar -range=% -bang FormatSQL silent call FormatSQL()
 
 " command profile log
 command ProfileStartLog profile start ~/profile.log

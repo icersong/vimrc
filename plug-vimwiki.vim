@@ -15,7 +15,7 @@ let g:vimwiki_list = [{
   \ 'auto_export': 1,
   \ 'auto_toc': 0,
   \ 'nested_syntaxes': {'python': 'python', 'c++': 'cpp', 'html': 'html',},
-  \ 'custom_wiki2html': simplify(expand($VIMTOOL.'/misaka_md2html/misaka_md2html.py')),
+  \ 'custom_wiki2html': simplify(expand($VIMCACHE.'/misaka_md2html/misaka_md2html.py')),
   \ 'diary_link_count': 5
   \ }, {
   \ 'path': simplify(expand($VIMWIKI.'/projects/soc')),
