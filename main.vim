@@ -253,7 +253,7 @@ set ruler                       " 显示行号和列号
 set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " A ruler on steroids
 set numberwidth=1               " 显示光标位置的，行号列号和百分比，简写 set nuw
 set showcmd                     " 显示输入的字符
-set cmdheight=2                 " 命令行占1行
+set cmdheight=1                 " 命令行占1行
 set backspace=indent,eol,start  " Backspace for dummies
 set linespace=0                 " No extra spaces between rows
 set number                      " Line numbers on
