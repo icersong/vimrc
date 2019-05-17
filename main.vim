@@ -386,14 +386,15 @@ noremap <S-U> :redo<CR>
 
 " 文件操作
 " command! -nargs=0 Q :q!
-noremap <silent>Q :bd<CR>
-noremap <silent><leader>q :bd<CR>
-noremap <silent><leader><S-Q> :bd!<CR>
-noremap <silent>W :w<CR>
-noremap <silent><leader>w :w<CR>
-noremap <silent><leader><S-W> :w!<CR>
+noremap <silent><expr>Q &buftype ==# 'quickfix' ? ":ccl<CR>" : ":bd<CR>"
+noremap <silent><expr><leader>q &buftype ==# 'quickfix' ? ":ccl<CR>" : ":bd<CR>"
+noremap <silent><expr><leader><S-Q> &buftype ==# 'quickfix' ? ":ccl<CR>" : ":bd!<CR>"
+noremap <silent><expr>W &buftype ==# 'quickfix' ? "" : ":w<CR>"
+noremap <silent><expr><leader>w &buftype ==# 'quickfix' ? "" : ":w<CR>"
+noremap <silent><leader><S-W> &buftype ==# 'quickfix' ? "" : ":w!<CR>"
 noremap <silent>X :x<CR>
-noremap <silent><leader><S-X> :x!<CR>
+noremap <silent><leader>x :wq<CR>
+noremap <silent><leader>X :wq!<CR>
 " 文件格式设置成dos :set ff=dos<CR>
 " 文件格式设置成unix :set ff=unix<CR>
 
