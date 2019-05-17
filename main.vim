@@ -387,8 +387,10 @@ noremap <S-U> :redo<CR>
 " 文件操作
 " command! -nargs=0 Q :q!
 noremap <silent>Q :bd<CR>
+noremap <silent><leader>q :bd<CR>
 noremap <silent><leader><S-Q> :bd!<CR>
 noremap <silent>W :w<CR>
+noremap <silent><leader>w :w<CR>
 noremap <silent><leader><S-W> :w!<CR>
 noremap <silent>X :x<CR>
 noremap <silent><leader><S-X> :x!<CR>
