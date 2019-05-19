@@ -210,8 +210,6 @@ Plug 'tpope/vim-commentary', {'on': ['Commentary', '<plug>Commentary']}
 " my plugin
 Plug 'icersong/timestamp.vim'
 
-" text aligning, Dependenceied by SQLUtilities
-Plug 'vim-scripts/Align'
 " Configurable, flexible, intuitive text aligning, :Tabularize /,/l1r1c1 ....
 Plug 'godlygeek/tabular', {'on': ['Tabularize']}
 Plug 'junegunn/vim-easy-align', {'on': ['EasyAlign', '<Plug>EasyAlign']}
