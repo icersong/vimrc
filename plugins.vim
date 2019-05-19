@@ -266,7 +266,8 @@ Plug 'mattn/emmet-vim', {
 Plug 'sbdchd/neoformat'
 
 " SQL Utilites
-Plug 'vim-scripts/dbext.vim'
+" Plug 'vim-scripts/dbext.vim'
+Plug 'tpope/vim-dadbod'
 
 
 """""""""""""""""""""""""""""""" 版本管理 """"""""""""""""""""""""""""""""
