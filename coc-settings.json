@@ -3,5 +3,15 @@
     "diagnostic.errorSign": "✘",
     "diagnostic.warningSign": "⚠",
     "diagnostic.infoSign": "•",
-    "diagnostic.hintSign": "·"
+    "diagnostic.hintSign": "·",
+
+    "coc.preferences.formatOnSaveFiletypes": [
+      "css",
+      "markdown",
+      "Markdown",
+      "javascript",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact"
+    ]
 }
