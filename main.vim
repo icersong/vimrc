@@ -387,10 +387,10 @@ noremap <S-U> :redo<CR>
 " 文件操作
 " command! -nargs=0 Q :q!
 " noremap <silent><expr>Q &buftype ==# 'quickfix' ? ":q<CR>" : ":bd<CR>"
-let $SYSBUFS=['quickfix', 'nofile', 'terminal']
-noremap <silent><expr>Q index($SYSBUFS, &buftype) < 0 ? ":bd<CR>" : ":bd!<CR>"
-noremap <silent><expr><leader>q index($SYSBUFS, &buftype) < 0 ? ":bd<CR>" : ":bd!<CR>"
-noremap <silent><expr><leader><S-Q>  index($SYSBUFS, &buftype) < 0 ? ":bd!<CR>" : ":bd!<CR>"
+let SYSBUFS=["quickfix","nofile","terminal"]
+noremap <silent><expr>Q index(SYSBUFS, &buftype) >= 0 ? ":bd!<CR>" : ":bd<CR>"
+noremap <silent><expr><leader>q index(SYSBUFS, &buftype) >= 0 ? ":bd!<CR>" : ":bd<CR>"
+noremap <silent><expr><leader><S-Q>  index(SYSBUFS, &buftype) >= 0 ? ":bd!<CR>" : ":bd!<CR>"
 noremap <silent><expr>W &buftype ==# 'quickfix' ? "" : ":w<CR>"
 noremap <silent><expr><leader>w &buftype ==# 'quickfix' ? "" : ":w<CR>"
 noremap <silent><leader><S-W> &buftype ==# 'quickfix' ? "" : ":w!<CR>"
