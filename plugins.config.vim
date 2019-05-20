@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2019-05-15
+" Modified: 2019-05-18
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -805,10 +805,6 @@ autocmd BufRead * silent call Gitgutter_Disabled_in_Largefile()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " AsyncRun    {{{1
 " Plug 'skywind3000/asyncrun.vim'
-" let g:asyncrun_open = 18
-
-let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status}'])
-
 function! AsyncRunning(id)
   if !empty(matchstr(g:asyncrun_status, '\d\+'))
     let g:asyncrun_status += 1
@@ -831,6 +827,8 @@ function! AsyncRunning(id)
       endif
     endif
   endif
+  let g:airline_section_error = g:asyncrun_status
+  exec ':AirlineRefresh'
   redrawstatus!
   redraw
 endfunction
