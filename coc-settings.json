@@ -13,5 +13,7 @@
       "javascriptreact",
       "typescript",
       "typescriptreact"
-    ]
+    ],
+
+    "pyls.commandPath": "$HOME/.pyenv/versions/nvim-py2/bin/pyls"
 }
