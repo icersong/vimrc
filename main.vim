@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2019-05-17
+" Modified: 2019-05-20
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -387,9 +387,10 @@ noremap <S-U> :redo<CR>
 " 文件操作
 " command! -nargs=0 Q :q!
 " noremap <silent><expr>Q &buftype ==# 'quickfix' ? ":q<CR>" : ":bd<CR>"
-noremap <silent><expr>Q index(['quickfix', 'nofile'], &buftype) < 0 ? ":bd<CR>" : ":q<CR>"
-noremap <silent><expr><leader>q index(['quickfix', 'nofile'], &buftype) < 0 ? ":bd<CR>" : ":q<CR>"
-noremap <silent><expr><leader><S-Q>  index(['quickfix', 'nofile'], &buftype) < 0 ? ":bd!<CR>" : ":q<CR>"
+let $SYSBUFS=['quickfix', 'nofile', 'terminal']
+noremap <silent><expr>Q index($SYSBUFS, &buftype) < 0 ? ":bd<CR>" : ":bd!<CR>"
+noremap <silent><expr><leader>q index($SYSBUFS, &buftype) < 0 ? ":bd<CR>" : ":bd!<CR>"
+noremap <silent><expr><leader><S-Q>  index($SYSBUFS, &buftype) < 0 ? ":bd!<CR>" : ":bd!<CR>"
 noremap <silent><expr>W &buftype ==# 'quickfix' ? "" : ":w<CR>"
 noremap <silent><expr><leader>w &buftype ==# 'quickfix' ? "" : ":w<CR>"
 noremap <silent><leader><S-W> &buftype ==# 'quickfix' ? "" : ":w!<CR>"
