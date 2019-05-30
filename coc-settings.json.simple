@@ -15,5 +15,8 @@
       "typescriptreact"
     ],
 
-    "pyls.commandPath": "<HOME>/.pyenv/versions/nvim-py2/bin/pyls"
+    "python.linting.pylintEnabled": false,
+    "python.linting.flake8Enabled": true,
+    "python.linting.pylintArgs": ["--disabled=W0120,useless-else-on-loop"],
+    "python.pythonPath": "~/.pyenv/versions/nvim-py2/bin/python"
 }
