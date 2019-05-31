@@ -21,7 +21,7 @@ let g:ale_lint_delay = 99
 let g:ale_completion_max_suggestions = 33
 let g:ale_echo_msg_format = '[%severity%] [%linter%] %code: %%s'
 
-let g:ale_python_flake8_executable = $PYENV_ROOT.'/versions/nvim-py2/bin/flake8'
+let g:ale_python_flake8_executable = system('pyenv root').'/versions/nvim-py2/bin/flake8'
 let g:ale_python_flake8_options = '--max-line-length=120'
 
 " let g:ale_python_pylint_executable = '/Users/apple/.virtualenvs/soc-py2.7/bin/python'
