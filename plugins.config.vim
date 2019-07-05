@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2019-05-18
+" Modified: 2019-07-05
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -39,24 +39,19 @@ let g:startify_session_dir = $VIMCACHE.'/session'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " solarized theme  {{{1
-" Plug 'altercation/vim-colors-solarized'
-let g:solarized_hitrail          = 1
-let g:solarized_menu             = 0
-let g:solarized_contrast   = "normal"
-let g:solarized_visibility = "normal"
-if !has('gui_running')
-  let g:solarized_termcolors = 256
-  let g:solarized_termtrans  = 1
-  let g:solarized_degrade    = 1
-endif
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " solarized8 theme  {{{1
+" Plug 'altercation/vim-colors-solarized'
 " Plug 'lifepillar/vim-solarized8'
-let g:solarized_visibility = "high"
+let g:solarized_hitrail     = 1
+let g:solarized_menu        = 0
+let g:solarized_contrast    = "normal"
+let g:solarized_visibility  = "normal"
 let g:solarized_diffmode = "high"
-let g:solarized_termtrans = 1
+if !has('gui_running')
+  let g:solarized_termcolors  = 256
+  let g:solarized_termtrans   = 1
+  let g:solarized_degrade     = 1
+endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
