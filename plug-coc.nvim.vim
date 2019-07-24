@@ -50,11 +50,11 @@ endfunction
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
+nmap <leader>rn <Plug>(coc-rename)<cr>
 
 " Remap for format selected region
-xmap <leader>fmt  <Plug>(coc-format-selected)
-nmap <leader>fmt  <Plug>(coc-format-selected)
+xmap <leader>fmt  <Plug>(coc-format-selected)<cr>
+nmap <leader>fmt  <Plug>(coc-format-selected)<cr>
 
 augroup mygroup
   autocmd!
