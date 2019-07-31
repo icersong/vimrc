@@ -77,7 +77,7 @@ augroup end
 command! -nargs=0 Format :call CocAction('format')
 
 " Use `:Fold` to fold current buffer
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+command! -nargs=? Fold :call CocAction('fold', <f-args>)
 
 
 " Add diagnostic info for https://github.com/itchyny/lightline.vim
