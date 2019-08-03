@@ -179,8 +179,7 @@ function! FormatSQL() range
   echomsg tempfile
   call writefile([GetVisualRange()], tempfile, "b")
   if executable('sqlformat')
-    silent execute '!sqlformat -r ' . tempfile . ' -o ' . tempfile
-    silent execute 'r!cat ' . tempfile
+    silent execute '%r!sqlformat -r -s --comma_first true ' . tempfile
   else
     echomsg "Can not found sql formaters (sqlformat, ...)"
   endif

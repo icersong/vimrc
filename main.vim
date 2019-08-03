@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2019-05-20
+" Modified: 2019-08-03
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -358,6 +358,36 @@ set tags=tags;/
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Commands
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" save selected to file
+command! -range -nargs=1 SaveSelectedAs call WriteSelected(<f-args>)
+
+" command Removing duplicate liens
+" http://vim.wikia.com/wiki/Uniq_-_Removing_duplicate_lines
+" command RMDL %s/^\(.*\)\(\n\1\)\+$/\1/
+command RDL g/\(^.*$\)\n\1$/d
+
+" Trailing whitespace
+command TrailingWhitespace execute '%s/\s\+$//ge'
+
+" Json format
+command FormatJSON execute '%!python -m json.tool'
+
+" Xml format
+command FormatXML silent call FormatXML()
+
+" SQL format
+command! -nargs=? -bar -range=% -bang FormatSQL silent call FormatSQL()
+
+" command profile log
+command ProfileStartLog profile start ~/profile.log
+      \ | profile func *
+      \ | profile file *
+command ProfileStopLog profile pause
+      \ | noautocmd qall!
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Key Mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Wrapped lines goes down/up to next row, rather than next line in file.
@@ -385,12 +415,11 @@ noremap <silent>z9 :set foldlevel=9<CR>
 noremap <S-U> :redo<CR>
 
 " 文件操作
-" command! -nargs=0 Q :q!
-" noremap <silent><expr>Q &buftype ==# 'quickfix' ? ":q<CR>" : ":bd<CR>"
 let SYSBUFS=["quickfix","terminal","nofile","nowrite"]
+noremap <silent><expr><leader><space> ":TrailingWhitespace<CR>"
 noremap <silent><expr>Q index(SYSBUFS, &buftype) >= 0 ? ":bd!<CR>" : ":bd<CR>"
 noremap <silent><expr><leader>q index(SYSBUFS, &buftype) >= 0 ? ":bd!<CR>" : ":bd<CR>"
-noremap <silent><expr><leader><S-Q>  index(SYSBUFS, &buftype) >= 0 ? ":bd!<CR>" : ":bd!<CR>"
+noremap <silent><expr><leader><S-Q> index(SYSBUFS, &buftype) >= 0 ? ":bd!<CR>" : ":bd!<CR>"
 noremap <silent><expr>W &buftype ==# 'quickfix' ? "" : ":w<CR>"
 noremap <silent><expr><leader>w &buftype ==# 'quickfix' ? "" : ":w<CR>"
 noremap <silent><leader><S-W> &buftype ==# 'quickfix' ? "" : ":w!<CR>"
@@ -430,34 +459,6 @@ noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 abbreviate CDATE <esc>"=strftime("%F")<CR>gP
 abbreviate CDATETIME <esc>"=strftime("%F %T")<CR>gP
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Commands
-command! -range -nargs=1 SaveSelectedAs call WriteSelected(<f-args>)
-
-" command Removing duplicate liens
-" http://vim.wikia.com/wiki/Uniq_-_Removing_duplicate_lines
-" command RMDL %s/^\(.*\)\(\n\1\)\+$/\1/
-command RDL g/\(^.*$\)\n\1$/d
-
-" Trailing whitespace
-command TrailingWhitespace execute '%s/\s\+$//ge'
-
-" Json format
-command FormatJSON execute '%!python -m json.tool'
-
-" Xml format
-command FormatXML silent call FormatXml()
-
-" SQL format
-command! -nargs=? -bar -range=% -bang FormatSQL silent call FormatSQL()
-
-" command profile log
-command ProfileStartLog profile start ~/profile.log
-      \ | profile func *
-      \ | profile file *
-command ProfileStopLog profile pause
-      \ | noautocmd qall!
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Diff command
