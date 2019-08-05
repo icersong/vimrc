@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2019-07-24
+" Modified: 2019-08-06
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-plug {{{1
@@ -203,6 +203,8 @@ Plug 'tpope/vim-surround'
 Plug 'terryma/vim-expand-region'
 " text object
 Plug 'wellle/targets.vim'
+" text swap
+Plug 'tommcdo/vim-exchange'
 " Range select for edit, :NR
 Plug 'chrisbra/NrrwRgn', " { 'on': ['NR', 'NRL', 'NRM', 'NRP', 'NRV', 'NLast', 'NRMulti'] }
 " Provides automatic closing of quotes, parenthesis, brackets,
