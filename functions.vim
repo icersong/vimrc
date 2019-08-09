@@ -155,10 +155,10 @@ function! GetVisualRange()
       let VisualRange .= getline(StartPosition[1])[StartPosition[2]-1:]
       " Then the all of the intermediate lines
       for LineNum in range(StartPosition[1]+1, EndPosition[1]-1)
-        let VisualRange .= "\r" . getline(LineNum)
+        let VisualRange .= "\n" . getline(LineNum)
       endfor
       " Then the start of the last line
-      let VisualRange .= "\r" . getline(EndPosition[1])[:EndPosition[2]-1]
+      let VisualRange .= "\n" . getline(EndPosition[1])[:EndPosition[2]-1]
     endif
     " Replace legitimate backslashes with double backslashes to prevent
     " a literal \t being interpreted as a tab
@@ -173,18 +173,43 @@ endfunction
 " FormatSQL 格式化选中的SQL内容，并更新到当前光标处
 " depends shell.vim, GetVisualRange
 " command! -nargs=? -bar -range=% -bang FormatSQL call FormatSQL()
+" referance: https://github.com/mattn/vim-sqlfmt
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! FormatSQL() range
-  let tempfile = tempname()
-  echomsg tempfile
-  call writefile([GetVisualRange()], tempfile, "b")
-  if executable('sqlformat')
-    silent execute '%r!sqlformat -r -s --comma_first true ' . tempfile
+  call setqflist([])
+  let cmd = get(g:, 'sqlfmt_program', 'sqlformat -r -k upper -s --comma_first true -o %s -')
+  if stridx(cmd, '%s') > -1
+    let tmpfile = tempname()
+    let cmd = substitute(cmd, '%s', tr(tmpfile, '\', '/'), 'g')
+    let lines = system(cmd, iconv(join(getline(1, '$'), "\n"), &encoding, 'utf-8'))
+    if v:shell_error != 0
+      call delete(tmpfile)
+      echoerr substitute(lines, '[\r\n]', ' ', 'g')
+      return
+    endif
+    let lines = join(readfile(tmpfile), "\n")
+    call delete(tmpfile)
   else
-    echomsg "Can not found sql formaters (sqlformat, ...)"
+    let lines = system(cmd, iconv(join(getline(1, '$'), "\n"), &encoding, 'utf-8'))
+    if v:shell_error != 0
+      echoerr substitute(lines, '[\r\n]', ' ', 'g')
+      return
+    endif
   endif
-endfunction
+  let pos = getcurpos()
+  silent! %d _
+  call setline(1, split(lines, "\n"))
+  call setpos('.', pos)
 
+  " let tempfile = tempname()
+  " echomsg tempfile
+  " call writefile([GetVisualRange()], tempfile, "b")
+  " if executable('sqlformat')
+  "   silent execute '%r!sqlformat -r -s --comma_first true ' . tempfile
+  " else
+  "   echomsg "Can not found sql formaters (sqlformat, ...)"
+  " endif
+endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 将所选内容写入指定文件
