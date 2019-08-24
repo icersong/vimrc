@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2019-08-20
+" Modified: 2019-08-24
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -437,8 +437,8 @@ nmap <silent>> V><esc>
 nmap <silent>< V<<esc>
 
 " 上下移动一行文字
-noremap <C-J> :m+<cr>
-noremap <C-K> :m-2<cr>
+" noremap <C-J> :m+<cr>
+" noremap <C-K> :m-2<cr>
 vnoremap <S-K> :m'<-2<cr>gv
 vnoremap <S-J> :m'>+1<cr>gv
 " vnoremap <C-j> :m'>+<cr>`<my`>mzgv`yo`z
