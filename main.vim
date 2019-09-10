@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2019-08-24
+" Modified: 2019-09-11
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -228,8 +228,10 @@ if $LINUX
   set guifont=Courier\ New:h9:cDEFAULT
   set guifontwide=Courier\ New:h9:cDEFAULT
 elseif $MACOS
-  set guifontwide=Menlo:h12
-  set guifont=Menlo:h12
+  " set guifontwide=Menlo:h12
+  " set guifont=Menlo:h12
+  " set guifontwide=Monaco:h12
+  " set guifont=Monaco:h12
 elseif $WINDOWS
   " set guifont=Inconsolata:h10:cDEFAULT
   " set guifontwide=YtYaHei:h8:cDEFAULT
