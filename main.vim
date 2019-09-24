@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2019-09-11
+" Modified: 2019-09-24
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -342,6 +342,7 @@ set splitright          " Puts new vsplit windows to the right of the current
 " set matchpairs+=<:>     " Match, to be used with %
 " set textwidth=512       " textwidth, 一行的最大宽度
 
+au BufRead,BufNewFile *.tpl set filetype=jinja
 autocmd BufRead,BufNewFile *.wsgi setlocal filetype=python foldmethod=indent
 " autocmd BufRead,BufNewFile jquery.*.js setlocal filetype=javascript syntax=jquery
 " autocmd BufRead,BufNewFile *.tpl setlocal filetype=jinja
