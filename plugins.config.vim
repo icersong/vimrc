@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2019-07-31
+" Modified: 2019-09-10
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -503,24 +503,6 @@ augroup END
 " let g:javascript_conceal_prototype  = "¶"
 " let g:javascript_conceal_static     = "•"
 " let g:javascript_conceal_super      = "Ω"
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" dbext         {{{ 1
-" SQLComplete   {{{ 1
-" Plug 'vim-scripts/dbext.vim'
-" Plug 'vim-scripts/SQLComplete.vim'
-"
-let g:dbext_default_history_size = 1024
-let g:dbext_default_history_max_entry = 1024 * 1024
-let g:dbext_default_history_file = $VIMCACHE . '/dbext_sql_history.txt'
-let g:dbext_default_profile = 'MySQL'
-let g:dbext_default_type = 'MYSQL'
-let g:dbext_default_user = 'root'
-let g:dbext_default_passwd = '123456'
-let g:dbext_default_host = 'localhost'
-let g:dbext_default_buffer_lines = '100'
-let g:dbext_default_menu_mode = 0
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

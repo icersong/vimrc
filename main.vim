@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2019-05-20
+" Modified: 2019-09-11
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -228,8 +228,10 @@ if $LINUX
   set guifont=Courier\ New:h9:cDEFAULT
   set guifontwide=Courier\ New:h9:cDEFAULT
 elseif $MACOS
-  set guifontwide=Menlo:h12
-  set guifont=Menlo:h12
+  " set guifontwide=Menlo:h12
+  " set guifont=Menlo:h12
+  " set guifontwide=Monaco:h12
+  " set guifont=Monaco:h12
 elseif $WINDOWS
   " set guifont=Inconsolata:h10:cDEFAULT
   " set guifontwide=YtYaHei:h8:cDEFAULT
@@ -343,8 +345,9 @@ set splitright          " Puts new vsplit windows to the right of the current
 autocmd BufRead,BufNewFile *.wsgi setlocal filetype=python foldmethod=indent
 " autocmd BufRead,BufNewFile jquery.*.js setlocal filetype=javascript syntax=jquery
 " autocmd BufRead,BufNewFile *.tpl setlocal filetype=jinja
-autocmd FileType vim,css setlocal tabstop=2 softtabstop=2 shiftwidth=2
-autocmd FileType xml,html,xhtml setlocal tabstop=2 shiftwidth=2 softtabstop=2
+" autocmd FileType vim,css setlocal tabstop=2 softtabstop=2 shiftwidth=2
+" autocmd FileType xml,html,xhtml setlocal tabstop=2 shiftwidth=2 softtabstop=2
+autocmd FileType yaml setlocal tabstop=4 shiftwidth=4 softtabstop=4
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -356,6 +359,36 @@ autocmd FileType xml,html,xhtml setlocal tabstop=2 shiftwidth=2 softtabstop=2
 " 告诉vim在当前目录找不到tags文件时请到上层目录查找
 set tags=tags;/
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Commands
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" save selected to file
+command! -range -nargs=1 SaveSelectedAs call WriteSelected(<f-args>)
+
+" command Removing duplicate liens
+" http://vim.wikia.com/wiki/Uniq_-_Removing_duplicate_lines
+" command RMDL %s/^\(.*\)\(\n\1\)\+$/\1/
+command RDL g/\(^.*$\)\n\1$/d
+
+" Trailing whitespace
+command TrailingWhitespace execute '%s/\s\+$//ge'
+
+" Json format
+command FormatJSON execute '%!python -m json.tool'
+
+" Xml format
+command FormatXML silent call FormatXML()
+
+" SQL format
+command! -nargs=? -bar -range=% -bang FormatSQL silent call FormatSQL()
+
+" command profile log
+command ProfileStartLog profile start ~/profile.log
+      \ | profile func *
+      \ | profile file *
+command ProfileStopLog profile pause
+      \ | noautocmd qall!
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Key Mappings
@@ -385,12 +418,11 @@ noremap <silent>z9 :set foldlevel=9<CR>
 noremap <S-U> :redo<CR>
 
 " 文件操作
-" command! -nargs=0 Q :q!
-" noremap <silent><expr>Q &buftype ==# 'quickfix' ? ":q<CR>" : ":bd<CR>"
 let SYSBUFS=["quickfix","terminal","nofile","nowrite"]
+noremap <silent><expr><leader><space> ":TrailingWhitespace<CR>"
 noremap <silent><expr>Q index(SYSBUFS, &buftype) >= 0 ? ":bd!<CR>" : ":bd<CR>"
 noremap <silent><expr><leader>q index(SYSBUFS, &buftype) >= 0 ? ":bd!<CR>" : ":bd<CR>"
-noremap <silent><expr><leader><S-Q>  index(SYSBUFS, &buftype) >= 0 ? ":bd!<CR>" : ":bd!<CR>"
+noremap <silent><expr><leader><S-Q> index(SYSBUFS, &buftype) >= 0 ? ":bd!<CR>" : ":bd!<CR>"
 noremap <silent><expr>W &buftype ==# 'quickfix' ? "" : ":w<CR>"
 noremap <silent><expr><leader>w &buftype ==# 'quickfix' ? "" : ":w<CR>"
 noremap <silent><leader><S-W> &buftype ==# 'quickfix' ? "" : ":w!<CR>"
@@ -407,8 +439,8 @@ nmap <silent>> V><esc>
 nmap <silent>< V<<esc>
 
 " 上下移动一行文字
-noremap <C-J> :m+<cr>
-noremap <C-K> :m-2<cr>
+" noremap <C-J> :m+<cr>
+" noremap <C-K> :m-2<cr>
 vnoremap <S-K> :m'<-2<cr>gv
 vnoremap <S-J> :m'>+1<cr>gv
 " vnoremap <C-j> :m'>+<cr>`<my`>mzgv`yo`z
@@ -430,34 +462,6 @@ noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 abbreviate CDATE <esc>"=strftime("%F")<CR>gP
 abbreviate CDATETIME <esc>"=strftime("%F %T")<CR>gP
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Commands
-command! -range -nargs=1 SaveSelectedAs call WriteSelected(<f-args>)
-
-" command Removing duplicate liens
-" http://vim.wikia.com/wiki/Uniq_-_Removing_duplicate_lines
-" command RMDL %s/^\(.*\)\(\n\1\)\+$/\1/
-command RDL g/\(^.*$\)\n\1$/d
-
-" Trailing whitespace
-command TrailingWhitespace execute '%s/\s\+$//ge'
-
-" Json format
-command FormatJSON execute '%!python -m json.tool'
-
-" Xml format
-command FormatXML silent call FormatXml()
-
-" SQL format
-command! -nargs=? -bar -range=% -bang FormatSQL silent call FormatSQL()
-
-" command profile log
-command ProfileStartLog profile start ~/profile.log
-      \ | profile func *
-      \ | profile file *
-command ProfileStopLog profile pause
-      \ | noautocmd qall!
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Diff command
