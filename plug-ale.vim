@@ -29,7 +29,10 @@ let g:ale_python_flake8_options = '--max-line-length=120'
 let g:ale_python_pylint_options = '-d line-too-long -d invalid-name -d too-few-public-methods'
 
 " let g:ale_linters_explicit = 1
-" let g:ale_linters = {}
+let g:ale_linters = {
+    \ 'javascript': [],
+    \ 'python': [],
+    \ }
 
 let g:ale_fixers = {
       \ '*': ['remove_trailing_lines', 'trim_whitespace'],
@@ -70,7 +73,6 @@ let g:ale_fixers = {
       \ 'javascript': [
       \   'remove_trailing_lines',
       \   'trim_whitespace',
-      \   'eslint',
       \ ],
       \}
 
