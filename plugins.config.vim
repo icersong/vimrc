@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2019-09-10
+" Modified: 2019-10-22
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -224,7 +224,7 @@ let g:ctrlsf_context = '-B 0 -A 0'
 let g:ctrlsf_case_sensitive = 'smart'
 let g:ctrlsf_default_view_mode = 'compact'
 let g:ctrlsf_extra_root_markers = ['.root']
-let g:ctrlsf_ignore_dir = ['bin', 'dist', 'build', 'lib', 'libs', 'img', 'fonts', 'cache']
+let g:ctrlsf_ignore_dir = ['bin', 'dist', 'build', 'lib', 'libs', 'img', 'fonts', 'cache', 'htdocs/static']
 
 nmap <leader>fr <Plug>CtrlSFCwordPath
 vmap <leader>fr <Plug>CtrlSFVwordPath
