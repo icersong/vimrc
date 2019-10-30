@@ -265,7 +265,6 @@ endfunction
 
 let g:fcitx_input_status = system('fcitx-remote')
 let g:fcitx_other_status = system('fcitx-remote')
-echomsg 'init fcitx ' . g:fcitx_other_status
 
 function! FcitxVimLost()
     call FcitxSwitch(g:fcitx_other_status)
