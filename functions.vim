@@ -220,14 +220,72 @@ endfunction
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" YouCompleteMe build function
+" Fcitx输入法切话
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! BuildYCM(info)
-  " info is a dictionary with 3 fields
-  " - name:   name of the plugin
-  " - status: 'installed', 'updated', or 'unchanged'
-  " - force:  set on PlugInstall! or PlugUpdate!
-  if a:info.status == 'installed' || a:info.force
-    !./install.py --clang-completer --js-completer
-  endif
+" Usage:
+" if executable('fcitx-remote')
+"     autocmd InsertLeave * call FcitxVimNormal()
+"     autocmd InsertEnter * call FcitxVimInsert()
+"     autocmd FocusGained * call FcitxVimFocus()
+"     autocmd FocusLost * call FcitxVimLost()
+"     autocmd VimEnter * call FcitxVimFocus()
+"     autocmd VimLeave * call FcitxVimLost()
+" endif
+
+let s:FCITX_EN = 1
+let s:FCITX_ZH = 2
+
+" status: 0, switch, 1, select en, 2 select zh
+function! FcitxSwitch(status)
+    let curstatus = system('fcitx-remote')
+    if a:status == 0
+        if curstatus == s:FCITX_ZH
+            call system('fcitx-remote -c')
+            " echomsg 'switch en 0'
+            return s:FCITX_EN
+        else
+            call system('fcitx-remote -o')
+            " echomsg 'switch zh 0'
+            return s:FCITX_ZH
+        endif
+    endif
+    if curstatus != a:status
+        if a:status == s:FCITX_ZH
+            call system('fcitx-remote -o')
+            " echomsg 'switch zh'
+            return s:FCITX_ZH
+        else
+            call system('fcitx-remote -c')
+            " echomsg 'switch en'
+            return s:FCITX_EN
+        endif
+    endif
+    return a:status
+endfunction
+
+let g:fcitx_input_status = system('fcitx-remote')
+let g:fcitx_other_status = system('fcitx-remote')
+echomsg 'init fcitx ' . g:fcitx_other_status
+
+function! FcitxVimLost()
+    call FcitxSwitch(g:fcitx_other_status)
+endfunction
+
+function! FcitxVimFocus()
+    " let g:fcitx_other_status = system('fcitx-remote')
+    let inputmode = mode()
+    if inputmode == 'n' || inputmode == 'v'
+        call FcitxSwitch(s:FCITX_EN)
+    else
+        call FcitxSwitch(g:fcitx_input_status)
+    endif
+endfunction
+
+function! FcitxVimInsert()
+    call FcitxSwitch(g:fcitx_input_status)
+endfunction
+
+function! FcitxVimNormal()
+    let g:fcitx_input_status = system('fcitx-remote')
+    call FcitxSwitch(s:FCITX_EN)
 endfunction

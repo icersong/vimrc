@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2019-09-24
+" Modified: 2019-10-30
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -486,4 +486,16 @@ else
     vnoremap <leader>y !xclip -f -sel clip<CR>u
     noremap <leader>p :r !xclip -o -sel clip<CR>
   endif
+endif
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Fcitx auto switch while normal model
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if executable('fcitx-remote')
+    autocmd InsertLeave * call FcitxVimNormal()
+    autocmd InsertEnter * call FcitxVimInsert()
+    autocmd FocusGained * call FcitxVimFocus()
+    autocmd FocusLost * call FcitxVimLost()
+    autocmd VimEnter * call FcitxVimFocus()
+    autocmd VimLeave * call FcitxVimLost()
 endif
