@@ -224,8 +224,10 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Usage:
 " if executable('fcitx-remote')
-"     autocmd InsertLeave * call FcitxVimNormal()
-"     autocmd InsertEnter * call FcitxVimInsert()
+"     autocmd InsertEnter * call FcitxVimInsertEnter()
+"     autocmd InsertLeave * call FcitxVimInsertLeave()
+"     autocmd CmdlineEnter * call FcitxVimCmdlineEnter()
+"     autocmd CmdlineLeave * call FcitxVimCmdlineLeave()
 "     autocmd FocusGained * call FcitxVimFocus()
 "     autocmd FocusLost * call FcitxVimLost()
 "     autocmd VimEnter * call FcitxVimFocus()
@@ -263,28 +265,47 @@ function! FcitxSwitch(status)
     return a:status
 endfunction
 
-let g:fcitx_input_status = system('fcitx-remote')
+" let g:fcitx_input_status = system('fcitx-remote')
+let g:fcitx_input_status = s:FCITX_ZH
 let g:fcitx_other_status = system('fcitx-remote')
+" echomsg 'other' g:fcitx_other_status
+" echomsg 'input' g:fcitx_input_status
 
 function! FcitxVimLost()
+    " echomsg 'lost' mode()
     call FcitxSwitch(g:fcitx_other_status)
 endfunction
 
 function! FcitxVimFocus()
+    " echomsg 'focus' mode()
     " let g:fcitx_other_status = system('fcitx-remote')
     let inputmode = mode()
-    if inputmode == 'n' || inputmode == 'v'
+    if inputmode == 'n' || inputmode == 'v' || inputmode == 'V'
         call FcitxSwitch(s:FCITX_EN)
     else
         call FcitxSwitch(g:fcitx_input_status)
     endif
 endfunction
 
-function! FcitxVimInsert()
+function! FcitxVimInsertEnter()
+    " echomsg 'InsertEnter' mode() g:fcitx_input_status
     call FcitxSwitch(g:fcitx_input_status)
+    " echomsg 'insert after' mode() system('fcitx-remote')
 endfunction
 
-function! FcitxVimNormal()
-    let g:fcitx_input_status = system('fcitx-remote')
+function FcitxVimInsertLeave()
+    " echomsg 'InsertLeave' mode() system('fcitx-remote')
+    " let g:fcitx_input_status = system('fcitx-remote')
+    call FcitxSwitch(s:FCITX_EN)
+endfunction
+
+function! FcitxVimCmdlineEnter()
+    " echomsg 'cmdline enter ' mode() g:fcitx_input_status
+    call FcitxSwitch(g:fcitx_input_status)
+    " echomsg 'cmdline enter after' mode() system('fcitx-remote')
+endfunction
+
+function! FcitxVimCmdlineLeave()
+    " echomsg 'CmdlineLeave' mode() system('fcitx-remote')
     call FcitxSwitch(s:FCITX_EN)
 endfunction
