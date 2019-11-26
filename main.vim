@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2019-11-06
+" Modified: 2019-11-26
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -491,13 +491,13 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Fcitx auto switch while normal model
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if executable('fcitx-remote')
-    autocmd InsertEnter * call FcitxVimInsertEnter()
-    autocmd InsertLeave * call FcitxVimInsertLeave()
-    autocmd CmdlineEnter * call FcitxVimCmdlineEnter()
-    autocmd CmdlineLeave * call FcitxVimCmdlineLeave()
-    autocmd FocusGained * call FcitxVimFocus()
-    autocmd FocusLost * call FcitxVimLost()
-    autocmd VimEnter * call FcitxVimFocus()
-    autocmd VimLeave * call FcitxVimLost()
-endif
+" if executable('fcitx-remote')
+"     autocmd InsertEnter * call FcitxVimInsertEnter()
+"     autocmd InsertLeave * call FcitxVimInsertLeave()
+"     autocmd CmdlineEnter * call FcitxVimCmdlineEnter()
+"     autocmd CmdlineLeave * call FcitxVimCmdlineLeave()
+"     autocmd FocusGained * call FcitxVimFocus()
+"     autocmd FocusLost * call FcitxVimLost()
+"     autocmd VimEnter * call FcitxVimFocus()
+"     autocmd VimLeave * call FcitxVimLost()
+" endif
