@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2019-09-24
+" Modified: 2019-11-27
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-plug {{{1
@@ -41,15 +41,20 @@ Plug 'junegunn/vim-plug'
 
 
 """""""""""""""""""""""""""""""" Env & Misc """"""""""""""""""""""""""""""""
-if $MACOS && has('g:disable_fcitx_remote') && !g:disable_fcitx_remote
-  " $ brew install fcitx-remote-for-osx --with-input-method=<method>
-  " <method>: osx-pinyin baidu-wubi osx-wubi general squirrel-rime
-  "     squirrel-rime-upstream qingg qq-wubi baidu-pinyin sogou-pinyin
-  if !executable('fcitx-remote')
-    execute '!brew install fcitx-remote-for-osx'
-  endif
-  Plug 'CodeFalling/fcitx-vim-osx'
+if $MACOS
+    if has('g:disable_fcitx_remote') && !g:disable_fcitx_remote
+        " $ brew install fcitx-remote-for-osx --with-input-method=<method>
+        " <method>: osx-pinyin baidu-wubi osx-wubi general squirrel-rime
+        "     squirrel-rime-upstream qingg qq-wubi baidu-pinyin sogou-pinyin
+        if !executable('fcitx-remote')
+          execute '!brew install fcitx-remote-for-osx'
+        endif
+        Plug 'CodeFalling/fcitx-vim-osx'
+    endif
+else
+    Plug 'lilydjwg/fcitx.vim'
 endif
+
 " 性能分析插件
 " Plug 'hyiltiz/vim-plugins-profile'
 
