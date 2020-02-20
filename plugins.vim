@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2019-12-03
+" Modified: 2020-02-20
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-plug {{{1
@@ -242,7 +242,8 @@ Plug 'w0rp/ale'
 if has('python3')
   if has('nvim')
     " Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
-    Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
+    " Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
+    Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
     " Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
     " Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
     " Plug 'neoclide/coc-prettier', {'do': 'yarn install --frozen-lockfile'}
