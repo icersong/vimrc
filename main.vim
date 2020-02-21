@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2019-11-26
+" Modified: 2020-02-21
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -152,18 +152,8 @@ syntax on                       " Syntax highlighting
 scriptencoding utf-8
 set background=dark             " Assume a dark background
 
-if has('clipboard')
-  " 默认寄存器unnamedplus,unnamed和系统剪贴板共享
-  "set clipboard=unnamedplus,unnamed
-  " if has('unnamedplus')       " When possible use + register for copy-paste
-  "     set clipboard+=unnamed,unnamedplus
-  " else                        " On mac and Windows, use * register for copy-paste
-  "     set clipboard+=unnamed
-  " endif
-  if $LINUX && has('unnamedplus')
-    set clipboard=unnamed,unnamedplus
-  endif
-endif
+" 默认寄存器unnamed&unnamedplus和系统剪贴板共享
+set clipboard=unnamed,unnamedplus
 
 if has('mouse')
   set mouse=a                   " enable mouse (a, r, v)
@@ -477,16 +467,16 @@ endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if has('mac')
-  vnoremap <silent> <leader>y :<CR>:let @a=@" \| execute "normal! vgvy" \| let res=system("pbcopy", @") \| let @"=@a<CR>
-else
-  if executable('xclip')
-    command! -nargs=0 XCopy :!xclip -f -sel clip<CR>
-    command! -nargs=0 XPaste :r !xclip -o -sel clip<CR>
-    vnoremap <leader>y !xclip -f -sel clip<CR>u
-    noremap <leader>p :r !xclip -o -sel clip<CR>
-  endif
-endif
+" if has('mac')
+"   vnoremap <silent> <leader>y :<CR>:let @a=@" \| execute "normal! vgvy" \| let res=system("pbcopy", @") \| let @"=@a<CR>
+" else
+"   if executable('xclip')
+"     command! -nargs=0 XCopy :!xclip -f -sel clip<CR>
+"     command! -nargs=0 XPaste :r !xclip -o -sel clip<CR>
+"     vnoremap <leader>y !xclip -f -sel clip<CR>u
+"     noremap <leader>p :r !xclip -o -sel clip<CR>
+"   endif
+" endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Fcitx auto switch while normal model
