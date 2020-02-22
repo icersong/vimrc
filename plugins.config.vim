@@ -97,7 +97,7 @@ call defx#custom#option('_', {
 
 nnoremap <silent> <leader>df :Defx<CR>
 
-function! s:defx_open() abort
+function! s:defx_open_only() abort
     " Open current file, or toggle directory expand/collapse
     if defx#is_directory()
         return defx#do_action('open_or_close_tree')
@@ -105,11 +105,19 @@ function! s:defx_open() abort
     return defx#do_action('multi', ['drop'])
 endfunction
 
+function! s:defx_open_default() abort
+    " Open current file, or toggle directory expand/collapse
+    if defx#is_directory()
+        return defx#do_action('open_or_close_tree')
+    endif
+    return defx#do_action('multi', ['drop', 'quit'])
+endfunction
+
 autocmd FileType defx call s:defx_my_settings()
 function! s:defx_my_settings() abort
   " Define mappings
   nnoremap <silent><buffer><expr> <CR>
-  \ <SID>defx_open()
+  \ <SID>defx_open_default()
   nnoremap <silent><buffer><expr> c
   \ defx#do_action('copy')
   nnoremap <silent><buffer><expr> m
@@ -117,9 +125,7 @@ function! s:defx_my_settings() abort
   nnoremap <silent><buffer><expr> p
   \ defx#do_action('paste')
   nnoremap <silent><buffer><expr> l
-  \ <SID>defx_open()
-  nnoremap <silent><buffer><expr> e
-  \ defx#do_action('multi', ['drop'])
+  \ <SID>defx_open_only()
   nnoremap <silent><buffer><expr> E
   \ defx#do_action('open', 'vsplit')
   nnoremap <silent><buffer><expr> P
