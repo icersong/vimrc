@@ -85,7 +85,6 @@ endif
 " defx {{{1
 " Plug 'Shougo/defx.nvim'
 
-<<<<<<< HEAD
 call defx#custom#option('_', {
       \ 'winwidth': 50,
       \ 'split': 'vertical',
@@ -97,9 +96,6 @@ call defx#custom#option('_', {
       \ })
 
 nnoremap <silent> <leader>df :Defx<CR>
-=======
-nnoremap <silent> <leader>df :Defx -split=vertical -winwidth=50 -direction=topleft<CR>
->>>>>>> 46062592c3f81644feb185c9927ec8cdb5316c76
 
 autocmd FileType defx call s:defx_my_settings()
 function! s:defx_my_settings() abort
