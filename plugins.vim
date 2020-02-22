@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2020-02-20
+" Modified: 2020-02-22
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-plug {{{1
@@ -87,7 +87,14 @@ Plug 'vim-scripts/CmdlineComplete'
 """""""""""""""""""""""""""""""" 文件搜索 """"""""""""""""""""""""""""""""
 " -------- 文件标记浏览 ---------
 " 文件浏览器
-Plug 'scrooloose/nerdtree', {'on':  'NERDTreeToggle'}
+" Plug 'scrooloose/nerdtree', {'on':  'NERDTreeToggle'}
+if has('nvim')
+  Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/defx.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
 " Buffer列表显示
 Plug 'fholgado/minibufexpl.vim', {'on': ['MBEOpen', 'MBEToggle']}
 " Tag列表显示
