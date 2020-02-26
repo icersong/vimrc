@@ -310,7 +310,7 @@ Plug 'gregsexton/gitv', {'on': ['Gitv']}
 " command: InstantMarkdownPreview
 Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 
-Plug "jceb/vim-orgmode"
+Plug 'jceb/vim-orgmode'
 
 " 显示Python内建方法的文档，eg: Pydoc os.path
 Plug 'fs111/pydoc.vim', {'on': ['Pydoc', 'PydocSearch']}
