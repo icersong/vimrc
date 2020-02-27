@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2020-02-26
+" Modified: 2020-02-28
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -66,19 +66,6 @@ endif
 
 " minimap   {{{1
 " Plug 'koron/minimap-vim'
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" NERDTree  {{{1
-" Plug 'scrooloose/nerdtree'
-"nmap <leader>nt :NERDTree<CR>
-"let NERDTreeHighlightCursorline=1
-"let NERDTreeQuitOnOpen = 1
-"let NERDTreeWinSize = 48
-"let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$' ]
-"let g:netrw_home=$VIMCACHE.'/NERDTree'
-""close vim if the only window left open is a NERDTree
-"autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | :bd<cr> | end
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -185,25 +172,31 @@ endfunction
 
 let g:fzf_history_dir = $VIMCACHE.'/fzf-history'
 
-nmap <leader>fb :Buffers<CR>
-nmap <leader>fz :Files<CR>
-nmap <leader>fg :GFiles<CR>
-nmap <leader>fh :History<CR>
+nmap <silent> <leader>fb :Buffers<CR>
+nmap <silent> <leader>fz :Files<CR>
+nmap <silent> <leader>fg :GFiles<CR>
+nmap <silent> <leader>fh :History<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " denite   {{{1
 " Plug 'Shougo/denite.nvim', { 'on': ['Denite'] }
+" Denite file/rec   // 递归搜索, rec 表递归
+
 " Define mappings
 autocmd FileType denite call s:denite_my_settings()
 function! s:denite_my_settings() abort
   nnoremap <silent><buffer><expr> <CR>
   \ denite#do_map('do_action')
+  nnoremap <silent><buffer><expr> A
+  \ denite#do_map('choose_action')
   nnoremap <silent><buffer><expr> d
   \ denite#do_map('do_action', 'delete')
   nnoremap <silent><buffer><expr> p
   \ denite#do_map('do_action', 'preview')
   nnoremap <silent><buffer><expr> q
+  \ denite#do_map('quit')
+  nnoremap <silent><buffer><expr> <esc>
   \ denite#do_map('quit')
   nnoremap <silent><buffer><expr> i
   \ denite#do_map('open_filter_buffer')
@@ -211,57 +204,49 @@ function! s:denite_my_settings() abort
   \ denite#do_map('toggle_select').'j'
 endfunction
 
+" denite option
+let s:denite_options = {
+  \ 'default' : {
+  \   'split': 'floating',
+  \   'highlight_matched_char' : 'MoreMsg',
+  \   'highlight_matched_range' : 'MoreMsg',
+  \   'statusline' : has('patch-7.4.1154') ? v:false : 0,
+  \   'prompt' : '➜',
+  \ }}
+
+function! s:profile(opts) abort
+  for fname in keys(a:opts)
+    for dopt in keys(a:opts[fname])
+      call denite#custom#option(fname, dopt, a:opts[fname][dopt])
+    endfor
+  endfor
+endfunction
+
+call s:profile(s:denite_options)
+
+
+call denite#custom#alias('source', 'file/rec/git', 'file/rec')
+call denite#custom#var('file/rec/git', 'command', ['git', 'ls-files', '-co', '--exclude-standard'])
+nnoremap <silent> <C-p> :<C-u>Denite -auto-action=preview 
+    \ `finddir('.git', ';') != '' ? 'file/rec/git' : 'file/rec'`<cr>
+" nnoremap <leader>c :<C-u>Denite colorscheme -auto-action=preview<cr>
+" nnoremap <leader>; :<C-u>Denite file_mru<cr>
+
+" call denite#custom#map('insert', '<tab>', '<denite:move_to_next_line>', 'noremap')
+" call denite#custom#map('insert', '<S-tab>', '<denite:move_to_previous_line>', 'noremap')
+" call denite#custom#map('insert', '<C-cr>', '<denite:choose_action>', 'noremap')
+" call denite#custom#map('insert', 'jj', '<denite:enter_mode:normal>', 'noremap')
+call denite#custom#map('normal', '<tab>', '<denite:do_action:preview>', 'noremap')
+" call denite#custom#map('normal', '<S-tab>', '<denite:choose_action>', 'noremap')
+call denite#custom#map('insert', '<esc>', '<denite:choose_action>', 'noremap')
+call denite#custom#map('insert', 'jj', '<denite:enter_mode:normal>', 'noremap')
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" CtrlP {{{1
-" Plug 'kien/ctrlp.vim'
-" Plug 'ctrlpvim/ctrlp.vim'
-" Plug 'tacahiroy/ctrlp-funky'
-" Plug 'FelikZ/ctrlp-py-matcher'
-" ----------------------------------------------------------------
-" ripgrep is fastest search tools then ag, grep, ...
-" $ brew install ripgrep
-" $ sudo apt install cmake python-dev libboost-all-dev
-" ----------------------------------------------------------------
+" vim-clap    {{{1
 
-" nmap <c-p> <plug>(ctrlp)
-nmap <silent> <c-p> :CtrlPMRU<CR>
-nmap <silent> <leader>b :CtrlPBuffer<CR>
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlPMRU'
-let g:ctrlp_show_hidden = 1
-let g:ctrlp_max_files = 100000
-" let g:ctrlp_working_path_mode = 'rc'
-let g:ctrlp_root_markers = ['.git', '.svn', '.hg', '.bzr', '_darcs']
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/](\.(git|hg|svn)|cache|dist|build)$',
-  \ 'file': '\v\.(exe|so|dll|png|jpg|gif|zip|7z|gz|tgz|swp|bin|pyc|pyo)$',
-  \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
-  \ }
-let g:ctrlp_funky_syntax_highlight = 1
-if executable('rg')
-  let g:ctrlp_use_caching = 0
-  let g:ctrlp_user_command = {
-        \ 'types': {
-        \   1: ['.git', 'rg %s --files --color=never --glob ""'],
-        \   2: ['.svn', 'rg %s --files --color=never --glob ""'],
-        \ },
-        \ 'fallback': 'rg %s --files --color=never --glob ""'
-        \ }
-  let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
-  let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
-  " let g:ctrlp_match_func = { 'match': 'cpsm#CtrlPMatch' }
-elseif executable('ag')
-  let g:ctrlp_use_caching = 0
-  " 使用ctrl-py-matcher加速
-  let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
-  " Use Ag over Grep
-  set grepprg=ag\ --nogroup\ --nocolor
-  " Use ag in CtrlP for listing files.
-  let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden'
-        \ . ' --ignore ''.git'' --ignore ''.DS_Store'' --ignore ''node_modules'''
-        \ . ' -g "."'
-endif
+let g:clap_theme = 'material_design_dark'
+let g:clap_theme = { 'search_text': {'guifg': 'yellow', 'ctermfg': 'yellow'} }
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -279,9 +264,11 @@ let g:ag_hightlight=1
 " let g:ag_qhandler="copen"
 " nnoremap <leader>gf  :AgFile<space>
 " 用ag在当前工程下搜索光标下的文件名
-nnoremap <leader>ff yiw:AgFile! "<C-R>=escape(escape(@", '\'), '"/\*\ \|\(\))')<CR>"
+nnoremap <leader>ff :AgFile! "<C-R>=escape(escape(expand('<cword>'), '\'), '"/\*\ \|\(\))')<CR>"
 " 用ag在当前工程下搜索选中文本的文件名 gag
-vnoremap <leader>ff ""y:AgFile! "<C-R>=escape(escape(@", '\'), '"/\*\ \|\(\))')<CR>"
+" vnoremap <leader>ff ""y:AgFile! "<C-R>=escape(escape(@", '\'), '"/\*\ \|\(\))')<CR>"
+vnoremap <leader>ff :AgFile! "<C-R>=escape(escape(GetVisualSelection(), '\'), '"/\*\ \|\(\))')<CR>"
+
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -393,7 +380,7 @@ let g:voom_tab_key = "<C-Tab>"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " easymotion  {{{1
-" fast jump to after current, \\f<char>
+" fast jump to after current, nmap s<char><char>
 " Plug 'Lokaltog/vim-easymotion'
 let g:EasyMotion_leader_key = ";"
 let g:EasyMotion_use_upper = 1
@@ -788,6 +775,7 @@ else
   " autocmd BufReadPost *.cpp,*.c,*.h,*.py,*.js,*.php call tagbar#autoopen()
 endif
 
+" Plug 'liuchengxu/vista.vim'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " VCS   {{{1
@@ -969,13 +957,6 @@ endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim markdown  {{{1
-" 较大文件会导致中文输入极其缓慢
-" Plug 'plasticboy/vim-markdown'
-" let g:vim_markdown_frontmatter=0
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " suan/vim-instant-markdown
 " 可在浏览器中实时预览正在编写的MD文档
 " 安装需要node.js
@@ -986,6 +967,26 @@ endif
 " python markdown实时预览，与其它markdown syntax冲突
 " :Instantmd
 " Plug 'isnowfy/python-vim-instant-markdown'
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugin 'gabrielelana/vim-markdown'
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-which-key
+
+let g:mapleader = "\<Space>"
+let g:maplocalleader = ','
+call which_key#register('<Space>', "g:which_key_map")
+nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
+vnoremap <silent> <leader> :<c-u>WhichKeyVisual '<Space>'<CR>
+nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
+vnoremap <silent> <localleader> :<c-u>WhichKeyVisual  ','<CR>
+let g:which_key_map =  {}
+let g:which_key_map.f = { 'name' : '+file' }
+let g:which_key_map.f.f = 'search-git-file'
+let g:which_key_map.f.r = 'search-context-git-file'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -1011,9 +1012,6 @@ endif
 " let xml_tag_completion_map = "<C-l>"
 let g:xml_warn_on_duplicate_mapping = 1
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plugin 'gabrielelana/vim-markdown'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " lage file   {{{1

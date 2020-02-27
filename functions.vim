@@ -169,6 +169,32 @@ function! GetVisualRange()
 endfunction
 
 
+function! GetVisualSelection()
+    " Why is this not a built-in Vim script function?!
+    let [line_start, column_start] = getpos("'<")[1:2]
+    let [line_end, column_end] = getpos("'>")[1:2]
+    let lines = getline(line_start, line_end)
+    if len(lines) == 0
+        return ''
+    endif
+    let lines[-1] = lines[-1][: column_end - (&selection == 'inclusive' ? 1 : 2)]
+    let lines[0] = lines[0][column_start - 1:]
+    return join(lines, "\n")
+endfunction
+
+
+" 用寄存器实现，很简介
+function! VisualSelection()
+    try
+        let x_save = @"
+        let a_save = @a
+        normal! gv"ay
+        return @a
+    finally
+        let @a = a_save
+        let @" = x_save
+    endtry
+endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " FormatSQL 格式化选中的SQL内容，并更新到当前光标处
 " depends shell.vim, GetVisualRange

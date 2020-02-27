@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2020-02-26
+" Modified: 2020-02-28
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-plug {{{1
@@ -105,22 +105,16 @@ Plug 'vim-voom/VOoM', {'on': ['Voom', '<plug>(Voom)']}
 Plug 'vim-scripts/TaskList.vim', {'on': ['TaskList', '<Plug>TaskList']}
 
 " -------- 文件名称搜索 ---------
-" Ctrl-P波峰式文件搜索利器
-Plug 'ctrlpvim/ctrlp.vim', {'on': ['CtrlP', 'CtrlPMRU', 'CtrlPBuffer', 'CtrlPFunky', '<plug>(ctrlp)']}
-" Ctrl-P匹配加速器，利用python匹配提升速度
-Plug 'FelikZ/ctrlp-py-matcher', {'on': ['CtrlP', 'CtrlPMRU', 'CtrlPBuffer', 'CtrlPFunky', '<plug>(ctrlp)']}
-" Function搜索插件
-Plug 'tacahiroy/ctrlp-funky', {'on': ['CtrlPFunky']}
 " 搜索工具，比ctrl-p匹配准确，python异步完成, 可以搜索MRU Function etc.
 " Plug 'Yggdroot/LeaderF'
-" Ctrl-P匹配结果优化输出
-" Plug 'nixprime/cpsm', { 'do': 'env PY3=OFF ./install.sh' }
 " fzf搜索工具, 比Ctrl-P匹配更精准更快速, 可完全取代
 Plug 'junegunn/fzf', { 'on': ['History', 'Files', 'GFiles', 'Buffers'],
       \ 'dir': '~/.fzf', 'do': 'yes \| ./install --bin' }
 Plug 'junegunn/fzf.vim', { 'on': ['History', 'Files', 'GFiles', 'Buffers'] }
 " 功能比较强悍的搜索工具
-Plug 'Shougo/denite.nvim', { 'on': ['Denite'] }
+Plug 'Shougo/denite.nvim', {}
+" 颜值不错的POP搜索
+Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
 
 " -------- 文件内容搜索 ---------
 " 搜索当前工程内文件, Ag & AgFile
@@ -320,6 +314,10 @@ Plug 'fs111/pydoc.vim', {'on': ['Pydoc', 'PydocSearch']}
 " Plug 'gotcha/vimpdb'
 " python&php调试工具（异步）, 需要Komodo dbgp工具
 Plug 'brookhong/DBGPavim', {'for': []}
+
+" displays available keybindings in popup
+" Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
+Plug 'liuchengxu/vim-which-key'
 
 
 """""""""""""""""""""""""""""""" Shell & Tools """"""""""""""""""""""""""""""""
