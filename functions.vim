@@ -243,3 +243,11 @@ endfunction
 function! WriteSelected(filename) range
   call writefile([GetVisualRange()], a:filename, 'b')
 endfunction
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 获取Git项目根路径
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! GetGitRoot()
+  let root = split(system('git rev-parse --show-toplevel'), '\n')[0]
+  return v:shell_error ? '' : root
+endfunction

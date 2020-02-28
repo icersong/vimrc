@@ -5,17 +5,22 @@
 
 nnoremap <silent> <leader>ff :Denite
             \ -input='<C-R>=escape(expand("<cword>"), "/\\\*\ \|\(\)")<CR>'
-            \ buffer `finddir('.git', ';') != '' ? 'file/rec/git' : 'file/rec'`
+            \ buffer file `GetGitRoot() != '' ? 'file/rec/git' : 'file/rec'`
             \ <CR>
 
 vnoremap <silent> <leader>ff :Denite
             \ -input='<C-R>=escape(GetVisualSelection(), "/\\\*\ \|\(\)")<CR>'
-            \ buffer `finddir('.git', ';') != '' ? 'file/rec/git' : 'file/rec'`
+            \ buffer file `GetGitRoot() != '' ? 'file/rec/git' : 'file/rec'`
             \ <CR>
 
 nnoremap <silent> <leader>fa :Denite -auto-action=preview
             \ -input='<C-R>=escape(expand("<cword>"), "/\\\*\ \|\(\)")<CR>'
-            \ buffer `finddir('.git', ';') != '' ? 'file/rec/git' : 'file/rec'`
+            \ buffer file `GetGitRoot() != '' ? 'file/rec/git' : 'file/rec'`
+            \ <CR>
+
+nnoremap <silent> <leader>fh :Denite -auto-action=preview
+            \ -input='<C-R>=escape(expand("<cword>"), "/\\\*\ \|\(\)")<CR>'
+            \ file_mur file/rec
             \ <CR>
 
 " Define mappings
@@ -52,7 +57,7 @@ call denite#custom#option('default', {
   \ })
 
 call denite#custom#alias('source', 'file/rec/git', 'file/rec')
-call denite#custom#var('file/rec/git', 'command', ['git', 'ls-files', '-co', '--exclude-standard'])
+call denite#custom#var('file/rec/git', 'command', ['git', 'ls-files', '-co', '--exclude-standard', GetGitRoot()])
 nnoremap <silent> <C-p> :<C-u>Denite -auto-action=preview 
     \ `finddir('.git', ';') != '' ? 'file/rec/git' : 'file/rec'`<cr>
 " nnoremap <leader>c :<C-u>Denite colorscheme -auto-action=preview<cr>

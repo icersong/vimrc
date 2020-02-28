@@ -115,8 +115,9 @@ Plug 'vim-scripts/TaskList.vim', {'on': ['TaskList', '<Plug>TaskList']}
 " Plug 'junegunn/fzf.vim', { 'on': ['History', 'Files', 'GFiles', 'Buffers'] }
 " 功能比较强悍的搜索工具
 Plug 'Shougo/denite.nvim', {}
+Plug 'Shougo/neomru.vim', {}
 " 颜值不错的POP搜索
-Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
+" Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
 
 " -------- 文件内容搜索 ---------
 " Grepper当前目录文件内容搜索, CtrlSF替代
