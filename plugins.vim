@@ -96,7 +96,7 @@ else
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
 " Buffer列表显示
-Plug 'fholgado/minibufexpl.vim', {'on': ['MBEOpen', 'MBEToggle']}
+" Plug 'fholgado/minibufexpl.vim', {'on': ['MBEOpen', 'MBEToggle']}
 " Tag列表显示
 Plug 'majutsushi/tagbar', {'on':  ['Tagbar', 'TagbarOpen', 'TagbarToggle', 'TagbarShowTags']}
 " 自定义目录数工具
@@ -108,17 +108,17 @@ Plug 'vim-scripts/TaskList.vim', {'on': ['TaskList', '<Plug>TaskList']}
 " 搜索工具，比ctrl-p匹配准确，python异步完成, 可以搜索MRU Function etc.
 " Plug 'Yggdroot/LeaderF'
 " fzf搜索工具, 比Ctrl-P匹配更精准更快速, 可完全取代
-Plug 'junegunn/fzf', { 'on': ['History', 'Files', 'GFiles', 'Buffers'],
-      \ 'dir': '~/.fzf', 'do': 'yes \| ./install --bin' }
-Plug 'junegunn/fzf.vim', { 'on': ['History', 'Files', 'GFiles', 'Buffers'] }
+" Plug 'junegunn/fzf', { 'on': ['History', 'Files', 'GFiles', 'Buffers'],
+"       \ 'dir': '~/.fzf', 'do': 'yes \| ./install --bin' }
+" 搜索当前工程内文件, Ag & AgFile
+" Plug 'rking/ag.vim', {'on': ['Ag', 'AgFile', 'AgBuffer']}
+" Plug 'junegunn/fzf.vim', { 'on': ['History', 'Files', 'GFiles', 'Buffers'] }
 " 功能比较强悍的搜索工具
 Plug 'Shougo/denite.nvim', {}
 " 颜值不错的POP搜索
 Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
 
 " -------- 文件内容搜索 ---------
-" 搜索当前工程内文件, Ag & AgFile
-Plug 'rking/ag.vim', {'on': ['Ag', 'AgFile', 'AgBuffer']}
 " Grepper当前目录文件内容搜索, CtrlSF替代
 " Plug 'mhinz/vim-grepper', {'on': ['Grepper', '<plug>(GrepperOperator)']}
 " 搜索选中内容或光标下单词, <leader>f
@@ -129,10 +129,10 @@ Plug 'dyng/ctrlsf.vim', {'on': ['CtrlSF', '<plug>CtrlSFCwordPath', '<plug>CtrlSF
 Plug 'Lokaltog/vim-easymotion'
 Plug 'justinmk/vim-sneak'
 " 扩展%快速匹配跳转
-Plug 'vim-scripts/matchit.zip', {'for': ['c', 'h', 'cpp', 'php', 'css', 'xml',
-    \ 'vim', 'java', 'html', 'jinja', 'python', 'javascript']}
+" Plug 'vim-scripts/matchit.zip', {'for': ['c', 'h', 'cpp', 'php', 'css', 'xml',
+"     \ 'vim', 'java', 'html', 'jinja', 'python', 'javascript']}
 " match tags by %, and auto complete close tag
-Plug 'othree/xml.vim', {'for': ['xml', 'html']}
+" Plug 'othree/xml.vim', {'for': ['xml', 'html']}
 
 
 """""""""""""""""""""""""""""""" 配色缩进 """"""""""""""""""""""""""""""""
@@ -166,8 +166,6 @@ Plug 'Yggdroot/indentLine'
 
 " 静态语法配色包 slow load file
 Plug 'sheerun/vim-polyglot', {}
-" Syntax for python2 and python3
-" Plug 'hdima/python-syntax', { 'for': ['python'] }
 " Syntax for jinja and html
 Plug 'Glench/Vim-Jinja2-Syntax', { 'for': ['jinja', 'jinja2'] }
 " syntax highlighting for javascript, too slow ...

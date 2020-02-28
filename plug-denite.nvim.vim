@@ -3,6 +3,21 @@
 " Plug 'Shougo/denite.nvim', { 'on': ['Denite'] }
 " Denite file/rec   // 递归搜索, rec 表递归
 
+nnoremap <silent> <leader>ff :Denite
+            \ -input='<C-R>=escape(expand("<cword>"), "/\\\*\ \|\(\)")<CR>'
+            \ buffer `finddir('.git', ';') != '' ? 'file/rec/git' : 'file/rec'`
+            \ <CR>
+
+vnoremap <silent> <leader>ff :Denite
+            \ -input='<C-R>=escape(GetVisualSelection(), "/\\\*\ \|\(\)")<CR>'
+            \ buffer `finddir('.git', ';') != '' ? 'file/rec/git' : 'file/rec'`
+            \ <CR>
+
+nnoremap <silent> <leader>fa :Denite -auto-action=preview
+            \ -input='<C-R>=escape(expand("<cword>"), "/\\\*\ \|\(\)")<CR>'
+            \ buffer `finddir('.git', ';') != '' ? 'file/rec/git' : 'file/rec'`
+            \ <CR>
+
 " Define mappings
 autocmd FileType denite call s:denite_my_settings()
 function! s:denite_my_settings() abort
@@ -25,26 +40,16 @@ function! s:denite_my_settings() abort
 endfunction
 
 " denite option
-let s:denite_options = {
-  \ 'default' : {
+call denite#custom#option('default', {
+  \   'wincol': &columns * 1 / 8,
+  \   'winwidth': &columns * 3 / 4,
   \   'split': 'floating',
-  \   'root-markers': '.git',
+  \   'root-markers': '.git,.svn',
   \   'highlight_matched_char' : 'MoreMsg',
   \   'highlight_matched_range' : 'MoreMsg',
   \   'statusline' : has('patch-7.4.1154') ? v:false : 0,
   \   'prompt' : '➜',
-  \ }}
-
-function! s:profile(opts) abort
-  for fname in keys(a:opts)
-    for dopt in keys(a:opts[fname])
-      call denite#custom#option(fname, dopt, a:opts[fname][dopt])
-    endfor
-  endfor
-endfunction
-
-call s:profile(s:denite_options)
-
+  \ })
 
 call denite#custom#alias('source', 'file/rec/git', 'file/rec')
 call denite#custom#var('file/rec/git', 'command', ['git', 'ls-files', '-co', '--exclude-standard'])
