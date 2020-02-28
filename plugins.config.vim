@@ -69,104 +69,6 @@ endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" defx {{{1
-" Plug 'Shougo/defx.nvim'
-
-call defx#custom#option('_', {
-      \ 'winwidth': 50,
-      \ 'split': 'vertical',
-      \ 'direction': 'topleft',
-      \ 'show_ignored_files': 0,
-      \ 'buffer_name': '',
-      \ 'toggle': 1,
-      \ 'resume': 1
-      \ })
-
-nnoremap <silent> <leader>df :Defx<CR>
-
-function! s:defx_open_only() abort
-    " Open current file, or toggle directory expand/collapse
-    if defx#is_directory()
-        return defx#do_action('open_or_close_tree')
-    endif
-    return defx#do_action('multi', ['drop'])
-endfunction
-
-function! s:defx_open_default() abort
-    " Open current file, or toggle directory expand/collapse
-    if defx#is_directory()
-        return defx#do_action('open_or_close_tree')
-    endif
-    return defx#do_action('multi', ['drop', 'quit'])
-endfunction
-
-autocmd FileType defx call s:defx_my_settings()
-function! s:defx_my_settings() abort
-  " Define mappings
-  nnoremap <silent><buffer><expr> <CR>
-  \ <SID>defx_open_default()
-  nnoremap <silent><buffer><expr> c
-  \ defx#do_action('copy')
-  nnoremap <silent><buffer><expr> m
-  \ defx#do_action('move')
-  nnoremap <silent><buffer><expr> p
-  \ defx#do_action('paste')
-  nnoremap <silent><buffer><expr> l
-  \ <SID>defx_open_only()
-  nnoremap <silent><buffer><expr> E
-  \ defx#do_action('open', 'vsplit')
-  nnoremap <silent><buffer><expr> P
-  \ defx#do_action('open', 'pedit')
-  nnoremap <silent><buffer><expr> o
-  \ defx#do_action('open_or_close_tree')
-  nnoremap <silent><buffer><expr> K
-  \ defx#do_action('new_directory')
-  nnoremap <silent><buffer><expr> N
-  \ defx#do_action('new_file')
-  nnoremap <silent><buffer><expr> M
-  \ defx#do_action('new_multiple_files')
-  nnoremap <silent><buffer><expr> C
-  \ defx#do_action('toggle_columns', 'mark:indent:icon:filename:type:size:time')
-  nnoremap <silent><buffer><expr> S
-  \ defx#do_action('toggle_sort', 'time')
-  nnoremap <silent><buffer><expr> d
-  \ defx#do_action('remove')
-  nnoremap <silent><buffer><expr> r
-  \ defx#do_action('rename')
-  nnoremap <silent><buffer><expr> !
-  \ defx#do_action('execute_command')
-  nnoremap <silent><buffer><expr> x
-  \ defx#do_action('execute_system')
-  nnoremap <silent><buffer><expr> yy
-  \ defx#do_action('yank_path')
-  nnoremap <silent><buffer><expr> .
-  \ defx#do_action('toggle_ignored_files')
-  nnoremap <silent><buffer><expr> ;
-  \ defx#do_action('repeat')
-  nnoremap <silent><buffer><expr> h
-  \ defx#do_action('cd', ['..'])
-  nnoremap <silent><buffer><expr> ~
-  \ defx#do_action('cd')
-  nnoremap <silent><buffer><expr> q
-  \ defx#do_action('quit')
-  nnoremap <silent><buffer><expr> <Space>
-  \ defx#do_action('toggle_select') . 'j'
-  nnoremap <silent><buffer><expr> *
-  \ defx#do_action('toggle_select_all')
-  nnoremap <silent><buffer><expr> j
-  \ line('.') == line('$') ? 'gg' : 'j'
-  nnoremap <silent><buffer><expr> k
-  \ line('.') == 1 ? 'G' : 'k'
-  nnoremap <silent><buffer><expr> <C-l>
-  \ defx#do_action('redraw')
-  nnoremap <silent><buffer><expr> <C-g>
-  \ defx#do_action('print')
-  nnoremap <silent><buffer><expr> cd
-  \ defx#do_action('change_vim_cwd')
-endfunction
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " FZF   {{{1
 " Plug 'junegunn/fzf.vim'
 
@@ -176,70 +78,6 @@ nmap <silent> <leader>fb :Buffers<CR>
 nmap <silent> <leader>fz :Files<CR>
 nmap <silent> <leader>fg :GFiles<CR>
 nmap <silent> <leader>fh :History<CR>
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" denite   {{{1
-" Plug 'Shougo/denite.nvim', { 'on': ['Denite'] }
-" Denite file/rec   // 递归搜索, rec 表递归
-
-" Define mappings
-autocmd FileType denite call s:denite_my_settings()
-function! s:denite_my_settings() abort
-  nnoremap <silent><buffer><expr> <CR>
-  \ denite#do_map('do_action')
-  nnoremap <silent><buffer><expr> A
-  \ denite#do_map('choose_action')
-  nnoremap <silent><buffer><expr> d
-  \ denite#do_map('do_action', 'delete')
-  nnoremap <silent><buffer><expr> p
-  \ denite#do_map('do_action', 'preview')
-  nnoremap <silent><buffer><expr> q
-  \ denite#do_map('quit')
-  nnoremap <silent><buffer><expr> <esc>
-  \ denite#do_map('quit')
-  nnoremap <silent><buffer><expr> i
-  \ denite#do_map('open_filter_buffer')
-  nnoremap <silent><buffer><expr> <Space>
-  \ denite#do_map('toggle_select').'j'
-endfunction
-
-" denite option
-let s:denite_options = {
-  \ 'default' : {
-  \   'split': 'floating',
-  \   'highlight_matched_char' : 'MoreMsg',
-  \   'highlight_matched_range' : 'MoreMsg',
-  \   'statusline' : has('patch-7.4.1154') ? v:false : 0,
-  \   'prompt' : '➜',
-  \ }}
-
-function! s:profile(opts) abort
-  for fname in keys(a:opts)
-    for dopt in keys(a:opts[fname])
-      call denite#custom#option(fname, dopt, a:opts[fname][dopt])
-    endfor
-  endfor
-endfunction
-
-call s:profile(s:denite_options)
-
-
-call denite#custom#alias('source', 'file/rec/git', 'file/rec')
-call denite#custom#var('file/rec/git', 'command', ['git', 'ls-files', '-co', '--exclude-standard'])
-nnoremap <silent> <C-p> :<C-u>Denite -auto-action=preview 
-    \ `finddir('.git', ';') != '' ? 'file/rec/git' : 'file/rec'`<cr>
-" nnoremap <leader>c :<C-u>Denite colorscheme -auto-action=preview<cr>
-" nnoremap <leader>; :<C-u>Denite file_mru<cr>
-
-" call denite#custom#map('insert', '<tab>', '<denite:move_to_next_line>', 'noremap')
-" call denite#custom#map('insert', '<S-tab>', '<denite:move_to_previous_line>', 'noremap')
-" call denite#custom#map('insert', '<C-cr>', '<denite:choose_action>', 'noremap')
-" call denite#custom#map('insert', 'jj', '<denite:enter_mode:normal>', 'noremap')
-call denite#custom#map('normal', '<tab>', '<denite:do_action:preview>', 'noremap')
-" call denite#custom#map('normal', '<S-tab>', '<denite:choose_action>', 'noremap')
-call denite#custom#map('insert', '<esc>', '<denite:choose_action>', 'noremap')
-call denite#custom#map('insert', 'jj', '<denite:enter_mode:normal>', 'noremap')
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -976,17 +814,17 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-which-key
 
-let g:mapleader = "\<Space>"
-let g:maplocalleader = ','
-call which_key#register('<Space>', "g:which_key_map")
-nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
-vnoremap <silent> <leader> :<c-u>WhichKeyVisual '<Space>'<CR>
-nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
-vnoremap <silent> <localleader> :<c-u>WhichKeyVisual  ','<CR>
-let g:which_key_map =  {}
-let g:which_key_map.f = { 'name' : '+file' }
-let g:which_key_map.f.f = 'search-git-file'
-let g:which_key_map.f.r = 'search-context-git-file'
+" let g:mapleader = "\<Space>"
+" let g:maplocalleader = ','
+" call which_key#register('<Space>', "g:which_key_map")
+" nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
+" vnoremap <silent> <leader> :<c-u>WhichKeyVisual '<Space>'<CR>
+" nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
+" vnoremap <silent> <localleader> :<c-u>WhichKeyVisual  ','<CR>
+" let g:which_key_map =  {}
+" let g:which_key_map.f = { 'name' : '+file' }
+" let g:which_key_map.f.f = 'search-git-file'
+" let g:which_key_map.f.r = 'search-context-git-file'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

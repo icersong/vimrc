@@ -317,7 +317,7 @@ Plug 'brookhong/DBGPavim', {'for': []}
 
 " displays available keybindings in popup
 " Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
-Plug 'liuchengxu/vim-which-key'
+" Plug 'liuchengxu/vim-which-key'
 
 
 """""""""""""""""""""""""""""""" Shell & Tools """"""""""""""""""""""""""""""""

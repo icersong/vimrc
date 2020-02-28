@@ -20,8 +20,8 @@ let g:airline#extensions#tabline#buffer_nr_show = 0
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline#extensions#tabline#buffer_nr_format = '%s:'
 let g:airline#extensions#tabline#ignore_bufadd_pat =
-      \ 'gundo|undotree|vimfiler|tagbar|nerd_tree|vim-minimap'
-      \.'|DebuggerWatch|gitcommit|MiniBufExplorer'
+      \ '!|defx|gundo|undotree|vimfiler|tagbar|nerd_tree|vim-minimap'
+      \.'|DebuggerWatch|gitcommit|MiniBufExplorer|startify|term://'
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#tagbar#enabled = 1
 let g:airline#extensions#tmuxline#enabled = 1

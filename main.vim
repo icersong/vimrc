@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2020-02-21
+" Modified: 2020-02-28
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -98,6 +98,12 @@ execute 'source ' . simplify(expand($CONFROOT.'/netrw.vim'))
 " load functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 execute 'source ' . simplify(expand($CONFROOT.'/functions.vim'))
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" load extends
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+execute 'source ' . simplify(expand($CONFROOT.'/ext-fcitx.vim'))
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -426,8 +432,10 @@ noremap <silent><leader>X :wq!<CR>
 "缩进快捷键
 vmap < <gv
 vmap > >gv
-nmap <silent>> V><esc>
-nmap <silent>< V<<esc>
+" nmap <silent>> V><esc>
+" nmap <silent>< V<<esc>
+nmap <silent>> :bn<cr>
+nmap <silent>< :bp<cr>
 
 " 上下移动一行文字
 " noremap <C-J> :m+<cr>
