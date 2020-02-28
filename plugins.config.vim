@@ -81,13 +81,6 @@ endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim-clap    {{{1
-
-let g:clap_theme = 'material_design_dark'
-let g:clap_theme = { 'search_text': {'guifg': 'yellow', 'ctermfg': 'yellow'} }
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Ag    {{{1
 " Plug 'rking/ag.vim'
 " Search by file name
@@ -106,7 +99,6 @@ let g:clap_theme = { 'search_text': {'guifg': 'yellow', 'ctermfg': 'yellow'} }
 " 用ag在当前工程下搜索选中文本的文件名 gag
 " vnoremap <leader>ff ""y:AgFile! "<C-R>=escape(escape(@", '\'), '"/\*\ \|\(\))')<CR>"
 " vnoremap <leader>ff :AgFile! "<C-R>=escape(escape(GetVisualSelection(), '\'), '"/\*\ \|\(\))')<CR>"
-
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -130,31 +122,31 @@ let g:clap_theme = { 'search_text': {'guifg': 'yellow', 'ctermfg': 'yellow'} }
 " 用ag在当前目录下搜索光标下的单词, "CtrlSF xxx ." 替代
 " nmap <leader>*  :Grepper -tool ag -noprompt -cword<CR>
 " nmap <leader>f. yiw:Grepper -noprompt -grepprg ag
-"     \ "<C-R>=escape(escape(@", '\'), '"/\*\ \|\(\))')<CR>"
+"     \ "<C-R>=escape(@", '"/\*\\\ \|\(\)')<CR>"
 " 用ag在当前目录下搜索选中的内容, "CtrlSF xxx ." 替代
 " vmap <leader>* ""y:Grepper -noprompt -grepprg ag
-"     \ "<C-R>=escape(escape(@", '\'), '"/\*\ \|\(\))')<CR>"<CR>
+"     \ "<C-R>=escape(@", '"/\*\\\ \|\(\)')<CR>"<CR>
 " 用ag在当前工程下搜索, 等待输入
 " nnoremap <leader>fr :Grepper -tool ag -dir repo,file<cr>
 " 用ag在当前工程下搜索光标下的单词
 " nnoremap <leader>fr :Grepper -tool ag -cword -noprompt -dir repo,file<cr>
 " 用ag在当前工程下搜索选中的内容
 " vnoremap <leader>fr ""y:Grepper -noprompt -dir repo,file -grepprg ag
-"     \ "<C-R>=escape(escape(@", '\'), '"/\ \|\(\))')<CR>"<CR>
+"     \ "<C-R>=escape(@", '"/\*\\\ \|\(\)')<CR>"<CR>
 
 " ---- 文件搜索 ----
 " 用ag在当前工程下搜索光标下的文件名
 " nnoremap <leader>ff :Grepper -tool file -cword -noprompt -dir repo,file<CR>
 " 用ag在当前工程下搜索选中的文件名
 " vnoremap <leader>ff ""y:Grepper -tool file -noprompt -dir repo,file -grepprg ag -g
-    " \ "<C-R>=escape(escape(@", '\'), '"/\*\ \|\(\))')<CR>"<CR>
+"     \ "<C-R>=escape(escape(@", '\'), '"/\*\\\ \|\(\)')<CR>"<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CtrlSF    {{{1
 " Plug 'dyng/ctrlsf.vim'
-" like ag.vim but show context with matches line
 " CtrlSF [options] <patten> [path]
+" <leader>,ss [path]
 " key 'M' for edit mode
 
 let g:ctrlsf_auto_focus = {"at": "done", "duration_less_than": 1000}
@@ -170,8 +162,15 @@ let g:ctrlsf_default_view_mode = 'compact'
 let g:ctrlsf_extra_root_markers = ['.root']
 let g:ctrlsf_ignore_dir = ['bin', 'dist', 'build', 'lib', 'libs', 'img', 'fonts', 'cache', 'htdocs/static']
 
-nmap <leader>fr <Plug>CtrlSFCwordPath
-vmap <leader>fr <Plug>CtrlSFVwordPath
+nnoremap <leader>ss <Plug>CtrlSFCwordPath
+vnoremap <leader>ss <Plug>CtrlSFVwordPath
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-clap    {{{1
+
+let g:clap_theme = 'material_design_dark'
+let g:clap_theme = { 'search_text': {'guifg': 'yellow', 'ctermfg': 'yellow'} }
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
