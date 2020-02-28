@@ -475,6 +475,22 @@ endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Fix colorscheme
+
+highlight Comment ctermfg=241 guifg=#80a0ff
+highlight Search cterm=reverse ctermfg=0 ctermbg=226 guifg=Black guibg=Yellow
+highlight Pmenu cterm=reverse ctermfg=236 ctermbg=253 guibg=Magenta
+highlight PmenuSearch cterm=reverse ctermfg=236 ctermbg=226 guifg=Black guibg=Yellow
+
+
+highlight DeniteMenu cterm=reverse ctermfg=236 ctermbg=253
+highlight DeniteMatchedChar cterm=reverse ctermfg=236 ctermbg=226
+highlight DeniteMatchedRange cterm=reverse ctermfg=236 ctermbg=250
+highlight DenitePrompt cterm=reverse ctermfg=240 ctermbg=220
+highlight DeniteFilter cterm=reverse ctermfg=240 ctermbg=74
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " if has('mac')
 "   vnoremap <silent> <leader>y :<CR>:let @a=@" \| execute "normal! vgvy" \| let res=system("pbcopy", @") \| let @"=@a<CR>
 " else

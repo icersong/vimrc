@@ -49,11 +49,15 @@ call denite#custom#option('default', {
   \   'wincol': &columns * 1 / 8,
   \   'winwidth': &columns * 3 / 4,
   \   'split': 'floating',
-  \   'root-markers': '.git,.svn',
-  \   'highlight_matched_char' : 'MoreMsg',
-  \   'highlight_matched_range' : 'MoreMsg',
+  \   'root_markers': '.git,.svn',
   \   'statusline' : has('patch-7.4.1154') ? v:false : 0,
   \   'prompt' : '➜',
+  \   'highlight_filter_background': 'DeniteFilter',
+  \   'highlight_matched_char': 'DeniteMatchedChar',
+  \   'highlight_matched_range': 'DeniteMatchedRange',
+  \   'highlight_preview_line': 'DeniteMatchedChar',
+  \   'highlight_prompt': 'DenitePrompt',
+  \   'highlight_window_background': 'DeniteMenu',
   \ })
 
 call denite#custom#alias('source', 'file/rec/git', 'file/rec')

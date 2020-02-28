@@ -106,7 +106,7 @@ Plug 'vim-scripts/TaskList.vim', {'on': ['TaskList', '<Plug>TaskList']}
 
 " -------- 文件名称搜索 ---------
 " 搜索工具，比ctrl-p匹配准确，python异步完成, 可以搜索MRU Function etc.
-Plug 'Yggdroot/LeaderF', { 'do': './install.sh', 'on': ['LeaderF'] }
+Plug 'Yggdroot/LeaderF', { 'do': './install.sh', 'on': ['LeaderfFile'] }
 " 搜索当前工程内文件, Ag & AgFile
 " Plug 'rking/ag.vim', {'on': ['Ag', 'AgFile', 'AgBuffer']}
 " fzf搜索工具, 比Ctrl-P匹配更精准更快速, 可完全取代
@@ -123,7 +123,7 @@ Plug 'Shougo/neomru.vim', {}
 " Grepper当前目录文件内容搜索, CtrlSF替代
 " Plug 'mhinz/vim-grepper', {'on': ['Grepper', '<plug>(GrepperOperator)']}
 " 搜索选中内容或光标下单词, <leader>f
-Plug 'dyng/ctrlsf.vim', {'on': ['CtrlSF', '<plug>CtrlSFCwordPath', '<plug>CtrlSFVwordExec']}
+Plug 'dyng/ctrlsf.vim', {'on': ['CtrlSF', '<Plug>CtrlSFCwordPath', '<Plug>CtrlSFVwordExec']}
 
 " -------- 文件内光标定位 ---------
 " 指定字母快速移动光标
