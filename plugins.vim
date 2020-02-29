@@ -90,6 +90,7 @@ Plug 'vim-scripts/CmdlineComplete'
 " Plug 'scrooloose/nerdtree', {'on':  'NERDTreeToggle'}
 if has('nvim')
   Plug 'Shougo/defx.nvim', {'do': ':UpdateRemotePlugins', 'on': ['Defx']}
+  Plug 'kristijanhusak/defx-icons', {'on': ['Defx']}
 else
   Plug 'Shougo/defx.nvim', {'on': ['Defx']}
   Plug 'roxma/nvim-yarp'

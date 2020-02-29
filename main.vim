@@ -207,15 +207,16 @@ if has('gui_running')
   source $VIMRUNTIME/menu.vim
 endif
 
+
 " Font
 if $LINUX
   " set guifontwide=WenQuanYi\ Micro\ Hei:h9:cDEFAULT
   set guifont=Courier\ New:h9:cDEFAULT
   set guifontwide=Courier\ New:h9:cDEFAULT
 elseif $MACOS
-  " set guifontwide=Menlo:h12
+  " Please set font of iTerm2
+  " set guifont=SauceCodePro\ Nerd\ Font\ Mono:h12
   " set guifont=Menlo:h12
-  " set guifontwide=Monaco:h12
   " set guifont=Monaco:h12
 elseif $WINDOWS
   " set guifont=Inconsolata:h10:cDEFAULT
