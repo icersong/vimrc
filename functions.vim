@@ -71,6 +71,13 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Load plugin's config 
 
+if $WINDOWS
+  let s:SEP = '\'
+else
+  let g:skip_loading_mswin = 1  " do not load mswin.vim
+  let s:SEP = '/'
+endif
+
 function! s:esc(path)
   return escape(a:path, ' ')
 endfunction
@@ -88,7 +95,7 @@ function! s:filedict(path, pre, ext)
   let lenp = strlen(a:pre)
   let kws = {}
   for name in s:glob(a:path, a:pre.'*'.a:ext)
-    let fname = split(name, $SEP)[-1]
+    let fname = split(name, s:SEP)[-1]
     let kws[strpart(fname, lenp, len(fname) - lenp - lene)] = name
   endfor
   return kws
@@ -213,7 +220,7 @@ function! FormatSQL() range
       echoerr substitute(lines, '[\r\n]', ' ', 'g')
       return
     endif
-    let lines = join(readfile(tmpfile), "\n")
+    let lines = join(readfile(tmpfile), "\r")
     call delete(tmpfile)
   else
     let lines = system(cmd, iconv(join(getline(1, '$'), "\n"), &encoding, 'utf-8'))
@@ -224,7 +231,7 @@ function! FormatSQL() range
   endif
   let pos = getcurpos()
   silent! %d _
-  call setline(1, split(lines, "\n"))
+  call setline(1, split(lines, "\r"))
   call setpos('.', pos)
 
   " let tempfile = tempname()

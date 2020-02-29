@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2020-02-28
+" Modified: 2020-02-29
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -28,13 +28,6 @@ if has('nvim')
   let $VIMFILES = simplify(expand($VIMCACHE.'/nvimfiles/plugins'))
 else
   let $VIMFILES = simplify(expand($VIMCACHE.'/vimfiles/plugins'))
-endif
-
-if $WINDOWS
-  let $SEP = '\'
-else
-  let g:skip_loading_mswin = 1  " do not load mswin.vim
-  let $SEP = '/'
 endif
 
 if !has('nvim') && !has('python') && !has('python3')
@@ -104,11 +97,7 @@ execute 'source ' . simplify(expand($CONFROOT.'/functions.vim'))
 " load extends
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 execute 'source ' . simplify(expand($CONFROOT.'/ext-fcitx.vim'))
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" load extends
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+execute 'source ' . simplify(expand($CONFROOT.'/ext-colors.vim'))
 execute 'source ' . simplify(expand($CONFROOT.'/ext-vsearch.vim'))
 
 
@@ -472,22 +461,6 @@ if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
         \ | wincmd p | diffthis
 endif
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Fix colorscheme
-
-highlight Comment ctermfg=241 guifg=#80a0ff
-highlight Search cterm=reverse ctermfg=0 ctermbg=226 guifg=Black guibg=Yellow
-highlight Pmenu cterm=reverse ctermfg=236 ctermbg=253 guibg=Magenta
-highlight PmenuSearch cterm=reverse ctermfg=236 ctermbg=226 guifg=Black guibg=Yellow
-
-
-highlight DeniteMenu cterm=reverse ctermfg=236 ctermbg=253
-highlight DeniteMatchedChar cterm=reverse ctermfg=236 ctermbg=226
-highlight DeniteMatchedRange cterm=reverse ctermfg=236 ctermbg=250
-highlight DenitePrompt cterm=reverse ctermfg=240 ctermbg=220
-highlight DeniteFilter cterm=reverse ctermfg=240 ctermbg=74
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2020-02-28
+" Modified: 2020-02-29
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-plug {{{1
@@ -114,7 +114,7 @@ Plug 'Yggdroot/LeaderF', { 'do': './install.sh', 'on': ['LeaderfFile'] }
 "       \ 'dir': '~/.fzf', 'do': 'yes \| ./install --bin' }
 " Plug 'junegunn/fzf.vim', { 'on': ['History', 'Files', 'GFiles', 'Buffers'] }
 " 功能比较强悍的搜索工具
-Plug 'Shougo/denite.nvim', {}
+Plug 'Shougo/denite.nvim', {'on': ['Denite', 'DeniteBufferDir', 'DeniteCursorWord', 'DeniteProjectDir']}
 Plug 'Shougo/neomru.vim', {}
 " 颜值不错的POP搜索
 " Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
