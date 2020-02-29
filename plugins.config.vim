@@ -414,9 +414,9 @@ let g:dbgPavimOnce = 0
 " let g:pydoc_cmd = 'python -m pydoc'
 let g:pydoc_perform_mappings = 0
 let g:pydoc_window_lines=0.5
-nnoremap <leader>? yiw:Pydoc <C-R>=escape(escape(@", '\'), '"/\*\ \|\(\))')<CR>
+nnoremap <leader>? :Pydoc <C-R>=escape(expand("<cword>"), "/\\\*\ \|\(\)")<CR>
 " 用ag在当前工程下搜索选中文本的文件名 gag
-vnoremap <leader>? ""y:Pydoc! <C-R>=escape(escape(@", '\'), '"/\*\ \|\(\))')<CR>
+vnoremap <leader>? :Pydoc! <C-R>=escape(GetVisualSelection(), "/\\\*\ \|\(\)")<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

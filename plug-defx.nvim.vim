@@ -2,17 +2,20 @@
 " defx {{{1
 " Plug 'Shougo/defx.nvim'
 
-call defx#custom#option('_', {
-      \ 'winwidth': 50,
-      \ 'split': 'vertical',
-      \ 'direction': 'topleft',
-      \ 'show_ignored_files': 0,
-      \ 'buffer_name': '',
-      \ 'toggle': 1,
-      \ 'resume': 1
-      \ })
-
 nnoremap <silent> <leader>df :Defx<CR>
+
+autocmd sourcepost $VIMFILES/defx.nvim/plugin/*.vim call s:plugin_loaded()
+function! s:plugin_loaded() abort
+    call defx#custom#option('_', {
+          \ 'winwidth': 50,
+          \ 'split': 'vertical',
+          \ 'direction': 'topleft',
+          \ 'show_ignored_files': 0,
+          \ 'buffer_name': '',
+          \ 'toggle': 1,
+          \ 'resume': 1
+          \ })
+endfunction
 
 function! s:defx_open_only() abort
     " Open current file, or toggle directory expand/collapse

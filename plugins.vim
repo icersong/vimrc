@@ -89,9 +89,9 @@ Plug 'vim-scripts/CmdlineComplete'
 " 文件浏览器
 " Plug 'scrooloose/nerdtree', {'on':  'NERDTreeToggle'}
 if has('nvim')
-  Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'Shougo/defx.nvim', {'do': ':UpdateRemotePlugins', 'on': ['Defx']}
 else
-  Plug 'Shougo/defx.nvim'
+  Plug 'Shougo/defx.nvim', {'on': ['Defx']}
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
@@ -115,7 +115,7 @@ Plug 'Yggdroot/LeaderF', { 'do': './install.sh', 'on': ['LeaderfFile'] }
 " Plug 'junegunn/fzf.vim', { 'on': ['History', 'Files', 'GFiles', 'Buffers'] }
 " 功能比较强悍的搜索工具
 Plug 'Shougo/denite.nvim', {'on': ['Denite', 'DeniteBufferDir', 'DeniteCursorWord', 'DeniteProjectDir']}
-Plug 'Shougo/neomru.vim', {}
+Plug 'Shougo/neomru.vim', {'on': ['Denite', 'DeniteBufferDir', 'DeniteCursorWord', 'DeniteProjectDir']}
 " 颜值不错的POP搜索
 " Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
 
@@ -195,7 +195,7 @@ Plug 'tmhedberg/SimpylFold', {'for': ['python']}
 
 """""""""""""""""""""""""""""""" 编辑增强 """"""""""""""""""""""""""""""""
 " Undo tree
-Plug 'sjl/gundo.vim'
+Plug 'sjl/gundo.vim', {'on': ['GundoShow', 'GundoToggle']}
 " Muti select and edit, <c-n>, <c-p>
 Plug 'terryma/vim-multiple-cursors'
 " Remove tail space when save
@@ -208,7 +208,7 @@ Plug 'tpope/vim-surround'
 Plug 'terryma/vim-expand-region'
 " text object
 Plug 'wellle/targets.vim'
-" text swap
+" text swap, eg: cursor word1 cxiw -> cursor word2 cxiw, then tow words exchange
 Plug 'tommcdo/vim-exchange'
 " Range select for edit, :NR
 Plug 'chrisbra/NrrwRgn', { 'on': [
@@ -264,7 +264,7 @@ if has('python3')
   endif
 endif
 
-Plug 'jmcantrell/vim-virtualenv', { 'on': ['VirtualEnvActivate', 'VirtualEnvList'] }
+Plug 'jmcantrell/vim-virtualenv', {'on': ['VirtualEnvActivate', 'VirtualEnvList']}
 " Plug 'hemerey/vim-project'
 " provides support for expanding abbreviations similar to emmet
 Plug 'mattn/emmet-vim', {
@@ -276,7 +276,7 @@ Plug 'mattn/emmet-vim', {
 
 " SQL Utilites
 " Plug 'vim-scripts/dbext.vim'
-Plug 'tpope/vim-dadbod'
+Plug 'tpope/vim-dadbod', {'on': ['DB']}
 
 
 """""""""""""""""""""""""""""""" 版本管理 """"""""""""""""""""""""""""""""
@@ -341,7 +341,7 @@ Plug 'benmills/vimux', {'on': ['VimuxPromptCommand', 'VimuxRunLastCommand']}
 " Navigate seamlessly between vim and tmux splits using a consistent set of hotkeys
 Plug 'christoomey/vim-tmux-navigator'
 " 异步运行命令
-Plug 'skywind3000/asyncrun.vim', {'on': ['AsyncStart', 'AsyncStop']}
+Plug 'skywind3000/asyncrun.vim', {'on': ['AsyncRun', 'AsyncStop']}
 
 if has('mac')
   " Libarary for dash.vim & greper.vim
@@ -351,7 +351,8 @@ if has('mac')
 endif
 " Plug 'itchyny/calendar.vim'
 Plug 'mattn/calendar-vim', {'on': ['Calendar', 'CalendarH', 'CalendarT', 'CalendarVR']}
-Plug 'icersong/vimwiki'
+Plug 'icersong/vimwiki', {'on': ['VimwikiIndex', 'VimwikiDiaryIndex',
+            \ 'VimwikiMakeDiaryNote', 'VimwikiMakeYestordayDiaryNote']}
 " 有道词典翻译, <leader>w
 Plug 'iamcco/dict.vim'
 
