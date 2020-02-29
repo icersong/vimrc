@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2020-02-28
+" Modified: 2020-02-29
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -785,12 +785,12 @@ let g:VimuxPromptString = "(tmux)$ "
 " Plug 'iamcco/markdown-preview.vim'
 " :MarkdownPreview
 " :MarkdownPreviewStop
-if $MACOS
-  let g:mkdp_path_to_chrome = "/Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome"
-else
-  let g:mkdp_path_to_chrome = "google-chrome"
-  " let g:mkdp_path_to_chrome = "chromium-browser"
-endif
+" if $MACOS
+"   let g:mkdp_path_to_chrome = "/Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome"
+" else
+"   let g:mkdp_path_to_chrome = "google-chrome"
+"   " let g:mkdp_path_to_chrome = "chromium-browser"
+" endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

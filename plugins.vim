@@ -182,7 +182,7 @@ Plug 'elzr/vim-json', { 'for': ['json'] }
 " It covers syntax, indenting, compiling, and more
 Plug 'kchmck/vim-coffee-script', { 'for': ['coffee'] }
 " for CSS3
-Plug 'hail2u/vim-css3-syntax'
+Plug 'hail2u/vim-css3-syntax', {'for': ['css']}
 
 " Speed up Vim by updating folds only when called-for.
 Plug 'Konfekt/FastFold'
@@ -211,7 +211,10 @@ Plug 'wellle/targets.vim'
 " text swap
 Plug 'tommcdo/vim-exchange'
 " Range select for edit, :NR
-Plug 'chrisbra/NrrwRgn', " { 'on': ['NR', 'NRL', 'NRM', 'NRP', 'NRV', 'NLast', 'NRMulti'] }
+Plug 'chrisbra/NrrwRgn', { 'on': [
+            \ 'NR', 'NRL', 'NRM', 'NRP', 'NRV', 'NLast',
+            \ 'NRMulti', 'NRPrepare', 'NRUnprepare'
+            \ ] }
 " Provides automatic closing of quotes, parenthesis, brackets,
 Plug 'Raimondi/delimitMate'
 " Code comment
@@ -270,9 +273,6 @@ Plug 'mattn/emmet-vim', {
       \ }
 " CSV file editor
 " Plug 'chrisbra/csv.vim'
-
-" format file or selections
-Plug 'sbdchd/neoformat'
 
 " SQL Utilites
 " Plug 'vim-scripts/dbext.vim'
@@ -341,7 +341,7 @@ Plug 'benmills/vimux', {'on': ['VimuxPromptCommand', 'VimuxRunLastCommand']}
 " Navigate seamlessly between vim and tmux splits using a consistent set of hotkeys
 Plug 'christoomey/vim-tmux-navigator'
 " 异步运行命令
-Plug 'skywind3000/asyncrun.vim'
+Plug 'skywind3000/asyncrun.vim', {'on': ['AsyncStart', 'AsyncStop']}
 
 if has('mac')
   " Libarary for dash.vim & greper.vim
