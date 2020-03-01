@@ -83,7 +83,51 @@ function! s:denite_end() abort
                 \   'highlight_prompt': 'DenitePrompt',
                 \   'highlight_window_background': 'DeniteMenu',
                 \ })
-    call denite#custom#alias('source', 'file/rec/git', 'file/rec')
-    call denite#custom#var('file/rec/git', 'command',
-                \['git', 'ls-files', '-co', '--exclude-standard', GetGitRoot()])
+
+
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    " Add plugin config manager to Denite menu
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    let s:menus = {}
+
+    let s:menus.vim_plugins = {
+        \ 'description': 'Edit vim plugin configuration'
+        \ }
+    " split string to list
+    function! s:lines(msg)
+      return split(a:msg, "[\r\n]")
+    endfunction
+
+    " list files
+    function! s:glob(from, pattern)
+      return s:lines(globpath(a:from, a:pattern))
+    endfunction
+
+    " extract filename from fullpath
+    function! s:filename(fullpath) abort
+        return matchstr(a:fullpath, "[a-z-.]\\+$")
+    endfunction
+
+    let s:exists = {}
+    let lenp = strlen('plug-')
+    let lene = strlen('.vim')
+    for name in s:glob($CONFROOT, 'plug-*.vim')
+        let fname = s:filename(name)
+        let s:exists[strpart(fname, lenp, len(fname) - lenp - lene)] = name
+    endfor
+
+    let s:plugs = []
+    for name in g:plugs_order
+        if has_key(s:exists, name)
+            let display = name . ' - [exists]'
+        else
+            let display = name
+        endif
+        call add(s:plugs, [display, simplify(expand($CONFROOT.'/plug-'.name.'.vim'))])
+    endfor
+
+    let s:menus.vim_plugins.file_candidates = s:plugs
+
+    call denite#custom#var('menu', 'menus', s:menus)
+
 endfunction

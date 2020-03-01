@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2020-02-29
+" Modified: 2020-03-01
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -35,6 +35,10 @@ if !has('nvim') && !has('python') && !has('python3')
 endif
 if !has('nvim') && !has('ruby')
   echo "Warning! Vim is compiled without ruby support."
+endif
+
+if !$WINDOWS
+  let g:skip_loading_mswin = 1  " do not load mswin.vim
 endif
 
 
