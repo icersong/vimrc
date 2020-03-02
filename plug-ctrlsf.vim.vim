@@ -18,5 +18,7 @@ let g:ctrlsf_default_view_mode = 'compact'
 let g:ctrlsf_extra_root_markers = ['.root']
 let g:ctrlsf_ignore_dir = ['bin', 'dist', 'build', 'lib', 'libs', 'img', 'fonts', 'cache', 'htdocs/static']
 
-nnoremap <leader>ss <Plug>CtrlSFCwordPath
-vnoremap <leader>ss <Plug>CtrlSFVwordPath
+nmap <leader>ss <Plug>CtrlSFCwordPath
+vmap <leader>ss <Plug>CtrlSFVwordPath
+nmap <leader>sf <Plug>CtrlSFPrompt
+vmap <leader>sf :CtrlSF '<C-R>=escape(GetVisualSelection(), "/\\\*\ \|\(\)")<CR>'

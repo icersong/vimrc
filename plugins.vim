@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2020-02-29
+" Modified: 2020-03-02
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-plug {{{1
@@ -124,7 +124,7 @@ Plug 'Shougo/neomru.vim', {'on': ['Denite', 'DeniteBufferDir', 'DeniteCursorWord
 " Grepper当前目录文件内容搜索, CtrlSF替代
 " Plug 'mhinz/vim-grepper', {'on': ['Grepper', '<plug>(GrepperOperator)']}
 " 搜索选中内容或光标下单词, <leader>f
-Plug 'dyng/ctrlsf.vim', {'on': ['CtrlSF', '<Plug>CtrlSFCwordPath', '<Plug>CtrlSFVwordExec']}
+Plug 'dyng/ctrlsf.vim', {'on': ['CtrlSF', '<Plug>CtrlSFCwordPath', '<Plug>CtrlSFVwordPath', '<Plug>CtrlSFPrompt']}
 
 " -------- 文件内光标定位 ---------
 " 指定字母快速移动光标
