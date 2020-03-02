@@ -600,43 +600,6 @@ endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" fugitive   {{{1
-" git wapper
-" Plug 'tpope/vim-fugitive'
-" autocmd QuickFixCmdPost *grep* cwindow
-command GPush :AsyncRun -raw=1 -post=copen git svn dcommit
-command GPull :AsyncRun -raw=1 -post=copen git svn rebase
-command GStash :Git stash
-command GStashPop :Git stash pop
-" 修正本地查看远程分支列表
-command GitRemotePruneOrigin :Git remote prune origin<CR>
-
-nnoremap <leader>gv :Gitv!<CR>
-nnoremap <leader>gV :Gitv --all<CR>
-nnoremap <leader>gl :AsyncRun -raw=1 -post=copen
-      \ git --no-pager log --oneline --decorate --graph -40
-      \ --date=format:"\%Y-\%m-\%d \%H:\%M:\%S" --pretty="format:\%h \%ad \%an \%s" %<CR>
-nnoremap <leader>gL :AsyncRun -raw=1 -post=copen
-      \ git --no-pager log --oneline --decorate --graph -40
-      \ --date=format:"\%Y-\%m-\%d \%H:\%M:\%S" --pretty="format:\%h \%ad \%an \%s" %<CR>
-" nnoremap <leader>gl :silent! Glog<CR>:bot copen<CR>
-" nnoremap <leader>ga :Git add %:p<CR><CR>
-nnoremap <leader>gs :Gstatus<CR>
-nnoremap <leader>gc :Gcommit -v -q<CR>
-nnoremap <leader>gC :Gcommit -v -q --amend<CR>
-nnoremap <leader>gt :Gcommit -v -q %:p<CR>
-nnoremap <leader>gd :Gvdiff<CR>
-nnoremap <leader>gD :Git diff --stat origin<CR>
-nnoremap <leader>ge :Gedit<CR>
-nnoremap <leader>gr :Gread<CR>
-nnoremap <leader>gw :Gwrite<CR><CR>
-nnoremap <leader>go :Git checkout<Space>
-nnoremap <leader>gps :AsyncRun -raw=1 -post=copen git push<CR>
-nnoremap <leader>gpt :AsyncRun -raw=1 -post=copen git push --tags<CR>
-nnoremap <leader>gpl :AsyncRun -raw=1 -post=copen git pull<CR>
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-signify   {{{1
 " Plug 'mhinz/vim-signify'
 " UPDATE it to reflect your preferences, it will speed up opening files

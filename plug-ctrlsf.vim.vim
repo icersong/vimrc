@@ -18,5 +18,5 @@ let g:ctrlsf_default_view_mode = 'compact'
 let g:ctrlsf_extra_root_markers = ['.root']
 let g:ctrlsf_ignore_dir = ['bin', 'dist', 'build', 'lib', 'libs', 'img', 'fonts', 'cache', 'htdocs/static']
 
-nmap <leader>ss <Plug>CtrlSFCwordPath
-vmap <leader>ss <Plug>CtrlSFVwordPath
+nnoremap <leader>ss <Plug>CtrlSFCwordPath
+vnoremap <leader>ss <Plug>CtrlSFVwordPath
