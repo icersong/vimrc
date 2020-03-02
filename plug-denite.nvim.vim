@@ -3,17 +3,11 @@
 " Plug 'Shougo/denite.nvim', { 'on': ['Denite'] }
 " Denite file/rec   // 递归搜索, rec 表递归
 
-nnoremap <silent> <leader>ff :Denite
-            \ -input='<C-R>=escape(expand("<cword>"), "/\\\*\ \|\(\)")<CR>'
+nnoremap <leader>ff :Denite
             \ buffer file `GetGitRoot() != '' ? 'file/rec/git' : 'file/rec'`
             \ <CR>
 
-vnoremap <silent> <leader>ff :Denite
-            \ -input='<C-R>=escape(GetVisualSelection(), "/\\\*\ \|\(\)")<CR>'
-            \ buffer file `GetGitRoot() != '' ? 'file/rec/git' : 'file/rec'`
-            \ <CR>
-
-nnoremap <silent> <leader>fa :Denite -auto-action=preview
+nnoremap <leader>fc :Denite
             \ -input='<C-R>=escape(expand("<cword>"), "/\\\*\ \|\(\)")<CR>'
             \ buffer file `GetGitRoot() != '' ? 'file/rec/git' : 'file/rec'`
             \ <CR>
@@ -21,6 +15,11 @@ nnoremap <silent> <leader>fa :Denite -auto-action=preview
 nnoremap <silent> <leader>fh :Denite -auto-action=preview
             \ -input='<C-R>=escape(expand("<cword>"), "/\\\*\ \|\(\)")<CR>'
             \ file_mur file/rec
+            \ <CR>
+
+vnoremap <silent> <leader>ff :Denite
+            \ -input='<C-R>=escape(GetVisualSelection(), "/\\\*\ \|\(\)")<CR>'
+            \ buffer file `GetGitRoot() != '' ? 'file/rec/git' : 'file/rec'`
             \ <CR>
 
 " autocmd ColorScheme * call s:denite_colors()
@@ -43,8 +42,12 @@ function! s:denite_settings() abort
                 \ denite#do_map('choose_action')
     nnoremap <silent><buffer><expr> d
                 \ denite#do_map('do_action', 'delete')
+    nnoremap <silent><buffer><expr> f
+                \ denite#do_map('filter', '')
     nnoremap <silent><buffer><expr> p
                 \ denite#do_map('do_action', 'preview')
+    nnoremap <silent><buffer><expr> h
+                \ denite#do_map('move_up_path')
     nnoremap <silent><buffer><expr> q
                 \ denite#do_map('quit')
     nnoremap <silent><buffer><expr> <esc>
@@ -84,6 +87,12 @@ function! s:denite_end() abort
                 \   'highlight_window_background': 'DeniteMenu',
                 \ })
 
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    " file/rec/git
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    call denite#custom#alias('source', 'file/rec/git', 'file/rec')
+    call denite#custom#var('file/rec/git', 'command',
+          \ ['git', 'ls-files', '-co', '--exclude-standard'])
 
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     " Add plugin config manager to Denite menu
