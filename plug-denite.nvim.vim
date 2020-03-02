@@ -3,6 +3,11 @@
 " Plug 'Shougo/denite.nvim', { 'on': ['Denite'] }
 " Denite file/rec   // 递归搜索, rec 表递归
 
+" nnoremap <leader>ff :Denite
+"             \ -input='<C-R>=escape(expand("<cword>"), "/\\\*\ \|\(\)")<CR>'
+"             \ buffer file `GetGitRoot() != '' ? 'file/rec/git' : 'file/rec'`
+"             \ <CR>
+
 nnoremap <leader>ff :Denite
             \ buffer file `GetGitRoot() != '' ? 'file/rec/git' : 'file/rec'`
             \ <CR>
@@ -13,7 +18,11 @@ nnoremap <leader>fc :Denite
             \ <CR>
 
 nnoremap <silent> <leader>fh :Denite -auto-action=preview
-            \ -input='<C-R>=escape(expand("<cword>"), "/\\\*\ \|\(\)")<CR>'
+            \ file_mru file/rec
+            \ <CR>
+
+vnoremap <silent> <leader>fh :Denite -auto-action=preview
+            \ -input='<C-R>=escape(GetVisualSelection(), "/\\\*\ \|\(\)")<CR>'
             \ file_mru file/rec
             \ <CR>
 
