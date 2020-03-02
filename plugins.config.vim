@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2020-02-29
+" Modified: 2020-03-02
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -140,30 +140,6 @@ endif
 " 用ag在当前工程下搜索选中的文件名
 " vnoremap <leader>ff ""y:Grepper -tool file -noprompt -dir repo,file -grepprg ag -g
 "     \ "<C-R>=escape(escape(@", '\'), '"/\*\\\ \|\(\)')<CR>"<CR>
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" CtrlSF    {{{1
-" Plug 'dyng/ctrlsf.vim'
-" CtrlSF [options] <patten> [path]
-" <leader>,ss [path]
-" key 'M' for edit mode
-
-let g:ctrlsf_auto_focus = {"at": "done", "duration_less_than": 1000}
-let g:ctrlsf_auto_close = 1
-let g:ctrlsf_default_root = 'project+fw'
-let g:ctrlsf_populate_qflist = 1
-let g:ctrlsf_regex_pattern = 1
-let g:ctrlsf_winsize = '30%'
-let g:ctrlsf_position = 'bottom'
-let g:ctrlsf_context = '-B 0 -A 0'
-let g:ctrlsf_case_sensitive = 'smart'
-let g:ctrlsf_default_view_mode = 'compact'
-let g:ctrlsf_extra_root_markers = ['.root']
-let g:ctrlsf_ignore_dir = ['bin', 'dist', 'build', 'lib', 'libs', 'img', 'fonts', 'cache', 'htdocs/static']
-
-nmap <leader>ss <Plug>CtrlSFCwordPath
-vmap <leader>ss <Plug>CtrlSFVwordPath
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -677,25 +653,6 @@ highlight DiffChange        cterm=bold ctermbg=none ctermfg=227
 highlight SignifySignAdd    cterm=bold ctermbg=237  ctermfg=119
 highlight SignifySignDelete cterm=bold ctermbg=237  ctermfg=167
 highlight SignifySignChange cterm=bold ctermbg=237  ctermfg=227
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim-gitgutter
-" Plug 'airblade/vim-gitgutter'
-" git display on ruler
-" GitGutterDisable
-" GitGutterEnable
-nmap gn <Plug>GitGutterNextHunk
-nmap gp <Plug>GitGutterPrevHunk
-
-let g:gitgutter_map_keys = 0
-let g:gitgutter_terminal_reports_focus = 0
-function! Gitgutter_Disabled_in_Largefile()
-  if line2byte(line("$")+1) > g:LargeFile*1024*1024
-    call gitgutter#disable()
-  endif
-endfunction
-autocmd BufRead * silent call Gitgutter_Disabled_in_Largefile()
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
