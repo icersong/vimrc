@@ -14,7 +14,7 @@ nnoremap <leader>fc :Denite
 
 nnoremap <silent> <leader>fh :Denite -auto-action=preview
             \ -input='<C-R>=escape(expand("<cword>"), "/\\\*\ \|\(\)")<CR>'
-            \ file_mur file/rec
+            \ file_mru file/rec
             \ <CR>
 
 vnoremap <silent> <leader>ff :Denite
@@ -61,10 +61,10 @@ function! s:denite_settings() abort
     " call denite#custom#map('insert', '<S-tab>', '<denite:move_to_previous_line>', 'noremap')
     " call denite#custom#map('insert', '<C-cr>', '<denite:choose_action>', 'noremap')
     " call denite#custom#map('insert', 'jj', '<denite:enter_mode:normal>', 'noremap')
-    call denite#custom#map('normal', '<tab>', '<denite:do_action:preview>', 'noremap')
+    " call denite#custom#map('normal', '<tab>', '<denite:do_action:preview>', 'noremap')
     " call denite#custom#map('normal', '<S-tab>', '<denite:choose_action>', 'noremap')
-    call denite#custom#map('insert', '<esc>', '<denite:choose_action>', 'noremap')
-    call denite#custom#map('insert', 'jj', '<denite:enter_mode:normal>', 'noremap')
+    " call denite#custom#map('insert', '<esc>', '<denite:choose_action>', 'noremap')
+    " call denite#custom#map('insert', 'jj', '<denite:enter_mode:normal>', 'noremap')
 endfunction
 
 autocmd sourcepost $VIMFILES/denite.nvim/plugin/*.vim call s:denite_end()
@@ -92,7 +92,7 @@ function! s:denite_end() abort
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     call denite#custom#alias('source', 'file/rec/git', 'file/rec')
     call denite#custom#var('file/rec/git', 'command',
-          \ ['git', 'ls-files', '-co', '--exclude-standard'])
+          \ ['git', 'ls-files', '-co', '--exclude-standard', GetGitRoot()])
 
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     " Add plugin config manager to Denite menu
