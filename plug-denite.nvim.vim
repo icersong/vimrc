@@ -110,15 +110,24 @@ function! s:source_menu_vim_plugins() abort
     endfunction
 
     let s:exists = {}
-    let lenp = strlen('plug-')
-    let lene = strlen('.vim')
-    for name in s:glob($CONFROOT, 'plug-*.vim')
+    " let lenp = strlen('plug-')
+    " let lene = strlen('.vim')
+    for name in s:glob($CONFROOT, '*')
         let fname = s:filename(name)
-        let s:exists[strpart(fname, lenp, len(fname) - lenp - lene)] = name
+        let s:exists[name] = name
+        " let s:exists[strpart(fname, lenp, len(fname) - lenp - lene)] = name
+    endfor
+
+    let s:files = [
+        \ 'main.vim', 'plugins.vim', 'plugins.config.vim', 'functions.vim',
+        \ 'README.md', 'INSTALL.md',
+        \ ]
+    for name in g:plugs_order
+        call add(s:files, 'plug-'.name.'.vim')
     endfor
 
     let s:plugs = []
-    for name in g:plugs_order
+    for name in s:files
         if has_key(s:exists, name)
             let display = name . ' - [exists]'
         else
@@ -192,4 +201,10 @@ function! s:denite_end() abort
 
     " default source setting
     call s:default_source_settings()
+
+    " test source
+    " call s:source_test()
 endfunction
+
+" function s:source_test() about
+" endfunction
