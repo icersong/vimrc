@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2020-03-01
+" Modified: 2020-03-03
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -219,7 +219,7 @@ if $LINUX
   set guifontwide=Courier\ New:h9:cDEFAULT
 elseif $MACOS
   " Please set font of iTerm2
-  " set guifont=SauceCodePro\ Nerd\ Font\ Mono:h12
+  set guifont=SauceCodePro\ Nerd\ Font\ Mono:h12
   " set guifont=Menlo:h12
   " set guifont=Monaco:h12
 elseif $WINDOWS
