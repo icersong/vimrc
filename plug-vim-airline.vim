@@ -4,6 +4,7 @@
 " Plug 'bling/vim-airline'
 set laststatus=2
 let g:airline_theme = "dark"
+let g:airline_powerline_fonts = 1
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 let g:airline_section_z = '%B %P %l/%L %v'
@@ -50,4 +51,3 @@ nmap <leader>0 <Plug>AirlineSelectTab10
 " nmap <silent><c-h> <Plug>AirlineSelectPrevTab
 " nmap <silent><c-l> <Plug>AirlineSelectNextTab
 " autocmd BufEnter <buffer> AirlineRefresh
-let g:airline_powerline_fonts = 1
