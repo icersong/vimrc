@@ -8,25 +8,25 @@
 "             \ buffer file `GetGitRoot() != '' ? 'file/rec/git' : 'file/rec'`
 "             \ <CR>
 
-nnoremap <leader>ff :Denite
+nnoremap <silent><leader>ff :Denite
             \ buffer file `GetGitRoot() != '' ? 'file/rec/git' : 'file/rec'`
             \ <CR>
 
-nnoremap <leader>fc :Denite
+nnoremap <silent><leader>fc :Denite
             \ -input='<C-R>=escape(expand("<cword>"), "/\\\*\ \|\(\)")<CR>'
             \ buffer file `GetGitRoot() != '' ? 'file/rec/git' : 'file/rec'`
             \ <CR>
 
-nnoremap <silent> <leader>fh :Denite -auto-action=preview
+nnoremap <silent><leader>fh :Denite -auto-action=preview
             \ file_mru file/rec
             \ <CR>
 
-vnoremap <silent> <leader>fh :Denite -auto-action=preview
+vnoremap <silent><leader>fh :Denite -auto-action=preview
             \ -input='<C-R>=escape(GetVisualSelection(), "/\\\*\ \|\(\)")<CR>'
             \ file_mru file/rec
             \ <CR>
 
-vnoremap <silent> <leader>ff :Denite
+vnoremap <silent><leader>ff :Denite
             \ -input='<C-R>=escape(GetVisualSelection(), "/\\\*\ \|\(\)")<CR>'
             \ buffer file `GetGitRoot() != '' ? 'file/rec/git' : 'file/rec'`
             \ <CR>
