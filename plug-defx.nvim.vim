@@ -50,7 +50,7 @@ function! s:defx_my_settings() abort
   " nnoremap <silent><buffer><expr> <CR>  <SID>defx_open_default()
   nnoremap <silent><buffer><expr> <Cr>
         \ defx#is_directory() ?
-        \ defx#do_action('open_directory') : defx#do_action('drop')
+        \ defx#do_action('open_directory') : defx#do_action('multi', ['drop', 'quit'])
 
   nnoremap <silent><buffer><expr> <2-LeftMouse>
         \ defx#is_directory() ? (
@@ -63,10 +63,10 @@ function! s:defx_my_settings() abort
   nnoremap <silent><buffer><expr> l     defx#do_action('call', 'DefxSmartL')
   nnoremap <silent><buffer><expr> <Right> defx#do_action('call', 'DefxSmartL')
   nnoremap <silent><buffer><expr> o     defx#do_action('call', 'DefxSmartL')
+  " nnoremap <silent><buffer><expr> o     defx#do_action('open_or_close_tree')
 
   nnoremap <silent><buffer><expr> E     defx#do_action('open', 'vsplit')
   nnoremap <silent><buffer><expr> P     defx#do_action('open', 'pedit')
-  nnoremap <silent><buffer><expr> o     defx#do_action('open_or_close_tree')
   nnoremap <silent><buffer><expr> K     defx#do_action('new_directory')
   nnoremap <silent><buffer><expr> N     defx#do_action('new_file')
   nnoremap <silent><buffer><expr> M     defx#do_action('new_multiple_files')
