@@ -405,8 +405,9 @@ function! s:denite_end() abort
                 \   'root_markers': '.git,.svn',
                 \   'start_filter': 1,
                 \   'source_names': 'short',
-                \   'statusline' : has('patch-7.4.1154') ? v:false : 0,
-                \   'prompt' : '➜',
+                \   'auto_accel': v:true,
+                \   'statusline': has('patch-7.4.1154') ? v:false : 0,
+                \   'prompt': '➜',
                 \   'highlight_filter_background': 'DeniteFilter',
                 \   'highlight_matched_char': 'DeniteMatchedChar',
                 \   'highlight_matched_range': 'DeniteMatchedRange',
@@ -414,6 +415,18 @@ function! s:denite_end() abort
                 \   'highlight_prompt': 'DenitePrompt',
                 \   'highlight_window_background': 'DeniteMenu',
                 \ })
+    call denite#custom#filter('matcher/ignore_globs', 'ignore_globs', [
+                \   '*~', '*.o', '*.exe', '*.bak', '*.pyc', '*.sw[po]',
+                \   '*.class', '*.min.*', 'tags', 'tags-*', '.DS_Store',
+                \   '.hg/', '.git/', '.bzr/', '.svn/', '.git/',
+                \   '.ropeproject/', '__pycache__/', 'dist/',
+                \   'venv/', 'images/', 'img/', 'fonts/'])
+
+    " call denite#custom#action('file', 'buffer',
+    "       \ {context -> denite#do_action(context, 'open', context['targets'])})
+
+    call denite#custom#source('file', 'matchers', ['matcher/fuzzy', 'matcher/ignore_globs'])
+    call denite#custom#source('file/rec', 'matchers', ['matcher/fuzzy', 'matcher/ignore_globs'])
 
     " denite key mapping
     call s:denite_key_mapping()
