@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2020-03-05
+" Modified: 2020-03-09
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-plug {{{1
@@ -198,7 +198,9 @@ Plug 'tmhedberg/SimpylFold', {'for': ['python']}
 " Undo tree
 Plug 'sjl/gundo.vim', {'on': ['GundoShow', 'GundoToggle']}
 " Muti select and edit, <c-n>, <c-p>
-Plug 'terryma/vim-multiple-cursors'
+" Plug 'terryma/vim-multiple-cursors'
+" Muti select and edit, <c-n> to start
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 " Remove tail space when save
 " Plug 'ntpeters/vim-better-whitespace'
 " Repeat pre action by key '.'
