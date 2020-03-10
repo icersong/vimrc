@@ -150,7 +150,7 @@ endif
 Plug 'kshenoy/vim-signature'
 " highlight search result runtime
 " Plug 'haya14busa/incsearch.vim'
-" quickly highlight <cword> or visually selected word
+" quickly highlight <cword> or visually selected word -> relace by coc-highlight
 " Plug 't9md/vim-quickhl'
 " 括号匹配颜色(用下一个插件替代)
 " Plug 'kien/rainbow_parentheses.vim', {'for': ['javascript']}

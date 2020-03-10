@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2020-03-03
+" Modified: 2020-03-10
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -140,6 +140,11 @@ endfor
 
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+
+if (has("termguicolors"))
+  set termguicolors
+endif
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General

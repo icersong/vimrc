@@ -13,6 +13,7 @@ endfunction
 " 设置光标显示样式
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! SetGuiCursorStyle()
+  highlight CursorColumn guibg=None guifg=yellow
   highlight CursorLine gui=underline guibg=NONE guifg=NONE
   highlight Cursor guifg=Red guibg=Yellow
   highlight nCursor guifg=Red guibg=Yellow
@@ -54,6 +55,9 @@ function! SetCursorStyle()
     call SetGuiCursorStyle()
   else
     call SetTermCursorStyle()
+    if (has('termguicolors') && &termguicolors)
+        call SetGuiCursorStyle()
+    endif
   endif
 endfunction
 
