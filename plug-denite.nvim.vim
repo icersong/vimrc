@@ -127,11 +127,11 @@ endfunction
 " autocmd ColorScheme * call s:denite_colors()
 function! s:denite_colors() abort
     if &background ==? "dark"
-        highlight DeniteMenu cterm=reverse ctermfg=236 ctermbg=253
-        highlight DeniteMatchedChar cterm=reverse ctermfg=236 ctermbg=226
-        highlight DeniteMatchedRange cterm=reverse ctermfg=236 ctermbg=250
-        highlight DenitePrompt cterm=reverse ctermfg=240 ctermbg=220
-        highlight DeniteFilter cterm=reverse ctermfg=240 ctermbg=74
+        highlight DeniteMenu cterm=reverse ctermfg=236 ctermbg=253 guifg=#AAAAAA guibg=#333333
+        highlight DeniteMatchedChar cterm=reverse ctermfg=236 ctermbg=226 guifg=yellow guibg=none
+        highlight DeniteMatchedRange cterm=reverse ctermfg=236 ctermbg=250 guifg=#DDDDBB guibg=none
+        highlight DenitePrompt cterm=reverse ctermfg=240 ctermbg=220 guifg=#FFCC44 guibg=#444444
+        highlight DeniteFilter cterm=reverse ctermfg=240 ctermbg=74 guifg=#88BBFF guibg=#444444
     endif
 endfunction
 
