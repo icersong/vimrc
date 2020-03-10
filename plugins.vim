@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2020-03-09
+" Modified: 2020-03-10
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-plug {{{1
@@ -151,7 +151,7 @@ Plug 'kshenoy/vim-signature'
 " highlight search result runtime
 " Plug 'haya14busa/incsearch.vim'
 " quickly highlight <cword> or visually selected word
-Plug 't9md/vim-quickhl'
+" Plug 't9md/vim-quickhl'
 " 括号匹配颜色(用下一个插件替代)
 " Plug 'kien/rainbow_parentheses.vim', {'for': ['javascript']}
 " 括号或配对标签颜色
