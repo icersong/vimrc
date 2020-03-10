@@ -19,11 +19,9 @@ function! SetGuiCursorStyle()
   highlight nCursor guifg=Red guibg=Yellow
   highlight iCursor guifg=Red guibg=Yellow
   highlight vCursor guifg=Red guibg=Yellow
-  " set guicursor=n-v-c:block-nCursor-blinkon0
+  set guicursor=n-v-c:block-nCursor-blinkon0
   " set guicursor+=v:ver20-vCursor-blinkwait300-blinkon200-blinkoff100
-  set guicursor=n-c:block-nCursor-blinkon0
-  set guicursor+=v:ver100-vCursor-blinkwait300-blinkon100-blinkoff300
-  set guicursor+=r:block-nCursor-blinkwait300-blinkon100-blinkoff300
+  set guicursor+=r:block-nCursor-blinkwait300-blinkon200-blinkoff100
   set guicursor+=i:ver20-iCursor-blinkwait300-blinkon200-blinkoff100
 endfunction
 
