@@ -131,7 +131,7 @@ autocmd VimEnter * imap <silent> <expr> <TAB>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Color Scheme
-for scheme in ['solarized8', 'solarized', 'desert']
+for scheme in ['solarized8_flat', 'solarized8', 'solarized', 'desert']
   if strlen(globpath(&rtp, "colors/".scheme.".vim")) > 0
     execute "colorscheme " . scheme
     break

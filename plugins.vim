@@ -141,11 +141,8 @@ Plug 'justinmk/vim-sneak'
 " 特殊字体符号
 " Plug 'ryanoasis/vim-devicons'
 " 配色方案
-if has('mac')
-  Plug 'altercation/vim-colors-solarized'
-else
-  Plug 'lifepillar/vim-solarized8'
-endif
+" Plug 'altercation/vim-colors-solarized'
+Plug 'lifepillar/vim-solarized8'
 " place, toggle and display marks
 Plug 'kshenoy/vim-signature'
 " highlight search result runtime
