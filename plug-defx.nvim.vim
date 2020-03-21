@@ -2,7 +2,9 @@
 " defx {{{1
 " Plug 'Shougo/defx.nvim'
 
-nnoremap <silent> <leader>df :Defx -columns=icons:indent:filename:type<CR>
+nnoremap <silent> <leader>df :Defx -columns=icons:indent:filename:type
+          \ -ignored-files=*.pyc,*.pyo,*.bin,*.doc,*.docx,*.xsl
+          \ <CR>
 let g:defx_icons_enable_syntax_highlight = 1
 
 autocmd sourcepost $VIMFILES/defx.nvim/plugin/*.vim call s:plugin_loaded()
