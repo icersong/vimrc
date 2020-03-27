@@ -12,8 +12,8 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 设置光标显示样式
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! SetGuiCursorStyle()
-  highlight CursorColumn guibg=None guifg=yellow
+function! SetGuiCursorStyle() abort
+  highlight CursorColumn guibg=NONE guifg=yellow
   highlight CursorLine gui=underline guibg=NONE guifg=NONE
   highlight Cursor guifg=Red guibg=Yellow
   highlight nCursor guifg=Red guibg=Yellow
@@ -26,7 +26,7 @@ function! SetGuiCursorStyle()
 endfunction
 
 
-function! SetTermCursorStyle()
+function! SetTermCursorStyle() abort
   highlight CursorLine cterm=underline ctermbg=NONE ctermfg=NONE
   if &term =~ '^xterm' || &term == 'xterm-256color' || &term == 'screen-256color' || &term == 'nvim'
     " 1 or 0 -> blinking block
@@ -48,7 +48,7 @@ function! SetTermCursorStyle()
 endfunction
 
 
-function! SetCursorStyle()
+function! SetCursorStyle() abort
   if has('gui_running')
     call SetGuiCursorStyle()
   else
