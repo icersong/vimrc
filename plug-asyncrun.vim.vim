@@ -3,7 +3,7 @@
 " Plug 'skywind3000/asyncrun.vim'
 function! AsyncRunning(id)
   if !empty(matchstr(g:asyncrun_status, '\d\+'))
-    let g:asyncrun_status += 1
+    let g:asyncrun_status = printf('%d', g:asyncrun_status + 1)
   else
     if g:asyncrun_status == 'running'
       let g:asyncrun_status = '1'
