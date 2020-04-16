@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2020-03-11
+" Modified: 2020-04-16
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -159,7 +159,8 @@ scriptencoding utf-8
 set background=dark             " Assume a dark background
 
 " 默认寄存器unnamed&unnamedplus和系统剪贴板共享
-set clipboard=unnamed,unnamedplus
+set clipboard=unnamedplus
+let g:clipboard = {'cache_enabled': 1}
 
 if has('mouse')
   set mouse=a                   " enable mouse (a, r, v)
@@ -187,7 +188,7 @@ set viminfo='999,f1,<999
 set shortmess+=filmnrxoOtT      " Abbrev. of messages (avoids 'hit enter')
 set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
 set virtualedit=all,onemore     " 虚环境编辑空间, Allow for cursor beyond last character
-set history=99                  " Store a ton of history (default is 20)
+set history=999                 " Store a ton of history (default is 20)
 " set spell                       " Spell checking on
 set hidden                      " Allow buffer switching without saving, 放弃缓冲区时隐藏而不卸载
 set iskeyword=a-z,A-Z,48-57,_   " word designator
