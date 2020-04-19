@@ -1,24 +1,78 @@
 {
+    "coc.preferences.currentFunctionSymbolAutoUpdate": true,
+    "coc.preferences.colorSupport": true,
+    "coc.preferences.formatOnSaveFiletypes": [
+        "css",
+        "json",
+        "markdown",
+        "javascript"
+    ],
+
+    "suggest.enablePreview": true,
+    "suggest.echodocSupport": true,
     "suggest.noselect": false,
+
     "diagnostic.errorSign": "✘",
     "diagnostic.warningSign": "⚠",
     "diagnostic.infoSign": "•",
     "diagnostic.hintSign": "·",
 
-    "coc.preferences.formatOnSaveFiletypes": [
-      "css",
-      "markdown",
-      "Markdown",
-      "javascript",
-      "javascriptreact",
-      "typescript",
-      "typescriptreact"
-    ],
+    "list.normalMappings": {
+        "<C-n>": "normal:j",
+        "<C-p>": "normal:k",
+        "t": "action:tabe",
+        "v": "action:vsplit",
+        "s": "action:split",
+        "d": "expr:GetDeleteAction"
+    },
+    "list.insertMappings": {
+        "<CR>": "do:defaultaction",
+        "<C-r>": "do:refresh",
+        "<C-g>": "do:switch",
+        "<C-n>": "normal:j",
+        "<C-p>": "normal:k",
+        "<C-t>": "action:tabe",
+        "<C-v>": "action:vsplit",
+        "<C-s>": "action:split",
+        "<C-w>": "command:wincmd k"
+    },
+
+    "git.addedSign.hlGroup": "GitGutterAdd",
+    "git.changedSign.hlGroup": "GitGutterChange",
+    "git.removedSign.hlGroup": "GitGutterDelete",
+    "git.topRemovedSign.hlGroup": "GitGutterDelete",
+    "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
+    "git.addGBlameToVirtualText": true,
+    "git.addGBlameToBufferVar": true,
+
+    "emmet.includeLanguages": {
+        "vue-html": "html"
+    },
 
     "eslint.enable": true,
-    "prettier.semi": true,
+    "eslint.packageManager": "yarn",
+    "eslint.autoFixOnSave": true,
+    "eslint.filetypes": [
+        "javascript",
+        "javascriptreact"
+    ],
+
+    "python.jediEnabled": true,
     "python.linting.pylintEnabled": false,
     "python.linting.flake8Enabled": true,
-    "python.linting.pylintArgs": ["--disabled=W0120,useless-else-on-loop"],
-    "python.pythonPath": "~/.pyenv/versions/nvim-py2/bin/python"
+    "python.linting.pylintArgs": [
+        "--disabled=W0120,useless-else-on-loop"
+    ],
+    "python.pythonPath": "~/.pyenv/versions/nvim-py2/bin/python",
+
+    "snippets.extends": {
+        "cpp": ["c"],
+        "javascriptreact": ["javascript"],
+        "typescript": ["javascript"]
+    },
+    "snippets.ultisnips.directories": [
+        "UltiSnips"
+    ],
+
+    "yank.highlight.duration": 999
 }
