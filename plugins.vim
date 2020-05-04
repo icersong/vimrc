@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2020-03-10
+" Modified: 2020-05-04
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-plug {{{1
@@ -317,6 +317,9 @@ Plug 'brookhong/DBGPavim', {'for': []}
 " displays available keybindings in popup
 " Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 " Plug 'liuchengxu/vim-which-key'
+
+
+Plug 'metakirby5/codi.vim', {'for': 'Codi'}
 
 
 """""""""""""""""""""""""""""""" Shell & Tools """"""""""""""""""""""""""""""""
