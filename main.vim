@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2020-04-16
+" Modified: 2020-05-16
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -160,7 +160,7 @@ set background=dark             " Assume a dark background
 
 " 默认寄存器unnamed&unnamedplus和系统剪贴板共享
 set clipboard=unnamedplus
-let g:clipboard = {'cache_enabled': 1}
+" let g:clipboard = {'cache_enabled': 1}
 
 if has('mouse')
   set mouse=a                   " enable mouse (a, r, v)
