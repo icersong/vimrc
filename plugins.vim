@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2020-05-15
+" Modified: 2020-05-27
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-plug {{{1
@@ -358,7 +358,8 @@ Plug 'mattn/calendar-vim', {'on': ['Calendar', 'CalendarH', 'CalendarT', 'Calend
 Plug 'icersong/vimwiki', {'on': ['VimwikiIndex', 'VimwikiDiaryIndex',
             \ 'VimwikiMakeDiaryNote', 'VimwikiMakeYestordayDiaryNote']}
 " 有道词典翻译, <leader>w
-Plug 'iamcco/dict.vim'
+" Plug 'iamcco/dict.vim'
+Plug 'voldikss/vim-translator'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
