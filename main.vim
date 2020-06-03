@@ -138,14 +138,14 @@ for scheme in ['solarized8_flat', 'solarized8', 'solarized', 'desert']
   endif
 endfor
 
-" if has('nvim')
-"     let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-"     let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-" endif
-if (has("termguicolors"))
-    " fix bug for vim
-    set t_8f=^[[38;2;%lu;%lu;%lum
-    set t_8b=^[[48;2;%lu;%lu;%lum
+if has("termguicolors")
+    if !has('nvim')
+        " fix bug for vim
+        " let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+        " let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+        set t_8f=^[[38;2;%lu;%lu;%lum
+        set t_8b=^[[48;2;%lu;%lu;%lum
+    endif
     set termguicolors
 endif
 
