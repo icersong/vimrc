@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2020-05-16
+" Modified: 2020-06-03
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -138,8 +138,10 @@ for scheme in ['solarized8_flat', 'solarized8', 'solarized', 'desert']
   endif
 endfor
 
-let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+" if has('nvim')
+"     let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+"     let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+" endif
 if (has("termguicolors"))
     " fix bug for vim
     set t_8f=^[[38;2;%lu;%lu;%lum
