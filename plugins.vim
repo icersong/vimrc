@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2020-05-27
+" Modified: 2020-06-09
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-plug {{{1
@@ -279,6 +279,8 @@ Plug 'mattn/emmet-vim', {
 " Plug 'vim-scripts/dbext.vim'
 Plug 'tpope/vim-dadbod', {'on': ['DB']}
 
+" 命令行<leader>提示
+"Plug 'hecal3/vim-leader-guide'
 
 """""""""""""""""""""""""""""""" 版本管理 """"""""""""""""""""""""""""""""
 " VCS command
