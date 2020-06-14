@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2020-06-09
+" Modified: 2020-06-14
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-plug {{{1
@@ -115,8 +115,14 @@ Plug 'Yggdroot/LeaderF', { 'do': './install.sh', 'on': ['Leaderf', 'LeaderfFile'
 "       \ 'dir': '~/.fzf', 'do': 'yes \| ./install --bin' }
 " Plug 'junegunn/fzf.vim', { 'on': ['History', 'Files', 'GFiles', 'Buffers'] }
 " 功能比较强悍的搜索工具
-Plug 'Shougo/denite.nvim', {'on': ['Denite', 'DeniteBufferDir', 'DeniteCursorWord', 'DeniteProjectDir'],
-    \ 'do': 'UpdateRemotePlugins' }
+if has('nvim')
+  Plug 'Shougo/denite.nvim', {'on': ['Denite', 'DeniteBufferDir', 'DeniteCursorWord', 'DeniteProjectDir'],
+      \ 'do': 'UpdateRemotePlugins' }
+else
+  Plug 'Shougo/denite.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
 Plug 'Shougo/neomru.vim', {'on': ['Denite', 'DeniteBufferDir', 'DeniteCursorWord', 'DeniteProjectDir']}
 " 颜值不错的POP搜索
 " Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
