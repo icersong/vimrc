@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2020-06-03
+" Modified: 2020-07-03
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -161,7 +161,8 @@ scriptencoding utf-8
 set background=dark             " Assume a dark background
 
 " 默认寄存器unnamed&unnamedplus和系统剪贴板共享
-set clipboard=unnamedplus
+" 共享系统剪切板会导致列粘贴失效
+" set clipboard=unnamedplus 
 " let g:clipboard = {'cache_enabled': 1}
 
 if has('mouse')
@@ -398,9 +399,30 @@ command ProfileStopLog profile pause
 noremap j gj
 noremap k gk
 
-" buffer切换
-noremap <silent><Left> :bp<CR>
-noremap <silent><Right> :bn<CR>
+" clipboard
+" visual mode: only paste but not replace cut table
+vnoremap p pgvy
+noremap <leader>p "+p
+noremap <leader>y "+y
+
+" increase decrease indent
+vnoremap < <gv
+vnoremap > >gv
+" nnoremap <silent>> V><esc>
+" nnoremap <silent>< V<<esc>
+
+" move line up & dnow
+vnoremap <S-K> :m'<-2<cr>gv
+vnoremap <S-J> :m'>+1<cr>gv
+" vnoremap <C-j> :m'>+<cr>`<my`>mzgv`yo`z
+" vnoremap <C-k> :m'<-2<cr>`>my`<mzgv`yo`z
+
+" redo，default key <c-r>
+noremap <S-U> :redo<CR>
+
+" buffer switch
+nnoremap <silent>> :bn<cr>
+nnoremap <silent>< :bp<cr>
 
 " 定义空格键暂时取消高亮匹配
 noremap <silent>zz :nohls<CR>za
@@ -414,9 +436,6 @@ noremap <silent>z6 :set foldlevel=6<CR>
 noremap <silent>z7 :set foldlevel=7<CR>
 noremap <silent>z8 :set foldlevel=8<CR>
 noremap <silent>z9 :set foldlevel=9<CR>
-
-" 重做，用于撤销后返撤销
-noremap <S-U> :redo<CR>
 
 " 文件操作
 let SYSBUFS=["quickfix","terminal","nofile","nowrite"]
@@ -433,30 +452,11 @@ noremap <silent><leader>X :wq!<CR>
 " 文件格式设置成dos :set ff=dos<CR>
 " 文件格式设置成unix :set ff=unix<CR>
 
-"缩进快捷键
-vmap < <gv
-vmap > >gv
-" nmap <silent>> V><esc>
-" nmap <silent>< V<<esc>
-nmap <silent>> :bn<cr>
-nmap <silent>< :bp<cr>
-
-" 上下移动一行文字
-" noremap <C-J> :m+<cr>
-" noremap <C-K> :m-2<cr>
-vnoremap <S-K> :m'<-2<cr>gv
-vnoremap <S-J> :m'>+1<cr>gv
-" vnoremap <C-j> :m'>+<cr>`<my`>mzgv`yo`z
-" vnoremap <C-k> :m'<-2<cr>`>my`<mzgv`yo`z
-
-" visual mode: only paste but not replace cut table
-vnoremap p pgvy
-
 " For when you forget to sudo.. Really Write the file.
 cnoremap w!! w !sudo tee % >/dev/null
 " command line %% get current path
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<CR>
-map <leader>ew :e %%
+noremap <leader>ew :e %%
 
 " Remove the Windows ^M - when the encodings gets messed up
 noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
