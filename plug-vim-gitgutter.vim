@@ -4,8 +4,8 @@
 " git display on ruler
 " GitGutterDisable
 " GitGutterEnable
-nmap gn <Plug>GitGutterNextHunk
-nmap gp <Plug>GitGutterPrevHunk
+nmap gn <Plug>(GitGutterNextHunk)
+nmap gp <Plug>(GitGutterPrevHunk)
 
 let g:gitgutter_map_keys = 0
 let g:gitgutter_terminal_reports_focus = 0
