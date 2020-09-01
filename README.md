@@ -36,6 +36,12 @@ vimrc
 
 # 调试加载速度
 
+* neovim 调试
+
+    $ nvim -V9logfile
+    $ nvim -V20logfile
+
+
 * 使用 --startuptime 启动 vim 即可，例如：
 
     $ vim --startuptime tmp.txt

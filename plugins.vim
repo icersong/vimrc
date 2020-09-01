@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2020-06-14
+" Modified: 2020-09-01
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-plug {{{1
@@ -70,6 +70,7 @@ Plug 'vim-scripts/LargeFile'
 " 启动页面
 Plug 'mhinz/vim-startify'
 " Buffer标签页&状态栏
+" TODO: Plug 'itchyny/lightline.vim'
 Plug 'bling/vim-airline', {'configure': 'plug-airline.vim'}
 " 缩略图显示显示代码及光标位置
 " Plug 'severin-lemaignan/vim-minimap'
@@ -162,6 +163,7 @@ Plug 'kshenoy/vim-signature'
 Plug 'luochen1990/rainbow', {'for': ['c', 'h', 'cpp', 'php', 'css', 'xml', 'vim',
       \ 'java', 'html', 'jinja', 'python', 'javascript']}
 " background color preview
+" TODO: Plug 'RRethy/vim-hexokinase'
 Plug 'gko/vim-coloresque', {'for': ['php', 'css', 'xml', 'vim', 'html', 'java',
       \ 'jinja', 'python', 'javascript', 'xdefaults']}
 " Plug 'chrisbra/Colorizer', {'for': ['css', 'html', 'javascript', 'jinja', 'python']}
