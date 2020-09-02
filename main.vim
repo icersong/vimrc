@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2020-07-03
+" Modified: 2020-09-02
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -349,7 +349,7 @@ autocmd BufRead,BufNewFile *.wsgi setlocal filetype=python foldmethod=indent
 " autocmd BufRead,BufNewFile *.tpl setlocal filetype=jinja
 " autocmd FileType vim,css setlocal tabstop=2 softtabstop=2 shiftwidth=2
 " autocmd FileType xml,html,xhtml setlocal tabstop=2 shiftwidth=2 softtabstop=2
-autocmd FileType yaml setlocal tabstop=4 shiftwidth=4 softtabstop=4
+autocmd FileType yaml,css setlocal tabstop=2 shiftwidth=2 softtabstop=2
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
