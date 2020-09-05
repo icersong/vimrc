@@ -1,31 +1,42 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " AsyncRun    {{{1
 " Plug 'skywind3000/asyncrun.vim'
-function! AsyncRunning(id)
+let g:asyncrun_timeout=99
+let g:asyncrun_status = ''
+let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status}'])
+
+augroup QuickfixStatus
+  au! BufWinEnter quickfix setlocal
+  \ statusline=%t\ [%{g:asyncrun_status}]\ %{exists('w:quickfix_title')?\ '\ '.w:quickfix_title\ :\ ''}\ %=%-15(%l,%c%V%)\ %P
+augroup END
+
+function! AsyncrunClear(timer)
+    let g:asyncrun_status=''
+endfunction
+
+function! AsyncrunStop(timer)
+    call AsyncrunClear('!')
+    call asyncrun#stop('!')
+endfunction
+
+function! AsyncRunning(timer)
   if !empty(matchstr(g:asyncrun_status, '\d\+'))
-    let g:asyncrun_status = printf('%d', g:asyncrun_status + 1)
+    if g:asyncrun_status == g:asyncrun_timeout
+      let g:asyncrun_status = 'timeout'
+      call timer_start(3333, 'AsyncrunStop', {'repeat': 1})
+    else
+      let g:asyncrun_status = printf('%d', g:asyncrun_status + 1)
+    endif
   else
     if g:asyncrun_status == 'running'
       let g:asyncrun_status = '1'
-    endif
-    if g:asyncrun_status == 'success'
-      let g:asyncrun_status = ''
-      if exists('s:asyncrun_running_timer')
-        call timer_stop(s:asyncrun_running_timer)
-        unlet s:asyncrun_running_timer
-      endif
-    endif
-    if g:asyncrun_status == 'failure'
-      if exists('s:asyncrun_running_timer')
-        call timer_stop(s:asyncrun_running_timer)
-        unlet s:asyncrun_running_timer
-      endif
+    elseif g:asyncrun_status == 'success'
+      call timer_stop(a:timer)
+      call timer_start(3333, 'AsyncrunClear', {'repeat': 1})
+    elseif g:asyncrun_status == 'failure'
+      call timer_stop(a:timer)
+      call timer_start(3333, 'AsyncrunStop', {'repeat': 1})
     endif
   endif
-  let g:airline_section_error = g:asyncrun_status
-  exec ':AirlineRefresh'
-  redrawstatus!
-  redraw
 endfunction
-autocmd User AsyncRunStart let s:asyncrun_running_timer =
-      \ timer_start(1000, 'AsyncRunning', {'repeat': 100})
+autocmd User AsyncRunStart call timer_start(1000, 'AsyncRunning', {'repeat': g:asyncrun_timeout})
