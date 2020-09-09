@@ -205,7 +205,7 @@ set history=999                 " Store a ton of history (default is 20)
 set hidden                      " Allow buffer switching without saving, 放弃缓冲区时隐藏而不卸载
 set iskeyword=a-z,A-Z,48-57,_   " word designator
 set undofile                    " So is persistent undo ...
-set undolevels=32               " Maximum number of changes that can be undone
+set undolevels=999              " Maximum number of changes that can be undone
 set undoreload=999              " Maximum number lines to save for undo on a buffer reload
 
 set autoread                    " 文件变化自动载入
