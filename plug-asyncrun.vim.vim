@@ -26,7 +26,7 @@ function! AsyncRunning(timer)
       call asyncrun#stop('!')
       call timer_start(9999, 'AsyncrunClear', {'repeat': 1})
     else
-      let g:asyncrun_status = printf('%d', g:asyncrun_status + 1)
+      let g:asyncrun_status = printf('%02d', g:asyncrun_status + 1)
     endif
   else
     if g:asyncrun_status == 'running'
