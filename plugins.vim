@@ -173,7 +173,9 @@ Plug 'chrisbra/vim-diff-enhanced'
 Plug 'Yggdroot/indentLine'
 
 " 静态语法配色包 slow load file
-Plug 'sheerun/vim-polyglot', {}
+" Plug 'sheerun/vim-polyglot', {}
+" Python语法配色方案
+Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 " Syntax for jinja and html
 Plug 'Glench/Vim-Jinja2-Syntax', { 'for': ['jinja', 'jinja2'] }
 " syntax highlighting for javascript, too slow ...
@@ -187,7 +189,7 @@ Plug 'othree/html5.vim', { 'for': ['htm', 'html', 'xhtml'] }
 " Syntax highlighting for JSON in Vim
 Plug 'elzr/vim-json', { 'for': ['json'] }
 " It covers syntax, indenting, compiling, and more
-Plug 'kchmck/vim-coffee-script', { 'for': ['coffee'] }
+" Plug 'kchmck/vim-coffee-script', { 'for': ['coffee'] }
 " for CSS3
 Plug 'hail2u/vim-css3-syntax', {'for': ['css']}
 
@@ -248,7 +250,8 @@ Plug 'Shougo/echodoc.vim'
 " 语法分析工具
 " Plug 'scrooloose/syntastic'
 " 语法分析工具, 异步运行(Vim8/NeoVim)，性能完爆syntastic
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 
 " 语法补全工具
 if has('python3')
