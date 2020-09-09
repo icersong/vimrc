@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2020-09-06
+" Modified: 2020-09-09
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-plug {{{1
@@ -249,31 +249,23 @@ Plug 'Shougo/echodoc.vim'
 " Plug 'scrooloose/syntastic'
 " 语法分析工具, 异步运行(Vim8/NeoVim)，性能完爆syntastic
 Plug 'w0rp/ale'
-" 语法补全工具
 
+" 语法补全工具
 if has('python3')
   if has('nvim')
-    " Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
-    " Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
-    Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-    " Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
-    " Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
-    " Plug 'neoclide/coc-prettier', {'do': 'yarn install --frozen-lockfile'}
-    " Plug 'neoclide/coc-eslint', {'do': 'yarn install --frozen-lockfile'}
-    " Plug 'neoclide/coc-tslint', {'do': 'yarn install --frozen-lockfile'}
-    " Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
-    " Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'} " mru and stuff
-    " Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
-    " Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'} " color highlighting
-  else
-    Plug 'Shougo/deoplete.nvim'
-    Plug 'roxma/nvim-yarp'
-    Plug 'roxma/vim-hug-neovim-rpc'
-    let g:deoplete#enable_at_startup = 1
+    Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile', 'branch': 'release'}
   endif
 endif
+if 0
+    " assuming you're using vim-plug: https://github.com/junegunn/vim-plug
+    Plug 'ncm2/ncm2'
+    Plug 'roxma/nvim-yarp'
+    Plug 'ncm2/ncm2-bufword'
+    Plug 'ncm2/ncm2-path'
+endif
 
-Plug 'jmcantrell/vim-virtualenv', {'on': ['VirtualEnvActivate', 'VirtualEnvList']}
+
+" Plug 'jmcantrell/vim-virtualenv', {'on': ['VirtualEnvActivate', 'VirtualEnvList']}
 " Plug 'hemerey/vim-project'
 " provides support for expanding abbreviations similar to emmet
 Plug 'mattn/emmet-vim', {

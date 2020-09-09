@@ -28,12 +28,14 @@ autocmd BufWritePost call coc#refresh()
 " Use `[c` and `]c` to navigate diagnostics
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
 nmap <silent> ]c <Plug>(coc-diagnostic-next)
+nmap <silent> gk <Plug>(coc-diagnostic-prev)
+nmap <silent> gj <Plug>(coc-diagnostic-next)
 
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gr <Plug>(coc-references)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -81,17 +83,16 @@ command! -nargs=? Fold :call CocAction('fold', <f-args>)
 
 
 " Add diagnostic info for https://github.com/itchyny/lightline.vim
-let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'cocstatus': 'coc#status'
-      \ },
-      \ }
-
+" let g:lightline = {
+"       \ 'colorscheme': 'wombat',
+"       \ 'active': {
+"       \   'left': [ [ 'mode', 'paste' ],
+"       \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
+"       \ },
+"       \ 'component_function': {
+"       \   'cocstatus': 'coc#status'
+"       \ },
+"       \ }
 
 " air-line
 " use error & warning count of diagnostics form coc.nvim
@@ -118,13 +119,17 @@ let airline#extensions#coc#stl_format_err = '%E{[%e(#%fe)]}'
 " Change warning format:
 let airline#extensions#coc#stl_format_warn = '%W{[%w(#%fw)]}'
 
+" Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc-prettier', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc-tslint', {'do': 'yarn install --frozen-lockfile'}
+" Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'} " mru and stuff
 let g:coc_global_extensions = [
     \ 'coc-highlight',
     \ 'coc-snippets',
+    \ 'coc-python',
     \ 'coc-eslint',
     \ 'coc-emmet',
     \ 'coc-yaml',
-    \ 'coc-python',
     \ 'coc-json',
     \ 'coc-html',
     \ 'coc-css',

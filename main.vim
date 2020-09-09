@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2020-09-08
+" Modified: 2020-09-09
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -51,7 +51,16 @@ for path in [$VIMCACHE, $VIMSWAP, $VIMBKUP, $VIMUNDO, $VIMWIKI]
   endif
 endfor
 
-
+" if exists('$VIRTUAL_ENV')
+"   if !empty(pyenv)
+"     let pyenv_prefix = resolve(s:trim(s:system(['pyenv', 'prefix'])))
+"     if $VIRTUAL_ENV != pyenv_prefix
+"       let virtualenv_inactive = 1
+"     endif
+"   elseif !empty(pyname) && exepath(pyname) !~# '^'.$VIRTUAL_ENV.'/'
+"     let virtualenv_inactive = 1
+"   endif
+" endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Patch
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
