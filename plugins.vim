@@ -73,6 +73,9 @@ Plug 'mhinz/vim-startify'
 Plug 'bling/vim-airline', {'configure': 'plug-airline.vim'}
 " TODO: Plug 'itchyny/lightline.vim'
 Plug 'icersong/vim-bufferline'
+" TODO: Plug 'ap/vim-buftabline'
+" TODO: Plug 'akinsho/nvim-bufferline.lua'
+" TODO: Plug 'mengelbrecht/lightline-bufferline'
 
 " 缩略图显示显示代码及光标位置
 " Plug 'severin-lemaignan/vim-minimap'
