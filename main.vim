@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2020-09-09
+" Modified: 2020-09-15
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -146,7 +146,6 @@ for scheme in ['solarized8_flat', 'solarized8', 'solarized', 'desert']
     break
   endif
 endfor
-
 if has("termguicolors")
     if !has('nvim') && version < 802
         " fix bug for vim
@@ -157,6 +156,8 @@ if has("termguicolors")
     endif
     set termguicolors
 endif
+set background=dark             " Assume a dark background
+syntax on                       " Syntax highlighting
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -164,10 +165,6 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 filetype indent on              " 自动缩进开
 filetype plugin on
-" syntax enable
-syntax on                       " Syntax highlighting
-scriptencoding utf-8
-set background=dark             " Assume a dark background
 
 " 默认寄存器unnamed&unnamedplus和系统剪贴板共享
 " 共享系统剪切板会导致列粘贴失效
@@ -321,6 +318,7 @@ set fileformats=unix,dos,mac        " 文件格式支持
 " set formatoptions+=jmB            " centos vim7.2 not 'j' option
 set ambiwidth=double
 " utf8编码下，将不明宽度字符按双倍宽度显示, double|single
+scriptencoding utf-8
 set formatoptions+=mB               " formatoptions
 set fileencoding=utf-8
 " set nobomb

@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2020-09-09
+" Modified: 2020-09-15
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-plug {{{1
@@ -151,6 +151,7 @@ Plug 'justinmk/vim-sneak'
 " 配色方案
 " Plug 'altercation/vim-colors-solarized'
 Plug 'lifepillar/vim-solarized8'
+" Plug 'junegunn/seoul256.vim'
 " place, toggle and display marks
 Plug 'kshenoy/vim-signature'
 " highlight search result runtime
