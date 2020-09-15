@@ -140,13 +140,11 @@ autocmd VimEnter * imap <silent> <expr> <TAB>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Color Scheme
-for scheme in ['solarized8_flat', 'solarized8', 'solarized', 'desert']
-  if strlen(globpath(&rtp, "colors/".scheme.".vim")) > 0
-    execute "colorscheme " . scheme
-    break
-  endif
-endfor
 if has("termguicolors")
+    " enable true color
+    if has('nvim')
+        let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+    endif
     if !has('nvim') && version < 802
         " fix bug for vim
         " let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -156,8 +154,15 @@ if has("termguicolors")
     endif
     set termguicolors
 endif
+" enable color scheme
 set background=dark             " Assume a dark background
 syntax on                       " Syntax highlighting
+for scheme in ['solarized8_flat', 'solarized8', 'solarized', 'onedark', 'desert']
+  if strlen(globpath(&rtp, "colors/".scheme.".vim")) > 0
+    execute "colorscheme " . scheme
+    break
+  endif
+endfor
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

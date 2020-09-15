@@ -101,6 +101,7 @@ endif
 " Plug 'fholgado/minibufexpl.vim', {'on': ['MBEOpen', 'MBEToggle']}
 " Tag列表显示
 Plug 'majutsushi/tagbar', {'on':  ['Tagbar', 'TagbarOpen', 'TagbarToggle', 'TagbarShowTags']}
+Plug 'liuchengxu/vista.vim'
 " 自定义目录数工具
 Plug 'vim-voom/VOoM', {'on': ['Voom', '<plug>(Voom)']}
 " List for TODO and XXX ...
@@ -153,6 +154,7 @@ Plug 'justinmk/vim-sneak'
 Plug 'lifepillar/vim-solarized8'
 " Plug 'junegunn/seoul256.vim'
 " place, toggle and display marks
+" Plug 'joshdick/onedark.vim'
 Plug 'kshenoy/vim-signature'
 " highlight search result runtime
 " Plug 'haya14busa/incsearch.vim'
