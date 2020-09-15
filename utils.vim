@@ -2,7 +2,7 @@
 " 切换BUFFER或TAB
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! utils#tab_buf_switch(num) abort
-    if exists('g:feat_enable_airline') && g:feat_enable_airline == 1
+    if index(g:plugs_order, 'vim-airline') >= 0
         execute 'normal '."\<Plug>AirlineSelectTab".a:num
     else
         if exists( '*tabpagenr' ) && tabpagenr('$') != 1

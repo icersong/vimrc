@@ -2,12 +2,11 @@
 " AsyncRun    {{{1
 " Plug 'skywind3000/asyncrun.vim'
 
-if exists('g:feat_enable_airline') && g:feat_enable_airline == 1
-    let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status}'])
-else
+if index(g:plugs_order, 'vim-airline') < 0
     finish
 endif
 
+let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status}'])
 let g:asyncrun_open = 0
 let g:asyncrun_timeout=99
 let g:asyncrun_status = ''

@@ -100,7 +100,7 @@ command! -nargs=? Fold :call CocAction('fold', <f-args>)
 " let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
 
 " create a part for server status.
-if exists('g:feat_enable_airline') && g:feat_enable_airline == 1
+if index(g:plugs_order, 'vim-airline') >= 0
     function! GetServerStatus()
       return get(g:, 'coc_status', '')
     endfunction
