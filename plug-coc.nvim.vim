@@ -100,24 +100,26 @@ command! -nargs=? Fold :call CocAction('fold', <f-args>)
 " let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
 
 " create a part for server status.
-function! GetServerStatus()
-  return get(g:, 'coc_status', '')
-endfunction
-call airline#parts#define_function('coc', 'GetServerStatus')
-function! AirlineInit()
-  let g:airline_section_a = airline#section#create(['coc'])
-endfunction
-autocmd User AirlineAfterInit call AirlineInit()
-" exclude overwrite statusline of list filetype
-let g:airline_exclude_filetypes = ["list"]
-" Change error symbol:
-let airline#extensions#coc#error_symbol = 'Error:'
-" Change warning symbol:
-let airline#extensions#coc#warning_symbol = 'Warning:'
-" Change error format:
-let airline#extensions#coc#stl_format_err = '%E{[%e(#%fe)]}'
-" Change warning format:
-let airline#extensions#coc#stl_format_warn = '%W{[%w(#%fw)]}'
+if exists('g:feat_enable_airline') && g:feat_enable_airline == 1
+    function! GetServerStatus()
+      return get(g:, 'coc_status', '')
+    endfunction
+    call airline#parts#define_function('coc', 'GetServerStatus')
+    function! AirlineInit()
+      let g:airline_section_a = airline#section#create(['coc'])
+    endfunction
+    autocmd User AirlineAfterInit call AirlineInit()
+    " exclude overwrite statusline of list filetype
+    let g:airline_exclude_filetypes = ["list"]
+    " Change error symbol:
+    let airline#extensions#coc#error_symbol = 'Error:'
+    " Change warning symbol:
+    let airline#extensions#coc#warning_symbol = 'Warning:'
+    " Change error format:
+    let airline#extensions#coc#stl_format_err = '%E{[%e(#%fe)]}'
+    " Change warning format:
+    let airline#extensions#coc#stl_format_warn = '%W{[%w(#%fw)]}'
+endif
 
 " Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
 " Plug 'neoclide/coc-prettier', {'do': 'yarn install --frozen-lockfile'}

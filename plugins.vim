@@ -70,8 +70,10 @@ Plug 'vim-scripts/LargeFile'
 " 启动页面
 Plug 'mhinz/vim-startify'
 " Buffer标签页&状态栏
-" TODO: Plug 'itchyny/lightline.vim'
 Plug 'bling/vim-airline', {'configure': 'plug-airline.vim'}
+" TODO: Plug 'itchyny/lightline.vim'
+Plug 'icersong/vim-bufferline'
+
 " 缩略图显示显示代码及光标位置
 " Plug 'severin-lemaignan/vim-minimap'
 " Plug 'koron/minimap-vim'

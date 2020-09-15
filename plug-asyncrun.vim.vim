@@ -1,10 +1,16 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " AsyncRun    {{{1
 " Plug 'skywind3000/asyncrun.vim'
+
+if exists('g:feat_enable_airline') && g:feat_enable_airline == 1
+    let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status}'])
+else
+    finish
+endif
+
 let g:asyncrun_open = 0
 let g:asyncrun_timeout=99
 let g:asyncrun_status = ''
-let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status}'])
 
 augroup QuickfixStatus
   au! BufWinEnter quickfix setlocal
@@ -41,4 +47,5 @@ function! AsyncRunning(timer)
     endif
   endif
 endfunction
+
 autocmd User AsyncRunStart call timer_start(1000, 'AsyncRunning', {'repeat': g:asyncrun_timeout})

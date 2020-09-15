@@ -101,9 +101,10 @@ execute 'source ' . simplify(expand($CONFROOT.'/netrw.vim'))
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" load functions
+" load functions & utils
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 execute 'source ' . simplify(expand($CONFROOT.'/functions.vim'))
+execute 'source ' . simplify(expand($CONFROOT.'/utils.vim'))
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

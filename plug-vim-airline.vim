@@ -38,16 +38,16 @@ let g:airline#extensions#tabline#buffer_idx_format = {
 "       \ '10': '⓾', '11': '⓫', '12': '⓬', '13': '⓭',
 "       \ '14': '⓮', '15': '⓯', '16': '⓰', '17': '⓱',
 "       \ '18': '⓲', '19': '⓳', '20': '⓴' }
-nmap <leader>1 <Plug>AirlineSelectTab1
-nmap <leader>2 <Plug>AirlineSelectTab2
-nmap <leader>3 <Plug>AirlineSelectTab3
-nmap <leader>4 <Plug>AirlineSelectTab4
-nmap <leader>5 <Plug>AirlineSelectTab5
-nmap <leader>6 <Plug>AirlineSelectTab6
-nmap <leader>7 <Plug>AirlineSelectTab7
-nmap <leader>8 <Plug>AirlineSelectTab8
-nmap <leader>9 <Plug>AirlineSelectTab9
-nmap <leader>0 <Plug>AirlineSelectTab10
+" nmap <leader>1 <Plug>AirlineSelectTab1
+" nmap <leader>2 <Plug>AirlineSelectTab2
+" nmap <leader>3 <Plug>AirlineSelectTab3
+" nmap <leader>4 <Plug>AirlineSelectTab4
+" nmap <leader>5 <Plug>AirlineSelectTab5
+" nmap <leader>6 <Plug>AirlineSelectTab6
+" nmap <leader>7 <Plug>AirlineSelectTab7
+" nmap <leader>8 <Plug>AirlineSelectTab8
+" nmap <leader>9 <Plug>AirlineSelectTab9
+" nmap <leader>0 <Plug>AirlineSelectTab10
 " nmap <silent><c-h> <Plug>AirlineSelectPrevTab
 " nmap <silent><c-l> <Plug>AirlineSelectNextTab
 " autocmd BufEnter <buffer> AirlineRefresh
