@@ -28,14 +28,14 @@ autocmd BufWritePost call coc#refresh()
 " Use `[c` and `]c` to navigate diagnostics
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
 nmap <silent> ]c <Plug>(coc-diagnostic-next)
-nmap <silent> jk <Plug>(coc-diagnostic-prev)
-nmap <silent> jj <Plug>(coc-diagnostic-next)
+nmap <silent> gk <Plug>(coc-diagnostic-prev)
+nmap <silent> gj <Plug>(coc-diagnostic-next)
 
 " Remap keys for gotos
-nmap <silent> jd <Plug>(coc-definition)
-nmap <silent> jr <Plug>(coc-references)
-nmap <silent> jy <Plug>(coc-type-definition)
-nmap <silent> ji <Plug>(coc-implementation)
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
