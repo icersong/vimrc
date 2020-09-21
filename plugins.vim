@@ -317,7 +317,8 @@ Plug 'gregsexton/gitv', {'on': ['Gitv']}
 
 " 支持toc dot flowchart plantuml katex mermaid js-sequence-diagrams chart 渲染
 " command: MarkdownPreview
-Plug 'iamcco/markdown-preview.nvim', {'for': 'markdown', 'do': 'cd app && yarn install'  }
+" Plug 'iamcco/mathjax-support-for-mkdp', {'for': 'markdown'}
+Plug 'iamcco/markdown-preview.nvim', {'for': 'markdown', 'do': 'cd app && yarn install'}
 
 Plug 'jceb/vim-orgmode'
 
