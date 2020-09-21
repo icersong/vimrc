@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2020-09-15
+" Modified: 2020-09-21
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-plug {{{1
@@ -312,10 +312,12 @@ Plug 'gregsexton/gitv', {'on': ['Gitv']}
 
 """""""""""""""""""""""""""""""" 辅助工具 """"""""""""""""""""""""""""""""
 " Preview markdown in Google Chrome
-" npm -g install instant-markdown-d
-" pip install --user smdv
 " command: InstantMarkdownPreview
-Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
+" Plug 'suan/vim-instant-markdown', {'for': 'markdown', 'do': 'pip install --user smdv && npm -g install instant-markdown-d'}
+
+" 支持toc dot flowchart plantuml katex mermaid js-sequence-diagrams chart 渲染
+" command: MarkdownPreview
+Plug 'iamcco/markdown-preview.nvim', {'for': 'markdown', 'do': 'cd app && yarn install'  }
 
 Plug 'jceb/vim-orgmode'
 
@@ -326,14 +328,14 @@ Plug 'fs111/pydoc.vim', {'on': ['Pydoc', 'PydocSearch']}
 " Plug 'joonty/vdebug', {'do': 'VdebugStart'}
 " Plug 'gotcha/vimpdb'
 " python&php调试工具（异步）, 需要Komodo dbgp工具
-Plug 'brookhong/DBGPavim', {'for': []}
+" Plug 'brookhong/DBGPavim', {'for': []}
 
 " displays available keybindings in popup
 " Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 " Plug 'liuchengxu/vim-which-key'
 
-
-Plug 'metakirby5/codi.vim', {'for': 'Codi'}
+" TODO USE plugin codi
+" Plug 'metakirby5/codi.vim', {'for': 'Codi'}
 
 
 """""""""""""""""""""""""""""""" Shell & Tools """"""""""""""""""""""""""""""""
