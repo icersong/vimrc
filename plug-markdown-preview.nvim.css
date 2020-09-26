@@ -31,11 +31,13 @@
 .markdown-body > *:last-child {
   margin-bottom: 0 !important;
 }
-#page-ctn {margin-left: 333px;}
-.markdown-body .table-of-contents {
-  left: 0;
-  position: fixed;
-  top: 88px;
+@media screen {
+  #page-ctn {margin-left: 333px;}
+  .markdown-body .table-of-contents {
+    left: 0;
+    position: fixed;
+    top: 88px;
+  }
 }
 .markdown-body .table-of-contents ol {
   list-style: none;
