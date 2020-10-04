@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2020-09-21
+" Modified: 2020-10-04
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-plug {{{1
@@ -219,6 +219,8 @@ Plug 'sjl/gundo.vim', {'on': ['GundoShow', 'GundoToggle']}
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 " Remove tail space when save
 " Plug 'ntpeters/vim-better-whitespace'
+" smart replace
+" TODO: Plug tpope/vim-abolish
 " Repeat pre action by key '.'
 Plug 'tpope/vim-repeat'
 " Add or del parentheses symbols for word or selected
