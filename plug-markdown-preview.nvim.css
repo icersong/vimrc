@@ -39,6 +39,10 @@
     top: 88px;
   }
 }
+code {
+  white-space: normal;
+  word-break: break-all;
+}
 .markdown-body .table-of-contents ol {
   list-style: none;
 }
