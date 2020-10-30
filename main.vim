@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2020-09-15
+" Modified: 2020-10-30
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -236,22 +236,19 @@ endif
 
 
 " Font
-if $LINUX
-  " set guifontwide=WenQuanYi\ Micro\ Hei:h9:cDEFAULT
-  set guifont=Courier\ New:h9:cDEFAULT
-  set guifontwide=Courier\ New:h9:cDEFAULT
-elseif $MACOS
+if $MACOS
   " Please set font of iTerm2
-  " set guifont=SauceCodePro\ Nerd\ Font\ Mono:h12
-  " set guifont=Menlo:h12
-  " set guifont=Monaco:h12
+  " brew tap homebrew/cask-fonts
+  " brew cask install font-fira-code
+elseif $LINUX
+  " https://github.com/tonsky/FiraCode/wiki/Linux-instructions#installing-with-a-package-manager
+  set guifont=Fira\ Code:h9,Courier\ New:h9:cDEFAULT
+  set guifontwide=Fira\ Code:h9,Courier\ New:h9:cDEFAULT
 elseif $WINDOWS
-  " set guifont=Inconsolata:h10:cDEFAULT
-  " set guifontwide=YtYaHei:h8:cDEFAULT
-  " set guifont=Menlo:h9:cDEFAULT
-  " set guifontwide=Menlo:h9:cDEFAULT
-  set guifont=Courier\ New:h9:cDEFAULT
-  set guifontwide=Courier\ New:h9:cDEFAULT
+  " scoop bucket add nerd-fonts
+  " scoop install firacode
+  set guifont=Fira\ Code:h9,Courier\ New:h9:cDEFAULT
+  set guifontwide=Fira\ Code:h9,Courier\ New:h9:cDEFAULT
 endif
 
 " 高亮当前行当前列(十字光标)
@@ -360,9 +357,8 @@ au BufRead,BufNewFile *.tpl set filetype=jinja
 autocmd BufRead,BufNewFile *.wsgi setlocal filetype=python foldmethod=indent
 " autocmd BufRead,BufNewFile jquery.*.js setlocal filetype=javascript syntax=jquery
 " autocmd BufRead,BufNewFile *.tpl setlocal filetype=jinja
-" autocmd FileType vim,css setlocal tabstop=2 softtabstop=2 shiftwidth=2
+autocmd FileType vim,yaml,css setlocal tabstop=2 softtabstop=2 shiftwidth=2
 " autocmd FileType xml,html,xhtml setlocal tabstop=2 shiftwidth=2 softtabstop=2
-autocmd FileType yaml,css setlocal tabstop=2 shiftwidth=2 softtabstop=2
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
