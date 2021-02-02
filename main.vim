@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2020-10-30
+" Modified: 2021-02-02
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -319,7 +319,9 @@ if !has("multi_byte")
 endif
 set fileformats=unix,dos,mac        " 文件格式支持
 " set formatoptions+=jmB            " centos vim7.2 not 'j' option
-set ambiwidth=double
+if ! $MACOS
+  set ambiwidth=double              " 未知字符默认宽度
+endif
 " utf8编码下，将不明宽度字符按双倍宽度显示, double|single
 scriptencoding utf-8
 set formatoptions+=mB               " formatoptions
