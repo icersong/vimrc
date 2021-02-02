@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2020-10-04
+" Modified: 2021-02-02
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-plug {{{1
@@ -72,7 +72,10 @@ Plug 'mhinz/vim-startify'
 " Buffer标签页&状态栏
 Plug 'bling/vim-airline', {'configure': 'plug-airline.vim'}
 " TODO: Plug 'itchyny/lightline.vim'
-Plug 'icersong/vim-bufferline'
+
+" 命令行窗口显示当前buffers
+" Plug 'icersong/vim-bufferline'
+
 " TODO: Plug 'ap/vim-buftabline'
 " TODO: Plug 'akinsho/nvim-bufferline.lua'
 " TODO: Plug 'mengelbrecht/lightline-bufferline'
@@ -83,7 +86,7 @@ Plug 'icersong/vim-bufferline'
 " 打开文件检查.swp冲突并提示操作
 Plug 'chrisbra/Recover.vim'
 " 关灯编辑，Distraction edit on special width & heigth pannel
-Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
+" Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 " 命令窗口<c-n> or <c-p>自动补全
 Plug 'vim-scripts/CmdlineComplete'
 " 平滑滚动
