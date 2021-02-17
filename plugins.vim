@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2021-02-02
+" Modified: 2021-02-17
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-plug {{{1
@@ -197,12 +197,14 @@ Plug 'Glench/Vim-Jinja2-Syntax', { 'for': ['jinja', 'jinja2'] }
 Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript'] }
 " indent and syntax for html in vim
 Plug 'othree/html5.vim', { 'for': ['htm', 'html', 'xhtml'] }
-" Syntax highlighting for JSON in Vim
+" Syntax highlighting for JSON
 Plug 'elzr/vim-json', { 'for': ['json'] }
 " It covers syntax, indenting, compiling, and more
 " Plug 'kchmck/vim-coffee-script', { 'for': ['coffee'] }
 " for CSS3
 Plug 'hail2u/vim-css3-syntax', {'for': ['css']}
+" Syntax highlighting for vue
+Plug 'posva/vim-vue', {'for': ['vue']}
 
 " Speed up Vim by updating folds only when called-for.
 Plug 'Konfekt/FastFold'

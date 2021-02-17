@@ -131,6 +131,7 @@ let g:coc_global_extensions = [
     \ 'coc-python',
     \ 'coc-eslint',
     \ 'coc-emmet',
+    \ 'coc-vetur',
     \ 'coc-yaml',
     \ 'coc-json',
     \ 'coc-html',

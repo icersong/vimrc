@@ -19,7 +19,8 @@
 
     $ yarn add eslint babel-eslint \
       eslint-standard eslint-plugin-standard eslint-config-standard \
-      eslint-plugin-promise eslint-plugin-import eslint-plugin-node
+      eslint-plugin-promise eslint-plugin-import eslint-plugin-node \
+      eslint-plugin-vue
 
 
 ## install ruby & rvm
