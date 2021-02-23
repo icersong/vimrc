@@ -1,3 +1,6 @@
+"referance:
+"   https://www.cnblogs.com/linxiyue/p/10309820.html
+
 " 解决滑动过快高亮失效
 autocmd FileType vue syntax sync fromstart
 
