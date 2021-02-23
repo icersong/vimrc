@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2021-02-02
+" Modified: 2021-02-23
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -355,12 +355,10 @@ set splitright          " Puts new vsplit windows to the right of the current
 " set matchpairs+=<:>     " Match, to be used with %
 " set textwidth=512       " textwidth, 一行的最大宽度
 
-au BufRead,BufNewFile *.tpl set filetype=jinja
-autocmd BufRead,BufNewFile *.wsgi setlocal filetype=python foldmethod=indent
-" autocmd BufRead,BufNewFile jquery.*.js setlocal filetype=javascript syntax=jquery
-" autocmd BufRead,BufNewFile *.tpl setlocal filetype=jinja
-autocmd FileType vim,yaml,css setlocal tabstop=2 softtabstop=2 shiftwidth=2
-" autocmd FileType xml,html,xhtml setlocal tabstop=2 shiftwidth=2 softtabstop=2
+au BufNewFile,BufRead *.tpl set filetype=jinja
+au BufRead,BufNewFile *.wsgi setlocal filetype=python foldmethod=indent
+au FileType html,javascript,vue set tabstop=2 softtabstop=2 shiftwidth=2
+au FileType vim,yaml,css setlocal tabstop=2 softtabstop=2 shiftwidth=2
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
