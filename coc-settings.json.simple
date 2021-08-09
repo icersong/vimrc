@@ -1,22 +1,21 @@
 {
     "coc.preferences.currentFunctionSymbolAutoUpdate": true,
     "coc.preferences.colorSupport": true,
+    "coc.preferences.formatOnType": true,
     "coc.preferences.formatOnSaveFiletypes": [
         "css",
         "json",
+        "python",
         "markdown",
         "javascript"
     ],
-
     "suggest.enablePreview": true,
     "suggest.echodocSupport": true,
     "suggest.noselect": false,
-
     "diagnostic.errorSign": "✘",
     "diagnostic.warningSign": "⚠",
     "diagnostic.infoSign": "•",
     "diagnostic.hintSign": "·",
-
     "list.normalMappings": {
         "<C-n>": "normal:j",
         "<C-p>": "normal:k",
@@ -36,43 +35,56 @@
         "<C-s>": "action:split",
         "<C-w>": "command:wincmd k"
     },
-
     "git.addedSign.hlGroup": "GitGutterAdd",
     "git.changedSign.hlGroup": "GitGutterChange",
     "git.removedSign.hlGroup": "GitGutterDelete",
     "git.topRemovedSign.hlGroup": "GitGutterDelete",
     "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
-    "git.addGBlameToVirtualText": true,
+    "git.addGBlameToVirtualText": false,
     "git.addGBlameToBufferVar": true,
-
     "emmet.includeLanguages": {
         "vue-html": "html"
     },
-
     "eslint.enable": true,
     "eslint.packageManager": "yarn",
     "eslint.autoFixOnSave": true,
-    "eslint.filetypes": [
+    "eslint.probe": [
         "javascript",
-        "javascriptreact"
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+        "html",
+        "markdown"
     ],
-
+    "vetur.dev.logLevel": "INFO",
     "python.jediEnabled": true,
-    "python.linting.pylintEnabled": false,
+    "python.formatting.provider": "autopep8",
     "python.linting.flake8Enabled": true,
+    "python.linting.pylintEnabled": true,
     "python.linting.pylintArgs": [
         "--disabled=W0120,useless-else-on-loop"
     ],
-    "python.pythonPath": "~/.pyenv/versions/nvim-py2/bin/python",
-
+    "python.pythonPath": "python3",
+    "python.venvFolders": [
+        "envs",
+        ".pyenv",
+        ".direnv",
+        ".venv"
+    ],
     "snippets.extends": {
-        "cpp": ["c"],
-        "javascriptreact": ["javascript"],
-        "typescript": ["javascript"]
+        "cpp": [
+            "c",
+            "cpp"
+        ],
+        "javascriptreact": [
+            "javascript"
+        ],
+        "typescript": [
+            "javascript"
+        ]
     },
     "snippets.ultisnips.directories": [
         "UltiSnips"
     ],
-
     "yank.highlight.duration": 999
 }
