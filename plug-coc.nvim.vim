@@ -128,7 +128,7 @@ endif
 let g:coc_global_extensions = [
     \ 'coc-highlight',
     \ 'coc-snippets',
-    \ 'coc-python',
+    \ 'coc-pyright',
     \ 'coc-eslint',
     \ 'coc-emmet',
     \ 'coc-vetur',
