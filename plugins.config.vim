@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2020-03-03
+" Modified: 2021-08-11
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -236,25 +236,6 @@ let g:jsx_ext_required = 1
 " autocmd Syntax * RainbowParenthesesLoadSquare
 " autocmd Syntax * RainbowParenthesesLoadBraces
 " " autocmd Syntax * RainbowParenthesesLoadChevrons
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Raimondi/delimitMate {{{1
-" automatic closing of quotes, parenthesis, brackets, etc.
-" Plug 'Raimondi/delimitMate'
-" for python docstring "
-let delimitMate_matchpairs = "(:),[:],{:}"
-let delimitMate_expand_cr = 2
-let delimitMate_expand_space = 1
-let delimitMate_expand_inside_quotes = 0
-let delimitMate_jump_expansion = 1
-let delimitMate_balance_matchpairs = 1
-let delimitMate_excluded_regions = "Comment,String"
-" Fixed <tab> jump out
-" autocmd VimEnter * imap <silent> <expr> <TAB>
-"       \ !pumvisible() && delimitMate#ShouldJump() ?
-"       \ delimitMate#JumpAny() : "\<TAB>"
-au FileType python let b:delimitMate_nesting_quotes = ['"', "'", '`']
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

@@ -1,13 +1,27 @@
-set nobackup
-set nowritebackup
+" 离开插入模式后自动关闭预览窗口
+" autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
+" When the <Enter> key is pressed while the popup menu is visible, it only
+" hides the menu. Use this mapping to close the menu and also start a new
+" line.
+inoremap <expr> <cr> (pumvisible() ? "\<c-y>\<cr>" : "\<cr>")
 " Use Enter to confirm select
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() :
-    \ "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+" inoremap <silent><expr> <cr>
+"       \ pumvisible()
+"       \ ? coc#_select_confirm()
+"       \ : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
-" <TAB> select
+" Use <TAB> to select the popup menu:
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+" inoremap <silent><expr> <TAB>
+"       \ pumvisible() ? coc#_select_confirm() :
+"       \ coc#expandableOrJumpable() ?
+"       \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+"       \ <SID>check_back_space() ? "\<TAB>" :
+"       \ coc#refresh()
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
+      \ pumvisible() ? "\<C-n>" :
       \ coc#expandableOrJumpable() ?
       \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
       \ <SID>check_back_space() ? "\<TAB>" :

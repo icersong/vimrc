@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2021-02-17
+" Modified: 2021-08-11
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-plug {{{1
@@ -242,7 +242,7 @@ Plug 'chrisbra/NrrwRgn', { 'on': [
             \ 'NRMulti', 'NRPrepare', 'NRUnprepare'
             \ ] }
 " Provides automatic closing of quotes, parenthesis, brackets,
-Plug 'Raimondi/delimitMate'
+" Plug 'Raimondi/delimitMate'
 " Code comment
 " Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-commentary', {'on': ['Commentary', '<plug>Commentary']}
@@ -274,14 +274,12 @@ if has('python3')
     Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile', 'branch': 'release'}
   endif
 endif
-if 0
-    " assuming you're using vim-plug: https://github.com/junegunn/vim-plug
-    Plug 'ncm2/ncm2'
-    Plug 'roxma/nvim-yarp'
-    Plug 'ncm2/ncm2-bufword'
-    Plug 'ncm2/ncm2-path'
-endif
 
+" " assuming you're using vim-plug: https://github.com/junegunn/vim-plug
+" Plug 'ncm2/ncm2'
+" Plug 'roxma/nvim-yarp'
+" Plug 'ncm2/ncm2-bufword'
+" Plug 'ncm2/ncm2-path'
 
 " Plug 'jmcantrell/vim-virtualenv', {'on': ['VirtualEnvActivate', 'VirtualEnvList']}
 " Plug 'hemerey/vim-project'

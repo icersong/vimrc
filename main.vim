@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2021-08-09
+" Modified: 2021-08-11
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -122,24 +122,6 @@ execute 'source ' . simplify(expand($CONFROOT.'/plugins.vim'))
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Super <TAB>
-function! Ulti_ExpandOrJump_and_getRes()
-  if !HasFuncValid('UltiSnips#ExpandSnippetOrJump')
-    return -1
-  endif
-  call UltiSnips#ExpandSnippetOrJump()
-  return g:ulti_expand_or_jump_res
-endfunction
-
-autocmd VimEnter * imap <silent> <expr> <TAB>
-  \ pumvisible() ?
-  \ "\<C-N>" :
-  \ HasFuncValid('delimitMate#ShouldJump') && delimitMate#ShouldJump() ?
-  \ delimitMate#JumpAny() :
-  \ "\<C-R>=(Ulti_ExpandOrJump_and_getRes() > 0) ? '' : '\<TAB>'\<CR>"
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Color Scheme
 if has("termguicolors")
     " enable true color
@@ -186,6 +168,8 @@ endif
 set undodir=$VIMUNDO            " 设置undo备份路径
 set directory=$VIMSWAP          " 设置交换文件路径
 set backupdir=$VIMBKUP          " 设置自动备份路径
+set nobackup
+set nowritebackup
 " Clean undo cache 7 days ago
 au VimLeave * silent exe '!find "'.$VIMCACHE.'/undo" -mtime +7 -exec rm -f {} \;'
 
@@ -306,7 +290,7 @@ set display=lastline            " 解决自动换行格式下, 如折行之后�
 set report=0                    " 报告哪些行被修改过
 set go+=a                       " 选择后自动进入系统剪切板
 set pumheight=9                 " 设置智能补全菜单长度
-set completeopt=menuone         " 去掉智能补全预览，只显示菜单并自动插入
+set completeopt=menuone,noinsert " 去掉智能补全预览，只显示菜单并自动插入
 set selection=inclusive         " 设定选择区是否包含最后一个光标所在字符
 set nowrapscan                  " 搜索到文件末尾时，不再回绕到文件首
 
