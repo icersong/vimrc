@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2021-08-11
+" Modified: 2021-08-12
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-plug {{{1
@@ -242,7 +242,7 @@ Plug 'chrisbra/NrrwRgn', { 'on': [
             \ 'NRMulti', 'NRPrepare', 'NRUnprepare'
             \ ] }
 " Provides automatic closing of quotes, parenthesis, brackets,
-" Plug 'Raimondi/delimitMate'
+Plug 'Raimondi/delimitMate'
 " Code comment
 " Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-commentary', {'on': ['Commentary', '<plug>Commentary']}
@@ -395,7 +395,7 @@ call plug#end()
 " Load plugins config
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 execute 'source ' . simplify(expand($CONFROOT.'/plugins.config.vim'))
-
+execute 'source ' . simplify(expand($CONFROOT.'/keymap.vim'))
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " The End
