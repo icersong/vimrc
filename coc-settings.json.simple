@@ -11,7 +11,7 @@
     ],
     "suggest.enablePreview": true,
     "suggest.echodocSupport": true,
-    "suggest.noselect": false,
+    "suggest.noselect": true,
     "diagnostic.errorSign": "✘",
     "diagnostic.warningSign": "⚠",
     "diagnostic.infoSign": "•",
@@ -57,14 +57,26 @@
         "markdown"
     ],
     "vetur.dev.logLevel": "INFO",
-    "python.jediEnabled": true,
     "python.formatting.provider": "autopep8",
+    "python.linting.enabled": true,
     "python.linting.flake8Enabled": true,
     "python.linting.pylintEnabled": true,
+    "python.linting.pytypeEnabled": false,
+    "python.linting.pycodestyleEnabled": false,
     "python.linting.pylintArgs": [
         "--disabled=W0120,useless-else-on-loop"
     ],
-    "python.pythonPath": "python3",
+    "pyright.organizeimports.provider": "isort",
+    "python.sortImports.args": [
+        "--force-single-line-imports",
+        "--force-sort-within-sections",
+        "--dont-order-by-type",
+        "--length-sort",
+        "--length-sort-straight",
+        "--single-line-exclusions",
+        "('typing',)"
+    ],
+    "python.pythonPath": "python",
     "python.venvFolders": [
         "envs",
         ".pyenv",
