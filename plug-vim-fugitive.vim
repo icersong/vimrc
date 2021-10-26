@@ -20,7 +20,7 @@ nnoremap <silent><leader>gL :AsyncRun -raw=1 -post=copen
       \ --date=format:"\%Y-\%m-\%d \%H:\%M:\%S" --pretty="format:\%h \%ad \%an \%s" %<CR>
 " nnoremap <silent><leader>gl :silent! Glog<CR>:bot copen<CR>
 " nnoremap <silent><leader>ga :Git add %:p<CR><CR>
-nnoremap <silent><leader>gs :Gstatus<CR>
+nnoremap <silent><leader>gs :Git<CR>
 nnoremap <silent><leader>gc :Gcommit -v -q<CR>
 nnoremap <silent><leader>gC :Gcommit -v -q --amend<CR>
 nnoremap <silent><leader>gt :Gcommit -v -q %:p<CR>
