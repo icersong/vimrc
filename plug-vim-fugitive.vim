@@ -36,3 +36,5 @@ nnoremap <silent><leader>go :Git checkout<Space>
 nnoremap <silent><leader>gp :AsyncRun -raw=1 git push<CR>
 nnoremap <silent><leader>gl :AsyncRun -raw=1 git pull<CR>
 nnoremap <silent><leader>gpoa :AsyncRun -raw=1 git push --tags<CR>
+
+command! Gblame Git blame
