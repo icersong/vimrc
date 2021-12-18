@@ -2,7 +2,7 @@
 " Copyright @ 2013-2014 by icersong
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10 00:00:00
-" Modified: 2021-08-11
+" Modified: 2021-12-18
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
@@ -159,10 +159,12 @@ filetype plugin on
 " set clipboard=unnamedplus 
 " let g:clipboard = {'cache_enabled': 1}
 
-if has('mouse')
+if has('mouse') && has('gui_running')
   set mouse=a                   " enable mouse (a, r, v)
   set mousehide                 " Hide the mouse cursor while typing
   set selectmode=mouse,key
+else
+  set mouse=                    " disable mouse on console
 endif
 
 set undodir=$VIMUNDO            " 设置undo备份路径
