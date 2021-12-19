@@ -73,11 +73,11 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Load plugin's config 
 
-" if $WINDOWS
-"   let s:SEP = '\'
-" else
-"   let s:SEP = '/'
-" endif
+if $WINDOWS
+  let s:SEP = '\'
+else
+  let s:SEP = '/'
+endif
 
 " escape tail space
 function! s:esc(path)
@@ -112,7 +112,7 @@ function! s:filedict(path, pre, ext)
 endfunction
 
 function! LoadConfigures(path, names)
-  let vimkvs = s:filedict(a:path, 'plug-', '.vim')
+  let vimkvs = s:filedict(a:path, '', '.vim')
   for name in a:names
     if has_key(vimkvs, name)
       execute 'source ' . s:esc(vimkvs[name])

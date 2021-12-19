@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2021-08-11
+" Modified: 2021-12-20
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -737,7 +737,7 @@ let g:timestamp_modelines = 9
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Auto load plugin's config while plug valid
 
-call LoadConfigures($CONFROOT, g:plugs_order)
+call LoadConfigures($CONFROOT."/plugins", g:plugs_order)
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
