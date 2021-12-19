@@ -124,3 +124,4 @@ endfunction
 "----------------------
 " Reference:
 " * https://segmentfault.com/a/1190000016186540
+" * https://yqc.im/vim-fzf-config/
