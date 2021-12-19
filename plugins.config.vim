@@ -7,21 +7,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugins configure
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:enable_youcompleteme = 0
-let g:enable_pydiction = 0
-let g:enable_jedi = 0
-let g:enable_ropevim = 0
-
-if $MACOS
-  let g:enable_youcompleteme = 1
-else
-  let g:enable_pydiction = 1
-  let g:enable_jedi = 1
-endif
-let g:enable_jedi = 1
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " start page {{{1
 " Plug 'mhinz/vim-startify'
 let g:startify_session_dir = $VIMCACHE.'/session'
@@ -55,112 +40,10 @@ endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" minimap   {{{1
-" Plug 'severin-lemaignan/vim-minimap'
-" let g:minimap_highlight='Visual'
-" let g:minimap_show='<leader>ms'
-" let g:minimap_update='<leader>mu'
-" let g:minimap_close='<leader>gc'
-" let g:minimap_toggle='<leader>gt'
-
-
-" minimap   {{{1
-" Plug 'koron/minimap-vim'
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" FZF   {{{1
-" Plug 'junegunn/fzf.vim'
-
-" let g:fzf_history_dir = $VIMCACHE.'/fzf-history'
-
-" nmap <silent> <leader>fb :Buffers<CR>
-" nmap <silent> <leader>fz :Files<CR>
-" nmap <silent> <leader>fg :GFiles<CR>
-" nmap <silent> <leader>fh :History<CR>
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Ag    {{{1
-" Plug 'rking/ag.vim'
-" Search by file name
-" :AgFile [options] {pattern} [{directory}]
-" Search file content
-" :Ag [options] {pattern} [{directory}]
-" :Ag '\\\#define foo' to search for #define foo
-" let g:ag_prg="ag --vimgrep --nocolor --nogroup --smart-case --ignore .git --ignore .svn --ignore .DS_Store"
-" let g:ag_working_path_mode="r"
-" let g:ag_format="%f:%l:%c:%m"
-" let g:ag_hightlight=1
-" let g:ag_qhandler="copen"
-" nnoremap <leader>gf  :AgFile<space>
-" 用ag在当前工程下搜索光标下的文件名
-" nnoremap <leader>ff :AgFile! "<C-R>=escape(escape(expand('<cword>'), '\'), '"/\*\ \|\(\))')<CR>"
-" 用ag在当前工程下搜索选中文本的文件名 gag
-" vnoremap <leader>ff ""y:AgFile! "<C-R>=escape(escape(@", '\'), '"/\*\ \|\(\))')<CR>"
-" vnoremap <leader>ff :AgFile! "<C-R>=escape(escape(GetVisualSelection(), '\'), '"/\*\ \|\(\))')<CR>"
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Grepper   {{{1
-" Plug 'mhinz/vim-grepper'
-" Search file content
-" let g:grepper           = {}
-" let g:grepper.tools     = ['ag', 'git', 'grep', 'file']
-" let g:grepper.repo      = ['.git', '.hg', '.svn']
-" let g:grepper.open      = 1
-" let g:grepper.jump      = 0
-" let g:grepper.stop      = 99
-" let g:grepper.highlight = 1
-" let g:grepper.next_tool = '<tab>'   " <TAB>键切换搜索工具
-" let g:grepper.ag = { 'grepprg': 'ag --vimgrep --smart-case' }
-" let g:grepper.file= { 'grepprg': 'ag --vimgrep --smart-case -g' }
-
-" ---- 内容搜索 ----
-" 用ag搜索当前目录,
-" nnoremap <leader>f. :Grepper -tool ag<cr>
-" 用ag在当前目录下搜索光标下的单词, "CtrlSF xxx ." 替代
-" nmap <leader>*  :Grepper -tool ag -noprompt -cword<CR>
-" nmap <leader>f. yiw:Grepper -noprompt -grepprg ag
-"     \ "<C-R>=escape(@", '"/\*\\\ \|\(\)')<CR>"
-" 用ag在当前目录下搜索选中的内容, "CtrlSF xxx ." 替代
-" vmap <leader>* ""y:Grepper -noprompt -grepprg ag
-"     \ "<C-R>=escape(@", '"/\*\\\ \|\(\)')<CR>"<CR>
-" 用ag在当前工程下搜索, 等待输入
-" nnoremap <leader>fr :Grepper -tool ag -dir repo,file<cr>
-" 用ag在当前工程下搜索光标下的单词
-" nnoremap <leader>fr :Grepper -tool ag -cword -noprompt -dir repo,file<cr>
-" 用ag在当前工程下搜索选中的内容
-" vnoremap <leader>fr ""y:Grepper -noprompt -dir repo,file -grepprg ag
-"     \ "<C-R>=escape(@", '"/\*\\\ \|\(\)')<CR>"<CR>
-
-" ---- 文件搜索 ----
-" 用ag在当前工程下搜索光标下的文件名
-" nnoremap <leader>ff :Grepper -tool file -cword -noprompt -dir repo,file<CR>
-" 用ag在当前工程下搜索选中的文件名
-" vnoremap <leader>ff ""y:Grepper -tool file -noprompt -dir repo,file -grepprg ag -g
-"     \ "<C-R>=escape(escape(@", '\'), '"/\*\\\ \|\(\)')<CR>"<CR>
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-clap    {{{1
 
 let g:clap_theme = 'material_design_dark'
 let g:clap_theme = { 'search_text': {'guifg': 'yellow', 'ctermfg': 'yellow'} }
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" incsearch {{{1
-" highlighting search results
-" Plug 'haya14busa/incsearch.vim'
-" set hlsearch
-" let g:incsearch#auto_nohlsearch = 1
-" nmap n  <Plug>(incsearch-nohl-n)
-" nmap N  <Plug>(incsearch-nohl-N)
-" nmap *  <Plug>(incsearch-nohl-*)
-" nmap #  <Plug>(incsearch-nohl-#)
-" nmap g* <Plug>(incsearch-nohl-g*)
-" nmap g# <Plug>(incsearch-nohl-g#)
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -284,51 +167,6 @@ let g:snips_github = 'https://github.com/icersong'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" echodoc {{{1
-" Plug 'Shougo/echodoc.vim'
-let g:echodoc#enable_at_startup = 1
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" python-dict   {{{1
-" usage: os.p<tab>
-" Plug 'rkulla/pydiction'
-let g:pydiction_location = simplify(expand($VIM_BUNDLE_PATH.'/pydiction/complete-dict'))
-let g:pydiction_menu_height = 9
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" jedi-vim  {{{1
-" jedi-vim is a is a VIM binding to the autocompletion library Jedi.
-" 此插件会导致键入时迟缓，严重时会卡住
-" Plug 'davidhalter/jedi-vim'
-if !has('nvim')
-  let g:jedi#completions_enabled      = 0
-  let g:jedi#auto_initialization      = 0
-  let g:jedi#auto_vim_configuration   = 0
-  let g:jedi#use_tabs_not_buffers     = 0
-  let g:jedi#use_splits_not_buffers   = 1
-  let g:jedi#popup_select_first       = 0
-  let g:jedi#popup_on_dot             = 0
-  let g:jedi#auto_close_doc           = 1
-  let g:jedi#show_call_signatures     = 1
-  let g:jedi#completions_command      = ""
-  " if HasCmdValid('PythonJedi') && !HasCmdValid('YcmCompleter')
-  let g:jedi#goto_assignments_command = "<leader>jj"
-  let g:jedi#goto_definitions_command = "<leader>jd"
-  let g:jedi#documentation_command = "<leader>jk"
-  let g:jedi#usages_command = "<leader>ju"
-  let g:jedi#rename_command = "<leader>jr"
-endif
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" python-auto-indent    {{{1
-" Plug 'hynek/vim-python-pep8-indent'
-let g:pymode_indent = 0
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " html/css tools  {{{1
 " fast create xml css html
 " eg: root>elememnt#property*3>default<ctrl-y>,
@@ -340,13 +178,6 @@ function! ProxyEmmetInstall()
   endif
 endfunction
 autocmd FileType php,css,xml,tpl,htm,html,xhtml,jinja call ProxyEmmetInstall()
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" python-syntax  {{{1
-" Plug 'hdima/python-syntax'
-let g:python_highlight_all = 1
-let g:python_slow_sync = 1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
