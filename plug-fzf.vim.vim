@@ -44,7 +44,7 @@ nnoremap <silent><leader>ff <Esc>:GFindFiles<CR>
 
 command! -bang -nargs=* GFindFiles
   \ call g:GitFindFiles(<q-args>,
-  \ fzf#vim#with_preview({}),
+  \ fzf#vim#with_preview('up:30%'),
   \ <bang>0)
 
 command! -bang -nargs=* GGrep
@@ -114,7 +114,7 @@ function! g:GitFindFiles(args, ...)
   endif
   echo a:args
   let query = empty(a:args) ? '' : ' -q '.fzf#shellescape(a:args)
-  return s:fzf('gfind', {
+  return s:fzf('gitfindfile', {
   \ 'source':  'git ls-files '.(' | uniq'),
   \ 'dir':     root,
   \ 'options': '-m --prompt "=> "'.query
@@ -122,3 +122,5 @@ function! g:GitFindFiles(args, ...)
 endfunction
 
 "----------------------
+" Reference:
+" * https://segmentfault.com/a/1190000016186540
