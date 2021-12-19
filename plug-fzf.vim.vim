@@ -44,7 +44,7 @@ nnoremap <silent><leader>ff <Esc>:GFindFiles<CR>
 
 command! -bang -nargs=* GFindFiles
   \ call g:GitFindFiles(<q-args>,
-  \ fzf#vim#with_preview('up:30%'),
+  \ fzf#vim#with_preview('up:50%'),
   \ <bang>0)
 
 command! -bang -nargs=* GGrep
