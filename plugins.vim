@@ -116,7 +116,7 @@ Plug 'vim-scripts/TaskList.vim', {'on': ['TaskList', '<Plug>TaskList']}
 
 " -------- 文件名称搜索 ---------
 " 搜索工具，比ctrl-p匹配准确，python异步完成, 可以搜索MRU Function etc.
-Plug 'Yggdroot/LeaderF', { 'do': './install.sh', 'on': ['Leaderf', 'LeaderfFile'] }
+" Plug 'Yggdroot/LeaderF', { 'do': './install.sh', 'on': ['Leaderf', 'LeaderfFile'] }
 " fzf搜索工具, 比Ctrl-P匹配更精准更快速, 可完全取代
 " Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 " Plug 'junegunn/fzf.vim', { 'on': ['History', 'Files', 'GFiles', 'Buffers'] }
