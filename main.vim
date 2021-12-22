@@ -94,6 +94,12 @@ endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" clipboard plug config
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+execute 'source ' . simplify(expand($CONFROOT.'/clipboard.vim'))
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " internal plug config
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 execute 'source ' . simplify(expand($CONFROOT.'/netrw.vim'))
@@ -390,14 +396,15 @@ command ProfileStopLog profile pause
 " Key Mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Wrapped lines goes down/up to next row, rather than next line in file.
-noremap j gj
-noremap k gk
+"noremap j gj
+"noremap k gk
 
 " clipboard
 " visual mode: only paste but not replace cut table
-vnoremap p pgvy
-noremap <leader>p "+p
-noremap <leader>y "+y
+" migrate to clipboard.vim
+" vnoremap p pgvy
+" noremap <silent> <leader>p "+p
+" noremap <silent> <leader>y "+y
 
 " increase decrease indent
 vnoremap < <gv
