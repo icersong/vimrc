@@ -252,7 +252,7 @@ Plug 'icersong/timestamp.vim'
 Plug 'godlygeek/tabular', {'on': ['Tabularize']}
 Plug 'junegunn/vim-easy-align', {'on': ['EasyAlign', '<Plug>EasyAlign']}
 " clipboard with pbcopy & pbpaste for macos
-Plug 'kana/vim-fakeclip'
+"Plug 'kana/vim-fakeclip'
 
 
 """""""""""""""""""""""""""""""" 语法输入 """"""""""""""""""""""""""""""""

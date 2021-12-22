@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2021-12-20
+" Modified: 2021-12-22
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -240,17 +240,6 @@ augroup END
 " Tabular  {{{1
 " Plug 'godlygeek/tabular'
 " let g:tabular_loaded = 1
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" fakeclip  {{{1
-" Plug 'kana/vim-fakeclip'
-if !has('nvim')
-  set clipboard+=exclude:.*
-endif
-let g:fakeclip_provide_clipboard_key_mappings =
-    \ (has('macunix') || has('gui_gtk2')) && !has('gui_running')
-let g:fakeclip_terminal_multiplexer_type = 'tmux'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
