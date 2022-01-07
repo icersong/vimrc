@@ -172,10 +172,10 @@ function! GetVisualRange()
       let VisualRange .= getline(StartPosition[1])[StartPosition[2]-1:]
       " Then the all of the intermediate lines
       for LineNum in range(StartPosition[1]+1, EndPosition[1]-1)
-        let VisualRange .= "\n" . getline(LineNum)
+        let VisualRange .= "\r" . getline(LineNum)
       endfor
       " Then the start of the last line
-      let VisualRange .= "\n" . getline(EndPosition[1])[:EndPosition[2]-1]
+      let VisualRange .= "\r" . getline(EndPosition[1])[:EndPosition[2]-1]
     endif
     " Replace legitimate backslashes with double backslashes to prevent
     " a literal \t being interpreted as a tab
