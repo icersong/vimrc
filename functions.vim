@@ -186,21 +186,26 @@ function! GetVisualRange()
 endfunction
 
 
-function! GetVisualSelection()
+function! GetVisualText()
     " Why is this not a built-in Vim script function?!
-    let [line_start, column_start] = getpos("'<")[1:2]
-    let [line_end, column_end] = getpos("'>")[1:2]
-    let lines = getline(line_start, line_end)
+    let lines = GetVisualLines()
     if len(lines) == 0
         return ''
     endif
     let lines[-1] = lines[-1][: column_end - (&selection == 'inclusive' ? 1 : 2)]
     let lines[0] = lines[0][column_start - 1:]
-    return join(lines, "\n")
+    return join(lines, "\r")
 endfunction
 
 
-" 用寄存器实现，很简介
+function! GetVisualLines()
+    let [line_start, column_start] = getpos("'<")[1:2]
+    let [line_end, column_end] = getpos("'>")[1:2]
+    return getline(line_start, line_end)
+endfunction
+
+
+" 用寄存器实现，很简洁
 function! VisualSelection()
     try
         let x_save = @"
@@ -258,7 +263,10 @@ endfunction
 " 将所选内容写入指定文件
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! WriteSelected(filename) range
-  call writefile([GetVisualRange()], a:filename, 'b')
+  " call writefile([GetVisualRange()], a:filename, 'b')
+  " call writefile([GetVisualSelection()], a:filename, 'b')
+  " call writefile(split(GetVisualText(), '\n'), a:filename, 'b')
+  call writefile(GetVisualLines(), a:filename, 'b')
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
