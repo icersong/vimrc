@@ -224,6 +224,10 @@ endfunction
 " referance: https://github.com/mattn/vim-sqlfmt
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! FormatSQL() range
+  if !executable('sqlformat')
+    echo "Please install command sqlformat (sudo pip3 install -y sqlparse)"
+    return -1
+  endif
   call setqflist([])
   let cmd = get(g:, 'sqlfmt_program', 'sqlformat -r -k upper -s --comma_first true -o %s -')
   if stridx(cmd, '%s') > -1
