@@ -55,8 +55,11 @@ function clipboard#send()
   endif
   let host=$ONLINE_CLIPBOARD_HOST
   let auth=clipboard#authcode()
+  " Save to temp file
   let tmpf = trim(system('mktemp'), "\n\r")
-  call clipboard#save(tmpf)
+  let data={"data": join(clipboard#getlines(), "\n")}
+  call writefile([json_encode(data)], tmpf, 'b')
+  " post data
   call system('curl -X POST ' . host
         \ . ' -H "Content-Type: text"'
         \ . ' -H "X-Content-Type: text"'
@@ -66,5 +69,6 @@ function clipboard#send()
         \ . ' -s -S'
         \ . ' -d @' . tmpf
         \)
+  " remove temp file
   call system("rm -f " . tmpf)
 endfunction
