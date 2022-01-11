@@ -94,12 +94,6 @@ endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" clipboard plug config
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-execute 'source ' . simplify(expand($CONFROOT.'/clipboard.vim'))
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " internal plug config
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 execute 'source ' . simplify(expand($CONFROOT.'/netrw.vim'))
