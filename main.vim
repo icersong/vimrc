@@ -116,9 +116,9 @@ call bufswitch#default_maps()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " load extends
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-execute 'source ' . simplify(expand($CONFROOT.'/ext-fcitx.vim'))
-execute 'source ' . simplify(expand($CONFROOT.'/ext-colors.vim'))
-execute 'source ' . simplify(expand($CONFROOT.'/ext-vsearch.vim'))
+" execute 'source ' . simplify(expand($CONFROOT.'/ext-fcitx.vim'))
+" execute 'source ' . simplify(expand($CONFROOT.'/ext-colors.vim'))
+" execute 'source ' . simplify(expand($CONFROOT.'/ext-vsearch.vim'))
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
