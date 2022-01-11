@@ -1,7 +1,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Maintainer: icersong <icersong@gmail.com>
 " Created: 2013-10-10
-" Modified: 2021-12-22
+" Modified: 2022-01-11
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -173,7 +173,7 @@ let g:snips_github = 'https://github.com/icersong'
 " Plug 'mattn/emmet-vim'
 let g:user_emmet_install_global = 0
 function! ProxyEmmetInstall()
-  if HasCmdValid('EmmetInstall')
+  if functools#has_command('EmmetInstall')
     execute('EmmetInstall')
   endif
 endfunction
@@ -204,7 +204,7 @@ let g:pydoc_perform_mappings = 0
 let g:pydoc_window_lines=0.5
 nnoremap <leader>? :Pydoc <C-R>=escape(expand("<cword>"), "/\\\*\ \|\(\)")<CR>
 " 用ag在当前工程下搜索选中文本的文件名 gag
-vnoremap <leader>? :Pydoc! <C-R>=escape(GetVisualSelection(), "/\\\*\ \|\(\)")<CR>
+vnoremap <leader>? :Pydoc! <C-R>=escape(functools#get_visual_selection(), "/\\\*\ \|\(\)")<CR>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -556,8 +556,7 @@ let g:timestamp_modelines = 9
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Auto load plugin's config while plug valid
-
-call LoadConfigures($CONFROOT."/plugins", g:plugs_order)
+call plugin_config_loader#load_configs($CONFROOT."/plugins", g:plugs_order)
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

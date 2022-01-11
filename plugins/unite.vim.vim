@@ -32,7 +32,7 @@ function! s:unite_settings()
   imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
 endfunction
 function! s:init_unite()
-  if HasCmdValid('Unite') && !hasmapto('Unite')
+  if functools#has_command('Unite') && !hasmapto('Unite')
     " call unite#filters#matcher_default#use(['matcher_fuzzy'])
     call unite#filters#sorter_default#use(['sorter_rank'])
     call unite#set_profile('files', 'context.smartcase', 1)

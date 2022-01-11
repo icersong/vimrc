@@ -20,7 +20,7 @@ au FileType python let b:delimitMate_nesting_quotes = ['"', "'", '`']
 
 " Super <TAB>
 function! Ulti_ExpandOrJump_and_getRes()
-  if !HasFuncValid('UltiSnips#ExpandSnippetOrJump')
+  if !functools#has_function('UltiSnips#ExpandSnippetOrJump')
     return -1
   endif
   call UltiSnips#ExpandSnippetOrJump()
@@ -30,7 +30,7 @@ endfunction
 autocmd VimEnter * imap <silent> <expr> <TAB>
   \ pumvisible() ?
   \ "\<C-N>" :
-  \ HasFuncValid('delimitMate#ShouldJump') && delimitMate#ShouldJump() ?
+  \ functools#has_function('delimitMate#ShouldJump') && delimitMate#ShouldJump() ?
   \ delimitMate#JumpAny() :
   \ "\<C-R>=(Ulti_ExpandOrJump_and_getRes() > 0) ? '' : '\<TAB>'\<CR>"
 

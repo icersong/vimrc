@@ -76,7 +76,7 @@ let g:ycm_filetype_whitelist = {
 " autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 " 跳转快捷键
 function! MappingForYcm()
-  " if HasCmdValid('YcmCompleter')
+  " if functools#has_command('YcmCompleter')
     nmap <buffer> <leader>jj :YcmCompleter GoTo<CR>
     nmap <buffer> <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
     inoremap <buffer> <leader><leader> <C-x><C-o>

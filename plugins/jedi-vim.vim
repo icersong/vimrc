@@ -14,7 +14,7 @@ if !has('nvim')
   let g:jedi#auto_close_doc           = 1
   let g:jedi#show_call_signatures     = 1
   let g:jedi#completions_command      = ""
-  " if HasCmdValid('PythonJedi') && !HasCmdValid('YcmCompleter')
+  " if functools#has_command('PythonJedi') && !functools#has_command('YcmCompleter')
   let g:jedi#goto_assignments_command = "<leader>jj"
   let g:jedi#goto_definitions_command = "<leader>jd"
   let g:jedi#documentation_command = "<leader>jk"

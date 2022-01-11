@@ -5,21 +5,21 @@
 
 " nnoremap <leader>ff :Denite
 "             \ -input='<C-R>=escape(expand("<cword>"), "/\\\*\ \|\(\)")<CR>'
-"             \ buffer file `GetGitRoot() != '' ? 'file/rec/git' : 'file/rec'`
+"             \ buffer file `gittools#get_git_root() != '' ? 'file/rec/git' : 'file/rec'`
 "             \ <CR>
 
 nnoremap <silent><leader>ff :Denite
-            \ buffer file `GetGitRoot() != '' ? 'file/rec/git' : 'file/rec'`
+            \ buffer file `gittools#get_git_root() != '' ? 'file/rec/git' : 'file/rec'`
             \ <CR>
 
 vnoremap <silent><leader>ff :Denite
-            \ -input='<C-R>=escape(GetVisualSelection(), "/\\\*\ \|\(\)")<CR>'
-            \ buffer file `GetGitRoot() != '' ? 'file/rec/git' : 'file/rec'`
+            \ -input='<C-R>=escape(functools#get_visual_selection(), "/\\\*\ \|\(\)")<CR>'
+            \ buffer file `gittools#get_git_root() != '' ? 'file/rec/git' : 'file/rec'`
             \ <CR>
 
 nnoremap <silent><leader>fc :Denite
             \ -input='<C-R>=escape(expand("<cword>"), "/\\\*\ \|\(\)")<CR>'
-            \ buffer file `GetGitRoot() != '' ? 'file/rec/git' : 'file/rec'`
+            \ buffer file `gittools#get_git_root() != '' ? 'file/rec/git' : 'file/rec'`
             \ <CR>
 
 " nnoremap <silent><leader>fh :Denite -auto-action=preview
@@ -29,7 +29,7 @@ nnoremap <silent><leader>fc :Denite
 nnoremap <silent><leader>fh :Denite file_mru file/rec<CR>
 
 vnoremap <silent><leader>fh :Denite -auto-action=preview
-            \ -input='<C-R>=escape(GetVisualSelection(), "/\\\*\ \|\(\)")<CR>'
+            \ -input='<C-R>=escape(functools#get_visual_selection(), "/\\\*\ \|\(\)")<CR>'
             \ file_mru file/rec
             \ <CR>
 
@@ -143,7 +143,7 @@ function! s:source_file_rec_git() abort
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     call denite#custom#alias('source', 'file/rec/git', 'file/rec')
     call denite#custom#var('file/rec/git', 'command',
-          \ ['git', 'ls-files', '-co', '--exclude-standard', GetGitRoot()])
+          \ ['git', 'ls-files', '-co', '--exclude-standard', gittools#get_git_root()])
 endfunction
 
 function! s:source_menu_vim_plugins() abort

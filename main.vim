@@ -108,8 +108,9 @@ execute 'source ' . simplify(expand($CONFROOT.'/netrw.vim'))
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " load functions & utils
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-execute 'source ' . simplify(expand($CONFROOT.'/functions.vim'))
-execute 'source ' . simplify(expand($CONFROOT.'/utils.vim'))
+" execute 'source ' . simplify(expand($CONFROOT.'/functions.vim'))
+" execute 'source ' . simplify(expand($CONFROOT.'/utils.vim'))
+call bufswitch#default_maps()
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -249,7 +250,7 @@ highlight clear SignColumn      " SignColumn should match background
 highlight clear LineNr          " Current line number row will have same background color in relative mode
 highlight clear CursorLineNr    " Remove highlight color from current line number
 " mast call after setting 'syntax on'
-call SetCursorStyle()
+call cursorstyle#set_cursor_style()
 
 set noshowmode                  " 禁止显示当前输入模式
 set ruler                       " 显示行号和列号
@@ -366,7 +367,7 @@ set tags=tags;/
 " Commands
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " save selected to file
-command! -range -nargs=1 SaveSelectedAs call WriteSelected(<f-args>)
+command! -range -nargs=1 SaveSelectedAs call functools#write_select_lines(<f-args>)
 
 " command Removing duplicate liens
 " http://vim.wikia.com/wiki/Uniq_-_Removing_duplicate_lines
@@ -380,10 +381,12 @@ command TrailingWhitespace execute '%s/\s\+$//ge'
 command FormatJSON execute '%!python -m json.tool'
 
 " Xml format
-command FormatXML silent call FormatXML()
+command FormatXML silent call formaters#format_xml()
+command FmtXML silent call formaters#format_xml()
 
 " SQL format
-command! -nargs=? -bar -range=% -bang FormatSQL silent call FormatSQL()
+command! -nargs=? -bar -range=% -bang FormatSQL silent call formaters#format_sql()
+command! -nargs=? -bar -range=% -bang FmtSQL silent call formaters#format_sql()
 
 " command profile log
 command ProfileStartLog profile start ~/profile.log

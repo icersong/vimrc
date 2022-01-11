@@ -23,4 +23,4 @@ let g:ctrlsf_ignore_dir = ['bin', 'dist', 'build', 'lib', 'libs', 'img', 'fonts'
 nmap <leader>ss <Plug>CtrlSFCwordPath
 vmap <leader>ss <Plug>CtrlSFVwordPath
 nmap <leader>sf <Plug>CtrlSFPrompt
-vmap <leader>sf :CtrlSF '<C-R>=escape(GetVisualSelection(), "/\\\*\ \|\(\)")<CR>'
+vmap <leader>sf :CtrlSF '<C-R>=escape(functools#get_visual_selection(), "/\\\*\ \|\(\)")<CR>'

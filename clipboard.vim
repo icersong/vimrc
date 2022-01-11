@@ -21,19 +21,19 @@ function clipboard#yank()
 endfunction
 
 
-function! clipboard#save(filename)
-  let data=escape(join(clipboard#getlines(), "\n"), "\"\\")
-  let data=substitute(data, "\n", "\\\\n", "g")
-  let data=substitute(data, "\r", "\\\\r", "g")
-  call writefile([join(['{"data": "', data, '"}'], '')], a:filename, 'b')
-endfunction
+" function! clipboard#save(filename)
+"   let data=escape(join(clipboard#getlines(), "\n"), "\"\\")
+"   let data=substitute(data, "\n", "\\\\n", "g")
+"   let data=substitute(data, "\r", "\\\\r", "g")
+"   call writefile([join(['{"data": "', data, '"}'], '')], a:filename, 'b')
+" endfunction
 
 
-function! clipboard#getlines()
-    let [line_start, column_start] = getpos("'<")[1:2]
-    let [line_end, column_end] = getpos("'>")[1:2]
-    return getline(line_start, line_end)
-endfunction
+" function! clipboard#getlines()
+"     let [line_start, column_start] = getpos("'<")[1:2]
+"     let [line_end, column_end] = getpos("'>")[1:2]
+"     return getline(line_start, line_end)
+" endfunction
 
 
 function clipboard#authcode()
@@ -57,7 +57,8 @@ function clipboard#send()
   let auth=clipboard#authcode()
   " Save to temp file
   let tmpf = trim(system('mktemp'), "\n\r")
-  let data={"data": join(clipboard#getlines(), "\n")}
+  " let data={"data": join(clipboard#getlines(), "\n")}
+  let data={"data": functools#get_visual_selection()}
   call writefile([json_encode(data)], tmpf, 'b')
   " post data
   call system('curl -X POST ' . host
