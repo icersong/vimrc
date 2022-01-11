@@ -393,7 +393,12 @@ call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Load plugins config
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-execute 'source ' . simplify(expand($CONFROOT.'/plugins.config.vim'))
+" Auto load plugin's config while plug valid
+call plugin_config_loader#load_configs($CONFROOT."/plugins", g:plugs_order)
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Load my key maps
 execute 'source ' . simplify(expand($CONFROOT.'/keymap.vim'))
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
