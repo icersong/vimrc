@@ -292,7 +292,9 @@ Plug 'mattn/emmet-vim', {
 
 " SQL Utilites
 " Plug 'vim-scripts/dbext.vim'
-Plug 'tpope/vim-dadbod', {'on': ['DB']}
+Plug 'tpope/vim-dadbod', {'on': ['DB', 'DBUI']}
+Plug 'kristijanhusak/vim-dadbod-ui', {'on': ['DBUI', 'DBUIToggle']}
+Plug 'kristijanhusak/vim-dadbod-completion'
 
 " 命令行<leader>提示
 "Plug 'hecal3/vim-leader-guide'
@@ -329,11 +331,16 @@ Plug 'jceb/vim-orgmode'
 " 显示Python内建方法的文档，eg: Pydoc os.path
 Plug 'fs111/pydoc.vim', {'on': ['Pydoc', 'PydocSearch']}
 
+" chrome 同步编辑, 需要chrome安装firmnvim插件
+" Plug 'glacambre/firenvim', {'do': {_ -> firenvim#install(0)}}
+
 " python&php调试工具, 比较难配置，需要外部程序(pygdbp)支持
 " Plug 'joonty/vdebug', {'do': 'VdebugStart'}
 " Plug 'gotcha/vimpdb'
 " python&php调试工具（异步）, 需要Komodo dbgp工具
 " Plug 'brookhong/DBGPavim', {'for': []}
+" 感觉不错的调试工具，比较复杂功能齐全
+" Plug 'puremourning/vimspector'
 
 " displays available keybindings in popup
 " Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
