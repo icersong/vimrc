@@ -231,8 +231,10 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 " Fast select by key "+" & "-"
 Plug 'terryma/vim-expand-region'
-" text object
+" text object by parentheses charts
 Plug 'wellle/targets.vim'
+" indent textobject
+Plug 'michaeljsmith/vim-indent-object'
 " text swap, eg: cursor word1 cxiw -> cursor word2 cxiw, then tow words exchange
 Plug 'tommcdo/vim-exchange'
 " Range select for edit, :NR
