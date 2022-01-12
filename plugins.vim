@@ -294,7 +294,7 @@ Plug 'mattn/emmet-vim', {
 " Plug 'vim-scripts/dbext.vim'
 Plug 'tpope/vim-dadbod', {'on': ['DB', 'DBUI']}
 Plug 'kristijanhusak/vim-dadbod-ui', {'on': ['DBUI', 'DBUIToggle']}
-Plug 'kristijanhusak/vim-dadbod-completion'
+Plug 'kristijanhusak/vim-dadbod-completion', {'on': ['DBUI', 'DBUIToggle']}
 
 " 命令行<leader>提示
 "Plug 'hecal3/vim-leader-guide'
