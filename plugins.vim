@@ -104,6 +104,8 @@ else
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
+" Improve netrw
+Plug 'tpope/vim-vinegar'
 " Buffer列表显示
 " Plug 'fholgado/minibufexpl.vim', {'on': ['MBEOpen', 'MBEToggle']}
 " Tag列表显示
@@ -235,6 +237,11 @@ Plug 'terryma/vim-expand-region'
 Plug 'wellle/targets.vim'
 " indent textobject
 Plug 'michaeljsmith/vim-indent-object'
+" custom textobject
+Plug 'kana/vim-textobj-user'
+Plug 'bps/vim-textobj-python'     " af if ac ic
+Plug 'glts/vim-textobj-comment'   " ac ic
+" Plug 'kana/vim-textobj-indent'  " duplicate vim-indent-object
 " text swap, eg: cursor word1 cxiw -> cursor word2 cxiw, then tow words exchange
 Plug 'tommcdo/vim-exchange'
 " Range select for edit, :NR
