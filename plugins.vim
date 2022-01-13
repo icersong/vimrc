@@ -335,6 +335,10 @@ Plug 'gregsexton/gitv', {'on': ['Gitv']}
 " Plug 'iamcco/mathjax-support-for-mkdp', {'for': 'markdown'}
 Plug 'iamcco/markdown-preview.nvim', {'for': 'markdown', 'do': 'cd app && yarn install'}
 
+" 替代方法
+" sudo pip isntall grip
+" grip xxx.md 0.0.0.0 # start web sever to show markdown prieview
+
 Plug 'jceb/vim-orgmode'
 
 " 显示Python内建方法的文档，eg: Pydoc os.path
