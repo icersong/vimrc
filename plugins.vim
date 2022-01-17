@@ -361,11 +361,12 @@ Plug 'fs111/pydoc.vim', {'on': ['Pydoc', 'PydocSearch']}
 " Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 " Plug 'liuchengxu/vim-which-key'
 
-" TODO USE plugin codi
-" Plug 'metakirby5/codi.vim', {'for': 'Codi'}
-
 
 """""""""""""""""""""""""""""""" Shell & Tools """"""""""""""""""""""""""""""""
+
+" Language REPL
+Plug 'metakirby5/codi.vim', {'on': ['Codi']}
+
 Plug 'Shougo/vimproc.vim', {
       \ 'on': ['VimShell', 'VimShellExecute', 'VimCurrentDir', 'VimShellPop'],
       \ 'build' : {
