@@ -244,6 +244,8 @@ Plug 'glts/vim-textobj-comment'   " ac ic
 " Plug 'kana/vim-textobj-indent'  " duplicate vim-indent-object
 " text swap, eg: cursor word1 cxiw -> cursor word2 cxiw, then tow words exchange
 Plug 'tommcdo/vim-exchange'
+" Text tbale
+Plug 'dhruvasagar/vim-table-mode', {'for': 'markdown', 'on': ['TableModeEnable']}
 " Range select for edit, :NR
 Plug 'chrisbra/NrrwRgn', { 'on': [
             \ 'NR', 'NRL', 'NRM', 'NRP', 'NRV', 'NLast',
