@@ -140,6 +140,7 @@ endif
 " enable color scheme
 set background=dark             " Assume a dark background
 syntax on                       " Syntax highlighting
+autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE " transparent bg
 for scheme in ['solarized8_flat', 'solarized8', 'solarized', 'onedark', 'desert']
   if strlen(globpath(&rtp, "colors/".scheme.".vim")) > 0
     execute "colorscheme " . scheme
