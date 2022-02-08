@@ -389,6 +389,8 @@ Plug 'benmills/vimux', {'on': ['VimuxPromptCommand', 'VimuxRunLastCommand']}
 Plug 'christoomey/vim-tmux-navigator'
 " 异步运行命令
 Plug 'skywind3000/asyncrun.vim', {'on': ['AsyncRun', 'AsyncStop']}
+" 异步运行命令
+Plug 'tpope/vim-dispatch', {'on': ['Dispatch', 'Make', 'Copen']}
 " popup termial
 Plug 'voldikss/vim-floaterm'
 
