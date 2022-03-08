@@ -45,7 +45,6 @@
     "emmet.includeLanguages": {
         "vue-html": "html"
     },
-    "eslint.enable": true,
     "eslint.packageManager": "yarn",
     "eslint.autoFixOnSave": true,
     "eslint.probe": [
@@ -57,7 +56,13 @@
         "markdown"
     ],
     "vetur.dev.logLevel": "INFO",
-    "python.formatting.provider": "autopep8",
+    "python.formatting.provider": "black",
+    "python.formatting.blackArgs": [
+        "--line-length=128"
+    ],
+    "python.formatting.autopep8Args": [
+        "--max-line-length=128"
+    ],
     "python.linting.enabled": true,
     "python.linting.flake8Enabled": true,
     "python.linting.pylintEnabled": true,
@@ -67,22 +72,16 @@
         "--disabled=W0120,useless-else-on-loop"
     ],
     "pyright.organizeimports.provider": "isort",
+    "python.sortImports.path": "isort",
     "python.sortImports.args": [
-        "--force-single-line-imports",
-        "--force-sort-within-sections",
-        "--dont-order-by-type",
         "--length-sort",
+        "--only-sections",
+        "--dont-order-by-type",
         "--length-sort-straight",
-        "--single-line-exclusions",
-        "('typing',)"
+        "--force-single-line-imports",
+        "--force-sort-within-sections"
     ],
     "python.pythonPath": "python",
-    "python.venvFolders": [
-        "envs",
-        ".pyenv",
-        ".direnv",
-        ".venv"
-    ],
     "snippets.extends": {
         "cpp": [
             "c",
@@ -98,5 +97,6 @@
     "snippets.ultisnips.directories": [
         "UltiSnips"
     ],
-    "yank.highlight.duration": 999
+    "yank.list.maxsize": 999,
+    "yank.limit": 999
 }

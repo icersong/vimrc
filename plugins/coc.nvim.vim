@@ -25,6 +25,7 @@ let g:coc_snippet_next = '<tab>'
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 autocmd BufWritePost call coc#refresh()
+autocmd BufWritePre *.py :call CocAction('runCommand', 'editor.action.organizeImport')
 
 
 " Use `[c` and `]c` to navigate diagnostics
@@ -140,8 +141,10 @@ let g:coc_global_extensions = [
     \ 'coc-eslint',
     \ 'coc-emmet',
     \ 'coc-vetur',
+    \ 'coc-yank',
     \ 'coc-yaml',
     \ 'coc-json',
     \ 'coc-html',
     \ 'coc-css',
+    \ 'coc-git',
     \ ]
