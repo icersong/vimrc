@@ -14,8 +14,8 @@
     "suggest.noselect": true,
     "diagnostic.errorSign": "✘",
     "diagnostic.warningSign": "⚠",
-    "diagnostic.infoSign": "•",
-    "diagnostic.hintSign": "·",
+    "diagnostic.infoSign": "⋆",
+    "diagnostic.hintSign": "⋅",
     "list.normalMappings": {
         "<C-n>": "normal:j",
         "<C-p>": "normal:k",
