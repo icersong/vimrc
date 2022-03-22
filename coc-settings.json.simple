@@ -58,13 +58,16 @@
     "vetur.dev.logLevel": "INFO",
     "python.formatting.provider": "black",
     "python.formatting.blackArgs": [
-        "--line-length=128"
+        "--line-length=100"
     ],
     "python.formatting.autopep8Args": [
-        "--max-line-length=128"
+        "--max-line-length=100"
     ],
     "python.linting.enabled": true,
     "python.linting.flake8Enabled": true,
+    "python.linting.flake8Args": [
+        "--max-line-length=100"
+    ],
     "python.linting.pylintEnabled": true,
     "python.linting.pytypeEnabled": false,
     "python.linting.pycodestyleEnabled": false,
@@ -75,11 +78,8 @@
     "python.sortImports.path": "isort",
     "python.sortImports.args": [
         "--length-sort",
-        "--only-sections",
         "--dont-order-by-type",
-        "--length-sort-straight",
-        "--force-single-line-imports",
-        "--force-sort-within-sections"
+        "--force-single-line-imports"
     ],
     "python.pythonPath": "python",
     "snippets.extends": {
