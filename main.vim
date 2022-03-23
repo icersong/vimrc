@@ -424,7 +424,8 @@ nnoremap <silent>> :bn<cr>
 nnoremap <silent>< :bp<cr>
 
 " 定义空格键暂时取消高亮匹配
-noremap <silent>zz :nohls<CR>za
+noremap <silent><space> :nohls<CR>
+noremap <silent>zz za
 noremap <silent>z0 :set foldlevel=0<CR>
 noremap <silent>z1 :set foldlevel=1<CR>
 noremap <silent>z2 :set foldlevel=2<CR>
