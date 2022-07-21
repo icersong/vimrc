@@ -6,23 +6,28 @@
 " hides the menu. Use this mapping to close the menu and also start a new
 " line.
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " inoremap <expr> <cr> (pumvisible() ? "\<c-y>\<cr>" : "\<cr>")
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" shift + tab, jump prev
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Super TAB
 " Use <TAB> to select the popup menu:
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ delimitMate#ShouldJump() ?
-      \ delimitMate#JumpAny() :
-      \ coc#expandableOrJumpable() ?
-      \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-
-
+  \ pumvisible() ? "\<C-n>" :
+  \ functools#has_function('delimitMate#ShouldJump')
+  \   && delimitMate#ShouldJump() ?
+  \ delimitMate#JumpAny() :
+  \ coc#expandableOrJumpable() ?
+  \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+  \ <SID>check_back_space() ? "\<TAB>" :
+  \ coc#refresh()

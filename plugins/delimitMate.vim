@@ -19,19 +19,20 @@ au FileType python let b:delimitMate_nesting_quotes = ['"', "'", '`']
 "       \ delimitMate#JumpAny() : "\<TAB>"
 
 " Super <TAB>
-function! Ulti_ExpandOrJump_and_getRes()
-  if !functools#has_function('UltiSnips#ExpandSnippetOrJump')
-    return -1
-  endif
-  call UltiSnips#ExpandSnippetOrJump()
-  return g:ulti_expand_or_jump_res
-endfunction
+" See keymap.vim
+" function! Ulti_ExpandOrJump_and_getRes()
+"   if !functools#has_function('UltiSnips#ExpandSnippetOrJump')
+"     return -1
+"   endif
+"   call UltiSnips#ExpandSnippetOrJump()
+"   return g:ulti_expand_or_jump_res
+" endfunction
 
-autocmd VimEnter * imap <silent> <expr> <TAB>
-  \ pumvisible() ?
-  \ "\<C-N>" :
-  \ functools#has_function('delimitMate#ShouldJump') && delimitMate#ShouldJump() ?
-  \ delimitMate#JumpAny() :
-  \ "\<C-R>=(Ulti_ExpandOrJump_and_getRes() > 0) ? '' : '\<TAB>'\<CR>"
+" autocmd VimEnter * imap <silent> <expr> <TAB>
+"   \ pumvisible() ?
+"   \ "\<C-N>" :
+"   \ functools#has_function('delimitMate#ShouldJump') && delimitMate#ShouldJump() ?
+"   \ delimitMate#JumpAny() :
+"   \ "\<C-R>=(Ulti_ExpandOrJump_and_getRes() > 0) ? '' : '\<TAB>'\<CR>"
 
 
