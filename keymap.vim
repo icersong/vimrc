@@ -5,7 +5,9 @@
 " When the <Enter> key is pressed while the popup menu is visible, it only
 " hides the menu. Use this mapping to close the menu and also start a new
 " line.
-inoremap <expr> <cr> (pumvisible() ? "\<c-y>\<cr>" : "\<cr>")
+
+" inoremap <expr> <cr> (pumvisible() ? "\<c-y>\<cr>" : "\<cr>")
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
