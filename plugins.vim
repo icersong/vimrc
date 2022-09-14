@@ -346,6 +346,9 @@ Plug 'jceb/vim-orgmode'
 " 显示Python内建方法的文档，eg: Pydoc os.path
 Plug 'fs111/pydoc.vim', {'on': ['Pydoc', 'PydocSearch']}
 
+" 自动生成 Python 函数/类文档
+" Plug 'kkoomen/vim-doge'
+
 " chrome 同步编辑, 需要chrome安装firmnvim插件
 " Plug 'glacambre/firenvim', {'do': {_ -> firenvim#install(0)}}
 
