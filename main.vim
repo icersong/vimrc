@@ -347,7 +347,6 @@ set splitright          " Puts new vsplit windows to the right of the current
 
 au BufNewFile,BufRead *.tpl set filetype=jinja
 au BufRead,BufNewFile *.wsgi setlocal filetype=python foldmethod=indent
-au FileType vue set tabstop=2 softtabstop=2 shiftwidth=2
 au FileType vim,yaml,css setlocal tabstop=2 softtabstop=2 shiftwidth=2
 
 

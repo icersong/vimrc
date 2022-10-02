@@ -1,16 +1,16 @@
 {
     "coc.preferences.currentFunctionSymbolAutoUpdate": true,
-    "coc.preferences.colorSupport": true,
+    // "coc.preferences.colorSupport": true,
     "coc.preferences.formatOnType": true,
     "coc.preferences.formatOnSaveFiletypes": [
         "css",
-        "json",
+        "vue",
         "python",
         "markdown",
         "javascript"
     ],
-    "suggest.enablePreview": true,
-    "suggest.echodocSupport": true,
+    // "suggest.enablePreview": true,
+    // "suggest.echodocSupport": true,
     "suggest.noselect": true,
     "diagnostic.errorSign": "✘",
     "diagnostic.warningSign": "⚠",
@@ -45,16 +45,29 @@
     "emmet.includeLanguages": {
         "vue-html": "html"
     },
+    "vetur.validation.style": false,
+    "vetur.format.options.tabSize": 4,
+    "vetur.format.defaultFormatter.js": "prettier-eslint",
+    "vetur.format.defaultFormatterOptions": {
+        "prettyhtml": {
+            "singleQuote":true
+        },
+        "prettier": {
+            "printWidth": 128,
+            "trailingComma": "all",
+            "tabWidth": 4,
+            "semi": true,
+            "singleQuote": true,
+            "bracketSpacing": false,
+            "eslintIntegration": true,
+            "jsxBracketSameLine": false,
+            "parser": "babylon",
+            "arrowParens": "avoid"
+        }
+    },
     "eslint.packageManager": "yarn",
     "eslint.autoFixOnSave": true,
-    "eslint.probe": [
-        "javascript",
-        "javascriptreact",
-        "typescript",
-        "typescriptreact",
-        "html",
-        "markdown"
-    ],
+    "eslint.format.enable": true,
     "vetur.dev.logLevel": "INFO",
     "python.formatting.provider": "black",
     "python.formatting.blackArgs": [
@@ -74,7 +87,6 @@
     "python.linting.pylintArgs": [
         "--disabled=W0120,useless-else-on-loop"
     ],
-    "pyright.organizeimports.provider": "isort",
     "python.sortImports.path": "isort",
     "python.sortImports.args": [
         "--length-sort",
@@ -82,6 +94,10 @@
         "--force-single-line-imports"
     ],
     "python.pythonPath": "python",
+    "pyright.organizeimports.provider": "isort",
+    "python.analysis.typeshedPaths": [
+        "~/.pyright/typeshed/"
+    ],
     "snippets.extends": {
         "cpp": [
             "c",
