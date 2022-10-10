@@ -4,7 +4,7 @@
     "coc.preferences.formatOnType": true,
     "coc.preferences.formatOnSaveFiletypes": [
         "css",
-        "vue",
+        // "vue",
         "python",
         "markdown",
         "javascript"
