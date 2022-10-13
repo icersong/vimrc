@@ -148,9 +148,10 @@ Plug 'dyng/ctrlsf.vim', {'on': ['CtrlSF', '<Plug>CtrlSFCwordPath', '<Plug>CtrlSF
 " 指定字母快速移动光标
 Plug 'Lokaltog/vim-easymotion'
 Plug 'justinmk/vim-sneak'
-" 扩展%快速匹配跳转
-" Plug 'vim-scripts/matchit.zip', {'for': ['c', 'h', 'cpp', 'php', 'css', 'xml',
-"     \ 'vim', 'java', 'html', 'jinja', 'python', 'javascript']}
+" 扩展%快速匹配跳转，支持XML的tag支持
+Plug 'vim-scripts/matchit.zip', {'for': [
+    \ 'c', 'h', 'cpp', 'php', 'css', 'xml', 'vue',
+    \ 'vim', 'java', 'html', 'jinja', 'python', 'javascript']}
 " match tags by %, and auto complete close tag
 " Plug 'othree/xml.vim', {'for': ['xml', 'html']}
 
