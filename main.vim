@@ -376,6 +376,7 @@ command TrailingWhitespace execute '%s/\s\+$//ge'
 
 " Json format
 command FormatJSON execute '%!python -m json.tool'
+" command FormatJSON execute '$!prettier --tab-width 4 --print-width 120 %'
 
 " Xml format
 command FormatXML silent call formaters#format_xml()
