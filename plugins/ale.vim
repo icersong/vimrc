@@ -20,6 +20,7 @@ let g:ale_lint_delay = 3333
 let g:ale_completion_enabled = 0
 let g:ale_completion_delay = 666
 let g:ale_completion_max_suggestions = 9
+let g:ale_fix_on_save = 1
 
 " let g:ale_python_flake8_executable = system('pyenv root').'/versions/nvim-py2/bin/flake8'
 let g:ale_python_flake8_executable = 'python -m flake8'
@@ -28,60 +29,48 @@ let g:ale_python_flake8_options = '--max-line-length=120'
 " let g:ale_python_pylint_executable = 'python -m pylint'
 let g:ale_python_pylint_options = '-d line-too-long -d invalid-name -d too-few-public-methods'
 
+" javascript/json/... fixer
+let g:ale_javascript_prettier_excutable = "prettier"
+let g:ale_javascript_prettier_options = '--tab-width 4 --print-width 120'
+let g:ale_javascript_prettier_use_global = 1
+
+" let g:ale_pattern_options = {
+" \   '\.foo\.js$': {
+" \       'ale_linters': ['eslint'],
+" \       'ale_fixers': ['eslint'],
+" \   },
+" \}
+
 " let g:ale_linters_explicit = 1
 let g:ale_linters = {
     \ 'javascript': [],
     \ 'python': [],
     \ }
 
+let b:ale_fixers = [
+    \   'trim_whitespace',
+    \ ]
+
+let g:ale_fix_on_save_ignore = ['flake8', 'pylint']
 let g:ale_fixers = {
       \ '*': ['remove_trailing_lines', 'trim_whitespace'],
-      \ 'xml': [
-      \   'remove_trailing_lines',
-      \   'trim_whitespace',
-      \   'eslint',
-      \ ],
-      \ 'css': [
-      \   'remove_trailing_lines',
-      \   'trim_whitespace',
-      \ ],
-      \ 'php': [
-      \   'remove_trailing_lines',
-      \   'trim_whitespace',
-      \ ],
-      \ 'html': [
-      \   'remove_trailing_lines',
-      \   'trim_whitespace',
-      \ ],
       \ 'json': [
-      \   'remove_trailing_lines',
-      \   'trim_whitespace',
-      \   'eslint',
-      \ ],
-      \ 'jinja': [
-      \   'remove_trailing_lines',
-      \   'trim_whitespace',
-      \ ],
-      \ 'python': [
-      \   'remove_trailing_lines',
-      \   'trim_whitespace',
-      \   'isort',
-      \   'add_blank_lines_for_python_control_statements',
-      \   'autopep8',
-      \   'yapf',
-      \ ],
-      \ 'javascript': [
-      \   'remove_trailing_lines',
-      \   'trim_whitespace',
-      \ ],
-      \ 'vue': [
-      \   'remove_trailing_lines',
-      \   'trim_whitespace',
-      \   'eslint',
+      \   'prettier',
       \ ],
       \}
 
-      " \ 'javascript': [
-      " \   'eslint',
-      " \   {buffer, lines -> filter(lines, 'v:val !=~ ''^\s*//''')},
-      " \ ],
+
+"       \ '*': ['remove_trailing_lines', 'trim_whitespace'],
+"       \ 'xml': [
+"       \   'eslint',
+"       \ ],
+"       \ 'json': [
+"       \   'prettier',
+"       \ ],
+"       \ 'python': [
+"       \   'isort',
+"       \   'add_blank_lines_for_python_control_statements',
+"       \   'autopep8',
+"       \   'yapf',
+"       \ ],
+"       \}
