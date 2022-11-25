@@ -37,7 +37,7 @@ nmap <silent> gj <Plug>(coc-diagnostic-next)
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
-nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gt <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 
 " Create mappings for function text object, requires document symbols feature of languageserver.
@@ -139,6 +139,7 @@ let g:coc_global_extensions = [
     \ 'coc-snippets',
     \ 'coc-pyright',
     \ 'coc-eslint',
+    \ 'coc-pairs',
     \ 'coc-emmet',
     \ 'coc-vetur',
     \ 'coc-yank',

@@ -252,13 +252,13 @@ Plug 'chrisbra/NrrwRgn', { 'on': [
             \ 'NR', 'NRL', 'NRM', 'NRP', 'NRV', 'NLast',
             \ 'NRMulti', 'NRPrepare', 'NRUnprepare'
             \ ] }
-" Provides automatic closing of quotes, parenthesis, brackets,
-Plug 'Raimondi/delimitMate'
+" Provides automatic closing parentheses, eg: quotes parenthesis brackets
+" Plug 'Raimondi/delimitMate'
 " Code comment
 " Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-commentary', {'on': ['Commentary', '<plug>Commentary']}
 " my plugin
-Plug 'icersong/timestamp.vim'
+" Plug 'icersong/timestamp.vim'
 
 " Configurable, flexible, intuitive text aligning, :Tabularize /,/l1r1c1 ....
 Plug 'godlygeek/tabular', {'on': ['Tabularize']}
@@ -292,8 +292,6 @@ endif
 " Plug 'ncm2/ncm2-bufword'
 " Plug 'ncm2/ncm2-path'
 
-" Plug 'jmcantrell/vim-virtualenv', {'on': ['VirtualEnvActivate', 'VirtualEnvList']}
-" Plug 'hemerey/vim-project'
 " provides support for expanding abbreviations similar to emmet
 Plug 'mattn/emmet-vim', {
       \ 'for': ['php', 'css', 'xml', 'htm', 'html', 'xhtml', 'jinja', 'jinja.html'],
