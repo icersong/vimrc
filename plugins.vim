@@ -309,6 +309,8 @@ Plug 'kristijanhusak/vim-dadbod-completion', {'on': ['DBUI', 'DBUIToggle']}
 " 命令行<leader>提示
 "Plug 'hecal3/vim-leader-guide'
 
+Plug 'chrisbra/unicode.vim'
+
 """""""""""""""""""""""""""""""" 版本管理 """"""""""""""""""""""""""""""""
 " VCS command
 " Plug 'vim-scripts/vcscommand.vim', { 'on': [
