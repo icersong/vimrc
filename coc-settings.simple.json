@@ -2,14 +2,8 @@
     "coc.preferences.currentFunctionSymbolAutoUpdate": true,
     // "coc.preferences.colorSupport": true,
     "coc.preferences.formatOnType": true,
-    "coc.preferences.formatOnSaveFiletypes": [
-        "css",
-        // "vue",
-        "python",
-        "markdown",
-        "javascript"
-    ],
-    // "suggest.enablePreview": true,
+    "coc.preferences.formatOnSave": true,
+    "suggest.enablePreview": true,
     // "suggest.echodocSupport": true,
     "suggest.noselect": true,
     "diagnostic.errorSign": "✘",
@@ -50,7 +44,7 @@
     "vetur.format.defaultFormatter.js": "prettier-eslint",
     "vetur.format.defaultFormatterOptions": {
         "prettyhtml": {
-            "singleQuote":true
+            "singleQuote": true
         },
         "prettier": {
             "printWidth": 128,
@@ -70,49 +64,26 @@
     "eslint.format.enable": true,
     "vetur.dev.logLevel": "INFO",
     "python.formatting.provider": "black",
-    "python.formatting.blackArgs": [
-        "--line-length=100"
-    ],
-    "python.formatting.autopep8Args": [
-        "--max-line-length=100"
-    ],
+    "python.formatting.blackArgs": ["--line-length=100"],
+    "python.formatting.autopep8Args": ["--max-line-length=100"],
     "python.linting.enabled": true,
     "python.linting.flake8Enabled": true,
-    "python.linting.flake8Args": [
-        "--max-line-length=100"
-    ],
+    "python.linting.flake8Args": ["--max-line-length=100"],
     "python.linting.pylintEnabled": true,
     "python.linting.pytypeEnabled": false,
     "python.linting.pycodestyleEnabled": false,
-    "python.linting.pylintArgs": [
-        "--disabled=W0120,useless-else-on-loop"
-    ],
+    "python.linting.pylintArgs": ["--disabled=W0120,useless-else-on-loop"],
     "python.sortImports.path": "isort",
-    "python.sortImports.args": [
-        "--length-sort",
-        "--dont-order-by-type",
-        "--force-single-line-imports"
-    ],
+    "python.sortImports.args": ["--length-sort", "--dont-order-by-type", "--force-single-line-imports"],
     "python.pythonPath": "python",
     "pyright.organizeimports.provider": "isort",
-    "python.analysis.typeshedPaths": [
-        "~/.pyright/typeshed/"
-    ],
+    "python.analysis.typeshedPaths": ["~/.pyright/typeshed/"],
     "snippets.extends": {
-        "cpp": [
-            "c",
-            "cpp"
-        ],
-        "javascriptreact": [
-            "javascript"
-        ],
-        "typescript": [
-            "javascript"
-        ]
+        "cpp": ["c", "cpp"],
+        "javascriptreact": ["javascript"],
+        "typescript": ["javascript"]
     },
-    "snippets.ultisnips.directories": [
-        "UltiSnips"
-    ],
+    "snippets.ultisnips.directories": ["UltiSnips"],
     "yank.list.maxsize": 999,
     "yank.limit": 999
 }
