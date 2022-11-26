@@ -6,7 +6,7 @@ if index(g:plugs_order, 'vim-airline') < 0
     finish
 endif
 
-let g:airline_section_error = airline#section#create_right(['%{g:asyncrun_status}'])
+let g:airline_section_warning = airline#section#create_right(['%0.9{g:asyncrun_status}'])
 let g:asyncrun_open = 0
 let g:asyncrun_timeout=99
 let g:asyncrun_status = ''
