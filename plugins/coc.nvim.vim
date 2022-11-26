@@ -139,6 +139,7 @@ endif
 let g:coc_global_extensions = [
     \ 'coc-highlight',
     \ 'coc-snippets',
+    \ 'coc-prettier',
     \ 'coc-pyright',
     \ 'coc-eslint',
     \ 'coc-pairs',
@@ -146,7 +147,6 @@ let g:coc_global_extensions = [
     \ 'coc-vetur',
     \ 'coc-yank',
     \ 'coc-yaml',
-    \ 'coc-json',
     \ 'coc-html',
     \ 'coc-css',
     \ 'coc-git',
