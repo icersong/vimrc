@@ -160,7 +160,7 @@ filetype plugin on
 
 " 默认寄存器unnamed&unnamedplus和系统剪贴板共享
 " 共享系统剪切板会导致列粘贴失效
-" set clipboard=unnamedplus 
+" set clipboard=unnamedplus
 " let g:clipboard = {'cache_enabled': 1}
 
 if has('mouse') && has('gui_running')
@@ -226,20 +226,22 @@ endif
 
 
 " Font
-if $MACOS
-  " Please set font of iTerm2
-  " brew tap homebrew/cask-fonts
-  " brew cask install font-fira-code
-elseif $LINUX
-  " https://github.com/tonsky/FiraCode/wiki/Linux-instructions#installing-with-a-package-manager
-  set guifont=Fira\ Code:h9,Courier\ New:h9:cDEFAULT
-  set guifontwide=Fira\ Code:h9,Courier\ New:h9:cDEFAULT
-elseif $WINDOWS
-  " scoop bucket add nerd-fonts
-  " scoop install firacode
-  set guifont=Fira\ Code:h9,Courier\ New:h9:cDEFAULT
-  set guifontwide=Fira\ Code:h9,Courier\ New:h9:cDEFAULT
-endif
+set guifont=Fira\ Code:h9,Courier\ New:h9:cDEFAULT
+set guifontwide=Fira\ Code:h9,Courier\ New:h9:cDEFAULT
+
+" set guifont=JetBrains\ Mono:h9,Courier\ New:h9:cDEFAULT
+" set guifontwide=JetBrains\ Mono:h9,Courier\ New:h9:cDEFAULT
+
+" if $MACOS
+"   " Please set font of iTerm2
+"   " brew tap homebrew/cask-fonts
+"   " brew cask install font-fira-code
+" elseif $LINUX
+"   " https://github.com/tonsky/FiraCode/wiki/Linux-instructions#installing-with-a-package-manager
+" elseif $WINDOWS
+"   " scoop bucket add nerd-fonts
+"   " scoop install firacode
+" endif
 
 " 高亮当前行当前列(十字光标)
 " set cursorcolumn                " 设置光标十字坐标，高亮当前列
