@@ -1,5 +1,7 @@
-" 离开插入模式后自动关闭预览窗口
+" 太長的更新間隔會導致明顯的延遲並降低使用者體驗（預設是 4000 ms = 4s ）
+set updatetime=300
 
+" 离开插入模式后自动关闭预览窗口
 " Use Enter to confirm select
 " inoremap <silent><expr> <cr>
 "       \ pumvisible()
