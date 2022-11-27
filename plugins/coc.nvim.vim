@@ -93,44 +93,36 @@ command! -nargs=0 Format :call CocAction('format')
 command! -nargs=? Fold :call CocAction('fold', <f-args>)
 
 
-" Add diagnostic info for https://github.com/itchyny/lightline.vim
-" let g:lightline = {
-"       \ 'colorscheme': 'wombat',
-"       \ 'active': {
-"       \   'left': [ [ 'mode', 'paste' ],
-"       \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
-"       \ },
-"       \ 'component_function': {
-"       \   'cocstatus': 'coc#status'
-"       \ },
-"       \ }
-
 " air-line
 " use error & warning count of diagnostics form coc.nvim
 " let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
 " let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
 
 " create a part for server status.
-if index(g:plugs_order, 'vim-airline') >= 0
-    function! GetServerStatus()
-      return get(g:, 'coc_status', '')
-    endfunction
-    call airline#parts#define_function('coc', 'GetServerStatus')
-    function! AirlineInit()
-      let g:airline_section_a = airline#section#create(['coc'])
-    endfunction
-    autocmd User AirlineAfterInit call AirlineInit()
-    " exclude overwrite statusline of list filetype
-    let g:airline_exclude_filetypes = ["list"]
-    " Change error symbol:
-    let airline#extensions#coc#error_symbol = 'Error:'
-    " Change warning symbol:
-    let airline#extensions#coc#warning_symbol = 'Warning:'
-    " Change error format:
-    let airline#extensions#coc#stl_format_err = '%E{[%e(#%fe)]}'
-    " Change warning format:
-    let airline#extensions#coc#stl_format_warn = '%W{[%w(#%fw)]}'
-endif
+" if index(g:plugs_order, 'vim-airline') >= 0
+"     function! GetServerStatus()
+"       return get(g:, 'coc_status', '')
+"     endfunction
+"     call airline#parts#define_function('coc', 'GetServerStatus')
+"     function! AirlineInit()
+"       let g:airline_section_a = airline#section#create(['coc'])
+"     endfunction
+"     autocmd User AirlineAfterInit call AirlineInit()
+"     let g:airline_section_a = airline#section#create(['coc'])
+
+"     let g:airline#extensions#coc#enabled = 1
+"     let g:airline#extensions#coc#show_coc_status = 1
+"     " exclude overwrite statusline of list filetype
+"     let g:airline_exclude_filetypes = ["list"]
+"     " Change error symbol:
+"     let airline#extensions#coc#error_symbol = 'Error:'
+"     " Change warning symbol:
+"     let airline#extensions#coc#warning_symbol = 'Warning:'
+"     " Change error format:
+"     let airline#extensions#coc#stl_format_err = '%E{[%e(#%fe)]}'
+"     " Change warning format:
+"     let airline#extensions#coc#stl_format_warn = '%W{[%w(#%fw)]}'
+" endif
 
 " Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
 " Plug 'neoclide/coc-prettier', {'do': 'yarn install --frozen-lockfile'}

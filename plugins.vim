@@ -91,6 +91,8 @@ Plug 'vim-scripts/CmdlineComplete'
 " 平滑滚动
 " Plug 'terryma/vim-smooth-scroll'
 
+" 显示当前搜索结果的位置
+Plug 'osyo-manga/vim-anzu'
 
 """""""""""""""""""""""""""""""" 文件搜索 """"""""""""""""""""""""""""""""
 " -------- 文件标记浏览 ---------
@@ -154,6 +156,9 @@ Plug 'vim-scripts/matchit.zip', {'for': [
     \ 'vim', 'java', 'html', 'jinja', 'python', 'javascript']}
 " match tags by %, and auto complete close tag
 " Plug 'othree/xml.vim', {'for': ['xml', 'html']}
+
+" -------- 查找项目根路径 ---------
+Plug 'airblade/vim-rooter'
 
 
 """""""""""""""""""""""""""""""" 配色缩进 """"""""""""""""""""""""""""""""

@@ -23,12 +23,14 @@ let g:airline#extensions#tabline#buffer_nr_format = '%s:'
 let g:airline#extensions#tabline#ignore_bufadd_pat =
       \ '!|defx|gundo|undotree|vimfiler|tagbar|nerd_tree|vim-minimap'
       \.'|DebuggerWatch|gitcommit|MiniBufExplorer|startify|term://'
-let g:airline#extensions#ale#enabled = 1
+let g:airline#extensions#coc#enabled = 1
+let g:airline#extensions#ale#enabled = 0
 let g:airline#extensions#tagbar#enabled = 1
 let g:airline#extensions#tmuxline#enabled = 1
 let g:airline#extensions#syntastic#enabled = 0
 let g:airline#extensions#whitespace#enabled = 1
 let g:airline#extensions#virtualenv#enabled = 1
+
 let g:airline#extensions#tabline#buffer_idx_format = {
       \ '0': '⁰', '1': 'ⁱ', '2': 'ᶽ', '3': 'ᶟ', '4': 'ᶣ',
       \ '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹'}
@@ -51,3 +53,26 @@ let g:airline#extensions#tabline#buffer_idx_format = {
 " nmap <silent><c-h> <Plug>AirlineSelectPrevTab
 " nmap <silent><c-l> <Plug>AirlineSelectNextTab
 " autocmd BufEnter <buffer> AirlineRefresh
+
+
+let g:airline#extensions#default#layout = [
+    \ [ 'a', 'b', 'c' ],
+    \ [ 'x', 'y', 'z', 'error', 'warning', 'counter' ]
+    \ ]
+
+call airline#extensions#coc#init('')
+" let g:airline_section_error = airline#section#create_right([
+"       \ '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}',
+"       \ '%{airline#util#wrap(airline#extensions#ale#get_error(),0)}',
+"       \])
+
+" let g:airline_section_warning = airline#section#create_right([
+"       \ '%{airline#util#wrap(airline#extensions#coc#get_warning(), 0)}',
+"       \ '%{airline#util#wrap(airline#extensions#ale#get_warning(), 0)}',
+"       \ '%{airline#util#wrap(airline#extensions#whitespace#check(), 0)}',
+"       \])
+
+
+
+" let g:airline_section_error = airline#section#create_right(['%0.9{g:asyncrun_status}'])
+" let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
