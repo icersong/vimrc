@@ -282,7 +282,7 @@ Plug 'Shougo/echodoc.vim'
 " Plug 'scrooloose/syntastic'
 " 语法分析工具, 异步运行(Vim8/NeoVim)，性能完爆syntastic
 " Plug 'w0rp/ale'
-Plug 'dense-analysis/ale'
+" Plug 'dense-analysis/ale'
 
 " 语法补全工具
 if has('python3')

@@ -45,6 +45,7 @@ let g:ale_javascript_prettier_use_global = 1
 let g:ale_linters = {
     \ 'javascript': [],
     \ 'python': [],
+    \ 'vue': [],
     \ }
 
 let b:ale_fixers = [
