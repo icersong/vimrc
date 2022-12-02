@@ -20,7 +20,7 @@ let g:ale_lint_delay = 3333
 let g:ale_completion_enabled = 0
 let g:ale_completion_delay = 666
 let g:ale_completion_max_suggestions = 9
-let g:ale_fix_on_save = 1
+let g:ale_fix_on_save = 0
 
 " let g:ale_python_flake8_executable = system('pyenv root').'/versions/nvim-py2/bin/flake8'
 let g:ale_python_flake8_executable = 'python -m flake8'

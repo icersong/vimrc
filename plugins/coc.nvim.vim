@@ -131,6 +131,7 @@ command! -nargs=? Fold :call CocAction('fold', <f-args>)
 let g:coc_global_extensions = [
     \ 'coc-highlight',
     \ 'coc-snippets',
+    \ 'coc-prettier',
     \ 'coc-pyright',
     \ 'coc-eslint',
     \ 'coc-pairs',
@@ -142,4 +143,3 @@ let g:coc_global_extensions = [
     \ 'coc-git',
     \ ]
     " \ 'coc-vetur',
-    " \ 'coc-prettier',
