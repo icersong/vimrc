@@ -274,9 +274,9 @@ set wildmode=list:longest,full  " Command <Tab> completion, list matches, then l
 set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
 set scrolljump=5                " Lines to scroll when cursor leaves screen
 set scrolloff=6                 " Minimum lines to keep above and below cursor
-set foldenable                  " Auto fold code
-set foldmethod=indent           " 设置语法折叠 syntax | indent
-set foldlevel=9                 " 默认折叠开始层数
+"et foldenable                  " Auto fold code
+"set foldmethod=indent           " 设置语法折叠 syntax | indent
+"set foldlevel=9                 " 默认折叠开始层数
 set updatetime=333              " 设置键盘闲置执行时间，默认4000
 " set foldcolumn=0                " 设置折叠区域的宽度
 " set foldclose=all               " 设置为默认折叠所有

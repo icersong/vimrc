@@ -6,6 +6,7 @@
         "vue",
         "css",
         "xml",
+        "vim",
         "json",
         "html",
         "xhtml",
@@ -49,7 +50,7 @@
     "emmet.includeLanguages": {
         "vue-html": "html"
     },
-    "vetur.format.enable": true,
+    "vetur.format.enable": false,
     "vetur.dev.logLevel": "debug",
     "vetur.trace.server": "verbose",
     "vetur.formatterPriority": 2,
@@ -67,6 +68,9 @@
             "arrowParens": "avoid"
         }
     },
+    "volar.enable": true,
+    "volar.disableFormatting": false,
+    "volar.formatterPriority": 3,
     "prettier.enable": true,
     "prettier.formatterPriority": 1,
     "prettier.printWidth": 110,
@@ -108,7 +112,13 @@
     "python.formatting.autopep8Args": ["--max-line-length=100"],
     "python.linting.enabled": true,
     "python.linting.flake8Enabled": true,
-    "python.linting.flake8Args": ["--max-line-length=100"],
+    "python.linting.flake8Args": [
+        "--max-complexity=10",
+        "--max-doc-length=100",
+        "--max-line-length=100",
+        "--extend-ignore=E203",
+        "--exclude=.git,__pycache__,old,build,dist"
+    ],
     "python.linting.pylintEnabled": true,
     "python.linting.pytypeEnabled": false,
     "python.linting.pycodestyleEnabled": false,
