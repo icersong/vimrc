@@ -112,8 +112,13 @@ endfunction
 " in this function we should vim-choosewin if possible
 function! DefxSmartL(_)
   if defx#is_directory()
-    call defx#call_action('open_tree')
-    normal! j
+    if defx#is_opened_tree()
+        call defx#call_action('close_tree')
+        normal! j
+    else
+        call defx#call_action('open_tree')
+    endif
+    " normal! j
   else
     let filepath = defx#get_candidate()['action__path']
     if tabpagewinnr(tabpagenr(), '$') >= 3    " if there are more than 2 normal windows
