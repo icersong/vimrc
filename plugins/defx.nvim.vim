@@ -1,27 +1,35 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " defx {{{1
 " Plug 'Shougo/defx.nvim'
+" map <leader>df for open current path
+" map <leader>dg for open git root path
 
-nnoremap <silent> <leader>df :Defx -columns=icons:indent:filename:type
-          \ -ignored-files=*.pyc,*.pyo,*.bin,*.doc,*.docx,*.xsl
-          \ <CR>
 let g:defx_icons_enable_syntax_highlight = 1
+
+" nnoremap <silent> <leader>df :Defx -columns=icons:indent:filename:type
+"           \ -ignored-files=*.pyc,*.pyo,*.bin,*.doc,*.docx,*.xsl
+"           \ %:h<CR>
+nnoremap <silent> <leader>df :call <SID>open_current_path()<CR>
+
+nnoremap <silent> <leader>dg :call <SID>open_git_root()<CR>
 
 autocmd sourcepost $VIMFILES/defx.nvim/plugin/*.vim call s:plugin_loaded()
 function! s:plugin_loaded() abort
     call defx#custom#option('_', {
-          \ 'winwidth': 50,
-          \ 'split': 'vertical',
-          \ 'direction': 'topleft',
-          \ 'show_ignored_files': 0,
-          \ 'buffer_name': '',
-          \ 'toggle': 1,
-          \ 'resume': 1
-          \ })
+        \ 'ignored_files': '*.pyc,*.pyo,*.bin,*.doc,*.docx,*.xsl',
+        \ 'columns': 'icons:indent:filename:type',
+        \ 'winwidth': 50,
+        \ 'split': 'vertical',
+        \ 'direction': 'topleft',
+        \ 'show_ignored_files': 0,
+        \ 'buffer_name': '',
+        \ 'toggle': 1,
+        \ 'resume': 1
+        \ })
     call defx#custom#column('mark', {
-          \ 'readonly_icon': '',
-          \ 'selected_icon': '',
-          \ })
+        \ 'readonly_icon': '✗',
+        \ 'selected_icon': '✓',
+        \ })
 endfunction
 
 function! s:defx_open_only() abort
@@ -159,4 +167,22 @@ endfunction
 
 function! s:trim_right(str, trim)
   return substitute(a:str, printf('%s$', a:trim), '', 'g')
+endfunction
+
+function! s:get_git_root()
+  let root = split(system('git rev-parse --show-toplevel'), '\n')[0]
+  return v:shell_error ? '' : root
+endfunction
+
+function! s:open_git_root()
+  let gitroot = s:get_git_root()
+  if empty(gitroot)
+    return s:warn('Not in git repo')
+  endif
+  execute 'Defx ' . gitroot
+endfunction
+
+function! s:open_current_path()
+    let path = escape(expand('%:p:h'), ' :')
+    execute 'Defx ' . path
 endfunction
