@@ -31,9 +31,16 @@ let g:airline#extensions#syntastic#enabled = 0
 let g:airline#extensions#whitespace#enabled = 1
 let g:airline#extensions#virtualenv#enabled = 1
 
+" ➀➁➂➃➄➅➆➇➈➉
+" ➊➋➌➍➎➏➐➑➒➓
 let g:airline#extensions#tabline#buffer_idx_format = {
-      \ '0': '⁰', '1': 'ⁱ', '2': 'ᶽ', '3': 'ᶟ', '4': 'ᶣ',
-      \ '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹'}
+      \ '0': '⁰', '1': '➀', '2': '➁', '3': '➂', '4': '➃',
+      \ '5': '➄', '6': '➅', '7': '➆', '8': '➇', '9': '➈'}
+
+" let g:airline#extensions#tabline#buffer_idx_format = {
+"       \ '0': '⁰', '1': 'ⁱ', '2': 'ᶽ', '3': 'ᶟ', '4': 'ᶣ',
+"       \ '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹'}
+
 " let g:airline#extensions#tabline#buffer_idx_format = {
 "       \ '0': '⓿', '1': '⓵', '2': '⓶', '3': '⓷', '4': '⓸',
 "       \ '5': '⓹', '6': '⓺', '7': '⓻', '8': '⓼', '9': '⓽',

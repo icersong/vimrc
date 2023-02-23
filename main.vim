@@ -276,7 +276,7 @@ set scrolljump=5                " Lines to scroll when cursor leaves screen
 set scrolloff=6                 " Minimum lines to keep above and below cursor
 "et foldenable                  " Auto fold code
 "set foldmethod=indent           " 设置语法折叠 syntax | indent
-"set foldlevel=9                 " 默认折叠开始层数
+" set foldlevel=2                 " 默认折叠开始层数
 set updatetime=333              " 设置键盘闲置执行时间，默认4000
 " set foldcolumn=0                " 设置折叠区域的宽度
 " set foldclose=all               " 设置为默认折叠所有
@@ -348,7 +348,8 @@ set splitright          " Puts new vsplit windows to the right of the current
 " set textwidth=512       " textwidth, 一行的最大宽度
 
 au BufNewFile,BufRead *.tpl set filetype=jinja
-au BufRead,BufNewFile *.wsgi setlocal filetype=python foldmethod=indent
+au BufRead,BufNewFile *.wsgi,*.py setlocal filetype=python foldmethod=indent foldlevel=0
+au BufRead,BufNewFile *.js,*.json setlocal foldmethod=syntax foldlevel=3
 " au FileType vim,yaml,css setlocal tabstop=2 softtabstop=2 shiftwidth=2
 
 
