@@ -189,6 +189,9 @@ Plug 'gko/vim-coloresque', {'for': ['php', 'css', 'xml', 'vim', 'html', 'java',
 Plug 'chrisbra/vim-diff-enhanced'
 " 显示缩进引导符号
 Plug 'Yggdroot/indentLine'
+" Hyperfocus-writing in Vim
+" Plug"junegunn/limelight.vim"
+
 
 " 静态语法配色包 slow load file
 " Plug 'sheerun/vim-polyglot', {}
