@@ -226,8 +226,8 @@ endif
 
 
 " Font
-set guifont=Fira\ Code:h9,Courier\ New:h9:cDEFAULT
-set guifontwide=Fira\ Code:h9,Courier\ New:h9:cDEFAULT
+"set guifont=Fira\ Code:h9,Courier\ New:h9:cDEFAULT
+"set guifontwide=Fira\ Code:h9,Courier\ New:h9:cDEFAULT
 
 " set guifont=JetBrains\ Mono:h9,Courier\ New:h9:cDEFAULT
 " set guifontwide=JetBrains\ Mono:h9,Courier\ New:h9:cDEFAULT
