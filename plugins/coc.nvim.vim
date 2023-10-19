@@ -142,7 +142,7 @@ let g:coc_global_extensions = [
     \ 'coc-prettier',
     \ 'coc-snippets',
     \ 'coc-highlight',
-    \ '@yaegassy/coc-volar',
-    \ '@yaegassy/coc-volar-tools',
     \ ]
     " \ 'coc-vetur',
+    "\ '@yaegassy/coc-volar',
+    "\ '@yaegassy/coc-volar-tools',
