@@ -107,7 +107,7 @@ else
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
 " Improve netrw
-Plug 'tpope/vim-vinegar'
+" Plug 'tpope/vim-vinegar'
 " Buffer列表显示
 " Plug 'fholgado/minibufexpl.vim', {'on': ['MBEOpen', 'MBEToggle']}
 " Tag列表显示
