@@ -196,7 +196,9 @@ Plug 'Yggdroot/indentLine'
 " 静态语法配色包 slow load file
 " Plug 'sheerun/vim-polyglot', {}
 " Python语法配色方案
-Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+"Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+Plug 'wookayin/semshi', {'do': ':UpdateRemotePlugins'}
+
 " Syntax for jinja and html
 Plug 'Glench/Vim-Jinja2-Syntax', { 'for': ['jinja', 'jinja2'] }
 " syntax highlighting for javascript, too slow ...
@@ -253,7 +255,7 @@ Plug 'glts/vim-textobj-comment'   " ac ic
 " Plug 'kana/vim-textobj-indent'  " duplicate vim-indent-object
 " text swap, eg: cursor word1 cxiw -> cursor word2 cxiw, then tow words exchange
 Plug 'tommcdo/vim-exchange'
-" Text tbale
+" Text table
 Plug 'dhruvasagar/vim-table-mode', {'for': 'markdown', 'on': ['TableModeEnable']}
 " Range select for edit, :NR
 Plug 'chrisbra/NrrwRgn', { 'on': [
