@@ -17,9 +17,9 @@ let g:ctrlsf_position = 'bottom'
 let g:ctrlsf_context = '-B 0 -A 0'
 let g:ctrlsf_case_sensitive = 'smart'
 let g:ctrlsf_default_view_mode = 'compact'
-let g:ctrlsf_extra_root_markers = ['.root', '.git', '.env', '.envrc']
+let g:ctrlsf_extra_root_markers = ['.root', '.git', '.env', '.envrc', '.venv', '.pyproject.toml']
 let g:ctrlsf_ignore_dir = ['bin', 'dist', 'build', 'lib', 'libs',
-    \ 'img', 'fonts', 'cache',
+    \ 'img', 'fonts', 'cache', 'node_modules',
     \ '*.min.js', 'yarn.lock', 'package.json'
     \ ]
 
