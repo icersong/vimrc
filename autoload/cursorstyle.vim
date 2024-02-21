@@ -17,7 +17,7 @@ endfunction
 
 function! s:set_term_cursor_style()
   highlight CursorLine cterm=underline ctermbg=NONE ctermfg=NONE
-  if &term =~ '^xterm' || &term == 'xterm-256color' || &term == 'screen-256color' || &term == 'nvim'
+  if &term =~ '^xterm-' || &term =~ '^tmux-' || &term =~ '^screen-'
     " 1 or 0 -> blinking block
     " 2 -> solid block
     " 3 -> blinking underscore
