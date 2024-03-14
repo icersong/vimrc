@@ -129,6 +129,7 @@ command! -nargs=? Fold :call CocAction('fold', <f-args>)
 " Plug 'neoclide/coc-tslint', {'do': 'yarn install --frozen-lockfile'}
 " Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'} " mru and stuff
 let g:coc_global_extensions = [
+    \ 'coc-sh',
     \ 'coc-git',
     \ 'coc-css',
     \ 'coc-html',

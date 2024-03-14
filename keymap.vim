@@ -93,3 +93,10 @@ augroup RunPython
 
 augroup END
 autocmd FileType python nnoremap <buffer> <silent> <F9> :call <SID>run_python_file()<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Shell script
+" <F5>
+augroup RunShell
+  autocmd FileType sh nnoremap <buffer> <silent> <F5> :!bash %<CR>
+augroup END
