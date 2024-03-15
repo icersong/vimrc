@@ -137,6 +137,7 @@ let g:coc_global_extensions = [
     \ 'coc-yank',
     \ 'coc-emmet',
     \ 'coc-pairs',
+    \ 'coc-docker',
     \ 'coc-vimlsp',
     \ 'coc-eslint',
     \ 'coc-pyright',

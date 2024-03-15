@@ -293,6 +293,7 @@ Plug 'dense-analysis/ale'
 if has('python3')
   if has('nvim')
     Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile', 'branch': 'release'}
+    Plug 'josa42/coc-sh'
   endif
 endif
 
