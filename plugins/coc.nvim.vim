@@ -141,10 +141,10 @@ let g:coc_global_extensions = [
     \ 'coc-vimlsp',
     \ 'coc-eslint',
     \ 'coc-pyright',
-    \ 'coc-prettier',
     \ 'coc-snippets',
     \ 'coc-highlight',
     \ ]
+    " \ 'coc-prettier',
     " \ 'coc-vetur',
     "\ '@yaegassy/coc-volar',
     "\ '@yaegassy/coc-volar-tools',
