@@ -1,0 +1,85 @@
+priority -50
+
+snippet axios_get "Axios GET Request" b
+axios.get('${1:url}')
+	.then(response => {
+		${2:// Handle success}
+	})
+	.catch(error => {
+		${3:// Handle error}
+	});
+endsnippet
+
+snippet axios_get_await "Axios GET Request with Await" b
+try {
+	let response = await axios.get('${1:url}');
+	${2:// Handle success}
+} catch (error) {
+	${3:// Handle error}
+}
+endsnippet
+
+snippet axios_post "Axios POST Request" b
+axios.post('${1:url}', {
+		${2:data}
+	})
+	.then(response => {
+		${3:// Handle success}
+	})
+	.catch(error => {
+		${4:// Handle error}
+	});
+endsnippet
+
+snippet axios_post_await "Axios POST Request with Await" b
+try {
+	let response = await axios.post('${1:url}', {
+		${2:data}
+	});
+	${3:// Handle success}
+} catch (error) {
+	${4:// Handle error}
+}
+endsnippet
+
+snippet axios_put "Axios PUT Request" b
+axios.put('${1:url}', {
+		${2:data}
+	})
+	.then(response => {
+		${3:// Handle success}
+	})
+	.catch(error => {
+		${4:// Handle error}
+	});
+endsnippet
+
+snippet axios_put_await "Axios PUT Request with Await" b
+try {
+	let response = await axios.put('${1:url}', {
+		${2:data}
+	});
+	${3:// Handle success}
+} catch (error) {
+	${4:// Handle error}
+}
+endsnippet
+
+snippet axios_delete "Axios DELETE Request" b
+axios.delete('${1:url}')
+	.then(response => {
+		${2:// Handle success}
+	})
+	.catch(error => {
+		${3:// Handle error}
+	});
+endsnippet
+
+snippet axios_delete_await "Axios DELETE Request with Await" b
+try {
+	let response = await axios.delete('${1:url}');
+	${2:// Handle success}
+} catch (error) {
+	${3:// Handle error}
+}
+endsnippet
