@@ -32,14 +32,16 @@ function! s:check_back_space() abort
 endfunction
 
 inoremap <silent><expr><TAB>
-  \ coc#pum#visible() ? coc#pum#next(1):
-  \ pumvisible() ? "\<C-n>" :
-  \ functools#has_function('delimitMate#ShouldJump')
-  \   && delimitMate#ShouldJump() ?
-  \ delimitMate#JumpAny() :
+  \ coc#pum#visible() ?
+  \   coc#pum#next(1):
+  \ pumvisible() ?
+  \   "\<C-n>" :
+  \ functools#has_function('delimitMate#ShouldJump') && delimitMate#ShouldJump() ?
+  \   delimitMate#JumpAny() :
   \ coc#expandableOrJumpable() ?
-  \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-  \ <SID>check_back_space() ? "\<TAB>" :
+  \   "\<C-j>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+  \ <SID>check_back_space() ?
+  \   "\<TAB>" :
   \ coc#refresh()
 
 
