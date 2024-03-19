@@ -1,11 +1,11 @@
-vimrc
+#vimrc
 =====
 
-# MacOS安装VIM
+## MacOS安装VIM
 
  $ brew install vim --with-python3 --with-features=huge --with-lua --enable-multibyte
 
-# 消息系统
+## 消息系统
 
 * 历史消息
 
@@ -20,7 +20,7 @@ vimrc
     :help <error no>
 
 
-# 剪切板
+## 剪切板
 
 * 粘贴出现多余缩进问题
 
@@ -29,12 +29,12 @@ vimrc
     :set nopaste
 
 
-# 格式化json
+## 格式化json
 
     :%!python -m json.tool
 
 
-# 调试加载速度
+## 调试加载速度
 
 * neovim 调试
 
@@ -98,13 +98,13 @@ You can use built-in profiling support: after launching vim do
     > call setline('.', ['count total (s)   self (s)  script']+map(copy(timings), 'printf("%5u %9s   %8s  %s", v:val[1], v:val[2], v:val[3], v:val[0])'))
 
 
-# 帮助使用
+## 帮助使用
 
-## 标题跳转
+### 标题跳转
 
     Ctrl-] 跳转到光标所在标题内容区
 
-## 帮助查询
+### 帮助查询
 
     :h r 表示查找普通模式下的帮助信息
 
@@ -124,7 +124,7 @@ You can use built-in profiling support: after launching vim do
 
     :help tips命令，可以查看使用技巧
 
-## 帮助模糊匹配
+### 帮助模糊匹配
 
     :helpgrep ...
 
@@ -132,21 +132,21 @@ You can use built-in profiling support: after launching vim do
 
     :cprev 前一个匹配
 
-# QuickFix 窗口操作
+## QuickFix 窗口操作
 
     :cwindow
 
     :cclose
 
-# VIM内建鼠标支持
+## VIM内建鼠标支持
 
     Ctrl+LeftMouse == Ctrl-T
     Ctrl+RightMouse == Ctrl-]
 
 
-# Plugins
+## Plugins
 
-## vimux
+### vimux
 
 Configue .tmux.conf file
 
@@ -173,7 +173,7 @@ Configue .tmux.conf file
     bind -r C-\ run "tmux select-pane -l"
 
 
-## Copy & Paste clipboard
+### Copy & Paste clipboard
 
 * 查看是否支持系统剪切板
 
@@ -189,6 +189,17 @@ Configue .tmux.conf file
     $ sudo apt-get install xclip
 
 
-## Insert serial no for selected lines
+### Insert serial no for selected lines
 
     :'<,'>s/^/\=printf("%-4d. ", line(".")-line("'<")+1)
+
+### coc-eslint
+
+```bash
+    yarn global add eslint \
+        eslint-plugin-import eslint-plugin-promise \
+        eslint-plugin-prettier eslint-config-prettier \
+        eslint-plugin-standard eslint-config-standard
+    ln -s ~/.vimrc/eslintrc.js ~/.eslintrc.js
+    ln -s ~/.config/yarn/global/node_modules ~/node_modules
+```

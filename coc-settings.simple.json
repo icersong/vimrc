@@ -1,26 +1,52 @@
 {
+    "coc.preferences.extensionUpdateCheck": "daily",
     "coc.preferences.currentFunctionSymbolAutoUpdate": true,
     "coc.preferences.formatOnType": true,
     "coc.preferences.formatOnSave": true,
-    "coc.preferences.formatOnSaveFiletypes": [
-        "vue",
-        "css",
-        "xml",
-        "vim",
-        "json",
-        "html",
-        "xhtml",
-        "python",
-        "markdown",
-        "javascript"
-    ],
+    "snippet.highlight": true,
+    "suggest.labelMaxLength": 60,
     "suggest.noselect": true,
-    "diagnostic": {
-        "errorSign": "✘",
-        "warningSign": "⚠",
-        "infoSign": "⋆",
-        "hintSign": "⋅"
+    "suggest.enablePreselect": false,
+    "suggest.triggerAfterInsertEnter": true,
+    "suggest.autoTrigger": "always",
+    "suggest.timeout": 5000,
+    "suggest.snippetIndicator": "",
+    "suggest.triggerCompletionWait": 50,
+    "suggest.completionItemKindLabels": {
+        "class": "\uf0e8",
+        "color": "\ue22b",
+        "constant": "\uf8fe",
+        "default": "\uf29c",
+        "enum": "\uf435",
+        "enumMember": "\uf02b",
+        "event": "\ufacd",
+        "field": "\uf93d",
+        "file": "\uf723",
+        "folder": "\uf115",
+        "function": "\u0192",
+        "interface": "\uf417",
+        "keyword": "\uf1de",
+        "method": "\uf6a6",
+        "module": "\uf40d",
+        "operator": "\uf915",
+        "property": "\ue624",
+        "reference": "\ufa46",
+        "snippet": "\ue60b",
+        "struct": "\ufb44",
+        "text": "\ue612",
+        "typeParameter": "\uf728",
+        "unit": "\uf475",
+        "value": "\uf89f",
+        "variable": "\ue71b"
     },
+    "diagnostic.errorSign": "✘",
+    "diagnostic.warningSign": "⚠",
+    "diagnostic.infoSign": "⋆",
+    "diagnostic.hintSign": "⋅",
+    "diagnostic.refreshOnInsertMode": false,
+    "diagnostic.checkCurrentLine": true,
+    "diagnostic.virtualText": true,
+    "codeLens.enable": true,
     "list.normalMappings": {
         "<C-n>": "normal:j",
         "<C-p>": "normal:k",
@@ -40,6 +66,7 @@
         "<C-s>": "action:split",
         "<C-w>": "command:wincmd k"
     },
+    "list.previewHighlightGroup": "Statement",
     "git.addedSign.hlGroup": "GitGutterAdd",
     "git.changedSign.hlGroup": "GitGutterChange",
     "git.removedSign.hlGroup": "GitGutterDelete",
@@ -50,47 +77,35 @@
     "emmet.includeLanguages": {
         "vue-html": "html"
     },
-    "vetur.format.enable": false,
-    "vetur.dev.logLevel": "debug",
-    "vetur.trace.server": "verbose",
-    "vetur.formatterPriority": 2,
-    "vetur.format.options.tabSize": 4,
-    "vetur.format.defaultFormatterOptions": {
-        "prettier": {
-            "printWidth": 100,
-            "trailingComma": "all",
-            "tabWidth": 4,
-            "semi": true,
-            "singleQuote": false,
-            "bracketSpacing": false,
-            "bracketSameLine": true,
-            "parser": "babel",
-            "arrowParens": "avoid"
-        }
-    },
-    "volar.enable": true,
-    "volar.disableFormatting": false,
-    "volar.formatterPriority": 3,
-    "eslint.workingDirectories": "/home/icersong/.config/yarn/global/",
-    "eslint.packageManager": ["yarn"],
-    "eslint.nodePath": null,
+    "eslint.workingDirectories": [],
+    "eslint.packageManager": "yarn",
+    "eslint.nodePath": "/home/icersong/.config/yarn/global/node_modules",
     "eslint.enable": true,
     "eslint.format.enable": true,
     "eslint.autoFixOnSave": true,
-    "eslint.formatterPriority": 9,
-    "eslint.packageManager": "yarn",
-    "eslint.probe": ["vue", "json", "html", "xhtml", "markdown", "javascript", "typescript"],
+    "eslint.probe": [
+        "vue",
+        "json",
+        "html",
+        "xhtml",
+        "markdown",
+        "javascript",
+        "typescript"
+    ],
     "eslint.options": {},
-    "html.filetypes": ["html", "xhtml"],
-    "html.formatterPriority": 4,
+    "html.filetypes": [
+        "html",
+        "xhtml"
+    ],
     "html.format.wrapLineLength": 100,
     "html.trace.server": "verbose",
-    "html.format": {
-        "enable": true,
-        "wrapLineLength": 100,
-        "indentInnerHtml": false,
-        "extraLiners": "head, body, /html"
-    },
+    "html.format.indentInnerHtml": false,
+    "html.format.extraLiners": "head, body, /html",
+    "html.format.unformatted": "no-tag",
+    "html.format.enable": true,
+    "json.format.enable": true,
+    "yaml.format.enable": true,
+    "yank.enableCompletion": false,
     "pyright.organizeimports.provider": "isort",
     "python.sortImports.path": "isort",
     "python.sortImports.args": [
@@ -99,8 +114,12 @@
         "--force-single-line-imports"
     ],
     "python.formatting.provider": "black",
-    "python.formatting.blackArgs": ["--line-length=100"],
-    "python.formatting.autopep8Args": ["--max-line-length=100"],
+    "python.formatting.blackArgs": [
+        "--line-length=100"
+    ],
+    "python.formatting.autopep8Args": [
+        "--max-line-length=100"
+    ],
     "python.linting.enabled": true,
     "python.linting.flake8Enabled": true,
     "python.linting.flake8Args": [
@@ -113,31 +132,18 @@
     "python.linting.pylintEnabled": true,
     "python.linting.pytypeEnabled": false,
     "python.linting.pycodestyleEnabled": false,
-    "python.linting.pylintArgs": ["--disabled=W0120,useless-else-on-loop"],
+    "python.linting.pylintArgs": [
+        "--disabled=W0120,useless-else-on-loop"
+    ],
     "python.pythonPath": "python",
-    "python.analysis.typeshedPaths": ["~/.pyright/typeshed/"],
-    "snippets.extend.spp": ["c", "cpp"],
-    "snippets.extend.savascriptreact": ["javascript"],
-    "snippets.extend.sypescript": ["javascript"],
-    "snippets.ultisnips.directories": ["UltiSnips"],
+    "python.analysis.typeshedPaths": [
+        "~/.pyright/typeshed/"
+    ],
+    "snippets.ultisnips.directories": [
+        "$HOME/.cache/nvimfiles/plugins/vim-snippets/UltiSnips/"
+    ],
+    "snippets.massCode.enable": true,
     "yank.list.maxsize": 999,
     "yank.limit": 999,
-    "languageserver": {
-        "bash": {
-            "command": "bash-language-server",
-            "args": ["start"],
-            "filetypes": ["sh"],
-            "ignoredRootPaths": ["~"]
-        },
-        "dockerfile": {
-            "command": "docker-langserver",
-            "filetypes": ["dockerfile"],
-            "args": ["--stdio"]
-        },
-        "graphql": {
-            "command": "graphql-lsp",
-            "args": ["server", "-m", "stream"],
-            "filetypes": ["graphql", "typescript", "typescriptreact"]
-        }
-    }
+    "languageserver": {}
 }
