@@ -13,31 +13,31 @@
     "suggest.snippetIndicator": "",
     "suggest.triggerCompletionWait": 50,
     "suggest.completionItemKindLabels": {
-        "class": "\uf0e8",
-        "color": "\ue22b",
-        "constant": "\uf8fe",
+        "class": "\ueb5b",
+        "color": "\ueb5c",
+        "constant": "\ueb5d",
         "default": "\uf29c",
-        "enum": "\uf435",
-        "enumMember": "\uf02b",
-        "event": "\ufacd",
-        "field": "\uf93d",
-        "file": "\uf723",
+        "enum": "\uea95",
+        "enumMember": "\ueb5e",
+        "event": "\uea86",
+        "field": "\ueb5f",
+        "file": "\uea7b",
         "folder": "\uf115",
-        "function": "\u0192",
+        "function": "\u0192\udb80\ude95",
         "interface": "\uf417",
-        "keyword": "\uf1de",
-        "method": "\uf6a6",
-        "module": "\uf40d",
-        "operator": "\uf915",
+        "keyword": "\ueb62",
+        "method": "\uea8c",
+        "module": "\uea8b",
+        "operator": "\ueb64",
         "property": "\ue624",
-        "reference": "\ufa46",
+        "reference": "\ueb36",
         "snippet": "\ue60b",
-        "struct": "\ufb44",
+        "struct": "\uea91",
         "text": "\ue612",
-        "typeParameter": "\uf728",
+        "typeParameter": "\ueb66",
         "unit": "\uf475",
-        "value": "\uf89f",
-        "variable": "\ue71b"
+        "value": "\uf4f7",
+        "variable": "\uea88"
     },
     "diagnostic.errorSign": "✘",
     "diagnostic.warningSign": "⚠",
@@ -77,6 +77,8 @@
     "emmet.includeLanguages": {
         "vue-html": "html"
     },
+    "tsserver.enable": true,
+    "tsserver.log": "normal",
     "eslint.workingDirectories": [],
     "eslint.packageManager": "yarn",
     "eslint.nodePath": "/home/icersong/.config/yarn/global/node_modules",
@@ -105,7 +107,6 @@
     "html.format.enable": true,
     "json.format.enable": true,
     "yaml.format.enable": true,
-    "yank.enableCompletion": false,
     "pyright.organizeimports.provider": "isort",
     "python.sortImports.path": "isort",
     "python.sortImports.args": [
@@ -140,10 +141,13 @@
         "~/.pyright/typeshed/"
     ],
     "snippets.ultisnips.directories": [
-        "$HOME/.cache/nvimfiles/plugins/vim-snippets/UltiSnips/"
+        "$HOME/.cache/nvimfiles/plugins/vim-snippets/UltiSnips/",
+        "$HOME/.config/vimrc/snippets/UltiSnips/"
     ],
-    "snippets.massCode.enable": true,
+    "snippets.massCode.enable": false,
+    "yank.enableCompletion": true,
     "yank.list.maxsize": 999,
-    "yank.limit": 999,
+    "yank.limit": 9,
+    "yank.priority": 10,
     "languageserver": {}
 }
