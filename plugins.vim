@@ -226,6 +226,10 @@ Plug 'tmhedberg/SimpylFold', {'for': ['python']}
 " Plug 'Vimjas/vim-python-pep8-indent', { 'for': ['python'] }
 " Plug 'vim-scripts/indentpython.vim', { 'for': ['python'] }
 
+" Color table
+" show color count :echo &t_Co
+" show color table :XtermColorTable
+Plug 'guns/xterm-color-table.vim', {'on': ['XtermColorTable']}
 
 """""""""""""""""""""""""""""""" 编辑增强 """"""""""""""""""""""""""""""""
 " Undo tree
