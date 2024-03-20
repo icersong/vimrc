@@ -101,16 +101,6 @@ module.exports = {
     },
 
     globals: {
-        $elem: true,
-        assert: true,
-        XMLChild: true,
-        XMLContent: true,
-        XMLChildren: true,
-        XMLAttrValue: true,
-        XMLAttributes2Dict: true,
-        OpenURI: true,
-        OpenDialogWindow: true,
-        html2escape: true,
         WdatePicker: true,
     },
 };
