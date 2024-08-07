@@ -14,7 +14,7 @@ if executable('rg')
   command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
   command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case ".(<q-args>), 1, {'options': '--delimiter : --nth 4..'}, <bang>0)
   " Rg
-  nnoremap <silent> <Leader>fa :Find<CR> 
+  nnoremap <silent> <Leader>fa :Find<CR>
   " Rg current worda
   nnoremap <Leader>fw :Rg <C-R><C-W><space>
 endif
@@ -27,9 +27,11 @@ endfunction
 function! GFilesOrFiels(...)
   let root = s:get_git_root()
   if empty(root)
-    call fzf#vim#files(a:1, a:2, a:3)
+    " call fzf#vim#files(a:1, a:2, a:3)
+    call call(function("fzf#vim#files"), a:000)
   else
-    call fzf#vim#gitfiles(a:1, a:2, a:3)
+    " call fzf#vim#gitfiles(a:1, a:2, a:3)
+    call call(function("fzf#vim#gitfiles"), a:000)
   endif
 endfunction
 command! -bang -nargs=? -complete=dir GFilesOrFiels call GFilesOrFiels(<q-args>, fzf#vim#with_preview(), <bang>0)
