@@ -291,7 +291,7 @@ Plug 'Shougo/echodoc.vim'
 " Plug 'scrooloose/syntastic'
 " 语法分析工具, 异步运行(Vim8/NeoVim)，性能完爆syntastic
 " Plug 'w0rp/ale'
-Plug 'dense-analysis/ale'
+" Plug 'dense-analysis/ale'
 
 " 语法补全工具
 if has('python3')
@@ -399,7 +399,9 @@ Plug 'Shougo/vimshell.vim', {
       \ 'on': ['VimShell', 'VimShellExecute', 'VimCurrentDir', 'VimShellPop']
       \ }
 if has('nvim')
+  " VimShell在Vim中打开shell终端
   command! -nargs=0 VimShell :e term://zsh
+  " VimShell 命令行下 Press Exc 可以退出终端输入模式
   tnoremap <Esc> <C-\><C-n>
 endif
 " Run command to tmux, <leader>vp, <leader>vq
